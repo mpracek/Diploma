@@ -52,10 +52,10 @@
 
 % naslednje ukaze ustrezno popravi
 \newcommand{\program}{Finanèna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
-\newcommand{\imeavtorja}{Ime Priimek} % ime avtorja
-\newcommand{\imementorja}{prof.~dr./doc.~dr. Ime Priimek} % akademski naziv in ime mentorja
-\newcommand{\naslovdela}{Naslov dela diplomskega seminarja}
-\newcommand{\letnica}{2012} %letnica diplome
+\newcommand{\imeavtorja}{Martin Praèek} % ime avtorja
+\newcommand{\imementorja}{prof.~dr./doc.~dr. Damjan Škulj} % akademski naziv in ime mentorja
+\newcommand{\naslovdela}{Skriti markovski modeli v èasovnih vrstah}
+\newcommand{\letnica}{2019} %letnica diplome
 
 
 % vstavi svoje definicije ...
@@ -98,7 +98,7 @@ Ljubljana, \letnica}
 V povzetku na kratko opi"si vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pa"c pa le opis vsebine.
 \vfill
 \begin{center}
-{\bf Angle"ski naslov dela}\\[3mm] % prevod slovenskega naslova dela
+{\bf Hidden Markov Models in Time Series}\\[3mm] % prevod slovenskega naslova dela
 {\sc Abstract}
 \end{center}
 % tekst povzetka v anglescini
@@ -106,16 +106,15 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2010):} navedi vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}  \\[1mm]
-{\bf Klju"cne besede:} navedi nekaj klju"cnih pojmov, ki nastopajo v delu  \\[1mm]
-{\bf Keywords:} angle"ski prevod klju"cnih besed
+{\bf Klju"cne besede:} skriti markovski modeli, èasovne vrste, sluèajni proces navedi nekaj klju"cnih pojmov, ki nastopajo v delu  \\[1mm]
+{\bf Keywords:}  hidden markov models, time series, angle"ski prevod klju"cnih besed
 \pagebreak
 
 
 
 % tu se zacne besedilo seminarja
 \section{Uvod}
-
-
+Skriti markovski modeli so široko uporabni 
 
 
 
@@ -128,6 +127,31 @@ Prevod zgornjega povzetka v angle"s"cino.
 %
 %\geslo{}{}
 %
+
+\section{Uporaba}
+Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranje. Naèini uporabe se zelo razlikujejo in gredo od zelo bioloških do ekonomskih. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v tem delu, zato sedaj raje poglejmo ostale naèine uporabe.
+
+
+
+\subsection{Procesiranje govora}
+
+Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor. \\
+Da bomo procesiranje lahko zmodelirali moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A. Ko je slovar doloèen, bo sluèajni proces $St$, kjer $t$ oznaèuje realizacijo v konènem èasu $t$, doloèen z dvema mehanizmoma: 
+\begin{enumerate}
+	\item homogena Markova veriga $Ct$, $t\in1,..,m$, ki doloèa položaj glasilk v vsakem èasu,
+	\item ter verjetnostne porazdelitve, po eno za vsako stanje.
+\end{enumerate}
+Te pogoje natanèno doloèimo s parametri $\delta$, ki predtavlja $C1$, $\Pi$, kjer je to matrika velikosti $n\times m$ in pa prehodno matriko $\Gamma$ za markovsko verigo.\\
+Ko imamo vse to doloèeno s pomoèjo Baum-Welchovega algoritma doloèimo rezultat.
+
+
+
+
+\subsection{Uporaba v biologiji in biokemiji}
+V zadnjem èasu se skrite markovske modele vedno veè uporablja tudi za modeliranje bioloških in biokemijskih procesov, med katerimi je najbolj  znan primer modeliranja proteinov v celièni membrani, ki ga bom malo opisal, poleg tega pa med drugim še za {\bf napovedovanje genov?}. \\
+Èeprav lahko nekatere proteine in njihovo delovanje znotraj celiène membrane enostavno predstavimo, to ne velja za vse. Tako imenovani $\beta$
+-\textbf{barrel} membranski proteini zahtevajo veè dela. Da bi ugotovili njihovo delovanje in ga primerjali z delovanjem v vodi topnih proteinov so Bagos, Liakoupos et al. razvili model ki to naredi. Gre za model, ki temelji na skritih markovskih modelih, njegov trening pa poteka na diskretni bazi podatkov in ni namenjen maksimiziranju \textbf{likelihood}, temveè je namenjen maksimiziranju verjetnosti pravilnih napovedi.\\
+Z delom potem nadaljujemo podobno kot pri procesiranju govora, le da je naš zaèetni slovar tu dolg $20$ znakov, toliko kolikor je aminokislin.
 
 
 % seznam uporabljene literature
