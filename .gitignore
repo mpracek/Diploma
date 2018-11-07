@@ -9,6 +9,7 @@ __pycache__
 *.doc
 *.docx
 *.gif
+*.gz
 *.htm
 *.html
 *.lof
