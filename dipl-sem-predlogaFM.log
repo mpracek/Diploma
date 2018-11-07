@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.10)  5 NOV 2018 11:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.10)  7 NOV 2018 17:57
 entering extended mode
 **./dipl-sem-predlogaFM.tex
 (dipl-sem-predlogaFM.tex
@@ -211,10 +211,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
 [3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Empty `thebibliography' environment on input line 163.
+ [4]
+[5]
 
-[4] (dipl-sem-predlogaFM.aux) ) 
+LaTeX Warning: Empty `thebibliography' environment on input line 170.
+
+[6] (dipl-sem-predlogaFM.aux) ) 
 Here is how much of TeX's memory you used:
  3178 strings out of 493323
  39209 string characters out of 3139032
@@ -230,9 +234,9 @@ i12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dipl-sem-predlogaFM.pdf (4 pages, 84392 bytes).
+Output written on dipl-sem-predlogaFM.pdf (6 pages, 87362 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
+ 49 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

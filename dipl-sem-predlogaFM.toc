@@ -1,7 +1,10 @@
 \select@language {slovene}
 \contentsline {section}{\tocsection {}{1}{Uvod}}{4}
 \contentsline {section}{\tocsection {}{}{Slovar strokovnih izrazov}}{4}
-\contentsline {section}{\tocsection {}{2}{Uporaba}}{4}
-\contentsline {subsection}{\tocsubsection {}{2.1}{Procesiranje govora}}{4}
-\contentsline {subsection}{\tocsubsection {}{2.2}{Uporaba v biologiji in biokemiji}}{4}
-\contentsline {section}{\tocsection {}{}{Literatura}}{4}
+\contentsline {section}{\tocsection {}{2}{Uporaba}}{5}
+\contentsline {subsection}{\tocsubsection {}{2.1}{Procesiranje govora}}{5}
+\contentsline {subsection}{\tocsubsection {}{2.2}{Uporaba v biologiji in biokemiji}}{5}
+\contentsline {subsection}{\tocsubsection {}{2.3}{Napovedovanje prevoza}}{5}
+\contentsline {subsection}{\tocsubsection {}{2.4}{Prepozavanje lastnoro\v cne pisave}}{5}
+\contentsline {subsection}{\tocsubsection {}{2.5}{Kriptoanaliza}}{5}
+\contentsline {section}{\tocsection {}{}{Literatura}}{6}
