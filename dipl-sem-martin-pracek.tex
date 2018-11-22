@@ -127,6 +127,31 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 %\geslo{}{}
 %
 \pagebreak
+\section{Osnovni pojmi}
+Preden lahko zaènemo govoriti o skritih markovskih modelih, moram nekaj povedati o osnovnih pojmih, ki jih bom uporabljal skozi celotno seminarsko nalogo.
+\definicija{Markovska lastnost}
+Naj bo ${\displaystyle (\Omega ,{\mathcal {F}},\mathbb {P} )}$ verjetnostni prostor s filtracijo $({\displaystyle ({\mathcal {F}}_{s},\ s\in I)})$ za neko urejeno množico ${\displaystyle I}$. Naj bo $({\displaystyle (S,{\mathcal {S}})})$ merljiv prostor. Stohastièni proces X, merjen na $({\displaystyle (S,{\mathcal {S}})})$ X =${\displaystyle X=\{X_{t}:\Omega \to S\}_{t\in I}}$ prilagojen na filtracijo ima markovsko lastnost, èe za vsak ${\displaystyle A\in {\mathcal {S}}}$ in vsak ${\displaystyle s,t\in I}$ kjer je ${\displaystyle s<t}$, velja da je,
+
+$${\displaystyle \mathbb {P} (X_{t}\in A\mid {\mathcal {F}}_{s})=\mathbb {P} (X_{t}\in A\mid X_{s}).}$$
+Èe imamo ${\displaystyle S}$, ki je diskretna množica z diskretno sigma algebro in ${\displaystyle I=\mathbb {N} } I={\mathbb {N}}$, je lahko formulirano tudi kot:
+$${\displaystyle \mathbb {P} (X_{n}=x_{n}\mid X_{n-1}=x_{n-1},\dots ,X_{0}=x_{0})=\mathbb {P} (X_{n}=x_{n}\mid X_{n-1}=x_{n-1}).} $$
+
+Markovska lastnost je torej lastnost stohastiènega procesa, da je njegova vrednost v èasu $t$ odvisna le od njegove vrednosti v èasu $t-1$.
+
+Naravno se nam postavi vprašanje, zakaj je Markovska lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti. Model, ki ga lahko tako rešimo imenujemo Markov model.\\
+Poznamo veè razliènih vrst Markovih modelov. Najbolj znana je Markovska veriga. 
+
+
+\definicija{Markovska veriga} je zaporedje sluèajnih spremenljivk, ki zadošèa markovski lastnosti, kjer lahko vsa stanja opazujemo. 
+
+\begin{table}[]
+	\begin{tabular}{lcc}
+		& Sistem lahko v celoti opazujemo & Sistem lahko opazujemo le delno             \\
+		\multicolumn{1}{c}{Avtonomen sistem} & Markovska veriga                & Skriti markovski model                      \\
+		Kontorliran sistem                   & Markovski proces odloèanja      & Delno opazovalen maproces odloèanja
+	\end{tabular}
+\end{table}s
+
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranje. Naèini uporabe se zelo razlikujejo in gredo od zelo bioloških do ekonomskih. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v tem delu, zato sedaj raje poglejmo ostale naèine uporabe.
 
