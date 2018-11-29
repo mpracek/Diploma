@@ -16,3 +16,6 @@ Osnove Markovskih modelov
 https://en.wikipedia.org/wiki/Markov_chain
 https://en.wikipedia.org/wiki/Markov_property
 https://en.wikipedia.org/wiki/Markov_model
+
+Teorija vsega
+https://www.encyclopediaofmath.org/index.php/Markov_process
