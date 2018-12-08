@@ -95,7 +95,7 @@ Ljubljana, \letnica}
 {\sc Povzetek}
 \end{center}
 % tekst povzetka v slovenscini
-V povzetku na kratko opi"si vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pa"c pa le opis vsebine.
+V povzetku na kratko opiši vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, paè pa le opis vsebine.
 \vfill
 \begin{center}
 {\bf Hidden Markov Models in Time Series}\\[3mm] % prevod slovenskega naslova dela
@@ -113,7 +113,7 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 % tu se zacne besedilo seminarja
 \section{Uvod}
-Skriti markovski modeli so široko uporabno modelacijsko orodje, ki nam omogoèa zelo široko uporabo. V mojem diplomskem seminarju se bom najbolj posvetil uporabi v finanèni analizi.  
+Skriti markovski modeli so modelacijsko orodje, ki nam omogoèa zelo široko uporabo. V mojem diplomskem seminarju se bom najbolj posvetil uporabi v finanèni analizi.  
 V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih modelov, v drugem pa bom natanèno opisal matematièno ozadje le teh. Na koncu bom natanèno predstavil še lasten primer uporabe, kjer si bom pomagal z razliènimi programskimi jeziki in okolji, od Mathematice do R.
 
 
@@ -127,9 +127,9 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 %\geslo{}{}
 %
 \pagebreak
-\section{Osnovni pojmi}
-Preden lahko zaènemo govoriti o skritih markovskih modelih, moram nekaj povedati o osnovnih pojmih, ki jih bom uporabljal skozi celotno seminarsko nalogo.
-\definicija{Sluèajni proces} Za dan  ${\displaystyle (\Omega ,{\mathcal {F}},\mathbb {P} )}$ verjetnostni prostor z merljivim prostorom ${\displaystyle (S,\Sigma )}$, je sluèajni proces nabor sluèajnih spremenjlivk, ki ga lahko zapišemo kot $${\displaystyle \{X(t):t\in T\}}$$
+\section{Markovski modeli}
+Preden lahko zaènemo govoriti o skritih markovskih modelih, moram nekaj povedati o markovskih modelih.
+Markovski modeli so modeli, kjer velja markovsko lastnost.
 \definicija{Markovska lastnost}
 Naj bo ${\displaystyle (\Omega ,{\mathcal {F}},\mathbb {P} )}$ verjetnostni prostor s filtracijo $({\displaystyle ({\mathcal {F}}_{s},\ s\in I)})$ za neko urejeno množico ${\displaystyle I}$. Naj bo $({\displaystyle (S,{\mathcal {S}})})$ merljiv prostor. Sluèajni proces X, merjen na $({\displaystyle (S,{\mathcal {S}})})$ X =${\displaystyle X=\{X_{t}:\Omega \to S\}_{t\in I}}$ prilagojen na filtracijo ima markovsko lastnost, èe za vsak ${\displaystyle A\in {\mathcal {S}}}$ in vsak ${\displaystyle s,t\in I}$ kjer je ${\displaystyle s<t}$, velja da je,
 
@@ -138,8 +138,8 @@ $${\displaystyle \mathbb {P} (X_{t}\in A\mid {\mathcal {F}}_{s})=\mathbb {P} (X_
 $${\displaystyle \mathbb {P} (X_{n}=x_{n}\mid X_{n-1}=x_{n-1},\dots ,X_{0}=x_{0})=\mathbb {P} (X_{n}=x_{n}\mid X_{n-1}=x_{n-1}).} $$
 
 Markovska lastnost je torej lastnost stohastiènega procesa, da je njegova vrednost v èasu $t$ odvisna le od njegove vrednosti v èasu $t-1$.
-
-Naravno se nam postavi vprašanje, zakaj je Markovska lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti. Model, ki ga lahko tako rešimo imenujemo Markov model.\\
+\\
+Naravno se nam postavi vprašanje, zakaj je markovska lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti. Model, ki ga lahko tako rešimo imenujemo Markov model.\\
 Poznamo veè razliènih vrst Markovih modelov, ki jih lahko razdelimo med $4$ podkategorije.
 
 
@@ -149,13 +149,14 @@ Poznamo veè razliènih vrst Markovih modelov, ki jih lahko razdelimo med $4$ podk
 		\multicolumn{1}{c}{Avtonomen} & Markovska veriga                & Skriti markovski model                      \\
 		Kontorliran                   & Markovski proces odloèanja      & Delno opazovalen maproces odloèanja
 	\end{tabular}
-\end{table}s
+\end{table}
+V mojem diplomskem delu se bom ukvarjal s skritimi markovskimi modeli.
+\section{Skriti markovski modeli}
+Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji.\\
+Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala. 
+Loèimo diskreten in zvezen primer skritih markovskih modelov. 
 
-\definicija{Markovska veriga} je zaporedje sluèajnih spremenljivk, ki zadošèa markovski lastnosti, kjer lahko vsa stanja opazujemo. 
-
-Vendar v moji diplomski nalogi ne bom govoril o Markovskih verigah, temveè o drugi vrsti avtonomnega markovskega procesa, in sicer o skritih markovskih modelih.
-
-\subsection{Skriti markovski modeli}
+\subsection{Zahteve za model}
 
 
 
@@ -166,7 +167,7 @@ Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranj
 
 \subsection{Procesiranje govora}
 
-Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor.  \\
+Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
 Da bomo procesiranje lahko zmodelirali moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A. Ko je slovar doloèen, bo sluèajni proces $St$, kjer $t$ oznaèuje realizacijo v konènem èasu $t$, doloèen z dvema mehanizmoma: 
 \begin{enumerate}
 	\item homogena Markova veriga $Ct$, $t\in1,..,m$, ki doloèa položaj glasilk v vsakem èasu,
@@ -192,6 +193,7 @@ Gre za sistem, kjer želimo za prihodnost napovedati, koliko vozil bo neko promet
 \subsection{Kriptoanaliza}
 S tem se je ukvarjajo razlièni storokovnjaki.
 %novi viri, zbrani, preberi
+\section{Uporaba v finanèni analizi}
 
 % seznam uporabljene literature
 \pagebreak
