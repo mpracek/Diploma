@@ -174,8 +174,16 @@ S temi predpostavkami bi lahko zmodelirali, a jih imamo še nekaj, ki nam sam mod
 \end{enumerate}
 
 Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Te verjetnostne porazdelitve predstavimo kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove meašnice.
-Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto.\\
-Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev. 
+Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $b_{i} = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{j}, \sigma_{j}^2)$.\\
+Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna glede na njeno upanje; to pa pogosto ne drži za procese v realnem svetu, na primer za zaslužke v finanènem poslovanju.\\
+Tako potrebujemo za sestavo modela še:
+\begin{itemize}
+	\item število mešanic $M$
+	\item matriko $C$, ki predstavlja koeficiente $c_{ij}$, ki so faktorji v Gaussovi mešanici,
+	\item matrika $\Gamma$, kjer $\mu_{ij}$ predstavlja prièakovano vrednost mešanice $j$ v stanju $i$,  ter
+	\item matriko $\Sigma$, kjer \sigma_{ij} predstavlja varianco mešanice $j$ v stanju $i$.
+	
+\end{itemize}
 
 \pagebreak
 \section{Uporaba}
@@ -217,6 +225,8 @@ S tem se je ukvarjajo razlièni storokovnjaki.
 
 % seznam uporabljene literature
 \pagebreak
+\section{Praktièni primer}
+
 \begin{thebibliography}{99}
 
 %\bibitem{}
