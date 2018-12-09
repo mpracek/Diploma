@@ -122,7 +122,7 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 % slovar
 \section*{Slovar strokovnih izrazov}
 
-\geslo{Gaussova mešanica}{Gaussova mešanica je porazdelitvena funkcija z gostoto, ki jo lahko zapišemo kot tehtano povpreèje normalnih gostot; $f(x) = \sum_{j = 1}^{M}{c_{j}} N(x;\mu_{j}, \sigma_{j}^2)$. Veljati mora še, da je $\sum_{j = 1}^{M}{c_{j}} = 1$ in da je $N(x;\mu_{j}, \sigma_{j}^2)$ gostota normalne porazdelitvene funkcije.}
+\geslo{Gaussova mešanica}{Gaussova mešanica je porazdelitvena funkcija z gostoto, ki jo lahko zapišemo kot tehtano povpreèje normalnih gostot; $f(x) = \sum_{j = 1}^{M}{c_{j}} N(x;\mu_{j}, \sigma_{j}^2)$. Veljati mora še, da je $\sum_{j = 1}^{M}{c_{j}} = 1$ in da je $N(x;\mu_{j}, \sigma_{j}^2)$ gostota normalne porazdelitvene funkcije.}\\
 \geslo{Akaikov informacijski kriterij}{}
 %
 \pagebreak
@@ -174,7 +174,7 @@ S temi predpostavkami bi lahko zmodelirali, a jih imamo še nekaj, ki nam sam mod
 \end{enumerate}
  \  \\
 Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Le te predstavimo kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove mešanice.
-Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $b_{i} = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{j}, \sigma_{j}^2)$.\\
+Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i} = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{j}, \sigma_{j}^2)$$.\\
 \\
 Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna glede na njeno upanje; to pa pogosto ne drži za procese v realnem svetu, na primer za zaslužke v finanènem poslovanju.\\
 Tako potrebujemo za sestavo modela še:
@@ -186,12 +186,16 @@ Tako potrebujemo za sestavo modela še:
 \end{itemize}
 \   \\
 \subsection{Priprava modela}
-Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Najprej moramo doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.
+Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. Ti podatki morajo biti zbrani na na podobni enoti; èe na bo na primer zanimale cena delnice podjetja, ki se ukvarja z predelavo pomaranènega soka, za trening ne bomo vzeli cene delnic metalurškega podjetja. 
+\\ Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. 
+\\ Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.
 \\V praksi število stanj vèasih doloèimo z potrebno aplikacijo, kot na primer v \ref{Biologija}, oziroma z vizualnim ogledom toèk grafa iz zgodovinskih podatkov.\\
 Vèasih pa lahko to doloèimo preko Akaikovega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo $N$ in izbere najboljšega. 
 \\ Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo šop $k$-povpreèij ($k$-mean clustering). 
 \\
-
+Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost, da so bila vsa opazovanja doloèena tudi s strani modela najveèja, $P(O|\lambda)$. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana.
+\\Naravno se pojavi vprašanje, kako to doloèimo. Izkaže se, da je uèinkovit sistem "naprej - nazaj". Doloèimo spremenljivki "naprej" $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $o$ do $t$ in stanje $i$, ter "nazaj" $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Definirati pa rabimo le eno izmed njiju, saj gre pri $\beta_{t}(i)$ le alternativno metodo za $\alpha_{t}(i)$.
+\\
 
 \pagebreak
 \section{Uporaba}
@@ -202,21 +206,18 @@ Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranj
 \subsection{Procesiranje govora}
 
 Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
-Da bomo procesiranje lahko zmodelirali moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A. Ko je slovar doloèen, bo sluèajni proces $St$, kjer $t$ oznaèuje realizacijo v konènem èasu $t$, doloèen z dvema mehanizmoma: 
-\begin{enumerate}
-	\item homogena Markova veriga $Ct$, $t\in1,..,m$, ki doloèa položaj glasilk v vsakem èasu,
-	\item ter verjetnostne porazdelitve, po eno za vsako stanje.
-\end{enumerate}
-Te pogoje natanèno doloèimo s parametri $\delta$, ki predtavlja $C1$, $\Pi$, kjer je to matrika velikosti $n\times m$ in pa prehodno matriko $\Gamma$ za markovsko verigo.\\
-Ko imamo vse to doloèeno s pomoèjo Baum-Welchovega algoritma doloèimo rezultat.\\
-Velja pa omeniti tudi, da na ta naèin, le z nekaj adaptacijami, deluje tudi Siri.
+Da bomo procesiranje lahko zmodelirali moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A.
+Velja omeniti tudi, da na ta naèin, le z nekaj adaptacijami, deluje tudi Siri.
 
 \subsection{Uporaba v biologiji in biokemiji} \label{Biologija}
 V zadnjem èasu se skrite markovske modele vedno veè uporablja tudi za modeliranje bioloških in biokemijskih procesov, med katerimi je najbolj  znan primer modeliranja proteinov v celièni membrani, ki ga bom malo opisal, poleg tega pa med drugim še za {\bf napovedovanje genov?}. \\
 Èeprav lahko nekatere proteine in njihovo delovanje znotraj celiène membrane enostavno predstavimo, to ne velja za vse. Tako imenovani $\beta$
 -\textbf{barrel} membranski proteini zahtevajo veè dela. Da bi ugotovili njihovo delovanje in ga primerjali z delovanjem v vodi topnih proteinov so Bagos, Liakoupos et al. razvili model ki to naredi. \\
 Z delom potem nadaljujemo podobno kot pri procesiranju govora, le da je naš zaèetni slovar tu dolg $20$ znakov, toliko kolikor je aminokislin.
-
+\\
+\ \\
+\ \\
+Naslednjim trem kategorijam se do sedaj nisem pozorno posvetil.
 \subsection{Napovedovanje prevoza}
 Gre za sistem, kjer želimo za prihodnost napovedati, koliko vozil bo neko prometno infrastrukturo v prihodnosti.
 %Preberi še kakšen vir
