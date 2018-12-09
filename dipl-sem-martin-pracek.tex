@@ -186,6 +186,9 @@ Tako potrebujemo za sestavo modela še:
 	\item matriko $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco mešanice $j$ v stanju $i$.
 \end{itemize}
 \   \\
+\subsection{Priprava modela}
+Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Najprej moramo doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela. V praksi število stanj vèasih doloèimo z potrebno aplikacijo, kot naprimer v \ref{Biologija}, oziroma z vizualnim ogledom toèk grafa iz zgodovinskih podatkov.\\
+ 
 \pagebreak
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranje. Naèini uporabe se zelo razlikujejo in gredo od zelo bioloških do ekonomskih. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v tem delu, zato sedaj raje poglejmo ostale naèine uporabe.
@@ -204,10 +207,10 @@ Te pogoje natanèno doloèimo s parametri $\delta$, ki predtavlja $C1$, $\Pi$, kje
 Ko imamo vse to doloèeno s pomoèjo Baum-Welchovega algoritma doloèimo rezultat.\\
 Velja pa omeniti tudi, da na ta naèin, le z nekaj adaptacijami, deluje tudi Siri.
 
-\subsection{Uporaba v biologiji in biokemiji}
+\subsection{Uporaba v biologiji in biokemiji} \label{Biologija}
 V zadnjem èasu se skrite markovske modele vedno veè uporablja tudi za modeliranje bioloških in biokemijskih procesov, med katerimi je najbolj  znan primer modeliranja proteinov v celièni membrani, ki ga bom malo opisal, poleg tega pa med drugim še za {\bf napovedovanje genov?}. \\
 Èeprav lahko nekatere proteine in njihovo delovanje znotraj celiène membrane enostavno predstavimo, to ne velja za vse. Tako imenovani $\beta$
--\textbf{barrel} membranski proteini zahtevajo veè dela. Da bi ugotovili njihovo delovanje in ga primerjali z delovanjem v vodi topnih proteinov so Bagos, Liakoupos et al. razvili model ki to naredi. Gre za model, ki temelji na skritih markovskih modelih, njegov trening pa poteka na diskretni bazi podatkov in ni namenjen maksimiziranju \textbf{likelihood}, temveè je namenjen maksimiziranju verjetnosti pravilnih napovedi.\\
+-\textbf{barrel} membranski proteini zahtevajo veè dela. Da bi ugotovili njihovo delovanje in ga primerjali z delovanjem v vodi topnih proteinov so Bagos, Liakoupos et al. razvili model ki to naredi. \\
 Z delom potem nadaljujemo podobno kot pri procesiranju govora, le da je naš zaèetni slovar tu dolg $20$ znakov, toliko kolikor je aminokislin.
 
 \subsection{Napovedovanje prevoza}
