@@ -138,8 +138,17 @@ $$P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$$
 
 \begin{frame}
 \frametitle{Trening modela}
-Da bomo lahko $P(O|\lambda)$ sploh izraèunali, potrebujemo zaèetne ocene parametrov. 
-Pri tem nas ne 
+Da bomo lahko $P(O|\lambda)$ maksimizirali, potrebujemo zaèetne ocene parametrov. 
+Za to ne poznamo analitiènega postopka, lahko pa lokalno maksimiziramo, z naprimer, Baum-Welchovim algoritmom.
+Pri tem nas ne skrbijo ocene za $A$ ter $\Pi$, kjer moramo paziti le na nenièelnost le teh.
+Veè problemov nam povzroèajo  $C$, $\Sigma$ in $\Gamma$.
+\end{frame}
+
+\begin{frame}
+\frametitle{ $C$, $\Sigma$ in $\Gamma$}
+ Za dobro zaèetno oceno si lahko pomagamo z šopom $k$-povpreèij.
+ \includegraphics[scale=0.5]{slike/kmeans}
+ Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $ij$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti teh šopov povpreèij.
 \end{frame}
 
 \begin{frame}
@@ -149,26 +158,11 @@ Pri tem nas ne
 \includegraphics[width=.3\linewidth]{slike/lastnorocna}\quad\includegraphics[width=.3\linewidth]{slike/gen}\quad\includegraphics[width=.3\linewidth]{slike/celica1}
 \end{frame}	
 
-\section{Uporaba v èasovnih vrstah} % Since this is the start of a new section, our recurring outline will appear here.
-
 
 \begin{frame}
-\frametitle{}
-\end{frame}
-
-\begin{frame}
-\frametitle{}
-\end{frame}
-
-\section{Kaj še sledi?} % Since this is the start of a new section, our recurring outline will appear here.
-
-\begin{frame}
+V dolgi predstavitvi se bom bolj posvetil sami finanèni analizi, ki sem jo tokrat zaenkrat pustil pri miru.
 V prihodnje bom tudi sam poizkusil doloèiti skriti markovski model na svojem setu podatkov.
 
-\end{frame}
-
-\section{Viri}
-\begin{frame}
 \end{frame}
 
 
