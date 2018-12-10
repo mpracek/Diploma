@@ -194,7 +194,7 @@ Vèasih pa lahko to doloèimo preko Akaikovega informacijskega kriterija, ki prime
 \\ Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo šop $k$-povpreèij ($k$-mean clustering). 
 \\
 Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost, da so bila vsa opazovanja doloèena tudi s strani modela najveèja, $P(O|\lambda)$. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana.
-\\Naravno se pojavi vprašanje, kako to doloèimo. Izkaže se, da je uèinkovit sistem "naprej - nazaj". Doloèimo spremenljivki $naprej$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $o$ do $t$ in stanje $i$, ter $nazaj$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Definirati pa rabimo le eno izmed njiju, saj gre pri $\beta_{t}(i)$ le alternativno metodo za $\alpha_{t}(i)$.
+\\Naravno se pojavi vprašanje, kako to doloèimo. Izkaže se, da je uèinkovit sistem $naprej - nazaj$. Doloèimo spremenljivki $naprej$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $o$ do $t$ in stanje $i$, ter $nazaj$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Definirati pa rabimo le eno izmed njiju, saj gre pri $\beta_{t}(i)$ le alternativno metodo za $\alpha_{t}(i)$.
 $\alpha_{t}(i)$ definiramo kot:
 $$\alpha_{1}(i) = \pi_{i}b_{i}(O_{1}) = \pi_{i}b_{i} = \sum_{k = 1}^{M}{c_{ik}} N(O_{1};\mu_{j}, \sigma_{j}^2)$$
 \\
