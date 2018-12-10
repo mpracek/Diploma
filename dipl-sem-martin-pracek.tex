@@ -216,9 +216,17 @@ Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za m
 Kot prvo potrebujemo $\xi_{t}(i,j)$, ki nam pove verjtnost, da smo v èasu $t$ v stanju $i$ in v èasu $t+1$ v stanju $j$.
 $$\xi_{t}(i,j) = \frac{\alpha_{t}(i)a_{ij}b_{j}(O_{t})\beta_{t+1}(j)}{P(O|\lambda)}.$$
 Vsota $\sum_{t=1}^{N}{\xi_{t}}$ nam pove prièakovano število prehodov iz stanja $i$ v stanje $j$.\\
-Druga je $\Upsilon_{t}(i)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $i$.
-$$\Upsilon_{t}(i) = \frac{\alpha_{t}(i)\beta_{t}(i)}{P(O|\lambda)}$$
-Vsota $\sum_{t=1}^{N}{\Upsilon_{t}(i)}$ nam pove prièakovano število prehodov iz stanja $i$.
+Druga je $\gamma_{t}(i)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $i$.
+$$\gamma_{t}(i) = \frac{\alpha_{t}(i)\beta_{t}(i)}{P(O|\lambda)}$$
+Vsota $\sum_{t=1}^{N}{\gamma_{t}(i)}$ nam pove prièakovano število prehodov iz stanja $i$.\\
+Zadnja, tretja pa je $\gamma_{t}(j,k)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $j$, in $k$ta mešanica predstavlja $O_{t}$. 
+$$ \gamma_{t}(j,k) =\gamma_{t}(j)\frac{c_{jk} N(x;\mu_{jk}, \sigma_{jk}^2)}{\sum_{m = 1}^{M}{c_{jm}} N(x;\mu_{jm}, \sigma_{jm}^2)}$$
+\ \\
+Iz teh podatkov lahko nato popravimo izraèun elementov:
+$$ \overline{\Pi_{i}} = \gamma_{1}(i)$$
+$$ \overline{a_{ij}} = \frac{\sum_{t=1}^{T-1}{\xi_{t}}}{\sum_{t=1}^{T-1}{\gamma_{t}(i)}}$$
+$$\overline{c_{jk}}= \frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}}{\sum_{t=1}^{T}\sum_{m=1}^{M}{\gamma_{t}(j,m)}}$$
+$$\overline{\mu_{jk}}=\frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}O_{t}}{\frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}}} $$
 \pagebreak
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranje. Naèini uporabe se zelo razlikujejo in gredo od zelo bioloških do ekonomskih. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v tem delu, zato sedaj raje poglejmo ostale naèine uporabe.
