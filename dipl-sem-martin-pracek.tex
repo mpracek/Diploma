@@ -185,7 +185,7 @@ Tako potrebujemo za sestavo modela še:
 	\item matriko $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco mešanice $j$ v stanju $i$.
 \end{itemize}
 \   \\
-\subsection{Priprava modela}
+\subsection{Priprava in trening modela}\label{trening}
 Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. Ti podatki morajo biti zbrani na na podobni enoti; èe na bo na primer zanimale cena delnice podjetja, ki se ukvarja z predelavo pomaranènega soka, za trening ne bomo vzeli cene delnic metalurškega podjetja. 
 \\ Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. 
 \\ Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.
@@ -202,6 +202,11 @@ $$\alpha_{t+1}(j) = b_{j}(O_{t+1})\sum_{i=1}^{N}{\alpha_{t}(i)a_{ij}}$$
 Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$
 \\
 Na enak naèin izraèunamo tudi $\beta_{t}(i)$, ki ni nujen za izraèun  $P(O|\lambda)$, vendar ga nujno rabimo za trening našega modela.
+\linebreak
+Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
+Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo.\\
+Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista ravno nièelna.\\
+Veè problemov nam povzroèajo 
 \pagebreak
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranje. Naèini uporabe se zelo razlikujejo in gredo od zelo bioloških do ekonomskih. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v tem delu, zato sedaj raje poglejmo ostale naèine uporabe.
