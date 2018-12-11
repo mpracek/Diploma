@@ -212,7 +212,7 @@ Z znanimi zaèetnimi vrednostmi se lahko spustimo v maksumiziranje $P(O|\lambda)$
 Za to zaporedje velja, da konvergira k lokalnemu maksimumu.\\
 
 \subsection{Natanèna doloèitev zaèetnih vrednosti}
-Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za maksimizacijo $P(O|\lambda)$. Izkaže se, da za maksimizacijo le tega potrebujemo še nekaj dodatnih formul, ki so rezultat Baum-Welchovega algortma.\\
+Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za maksimizacijo $P(O|\lambda)$. Izkaže se, da za maksimizacijo le tega potrebujemo še nekaj dodatnih formul, ki so rezultat Baum-Welchovega algortma. Z njimi definiramo veèfazni iterativni proces, pri katerem popravljamo vrednosti parametrov do konvergence.\\
 Kot prvo potrebujemo $\xi_{t}(i,j)$, ki nam pove verjtnost, da smo v èasu $t$ v stanju $i$ in v èasu $t+1$ v stanju $j$.
 $$\xi_{t}(i,j) = \frac{\alpha_{t}(i)a_{ij}b_{j}(O_{t})\beta_{t+1}(j)}{P(O|\lambda)}.$$
 Vsota $\sum_{t=1}^{N}{\xi_{t}}$ nam pove prièakovano število prehodov iz stanja $i$ v stanje $j$.\\
