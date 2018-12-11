@@ -13,7 +13,7 @@
 \theoremstyle{definition} % See Lesson Three of the LaTeX Manual for more on this kind of "proclamation."
 \newtheorem*{dfn}{A Reasonable Definition}               
 
-\title{Skriti markovski modeli v èasovnih vrstah}
+\title{Skriti markovski modeli v finanènih èasovnih vrstah}
 %\newcommand{\imeavtorja}{Martin Praèek} % ime avtorja
 %\newcommand{\imementorja}{izr. prof. dr. Damjan Škulj}
 \institute{Fakulteta za matematiko in fiziko, Univerza v Ljubljani}
@@ -59,7 +59,7 @@
 \begin{frame} 
 \frametitle{Markovski model}
 \begin{itemize}
-	\item Markovska lastnost je lastnost sluèajnega procesa, da je njegova vrednost v èasu $t$ odvisna le od njegove vrednosti v èasu $t-1$.
+	\item Markovska lastnost je lastnost sluèajnega procesa v diksretnem èasu, da je njegova vrednost v èasu $t$ odvisna le od njegove vrednosti v èasu $t-1$.
 	\item Loèimo v celoti opazovan in delno opazovan ter
 	\item Avtonomen in kotroliran sistem.
 \end{itemize}
@@ -84,7 +84,7 @@ Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, 
 \frametitle{Zahteve}
 \begin{itemize}
 	\item Markovska lastnost
-	\item Enaki razdeljeni èasi signalov
+	\item Enakomerno razdeljeni èasi signalov
 	\item Sistem ima $N$ stanj, vsako doloèa sluèajna spremenjivka $S$
 \end{itemize}
 \includegraphics[scale=0.25]{slike/hmm}
@@ -92,21 +92,21 @@ Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, 
 
 \begin{frame}
 \begin{itemize}
-	\item Sluèajnih spremenljivk v nobenem èasu ne poznamo, poznamo pa sluèajni proces $Q$, ki predstavlja signale
-	\item Porazdelitveno funkcijo vsakega stanja $i$ oznaèimo z $b_{i}(x)$
+	\item Sluèajnih spremenljivk skritih skoraj v nobenem èasu ne poznamo, poznamo pa sluèajni proces $Q$, ki predstavlja signale
+	\item Verjetnostno funkcijo vsakega stanja $i$ oznaèimo z $b_{i}(x)$
 	\item Vektor zaèetnih stanj je $\Pi$
 	\item Prehodna matrika $A$, ki je neodvisna od èasa
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Porazdelitvena funkcija}
+\frametitle{Porazdelitveni zakon}
 \begin{itemize}
 	\item Gaussova mešanica
 	\item  $b_{i} = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{j}, \sigma_{j}^2)$
-	\item Število mešanic $M$
-	\item Matrika $\Gamma$, $\mu_{ij}$ predstavlja prièakovano vrednost mešanice $j$ v stanju $i$
-	\item Matrika $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco mešanice $j$ v stanju $i$
+	\item Število porazdelitev $M$
+	\item Matrika $\Gamma$, $\mu_{ij}$ predstavlja prièakovano vrednost porazdelitve $j$ v stanju $i$
+	\item Matrika $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco porazdelitve $j$ v stanju $i$
 	\item Matrika $C$, koeficienti $c_{ij}$ iz Gaussove mešanice
 \end{itemize}
 \end{frame}
@@ -115,7 +115,7 @@ Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, 
 \frametitle{Osnovanje modela}
 Da bomo lahko delali z našim modelom, moramo najprej izvesti t.i. trening modela.
 \begin{itemize}
-	\item šop $k$-povpreèij
+	\item Razvršèanje v skupine ($k$-means clustering)
 	\item Akaikov informacijski kriterij
 \end{itemize}
 \includegraphics[scale=0.35]{slike/delnica}
@@ -124,16 +124,10 @@ Da bomo lahko delali z našim modelom, moramo najprej izvesti t.i. trening modela
 \begin{frame}
 \frametitle{Izraèun  $P(O|\lambda)$}
 Z $\lambda$ oznaèimo vse ostale parametre  $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$.
-Za uèinkovit izraèun le teh delamo $naprej - nazaj$.
+Za uèinkovit izraèun le teh si pomagamo z iterativnim postopkom, podobnim sistemu EM, $naprej - nazaj$.
 $$\alpha_{1}(i) = \pi_{i}b_{i}(O_{1}) = \pi_{i}b_{i} = \sum_{k = 1}^{M}{c_{ik}}$$
 $$\Downarrow$$
 $$P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$$
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Trening modela}
-\includegraphics[scale=0.25]{slike/treningmodela}
 \end{frame}
 
 \begin{frame}
@@ -146,7 +140,7 @@ Veè problemov nam povzroèajo  $C$, $\Sigma$ in $\Gamma$.
 
 \begin{frame}
 \frametitle{ $C$, $\Sigma$ in $\Gamma$}
- Za dobro zaèetno oceno si lahko pomagamo z šopom $k$-povpreèij.
+ Za dobro zaèetno oceno si lahko pomagamo z razvršèanjem v skupine.
  Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $ij$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti teh šopov povpreèij.
  \ \\
  \includegraphics[scale=0.5]{slike/kmeans}
@@ -170,6 +164,7 @@ $$ \overline{\Pi_{i}} = \gamma_{1}(i)$$
 $$ \overline{a_{ij}} = \frac{\sum_{t=1}^{T-1}{\xi_{t}}}{\sum_{t=1}^{T-1}{\gamma_{t}(i)}}$$
 $$\overline{c_{jk}}= \frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}}{\sum_{t=1}^{T}\sum_{m=1}^{M}{\gamma_{t}(j,m)}}$$
 $$\overline{\mu_{jk}}=\frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}O_{t}}{\sum_{t=1}^{T}{\gamma_{t}(j,k)}}$$
+Tako definiramo veèfazni iterativni proces, pri katerem popravljamo vrednosti parametrov do konvergence.
 \end{frame}
 \begin{frame}
 \frametitle{Zaèetno stanje in Viterbijev algoritem}
