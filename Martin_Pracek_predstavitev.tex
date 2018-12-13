@@ -94,7 +94,7 @@ Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, 
 \begin{itemize}
 	\item Sluèajnih spremenljivk skritih skoraj v nobenem èasu ne poznamo, poznamo pa sluèajni proces $Q$, ki predstavlja signale
 	\item Verjetnostno funkcijo vsakega stanja $i$ oznaèimo z $b_{i}(x)$
-	\item Vektor zaèetnih stanj je $\Pi$
+	\item Vektor zaèetnih stanj je $\pi$
 	\item Prehodna matrika $A$, ki je neodvisna od èasa
 \end{itemize}
 \end{frame}
@@ -134,7 +134,7 @@ $$P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$$
 \frametitle{Trening modela}
 Da bomo lahko $P(O|\lambda)$ maksimizirali, potrebujemo zaèetne ocene parametrov. 
 Za to ne poznamo analitiènega postopka, lahko pa lokalno maksimiziramo, z naprimer, Baum-Welchovim algoritmom.
-Pri tem nas ne skrbijo ocene za $A$ ter $\Pi$, kjer moramo paziti le na nenièelnost le teh.
+Pri tem nas ne skrbijo ocene za $A$ ter $\pi$, kjer moramo paziti le na nenièelnost le teh.
 Veè problemov nam povzroèajo  $C$, $\Sigma$ in $\Gamma$.
 \end{frame}
 
@@ -160,7 +160,7 @@ $$ \gamma_{t}(j,k) =\gamma_{t}(j)\frac{c_{jk} N(x;\mu_{jk}, \sigma_{jk}^2)}{\sum
 \begin{frame}
 \frametitle{Lokalno maksimiziranje}
 Prek dodatnih funkcij definiramo iteracijske postopke za naše spremenljivke:
-$$ \overline{\Pi_{i}} = \gamma_{1}(i)$$
+$$ \overline{\pi_{i}} = \gamma_{1}(i)$$
 $$ \overline{a_{ij}} = \frac{\sum_{t=1}^{T-1}{\xi_{t}}}{\sum_{t=1}^{T-1}{\gamma_{t}(i)}}$$
 $$\overline{c_{jk}}= \frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}}{\sum_{t=1}^{T}\sum_{m=1}^{M}{\gamma_{t}(j,m)}}$$
 $$\overline{\mu_{jk}}=\frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}O_{t}}{\sum_{t=1}^{T}{\gamma_{t}(j,k)}}$$
