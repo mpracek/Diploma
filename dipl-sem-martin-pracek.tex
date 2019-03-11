@@ -255,42 +255,84 @@ Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki na
 %Mogoèe malo veè o Viterbijevem algoritmu.
 \pagebreak
 \section{Uporaba}
-Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranje. Naèini uporabe se zelo razlikujejo in gredo od zelo bioloških do ekonomskih. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasldenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
+%Popravi naslednji stavek
+Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranje. Naèini uporabe se zelo razlikujejo in gredo od zelo bioloških do ekonomskih. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasledenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
 
 
 
 \subsection{Procesiranje govora}
 
-Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
+Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor, saj algoritem ni implementiran za "zvezen" govor. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
 Da bomo procesiranje lahko zmodelirali moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A.
 Velja omeniti tudi, da na ta naèin, le z nekaj adaptacijami, deluje tudi Siri.
+%kje se ga še uporablja? Kako deluje
+%dejanski primer
 
 \subsection{Uporaba v biologiji in biokemiji} \label{Biologija}
+%pomagaj si z nežo
+%mogoèe razdeli na veè toèk - genetika, procesi v celièni membrani
+%dejanski primer
+%zakaj zanimivo, pomembno
+
 V zadnjem èasu se skrite markovske modele vedno veè uporablja tudi za modeliranje bioloških in biokemijskih procesov, med katerimi je najbolj  znan primer modeliranja proteinov v celièni membrani, ki ga bom malo opisal, poleg tega pa med drugim še za {\bf napovedovanje genov?}. \\
 Èeprav lahko nekatere proteine in njihovo delovanje znotraj celiène membrane enostavno predstavimo, to ne velja za vse. Tako imenovani $\beta$
 -\textbf{barrel} membranski proteini zahtevajo veè dela. Da bi ugotovili njihovo delovanje in ga primerjali z delovanjem v vodi topnih proteinov so Bagos, Liakoupos et al. razvili model ki to naredi. \\
 Z delom potem nadaljujemo podobno kot pri procesiranju govora, le da je naš zaèetni slovar tu dolg $20$ znakov, toliko kolikor je aminokislin.
 \\
-\ \\
-\ \\
-Naslednjim trem kategorijam se do sedaj nisem pozorno posvetil.
 \subsection{Napovedovanje prevoza}
+
 Gre za sistem, kjer želimo za prihodnost napovedati, koliko vozil bo neko prometno infrastrukturo v prihodnosti.
+%zakaj zanimivo, pomembno
 %Preberi še kakšen vir
+%Razloži probleme le tega, primer
+%dejanski primer
+
 
 \subsection{Prepozavanje lastnoroène pisave}
 %dodatni viri
+%zakaj zanimivo, pomembno
+%dejanski primer
+
 
 \subsection{Kriptoanaliza}
 S tem se je ukvarjajo razlièni storokovnjaki.
+%zakaj zanimivo, pomembno
 %novi viri, zbrani, preberi
+%dejanski primer
+
+\subsection{Prepoznavanje akcij}
+%zakaj zanimivo, pomembno
+%dejanski primer
+
 \pagebreak
-\section{Uporaba v èasovnih vrstah}
-Temu delu se bom posvetil po kratki predstavitvi.
+\section{Uporaba v finanènih èasovnih vrstah}
+%time analysis
+%definicija finanène èasovne vrste
+%kako HMM apliciramo v èasovne vrste
+%posebnosti finanènih èasovnih vrst
+%kaj lahko delamo z HMM
+%uporaba v optimalnih trgovalnih strategijah -> zaporedna optimizacija portfelja
+
+
 
 % seznam uporabljene literature
 \pagebreak
 \section{Praktièni primer}
+\subsection{Analiza kakovosti modela}
+% v tem delu bomo ugotavljali prileganje modela z podatki iz zgodovine z ostalimi podatki iz zgodovine
+%vpliv spreminjanja kriterijev na toènost
+%primerjal bom zbrane vrnjene vrednosti z dejanskimi vrednostmi
+%delal bom na nekaj izbranih primerih, le nekaj vrednostnih papirjev
+%kriptovalutni bum in padec
+%borzni zlom 2008, 1929
+%dogajanje okoli 2005 
+
+\subsection{Napoved}
+%zlato, srebro
+%kriptovalute
+
+
+
 \pagebreak
 \begin{thebibliography}{99}
 
