@@ -123,12 +123,15 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 \section*{Slovar strokovnih izrazov}
 
 \geslo{Gaussova mešanica}{Gaussova mešanica je porazdelitvena funkcija z gostoto, ki jo lahko zapišemo kot tehtano povpreèje normalnih gostot; $$f(x) = \sum_{j = 1}^{M}{c_{j}} N(x;\mu_{j}, \sigma_{j}^2)$$. Veljati mora še, da je $\sum_{j = 1}^{M}{c_{j}} = 1$ in da je $N(x;\mu_{j}, \sigma_{j}^2)$ gostota normalne porazdelitvene funkcije.} \\
-\geslo{Akaikejev informacijski kriterij}{Recimo, da imamo podatke s $k$ ocenjenimi parametri in $L$ maksimalna vrednost funkcije verjetja. Akaikejev informacijski kriterij izraèunamo kot $$AIC = 2k - 2ln(L)$$ Akaikejev informacijski kriterij primerja veè razliènih modelov po kakovosti, kjer je najboljši tisti z najmanjšim AIC.  }
+\geslo{Akaikejev informacijski kriterij}{Recimo, da imamo podatke s $k$ ocenjenimi parametri in $L$ maksimalna vrednost funkcije verjetja. Akaikejev informacijski kriterij izraèunamo kot $$AIC = 2k - 2ln(L)$$ Akaikejev informacijski kriterij primerja veè razliènih modelov po kakovosti, kjer je najboljši tisti z najmanjšim AIC.}
+%Dopolni Baum-Welchov algoritem
+\geslo{Baum-Welchov algoritem}{}
 %
 \pagebreak
 \section{Markovski modeli}
+%Dodaj še kaj o markovskih modelih
 Preden lahko zaènemo govoriti o skritih markovskih modelih, moram nekaj povedati o markovskih modelih.
-Markovski modeli so modeli, kjer velja markovsko lastnost.
+Markovski modeli so modeli, kjer velja markovska lastnost.
 \definicija{Markovska lastnost}
 Naj bo ${\displaystyle (\Omega ,{\mathcal {F}},\mathbb {P} )}$ verjetnostni prostor s filtracijo $({\displaystyle ({\mathcal {F}}_{s},\ s\in I)})$ za neko urejeno množico ${\displaystyle I}$. Naj bo $({\displaystyle (S,{\mathcal {S}})})$ merljiv prostor. Sluèajni proces X, merjen na $({\displaystyle (S,{\mathcal {S}})})$ X =${\displaystyle X=\{X_{t}:\Omega \to S\}_{t\in I}}$ prilagojen na filtracijo ima markovsko lastnost, èe za vsak ${\displaystyle A\in {\mathcal {S}}}$ in vsak ${\displaystyle s,t\in I}$ kjer je ${\displaystyle s<t}$, velja da je,
 
@@ -150,6 +153,7 @@ Poznamo veè razliènih vrst Markovih modelov, ki jih lahko razdelimo med $4$ podk
 	\end{tabular}
 \end{table}
 V mojem diplomskem delu se bom ukvarjal s skritimi markovskimi modeli.
+%Opiši primere ostalih treh markovskih modelov
 \pagebreak
 \section{Skriti markovski modeli}
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji.\\
@@ -159,8 +163,10 @@ Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, 
 Kot vsak matematièni model, ima tudi skriti markovski model svoje zahteve.
 \begin{enumerate}
 	\item Prva zahteva je, da lahko rezultate, ki jih model producira, opazujemo v ekvidistanènih èasih, torej je razlika med dvema poljubnima zaporednima èasoma opazovanja $t-1$ in $t$ vedno enaka, na primer $d$. Rezulate imenujemo signali ali opazovanja.
-	\item V vsakem izmed èasov $t$ je sistem lahko v enem izmed $N$ stanj. Ta stanja so $S_{1}, S_{2}, \ldots, S_{N}$. Vsako izmed stanj $S_{i}$ je sluèajna spremenjlivka, ki je lahko zvezna ali diskretna, a njenega porazdelitvenega zakona ne poznamo. Ta stanja so v èasu $t$ neznana. Stanja so torej doloèena s sluèajnimi spremenljivkami $S_{i}$, ki so lahko diskretne ali zvezne, njihove porazdelitve pa ne poznamo.
-	\item  V vsakem izmed èasov $t$ ne vemo, v kakšnem stanju se nahajamo, vemo le, kakšni so rezultati našega procesa v tem èasu. Zato potrebujemo dodatni sluèajni proces ${\displaystyle Q=(Q_{t})_{t = 1,2, \ldots }}$, ki nam pove, v kakšnem stanju je sistem v èasu $t$. Tako velja, da je signal $O_{t}$ dan s stanjem sluèajnega procesa $Q$, v odvistnosti od gostote verjetnostne porazdelitve $b_{j}(O_{t})$. Signali našega procesa so torej rezultati sluèajnega procesa $Q$.
+	\item V vsakem izmed èasov $t$ je sistem lahko v enem izmed $N$ stanj. Ta stanja so $S_{1}, S_{2}, \ldots, S_{N}$. Vsako izmed stanj $S_{i}$ je sluèajna spremenljivka, ki je lahko zvezna ali diskretna, a njenega porazdelitvenega zakona ne poznamo. Ta stanja so v èasu $t$ neznana.
+	%Ne vem èe rabim
+	% Stanja so torej doloèena s sluèajnimi spremenljivkami $S_{i}$, ki so lahko diskretne ali zvezne, njihove porazdelitve pa ne poznamo.
+	\item  V vsakem izmed èasov $t$ ne vemo, v kakšnem stanju se nahajamo, vemo le, kakšni so rezultati našega procesa v tem èasu. Zato potrebujemo dodatni sluèajni proces ${\displaystyle Q=(Q_{t})_{t = 1,2, \ldots }}$, ki nam pove, v kakšnem stanju je sistem v èasu $t$. Tako velja, da je signal $O_{t}$ dan s stanjem sluèajnega procesa $Q$, v odvistnosti od gostote verjetnostne porazdelitve Gaussove mešanice. Signali našega procesa so torej rezultati sluèajnega procesa $Q$.
 	\item Vektor verjetnosti zaèetnih stanj je oznaèen z $\Pi$, in vsota njegovih elementov je enaka $1$.
 	\item V vsakem èasu velja, da bodisi sistem spremeni svoje stanje, bodisi ostane isto. Verjetnost prehoda v vsako stanje je doloèena s prehodnimi verjetnostmi, podanimi v matriki $A^{t}$, kjer verjetnost prehoda iz stanja $i$ v èasu $t$ v stanje $j$ v èasu $t+1$ simbolizira element $a_{ij}^{t}$. 
 	\item Vsota vsakega stolpca vsake matrike $A^{t}$ je enaka $1$.
@@ -176,7 +182,7 @@ S temi predpostavkami bi lahko zmodelirali, a jih imamo še nekaj, ki nam sam mod
 Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Le te predstavimo kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove mešanice.
 Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i} = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{j}, \sigma_{j}^2)$$.\\
 \\
-Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna glede na njeno upanje; to pa pogosto ne drži za procese v realnem svetu, na primer za zaslužke v finanènem poslovanju.\\
+Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna; to pa pogosto ne drži za procese v realnem svetu, na primer za donose v financah. Za te veèkrat drži, da so "left-skewed", torej da je veèji del manjši od povpreèja. \\
 Tako potrebujemo za sestavo modela še:
 \begin{itemize}
 	\item število mešanic $M$
@@ -190,7 +196,8 @@ Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo 
 \\ Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. 
 \\ Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.
 \\V praksi število stanj vèasih doloèimo z potrebno aplikacijo, kot na primer v \ref{Biologija}, oziroma z vizualnim ogledom toèk grafa iz zgodovinskih podatkov.\\
-Vèasih pa lahko to doloèimo preko Akaikovega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo $N$ in izbere najboljšega. 
+Vèasih pa lahko to doloèimo preko Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo $N$ in izbere najboljšega. 
+%Dopiši še kaj o Akaikejevem kriteriju, omeni še Bayesianski kriterij
 \\ Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). 
 \\
 Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost, da so bila vsa opazovanja doloèena tudi s strani modela najveèja, $P(O|\lambda)$. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana.
