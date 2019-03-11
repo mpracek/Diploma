@@ -159,6 +159,10 @@ V mojem diplomskem delu se bom ukvarjal s skritimi markovskimi modeli.
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji.\\
 Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala. 
 
+
+\subsection{Zgodovina modela}
+%na kratko opiši kdo, kaj zakaj kako; 
+
 \subsection{Zahteve za model}
 Kot vsak matematièni model, ima tudi skriti markovski model svoje zahteve.
 \begin{enumerate}
@@ -199,6 +203,7 @@ Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo 
 Vèasih pa lahko to doloèimo preko Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo $N$ in izbere najboljšega. 
 %Dopiši še kaj o Akaikejevem kriteriju, omeni še Bayesianski kriterij
 \\ Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). 
+%Zakaj, kako to naredimo?
 \\
 Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost, da so bila vsa opazovanja doloèena tudi s strani modela najveèja, $P(O|\lambda)$. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana.
 \\Naravno se pojavi vprašanje, kako to doloèimo. Izkaže se, da je uèinkovit sistem $naprej - nazaj$. Doloèimo spremenljivki $naprej$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $o$ do $t$ in stanje $i$, ter $nazaj$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Definirati pa rabimo le eno izmed njiju, saj gre pri $\beta_{t}(i)$ le alternativno metodo za $\alpha_{t}(i)$.
@@ -211,15 +216,21 @@ Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na enak naè
 \ \\
 Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
 Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo.Tu lahko uporabimo razliène algoritme, najbolj pa je uporabljen Baum-Welchov.\\
+%Opiši BW
 Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista ravno nièelna. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
 \\
-Veè problemov nam povzroèajo tri postavke z zvezno porazdelitivjo, to je $C$, $\Sigma$ in $\Gamma$. Dobra zaèetna ocena le teh je nujna za kakovost modela. Tudi tu se izkaže, da lahko, podobno kot pri oceni števila mešanic $M$ ozremo na razvršèanjem v skupine. Ta postopek nam sicer ne da globalnega minimuma, ki bi ga mogoèe lahko dobili na drugaèen naèin, a se v praksi izkaže za dobrega. Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $ij$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti teh šopov povpreèij.
+Veè problemov nam povzroèajo tri postavke z zvezno porazdelitivjo, to je $C$, $\Sigma$ in $\Gamma$. Dobra zaèetna ocena le teh je nujna za kakovost modela. Tudi tu se izkaže, da lahko, podobno kot pri oceni števila mešanic $M$ ozremo na razvršèanjem v skupine. Ta postopek nam sicer ne da globalnega minimuma, ki bi ga mogoèe lahko dobili na drugaèen naèin, a se v praksi izkaže za dobrega. Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $ij$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti šopov povpreèij.
 \ \\
-Z znanimi zaèetnimi vrednostmi se lahko spustimo v maksumiziranje $P(O|\lambda)$. Osnovati moramo zaporedje $\lambda$ = $\lambda_{t}, t \in {0,\ldots}$, da bo veljalo  $$P(O|\lambda_{i+1})  \geqslant P(O|\lambda_{i})$$
+Z znanimi zaèetnimi vrednostmi se lahko spustimo v maksimiziranje $P(O|\lambda)$. Osnovati moramo zaporedje $\lambda$ = $\lambda_{t}, t \in {0,\ldots}$, da bo veljalo  $$P(O|\lambda_{i+1})  \geqslant P(O|\lambda_{i})$$
 Za to zaporedje velja, da konvergira k lokalnemu maksimumu.\\
 
 \subsection{Natanèna doloèitev zaèetnih vrednosti}
 Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za maksimizacijo $P(O|\lambda)$. Izkaže se, da za maksimizacijo le tega potrebujemo še nekaj dodatnih formul, ki so rezultat Baum-Welchovega algortma. Z njimi 		 definiramo veèfazni iterativni proces, pri katerem popravljamo vrednosti parametrov do konvergence.\\
+%
+%
+%Nujno razloži kaj pomenijo alfe, bete,...!!!!!
+%
+%
 Kot prvo potrebujemo $\xi_{t}(i,j)$, ki nam pove verjtnost, da smo v èasu $t$ v stanju $i$ in v èasu $t+1$ v stanju $j$.
 $$\xi_{t}(i,j) = \frac{\alpha_{t}(i)a_{ij}b_{j}(O_{t})\beta_{t+1}(j)}{P(O|\lambda)}.$$
 Vsota $\sum_{t=1}^{N}{\xi_{t}}$ nam pove prièakovano število prehodov iz stanja $i$ v stanje $j$.\\
@@ -235,11 +246,13 @@ $$ \overline{a_{ij}} = \frac{\sum_{t=1}^{T-1}{\xi_{t}}}{\sum_{t=1}^{T-1}{\gamma_
 $$\overline{c_{jk}}= \frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}}{\sum_{t=1}^{T}\sum_{m=1}^{M}{\gamma_{t}(j,m)}}$$
 $$\overline{\mu_{jk}}=\frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}O_{t}}{\sum_{t=1}^{T}{\gamma_{t}(j,k)}} $$
 Ko je to doloèeno, nam zaporedje $\lambda$, doloèenih s temi parametri da lokalni maksimum. 
+%Kako nam da? konvergenca? kakšna? 
 \subsection{Trenutno stanje}
 Zadnja stvar, ki jo moramo narediti, preden zaènemo z doloèanjem prihodnjih stanj je doloèitev trenutnega stanja gospodarstva, torej stanja v zadnjem èasu, na katerem je naš model treniral.
 Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je oblikovan tako, da nam vrne zaporedje $Q$, ki maksimizira $P(Q|O,\lambda)$.\\
 Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
 Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.
+%Mogoèe malo veè o Viterbijevem algoritmu.
 \pagebreak
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno matematièno orodje za modeliranje. Naèini uporabe se zelo razlikujejo in gredo od zelo bioloških do ekonomskih. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasldenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
