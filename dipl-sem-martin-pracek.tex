@@ -312,21 +312,22 @@ S tem se je ukvarjajo razlièni storokovnjaki.
 \section{Uporaba v finanènih èasovnih vrstah}
 %time analysis
 \definicija{Èasovna vrsta} množica opazovanj $x_t$, vsako opazovano ob èasih $t$ znotraj nekega èasovnega intervala.\\
-\ \\
+\ \\ 
 Opazovanja $x_t$ so razporejena po èasih, ko so bila zaznana, torej narašèajoèem èasu $t$. V realnosti pogosto velja, da so zaporedna opazovanja med seboj odvisna. To je predvsem oèitno, èe pomislimo na najbolj tipièen primer finanène èasovne vrste, in sicer vrednostnega procesa cene neke delnice.  Èe vidimo, da ima v èasu $t$ delnica ceno $p$, si lahko navadno mislimo, da bo v èasu $t+1$ cena blizu $p$.
 Glede na èase, v katerih gledamo rezultate naše èasovne vrste v grobem loèimo $3$ tipe:
 \begin{itemize}
-	\item Èasovne vrste v zveznih èasih. Tu pridobivamo podatke za vsak trenutek znotraj nekega èasovnega intervala. Dober primer je tu EKG, torej elektrokardiogram.
+	\item Èasovne vrste v zveznih èasih. Tu pridobivamo podatke za vsak trenutek znotraj nekega èasovnega intervala. Dober primer je tu EKG, kjer v vsakem trenutku preiskave naprava izrisuje graf elektriène napetosti proti èasu.
 	\\ V analizi finanènih èasovnih vrst za ta tip uporabljamo Black-Scholesov model. Gre za podvrsto paraboliène diferencialne enaèbe, katere rešitev nam da predvideno vrednost evropskih opcij $call$ in $put$ v èasu, ki nas zanima.   
 	\item Èasovne vrste z diskretnimi vrednostmi kjer  pridobivamo vrednosti, ki lahko zavzamejo le diskretne vrednosti, torej najveè števno neskonèno razliènih možnosti.\\ Tipièen primer bi bil število klicev med $7.00$ in $8.00$ znotraj Ljubljane oziroma število nesreè znotraj enega dneva na avtocesti med Postojno in Ljubljano. 
 	\item Zadnja vrsta so diskretne èasovne vrste, torej vrste, ki vrednosti vzamejo le v doloèenih èasovnih trenutkih, npr. konec vsake ure, konec dneva, \ldots Tukaj lahko vrednosti zavzamejo kakršnokoli vrednost, pomembno je le, da te vrednosti vzamemo ob pravilnih trenutkih. Te vrste so uporabne tudi za aproksimiranje èasovnih vrst v zveznih èasih. Prav vrste takega tipa so tiste, ki jih lahko analiziramo z skritimi markovskimi modeli.
 \end{itemize}
 S finanènimi vrstami se sreèujemo vsak dan in v najrazliènejših oblikah. Zaradi njihove raznolikosti je izbira pravega modela za njihovo analizo kljuèna. 
-\definicija{Model èasovne vrste} za opazovane podatke ${x_t}$ je sluèajni proces $X_t$, kjer velja, da so $x_t$ realizacije v èasih $t$.\\
+\definicija{Model èasovne vrste} za opazovane podatke ${x_t}$ je sluèajni proces $X_t$, kjer velja, da so $x_t$ realizacije tega sluèajnega procesa v èasih $t$.\\
 \ \\
 V našem primeru bomo za njihovo analizo uporabili skrite markovske modele. \\
 %mogoèe še kaj o èasovnih vrstah
 %definicija finanène èasovne vrste
+Finanèna èasovna vrsta je tako zaporedje opaženih vrednosti nekega finanènega instrumenta. 
 Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednosti finanènih instrumentov skozi èas. Zaradi elementa negotovosti, kot je na primer volatilnost finanènih instrumentov, jo moramo obravnavati loèeno od vseh ostalih èasovnih vrst. Velja namreè da ravno ta negotovost prikaže pomembnost statistiène teorije in metod, izpeljanih iz le te, v analizi finanènih èasovnih vrst.
 %kako HMM apliciramo v èasovne vrste
 %posebnosti finanènih èasovnih vrst
