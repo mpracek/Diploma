@@ -19,3 +19,4 @@ https://en.wikipedia.org/wiki/Markov_model
 
 Teorija vsega
 https://www.encyclopediaofmath.org/index.php/Markov_process
+https://www.americanscientist.org/article/first-links-in-the-markov-chain
