@@ -161,12 +161,12 @@ Poznamo veè razliènih vrst Markovih modelov, ki jih lahko razdelimo med $4$ podk
 Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela $S$. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja) = (V,L,Z) $$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Odloèimo se za opazovanje le ene izmed žab. V našem primeru nas zanima, kje se bo nahajala in pot, po kateri bo prišla do svoje konène pozicije. \\
 Do sedaj smo opazovali splošen primer za vse tipe markovskih modelov. Na tem mestu pa moramo vedeti, ali je naša opazovana žaba dresirana, in se bo odzvala na naše opazovanje. Èe to velja, potem imamo kontroliran markovski model, ki je lahko delno opazovan ali markovski proces odloèanja.\\
 %Povej še kaj o kontoroliranih; pol strani
-Na drugi strani pa imamo avtonomen model, kjer lahko loèimo èe je proces v celoti opazen ali so neka stanja skrita. Èe stanja niso skrita, tako poznamo prehodno matriko $A$, ki nam pove, s kašno verjetnostjo se premikamo med posamiènimi stanji.
+Na drugi strani pa imamo avtonomen model, kjer lahko loèimo èe je proces v celoti opazen ali so neka stanja skrita. Èe stanja niso skrita, tako poznamo prehodno matriko $A$, ki nam pove, s kašno verjetnostjo se premikamo med posamiènimi stanji. 
 $$\begin{bmatrix}
 		0.5 & 0.3 & 0.2  \\
 	0.1 & 0.5 & 0.4  \\
 	0.4 & 0.2 & 0.4 \\
-	
+\caption{Prehodna matrika}\label{fig:prehod}
 \end{bmatrix}$$
 
 \section{Skriti markovski modeli}
