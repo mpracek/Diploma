@@ -151,20 +151,21 @@ Poznamo veè razliènih vrst Markovih modelov, ki jih lahko razdelimo med $4$ podk
 \begin{table}[h!]
 	\begin{tabular}{lcc}
 		& V celoti opazovan & Le delno opazovan             \\
-		\multicolumn{1}{c}{Avtonomen} & Markovska veriga                & Skriti markovski model                      \\
-		Kontorliran                   & Markovski proces odloèanja      & Delno opazovalen proces odloèanja
+		\multicolumn{1}{c}{Avtonomen} & markovska veriga                & Skriti markovski model                      \\
+		Kontorliran                   & markovski proces odloèanja      & Delno opazovalen proces odloèanja
 	\end{tabular}
 \end{table}
 
 \subsection{Primer žabe v ribniku}
-Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja) = (1,2,3) $$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Odloèimo se za opazovanje le ene izmed žab. \\
-Do sedaj smo opazovali splošen primer za vse tipe markovskih modelov.  
-%Opiši primere ostalih treh markovskih modelov
+Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja) = (1,2,3) $$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Odloèimo se za opazovanje le ene izmed žab. V našem primeru nas zanima, kje se bo nahajala ena, èe vemo kje se nahaja druga. Druga žaba je za nas viden proces. \\
+Do sedaj smo opazovali splošen primer za vse tipe markovskih modelov. Na tem mestu pa moramo vedeti, ali je naša opazovana žaba dresirana, in se bo odzvala na naše opazovanje. Èe to velja, potem imamo kontroliran markovski model, ki je lahko delno opazovan ali markovski proces odloèanja.\\
+%Povej še kaj o kontoroliranih; pol strani
+Na drugi strani pa imamo avtonomen model, kjer lahko loèimo èe je proces v celoti opazen ali je 
 \pagebreak
 \section{Skriti markovski modeli}
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji.\\
 Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala. 
-
+%Bolj podroben opis
 %latent markov models
 
 \subsection{Zgodovina modela}
@@ -351,6 +352,10 @@ Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednos
 %kriptovalutni bum in padec
 %borzni zlom 2008, 1929
 %dogajanje okoli 2005 
+
+
+
+%pogledam kakovost prek ekonometriènih testov;
 
 \subsection{Napoved}
 %zlato, srebro
