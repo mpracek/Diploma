@@ -170,7 +170,7 @@ $$
 \end{bmatrix}$$
 Matrika je torej znana, in navadno predpostavimo, da se verjetnosti prehoda iz enega stanja v drugega ne spreminjajo. Vsota po vsakem stolpcu in vrstici je  vedno enaka ena, to je $$\sum_{i = 1}^{n}a_{ij}= \sum_{j = 1}^{n}a_{ij} = 1$$ saj predstavlja verjetnosti prehoda iz enega stanja v drugo. Tako je $a_{ij}$ verjetnost prehoda iz stanja $j$ v stanje $i$. Velja še, da je $n$ število stanj in je v našem primeru enako $3$, oèitno pa velja tudi, da je matrika velikost $n\times n$ in da so vsi elementi $a_{ij}$ iz intervala $[0,1]$.\\
 V tem primeru lahko torej, v vsakem trenutku predvidimo, kam bo najverjetneje skoèila žaba v naslednjem trenutku. Na drugi strani pa imamo še skrite markovske modele.\\
-Za skrite markovske modele pa velja, da same prehodne matrike naèeloma ne poznamo, jo pa lahko doloèimo iz podatkov, ki jih imamo za naš problem. Tako bi za našo žabo dovolj dolgo opazovali, in si zapisovali njene pozicije glede v vsakem trenutku opazovanja. Tako bi dobili vektor opazovanj $O$. Vektor $O$ je naš osnovni podatek, iz katerega nato izpeljemo celoten model. Kako to naredimo, si bomo pogledali v nadaljevanju.
+Za skrite markovske modele pa velja, da same prehodne matrike naèeloma ne poznamo, jo pa lahko doloèimo iz podatkov, ki jih imamo za naš problem. Tako bi za našo žabo dovolj dolgo opazovali, in si zapisovali njene pozicije glede v vsakem trenutku opazovanja. Tako bi dobili vektor opazovanj $O$. Vektor $O$ je naš osnovni podatek, iz katerega nato izpeljemo celoten model. Kako to naredimo, si bomo pogledali v nadaljevanju. 
 
 \section{Skriti markovski modeli}
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji.\\
@@ -179,7 +179,12 @@ Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, 
 %latent markov models
 
 \subsection{Zgodovina modela}
-%na kratko opiši kdo, kaj zakaj kako; 
+Ideja skritih markovskih modelov se v svoji prvi fazi zaène z ruskim matematikom Andrejem Andrejevièem Markovom, ki je za èasa svojega življenja med $1865-1922$ razvil idejo markovskega procesa in verige. Prve teoretiène rezultate markovskih verig je svetu predstavil $1906$, $1913$ pa je izraèunal zaporedje èrk rušèine. Slednji izraèun je opravil na besedilu Jevgenij Onjegin ruskega pesnika Aleksandra Sergejevièa Puškina. Markov je želel s tem dokazati veljavnost zakona velikih števil zaradi spora z drugim ruskim matematikom, a je na ta naèin odprl novo vprašanje v matematiki.\\
+Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne preseneèa, da se je nadaljni razvoj zaèel šele z širšo uporabo raèunalnikov. Po pomembnem delu, ki so ga opravili von Neumann, Turing in Conrad Zuse so se znanstveniki zaèeli pospešeno ukvarjati z implementacijo primernih algoritmov. Velik korak k temu je pripomogel Claude Shannon s svojim delom Matematièna teorija komunikacije. To je pomagalo razvoju algoritmov pomembnih za skrite markovske modele, kot so viterbijev, EM-algoritem, \ldots \\
+Algoritem maksimizacije prièakovanega (Expectation-maximization), ali krajše EM-algoritem so uporabljali med drugim že Laplace, Gauss in drugi, vendar je do dokonènega poimenovanja prišlo šele leta $1977$. Demster, Laird in Rubin so algoritem poimenovali in razložili splošno teorijo, ki deluje v ozadju procesa.
+%kaj dela EM \\
+Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji. 
+%Kaj dela VIterbi
 
 \subsection{Zahteve za model}
 Kot vsak matematièni model, ima tudi skriti markovski model svoje zahteve.
