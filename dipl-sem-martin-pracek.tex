@@ -131,19 +131,7 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 \pagebreak
 \section{Markovski modeli}
 %Dodaj še kaj o markovskih modelih
-Preden lahko zaènemo govoriti o skritih markovskih modelih, moram nekaj povedati o markovskih modelih.
-Markovski modeli so modeli, kjer velja markovska lastnost.
-\definicija{Markovska lastnost}
-Naj bo ${\displaystyle (\Omega ,{\mathcal {F}},\mathbb {P} )}$ verjetnostni prostor s filtracijo $({\displaystyle ({\mathcal {F}}_{s},\ s\in I)})$ za neko urejeno množico ${\displaystyle I}$. Naj bo $({\displaystyle (S,{\mathcal {S}})})$ merljiv prostor. Sluèajni proces X, merjen na $({\displaystyle (S,{\mathcal {S}})})$ $${\displaystyle X=\{X_{t}:\Omega \to S\}_{t\in I}}$$ prilagojen na filtracijo ima markovsko lastnost, èe za vsak ${\displaystyle A\in {\mathcal {S}}}$ in vsak ${\displaystyle s,t\in I}$ kjer je ${\displaystyle s<t}$, velja da je,
-
-%homogena lastnost markova, krepka lastnost markova
-
-$${\displaystyle \mathbb {P} (X_{t}\in A\mid {\mathcal {F}}_{s})=\mathbb {P} (X_{t}\in A\mid X_{s}).}$$
-Èe imamo ${\displaystyle S}$, ki je diskretna množica z diskretno sigma algebro in ${\displaystyle I=\mathbb {N} } I={\mathbb {N}}$, je lahko formulirano tudi kot:
-$${\displaystyle \mathbb {P} (X_{n}=x_{n}\mid X_{n-1}=x_{n-1},\dots ,X_{0}=x_{0})=\mathbb {P} (X_{n}=x_{n}\mid X_{n-1}=x_{n-1}).} $$
-
-Markovska lastnost je torej lastnost stohastiènega procesa, da je njegova vrednost v èasu $t$ odvisna le od njegove vrednosti v èasu $t-1$.
-\\
+Skriti markovski modeli so ena izmed vrst bolj splošne skupine modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo tudi markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
 Naravno se nam postavi vprašanje, zakaj je markovska lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti. Model, ki ga lahko tako rešimo imenujemo Markov model.\\
 Poznamo veè razliènih vrst Markovih modelov, ki jih lahko razdelimo med $4$ podkategorije.
 
@@ -179,7 +167,7 @@ Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, 
 %latent markov models
 
 \subsection{Zgodovina modela}
-Ideja skritih markovskih modelov se v svoji prvi fazi zaène z ruskim matematikom Andrejem Andrejevièem Markovom, ki je za èasa svojega življenja med $1865-1922$ razvil idejo markovskega procesa in verige. Prve teoretiène rezultate markovskih verig je svetu predstavil $1906$, $1913$ pa je izraèunal zaporedje èrk rušèine. Slednji izraèun je opravil na besedilu Jevgenij Onjegin ruskega pesnika Aleksandra Sergejevièa Puškina. Markov je želel s tem dokazati veljavnost zakona velikih števil zaradi spora z drugim ruskim matematikom, a je na ta naèin odprl novo vprašanje v matematiki.\\
+Ideja skritih markovskih modelov se v svoji prvi fazi zaène z ruskim matematikom Andrejem Andrejevièem Markovom, ki je za èasa svojega življenja med $1865-1922$ razvil idejo markovskega procesa in verige. Prve teoretiène rezultate markovskih verig je svetu predstavil $1906$, $1913$ pa je izraèunal zaporedje èrk rušèine. Slednji izraèun je opravil na besedilu Jevgenij Onjegin ruskega pesnika Aleksandra Sergejevièa Puškina. Markov je želel s tem dokazati veljavnost šibkega zakona velikih števil zaradi spora z drugim ruskim matematikom Pavlom Nekrasom, a je na ta naèin odprl novo vprašanje v matematiki.\\
 Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne preseneèa, da se je nadaljni razvoj zaèel šele z širšo uporabo raèunalnikov. Po pomembnem delu, ki so ga opravili von Neumann, Turing in Conrad Zuse so se znanstveniki zaèeli pospešeno ukvarjati z implementacijo primernih algoritmov. Velik korak k temu je pripomogel Claude Shannon s svojim delom Matematièna teorija komunikacije.\\ 
 Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nekaj razvojev algoritmov:
 \begin{enumerate}
