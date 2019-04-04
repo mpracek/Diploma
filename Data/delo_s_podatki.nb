@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8793,        245]
-NotebookOptionsPosition[      7967,        216]
-NotebookOutlinePosition[      8315,        231]
-CellTagsIndexPosition[      8272,        228]
+NotebookDataLength[      9531,        264]
+NotebookOptionsPosition[      8595,        231]
+NotebookOutlinePosition[      8943,        246]
+CellTagsIndexPosition[      8900,        243]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -126,92 +126,107 @@ Cell[BoxData[
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,31,95,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,1,1,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.763315677024074*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.763371863424816*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,32,96,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,2,2,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.763315677124074*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.7633718634868193`*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,33,97,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,3,3,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.763315677214074*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.763371863552823*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,34,98,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,4,4,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.7633156773040743`*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.7633718636198273`*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,35,99,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,5,5,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.7633156774140744`*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.7633718636848307`*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,36,100,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,6,6,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.763315677514075*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.7633718637488346`*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,37,101,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,7,7,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.763315677624075*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.763371863813838*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,38,102,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,8,8,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.7633156777240753`*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.763371863877842*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,39,103,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,9,9,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.7633156778140755`*^9}],
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.7633718639418454`*^9}],
 
 Cell[BoxData[
  TemplateBox[{
   "Import","nffil",
-   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,40,104,
-   21343714908517498017,"Local"},
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,10,10,
+   21344112803451814946,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
-  3.7633156314440007`*^9, 3.7633156778940754`*^9}]
+  3.7633156314440007`*^9, 3.763315677024074*^9, 3.7633718640028486`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HiddenMarkovProcess", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "3", ",", "4"}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.763372375770358*^9, 3.7633723970313873`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"HiddenMarkovProcess", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "3", ",", "4"}], "}"}], "]"}]], "Output",
+ CellChangeTimes->{3.763372398191389*^9}]
 }, Open  ]]
 },
 WindowSize->{759, 606},
@@ -236,16 +251,20 @@ Cell[1093, 33, 120, 2, 30, "Input"],
 Cell[1216, 37, 628, 11, 106, "Text"],
 Cell[CellGroupData[{
 Cell[1869, 52, 2857, 71, 240, "Input"],
-Cell[4729, 125, 318, 7, 23, "Message"],
-Cell[5050, 134, 318, 7, 23, "Message"],
-Cell[5371, 143, 318, 7, 23, "Message"],
-Cell[5692, 152, 320, 7, 23, "Message"],
-Cell[6015, 161, 320, 7, 23, "Message"],
-Cell[6338, 170, 319, 7, 23, "Message"],
-Cell[6660, 179, 319, 7, 23, "Message"],
-Cell[6982, 188, 321, 7, 23, "Message"],
-Cell[7306, 197, 321, 7, 23, "Message"],
-Cell[7630, 206, 321, 7, 23, "Message"]
+Cell[4729, 125, 338, 7, 21, "Message"],
+Cell[5070, 134, 340, 7, 21, "Message"],
+Cell[5413, 143, 338, 7, 21, "Message"],
+Cell[5754, 152, 340, 7, 21, "Message"],
+Cell[6097, 161, 340, 7, 21, "Message"],
+Cell[6440, 170, 340, 7, 21, "Message"],
+Cell[6783, 179, 338, 7, 21, "Message"],
+Cell[7124, 188, 338, 7, 21, "Message"],
+Cell[7465, 197, 340, 7, 21, "Message"],
+Cell[7808, 206, 342, 7, 21, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8187, 218, 207, 4, 30, "Input"],
+Cell[8397, 224, 182, 4, 30, "Output"]
 }, Open  ]]
 }
 ]
