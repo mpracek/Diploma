@@ -136,7 +136,20 @@ Skriti markovski modeli so ena izmed vrst bolj splošne skupine modelov, ki jo im
 \begin{math}
 \trditev{Markovska lastnost}\\ {Naj velja, da imamo verjetnostni prostor s filtracijo $(\Omega,\( \mathcal{F} \),P,(\( \mathcal{F} \)_{n})_{n\geq1})$. Naj bo $(X_n)_{n\geq1}$ zaporedje neodvisnih enako porazdeljenih sluèajnih spremenljivk ali vektorjev. Naj velja še, da je $T$ èas ustavljanja glede na naravno filtracijo, kjer velja $T<\infty$ skoraj gotovo. Potem je zaporedje $$(X_{T+1},X_{T+2},\ldots) (X_{1},X_{2},\ldots)$$ in je neodvisno od $\sigma$-algebre zgodovine èasa $\( \mathcal{F} \)_{T}$.}
 \end{math}
-\ \\
+
+\begin{proof}
+\textbf{Dokaz}\\
+Naj bo A poljuben dogodek iz $\( \mathcal{F} \)_{T}$. Potem velja:
+$$P(A \cap \{X_{T+1}\leq c_1,X_{T+2}\leq c_1,\ldots,X_{T+n}\leq c_n\}) = $$ 
+$$P(\cup_{l=1}^\infty A \cap \{T=l\} \cap \{X_{T+1}\leq c_1,X_{T+2}\leq c_1,\ldots,X_{T+n}\leq c_n\})=$$
+$$\sum_{l=1}^{\infty}P(A \cap \{T=l\} \cap \{X_{T+1}\leq c_1,X_{T+2}\leq c_1,\ldots,X_{T+n}\leq c_n\})=$$
+$$\sum_{l=1}^{\infty}P(A \cap \{T=l\} \cap \{X_{l+1}\leq c_1,X_{l+2}\leq c_1,\ldots,X_{l+n}\leq c_n\})=$$
+$$\sum_{l=1}^{\infty}P(A \cap \{T=l\}) P(\{X_{l+1}\leq c_1,X_{l+2}\leq c_1,\ldots,X_{l+n}\leq c_n\})=$$
+$$\sum_{l=1}^{\infty}P(A \cap \{T=l\}) P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})=$$
+$$P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})\sum_{l=1}^{\infty}P(A \cap \{T=l\}) =$$
+$$P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})P(\cup_{l=1}^\infty A \cap \{T=l\})$$
+$$P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})P(A)$$
+\end{proof}
 
 %katero markovsko lastnost?
 %tisto z verjetnostjo? vse pomenijo isto?
