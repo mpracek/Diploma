@@ -1,0 +1,253 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8866,        245]
+NotebookOptionsPosition[      8039,        216]
+NotebookOutlinePosition[      8388,        231]
+CellTagsIndexPosition[      8345,        228]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.7633119829679413`*^9, 3.7633119970619617`*^9}}],
+
+Cell["\<\
+V tem dokumentu se nahaja koda, ki jo bom uporabil za analizo  skritih \
+markovskih modelov HMM.  
+Analiziral bom ve\[CHacek] cen delnic in jih primerjal z njihovimi dejanskimi \
+cenami, ter preizkusil \[SHacek]e dva ekstrema, in sicer hitro rast na \
+primeru kriptovalute Bitcoin ter hiter padec na zgodovinskih podatkih.
+\[LineSeparator]\
+\>", "Text",
+ CellChangeTimes->{{3.7633120051819725`*^9, 3.7633121613741975`*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.7633122033963566`*^9, 3.763312240089408*^9}},
+ FormatType->"InputForm"],
+
+Cell[TextData[{
+ "Z naslednjim ukazom bomo uvozili podatke, ki jih bomo nato uporabili.\n\
+Uporabili bomo le 50 vrstic, to je 50 trgovalnih dni",
+ StyleBox[", ",
+  FontWeight->"Bold"],
+ "prek kateih bomo dolo\[CHacek]ili, kako se bi moralo gibati v prihodnosti. \
+To bomo nato primerjali z dejanskim gibanjem, ki bo sledilo od tam naprej, v \
+naslednjih 50 dneh.\nGledal bom Close ceno delnic."
+}], "Text",
+ CellChangeTimes->{{3.763312252261425*^9, 3.7633122850694714`*^9}, {
+  3.7633124132493625`*^9, 3.7633124824694605`*^9}, {3.7633131743710318`*^9, 
+  3.763313204406077*^9}, {3.7633154856858788`*^9, 3.7633154959058924`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/amzn.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Amazon\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/msft.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Microsoft\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/tsla.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Tesla\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/goog.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Google\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/trip.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<TripAdvisor\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/cvx.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Chevron\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/wfc.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<WellsFargo\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/sbux.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Strabucks\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/gm.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<GeneralMotors\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}],
+     ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<Data/Stocks/nvs.us.csv\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Novartis\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
+    ";"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.763312163794201*^9, 3.763312201056353*^9}, {
+  3.7633122967394876`*^9, 3.763312321152522*^9}, {3.7633131593360105`*^9, 
+  3.7633131721670284`*^9}, {3.7633132130230894`*^9, 3.763313276359991*^9}, {
+  3.763313327588071*^9, 3.7633133438700943`*^9}, {3.7633135177448835`*^9, 
+  3.7633135291848993`*^9}, {3.7633148916926355`*^9, 3.7633149704183655`*^9}, {
+  3.7633150404524784`*^9, 3.763315053154496*^9}, {3.7633150952145863`*^9, 
+  3.763315139673649*^9}, {3.7633154394438133`*^9, 3.7633154822858734`*^9}, {
+  3.763315569719102*^9, 3.763315626663994*^9}, {3.76331565973905*^9, 
+  3.7633156742030697`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,31,95,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.763315677024074*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,32,96,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.763315677124074*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,33,97,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.763315677214074*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,34,98,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.7633156773040743`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,35,99,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.7633156774140744`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,36,100,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.763315677514075*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,37,101,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.763315677624075*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,38,102,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.7633156777240753`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,39,103,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.7633156778140755`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Import","nffil",
+   "\"File not found during \\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,40,104,
+   21343714908517498017,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7633155037869034`*^9, 3.7633155763791113`*^9, 
+  3.7633156314440007`*^9, 3.7633156778940754`*^9}]
+}, Open  ]]
+},
+WindowSize->{759, 606},
+WindowMargins->{{Automatic, 116}, {-35, Automatic}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 96, 1, 30, "Input"],
+Cell[657, 23, 433, 8, 106, "Text"],
+Cell[1093, 33, 120, 2, 30, "Input"],
+Cell[1216, 37, 628, 11, 106, "Text"],
+Cell[CellGroupData[{
+Cell[1869, 52, 2929, 71, 240, "Input"],
+Cell[4801, 125, 318, 7, 21, "Message"],
+Cell[5122, 134, 318, 7, 21, "Message"],
+Cell[5443, 143, 318, 7, 21, "Message"],
+Cell[5764, 152, 320, 7, 21, "Message"],
+Cell[6087, 161, 320, 7, 21, "Message"],
+Cell[6410, 170, 319, 7, 21, "Message"],
+Cell[6732, 179, 319, 7, 21, "Message"],
+Cell[7054, 188, 321, 7, 21, "Message"],
+Cell[7378, 197, 321, 7, 21, "Message"],
+Cell[7702, 206, 321, 7, 21, "Message"]
+}, Open  ]]
+}
+]
+*)
+
