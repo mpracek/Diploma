@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8866,        245]
-NotebookOptionsPosition[      8039,        216]
-NotebookOutlinePosition[      8388,        231]
-CellTagsIndexPosition[      8345,        228]
+NotebookDataLength[      8793,        245]
+NotebookOptionsPosition[      7967,        216]
+NotebookOutlinePosition[      8315,        231]
+CellTagsIndexPosition[      8272,        228]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -55,61 +55,61 @@ Cell[BoxData[
   RowBox[{
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/amzn.us.csv\>\"", ",", 
+     RowBox[{"\"\<amzn.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<Amazon\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], ";"}],
     "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/msft.us.csv\>\"", ",", 
+     RowBox[{"\"\<msft.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<Microsoft\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
     ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/tsla.us.csv\>\"", ",", 
+     RowBox[{"\"\<tsla.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<Tesla\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/goog.us.csv\>\"", ",", 
+     RowBox[{"\"\<goog.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<Google\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], ";"}],
     "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/trip.us.csv\>\"", ",", 
+     RowBox[{"\"\<trip.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<TripAdvisor\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
     ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/cvx.us.csv\>\"", ",", 
+     RowBox[{"\"\<cvx.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<Chevron\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
     ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/wfc.us.csv\>\"", ",", 
+     RowBox[{"\"\<wfc.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<WellsFargo\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
     ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/sbux.us.csv\>\"", ",", 
+     RowBox[{"\"\<sbux.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<Strabucks\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
     ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/gm.us.csv\>\"", ",", 
+     RowBox[{"\"\<gm.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<GeneralMotors\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}],
      ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Import", "[", 
-     RowBox[{"\"\<Data/Stocks/nvs.us.csv\>\"", ",", 
+     RowBox[{"\"\<nvs.us.csv\>\"", ",", 
       RowBox[{"{", 
        RowBox[{"\"\<Novartis\>\"", ",", "50", ",", "5"}], "}"}]}], "]"}], 
     ";"}], "\[IndentingNewLine]"}]}]], "Input",
@@ -121,7 +121,7 @@ Cell[BoxData[
   3.7633150404524784`*^9, 3.763315053154496*^9}, {3.7633150952145863`*^9, 
   3.763315139673649*^9}, {3.7633154394438133`*^9, 3.7633154822858734`*^9}, {
   3.763315569719102*^9, 3.763315626663994*^9}, {3.76331565973905*^9, 
-  3.7633156742030697`*^9}}],
+  3.7633156742030697`*^9}, {3.7633717676983404`*^9, 3.763371824979617*^9}}],
 
 Cell[BoxData[
  TemplateBox[{
@@ -215,7 +215,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{759, 606},
-WindowMargins->{{Automatic, 116}, {-35, Automatic}},
+WindowMargins->{{Automatic, 126}, {-9, Automatic}},
 FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -235,17 +235,17 @@ Cell[657, 23, 433, 8, 106, "Text"],
 Cell[1093, 33, 120, 2, 30, "Input"],
 Cell[1216, 37, 628, 11, 106, "Text"],
 Cell[CellGroupData[{
-Cell[1869, 52, 2929, 71, 240, "Input"],
-Cell[4801, 125, 318, 7, 21, "Message"],
-Cell[5122, 134, 318, 7, 21, "Message"],
-Cell[5443, 143, 318, 7, 21, "Message"],
-Cell[5764, 152, 320, 7, 21, "Message"],
-Cell[6087, 161, 320, 7, 21, "Message"],
-Cell[6410, 170, 319, 7, 21, "Message"],
-Cell[6732, 179, 319, 7, 21, "Message"],
-Cell[7054, 188, 321, 7, 21, "Message"],
-Cell[7378, 197, 321, 7, 21, "Message"],
-Cell[7702, 206, 321, 7, 21, "Message"]
+Cell[1869, 52, 2857, 71, 240, "Input"],
+Cell[4729, 125, 318, 7, 23, "Message"],
+Cell[5050, 134, 318, 7, 23, "Message"],
+Cell[5371, 143, 318, 7, 23, "Message"],
+Cell[5692, 152, 320, 7, 23, "Message"],
+Cell[6015, 161, 320, 7, 23, "Message"],
+Cell[6338, 170, 319, 7, 23, "Message"],
+Cell[6660, 179, 319, 7, 23, "Message"],
+Cell[6982, 188, 321, 7, 23, "Message"],
+Cell[7306, 197, 321, 7, 23, "Message"],
+Cell[7630, 206, 321, 7, 23, "Message"]
 }, Open  ]]
 }
 ]
