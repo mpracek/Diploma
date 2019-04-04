@@ -103,7 +103,7 @@ V povzetku na kratko opiši vsebinske rezultate dela. Sem ne sodi razlaga organiz
 {\sc Abstract}
 \end{center}
 % tekst povzetka v anglescini
-Prevod zgornjega povzetka v angle"s"cino.
+Prevod zgornjega povzetka v anglešèino.
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2010):} navedi vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}  \\[1mm]
@@ -185,9 +185,10 @@ Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nek
 \begin{enumerate}
 \item Algoritem maksimizacije prièakovanega (Expectation-maximization), ali, kot ga med drugim poznamo, EM-algoritem so uporabljali med drugim že Laplace, Gauss in drugi, vendar je do dokonènega poimenovanja prišlo šele leta $1977$. Demster, Laird in Rubin so algoritem poimenovali in razložili splošno teorijo, ki deluje v ozadju procesa.
 \item \label{Viterbi}Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji. 
-\item \label{Baum}Baum-Welchov algoritem je poseben primer posplošenega EM-algoritma. Algoritem sta razvila Leonard E. Baum ter Lloyd R. Welch ob koncu okrog leta $1970$. Ena izmed prvih aplikacij tega algoritma je bila v okvirju procesiranja govora.
 \end{enumerate}
 Celotnih modelov pa prav gotovo ne bi bilo brez še enega Rusa, in sicer Ruslana Leontijevièa Stratonovièa, ki je prvi opisal rekurzijo naprej - nazaj leta $1960$.\\
+Za glavnega avtorja pa velja Leonard E. Baum. Skupaj z  Lloyd R. Welchem sta okrog leta $1970$ razvila Baum-Welchov algoritem, kjer gre za poseben primer posplošenega EM-algoritma. Prav Baum-Welchov algoritem je tisti korak, pri katerem velja, da je bila dokonèno izpeljana teorija za skritimi markovskimi modeli. 
+
 
 
 \subsection{Zahteve za model}
@@ -252,7 +253,7 @@ Z znanimi zaèetnimi vrednostmi se lahko spustimo v maksimiziranje $P(O|\lambda)$
 Za to zaporedje velja, da konvergira k lokalnemu maksimumu.\\
 
 \subsection{Natanèna doloèitev zaèetnih vrednosti}
-Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za maksimizacijo $P(O|\lambda)$. Izkaže se, da za maksimizacijo le tega potrebujemo še nekaj dodatnih formul, ki so rezultat Baum-Welchovega algortma. Z njimi 		 definiramo veèfazni iterativni proces, pri katerem popravljamo vrednosti parametrov do konvergence.\\
+Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za maksimizacijo $P(O|\lambda)$. Izkaže se, da za maksimizacijo le tega potrebujemo še nekaj dodatnih formul, ki so rezultat Baum-Welchovega algortma. Z njimi definiramo veèfazni iterativni proces, pri katerem popravljamo vrednosti parametrov do konvergence.\\
 %
 %
 %Nujno razloži kaj pomenijo alfe, bete,...!!!!!
@@ -288,7 +289,7 @@ Skriti markovski modeli so zelo široko uporabno orodje za modeliranje. Naèini up
 
 
 \subsection{Procesiranje govora}
-Prva ideja Leonarda \ref{Baum} za njegov algoritem je bila prav uporaba v procesiranju govora.
+Prva ideja Leonarda E. Bauma za njegov algoritem je bila prav uporaba v procesiranju govora.
 Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor, saj algoritem ni implementiran za "zvezen" govor. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
 Da bomo procesiranje lahko zmodelirali moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A.
 Velja omeniti tudi, da na ta naèin, le z nekaj adaptacijami, deluje tudi Siri.
