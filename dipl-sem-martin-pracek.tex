@@ -127,6 +127,7 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 \geslo{Akaikejev informacijski kriterij}{Recimo, da imamo podatke s $k$ ocenjenimi parametri in $L$ maksimalna vrednost funkcije verjetja. Akaikejev informacijski kriterij izraèunamo kot $$AIC = 2k - 2ln(L)$$ Akaikejev informacijski kriterij primerja veè razliènih modelov po kakovosti, kjer je najboljši tisti z najmanjšim AIC.}
 %Dopolni Baum-Welchov algoritem
 \geslo{Baum-Welchov algoritem}{}
+\geslo{Dinamièna bayesianska mreža}{ 	}
 %
 \pagebreak
 \section{Markovski modeli}
@@ -155,9 +156,12 @@ Poznamo veè razliènih vrst Markovih modelov, ki jih lahko razdelimo med $4$ podk
 
 
 \begin{table}[h!]
-	\begin{tabular}{lcc}
+	\begin{tabular}{|c|c|c|}
+		\hline
 		& V celoti opazovan & Le delno opazovan             \\
+		\hline
 		\multicolumn{1}{c}{Avtonomen} & Markovska veriga                & Skriti markovski model                      \\
+		\hline
 		Kontorliran                   & Markovski proces odloèanja      & Delno opazovalen proces odloèanja
 	\end{tabular}
 \end{table}
@@ -180,6 +184,7 @@ Za skrite markovske modele pa velja, da same prehodne matrike naèeloma ne poznam
 
 \section{Skriti markovski modeli}
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji.\\
+Gre za najbolj preprosto vrsto dinamiène bayesianske mreže. 
 Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala. 
 %Bolj podroben opis
 %latent markov models
