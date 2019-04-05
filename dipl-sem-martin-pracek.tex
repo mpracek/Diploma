@@ -9,6 +9,7 @@
 \usepackage{kbordermatrix}
 %\usepackage[normalem]{ulem}
 \usepackage[dvipsnames,usenames]{color}
+\usepackage{biblatex}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -134,7 +135,7 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 Skriti markovski modeli so ena izmed vrst bolj splošne skupine modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo tudi markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
 %%Praši nekoga kako oznaèil izrek!!!
 
-\begin{trditev}{Markovska lastnost}\\ {Naj velja, da imamo verjetnostni prostor s filtracijo $(\Omega,\mathbb{F},P,(\mathbb{F})_{n}_{n\geq1})$. Naj bo $(X_n)_{n\geq1}$ zaporedje neodvisnih enako porazdeljenih sluèajnih spremenljivk ali vektorjev. Naj velja še, da je $T$ èas ustavljanja glede na naravno filtracijo, kjer velja $T<\infty$ skoraj gotovo. Potem je zaporedje $$(X_{T+1},X_{T+2},\ldots) (X_{1},X_{2},\ldots)$$ in je neodvisno od $\sigma$-algebre zgodovine èasa $\mathbb{F}_{T}$.}
+\begin{trditev}{Markovska lastnost}\\ {Naj velja, da imamo verjetnostni prostor s filtracijo $(\Omega,\mathbb{F},P,\mathbb{F}_{n})_{n\geq1})$. Naj bo $(X_n)_{n\geq1}$ zaporedje neodvisnih enako porazdeljenih sluèajnih spremenljivk ali vektorjev. Naj velja še, da je $T$ èas ustavljanja glede na naravno filtracijo, kjer velja $T<\infty$ skoraj gotovo. Potem je zaporedje $$(X_{T+1},X_{T+2},\ldots) (X_{1},X_{2},\ldots)$$ in je neodvisno od $\sigma$-algebre zgodovine èasa $\mathbb{F}_{T}$.}
 \end{trditev}
 
 \begin{proof}
@@ -398,8 +399,10 @@ Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednos
 
 \pagebreak
 % seznam uporabljene literature
+\begin{thebibliography}{99}
 \bibliography{zbraniviri}
-\bibliographystyle{plain}
+
+\end{thebibliography}
 
 \end{document}
 
