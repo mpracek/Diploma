@@ -134,7 +134,6 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 \section{Markovski modeli}
 %Dodaj še kaj o markovskih modelih
 Skriti markovski modeli so ena izmed vrst bolj splošne skupine modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo tudi markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
-%%Praši nekoga kako oznaèil izrek!!!
 
 \begin{trditev}{Markovska lastnost}\\ {Naj velja, da imamo verjetnostni prostor s filtracijo $(\Omega,\mathbb{F},P,\mathbb{F}_{n})_{n\geq1})$. Naj bo $(X_n)_{n\geq1}$ zaporedje neodvisnih enako porazdeljenih sluèajnih spremenljivk ali vektorjev. Naj velja še, da je $T$ èas ustavljanja glede na naravno filtracijo, kjer velja $T<\infty$ skoraj gotovo. Potem je zaporedje $$(X_{T+1},X_{T+2},\ldots) (X_{1},X_{2},\ldots)$$ in je neodvisno od $\sigma$-algebre zgodovine èasa $\mathbb{F}_{T}$.}
 \end{trditev}
@@ -152,6 +151,7 @@ $$P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})P(\cup_{l=1}^\infty A \
 $$P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})P(A)$$
 \end{proof}
 Naravno se nam postavi vprašanje, zakaj je markovska lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti. Model, ki ga lahko tako rešimo imenujemo Markov model.\\
+%Tukaj dopiši še kar nekaj o teh modelih, da se tabela prestavi na naslednjo stran
 %Ugotovi napako
 \begin{table}[h]
 	\begin{tabular}{|c|c|c|}
@@ -164,7 +164,7 @@ Naravno se nam postavi vprašanje, zakaj je markovska lastnost koristna. Izkaže s
 		\show \hline
 	\end{tabular}
 \end{table}
-
+%zakljuèi zapis po tabeli, dopiši še kakšno zanimivost.
 \subsection{Primer žabe v ribniku}
 Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela $S$. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja).$$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Odloèimo se za opazovanje le ene izmed žab, za katero nas zanima, kje se bo nahajala v naslednjem trenutku.\\
 Do sedaj smo opazovali splošen primer za vse tipe markovskih modelov. Na tem mestu pa moramo vedeti, ali je naša opazovana žaba dresirana, in se bo odzvala na naše opazovanje. Èe to velja, potem imamo kontroliran markovski model, ki je lahko delno opazovan ali markovski proces odloèanja.\\
