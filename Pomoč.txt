@@ -1,7 +1,11 @@
 Za simulacijo si lahko pomagam z Mathematico in ugrajenim ukazom
 HiddenMarkovProcess -- glej dokumentacijo
 
+MSwM paket v R
+
 Viterbi
 https://www.mathworks.com/help/comm/ref/vitdec.html
 https://www.mathworks.com/matlabcentral/fileexchange/38896-viterbi-decoder
 https://www.mathworks.com/matlabcentral/fileexchange/38559-viterbi-decoder
+
+Markoc switching model???
