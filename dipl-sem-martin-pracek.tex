@@ -136,8 +136,9 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 Skriti markovski modeli so ena izmed vrst bolj splošne skupine modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo tudi markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
 \begin{definicija}{Markovska lastnost}
 Naj bo $(\Omega,\mathcal{F},\mathbb{P},\mathcal{F}_s)$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj bo $(S,\mathcal{S})$ merljiv prostor. $(S,\mathcal{S})$ merljiv sluèajni proces $X=\{X_t:\Omega \to S\}_{t\in I}$, ki je prilagojen na filtracijo, ima markovo lastnost, èe za vsak $A \in \mathcal{S}$ in vsak $s,t\in I$, kjer velja $s,t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
-	
 \end{definicija}
+
+To definicijo lahko v diskretnem primeru še razširimo, èe velja še da je $I = \mathcal{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1})$$
 
 
 \begin{trditev}{Moèna markovska lastnost}\\ {Naj velja, da imamo verjetnostni prostor s filtracijo $(\Omega,\mathbb{F},P,\mathbb{F}_{n})_{n\geq1})$. Naj bo $(X_n)_{n\geq1}$ zaporedje neodvisnih enako porazdeljenih sluèajnih spremenljivk ali vektorjev. Naj velja še, da je $T$ èas ustavljanja glede na naravno filtracijo, kjer velja $T<\infty$ skoraj gotovo. Potem je zaporedje $$(X_{T+1},X_{T+2},\ldots) (X_{1},X_{2},\ldots)$$ in je neodvisno od $\sigma$-algebre zgodovine èasa $\mathbb{F}_{T}$.}
