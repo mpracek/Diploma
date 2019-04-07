@@ -134,16 +134,17 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 \section{Markovski modeli}
 %Dodaj še kaj o markovskih modelih
 Skriti markovski modeli so ena izmed vrst bolj splošne skupine modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo tudi markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
-\begin{definicija}{Markovska lastnost}
+\begin{definicija}{Markovska lastnost}\label{markov}
 Naj bo $(\Omega,\mathcal{F},\mathbb{P},\mathcal{F}_s)$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj bo $(S,\mathcal{S})$ merljiv prostor. $(S,\mathcal{S})$ merljiv sluèajni proces $X=\{X_t:\Omega \to S\}_{t\in I}$, ki je prilagojen na filtracijo, ima markovo lastnost, èe za vsak $A \in \mathcal{S}$ in vsak $s,t\in I$, kjer velja $s,t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
 \end{definicija}
 
 To definicijo lahko v diskretnem primeru še razširimo, èe velja še da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1})$$
+\\
+V nekaterih primerih pa velja še moènejša lastnost. 
 
-
-\begin{trditev}{Moèna markovska lastnost}\\ {Naj velja, da imamo verjetnostni prostor s filtracijo $(\Omega,\mathbb{F},P,\mathbb{F}_{n})_{n\geq1})$. Naj bo $(X_n)_{n\geq1}$ zaporedje neodvisnih enako porazdeljenih sluèajnih spremenljivk ali vektorjev. Naj velja še, da je $T$ èas ustavljanja glede na naravno filtracijo, kjer velja $T<\infty$ skoraj gotovo. Potem je zaporedje $$(X_{T+1},X_{T+2},\ldots) (X_{1},X_{2},\ldots)$$ in je neodvisno od $\sigma$-algebre zgodovine èasa $\mathbb{F}_{T}$.}
+\begin{trditev}{Moèna markovska lastnost}Naj velja, da imamo verjetnostni prostor s filtracijo $(\Omega,\mathbb{F},P,\mathbb{F}_{n})_{n\geq1})$. Naj bo $(X_n)_{n\geq1}$ zaporedje neodvisnih enako porazdeljenih sluèajnih spremenljivk ali vektorjev. Naj velja še, da je $T$ èas ustavljanja glede na naravno filtracijo, kjer velja $T<\infty$ skoraj gotovo. Potem je zaporedje $$(X_{T+1},X_{T+2},\ldots) (X_{1},X_{2},\ldots)$$ in je neodvisno od $\sigma$-algebre zgodovine èasa $\mathbb{F}_{T}$.
 \end{trditev}
-
+Iz te lahko izpeljemo tudi osnovno markovsko lastnost, èe predpostavimo da velja $t=T$, kjer je $T$ èas ustavljanja iz moène markovske lastnosti in $t$ èas iz \ref{markov}.
 \begin{proof}
 %Naj bo A poljuben dogodek iz $\( \mathcal{F} \)_{T}$. Potem velja:
 $$P(A \cap \{X_{T+1}\leq c_1,X_{T+2}\leq c_1,\ldots,X_{T+n}\leq c_n\}) = $$ 
