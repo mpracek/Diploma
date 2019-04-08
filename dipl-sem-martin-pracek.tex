@@ -323,41 +323,38 @@ Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki na
 \end{algorithm}
 
 \begin{algorithm}
-	\caption{Viterbijev algoritem} \label{viterbi}
-	\begin{algorithmic}
-		\BState Input
-		\begin{itemize}
-			\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
-			\item Prostor stanj $S=\{s_1,s_2,\dots,s_K\}$
-			\item Nabor zaèetnih verjetnosti $\Pi = (\pi_1,\pi_2,\dots,\pi_K)$, kjer $\pi_{i} == s_i$ 
-			\item Zaporedje opazovanj $Y=(y_1,y_2,\ldots, y_T)$, tako da je $y_t==i$, èe velja da je opazovanje v èasu $t$ $o_i$
-			\item Prehodna matrika $A$ velikosti $ K\times K$, kjer stanje $A_{ij}$ pove verjetnost prehoda iz stanja $s_i$ v stanje $s_j$
-			\item Izhodno matriko $B$ velikosti $K \times N$, kjer stanje $B_{ij}$ pove verjetnost, da opazimo $o_j$ iz stanja $s_i$
-		\end{itemize}
-		
-		
-		%'''function''' ''VITERBI''<math>(O,S,\Pi,Y,A,B):X</math>
-		\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
-		\State $T_1[j,1] \gets \pi_{}B_{jy_1}$
-		\State $T_2[j,1] \gets 0$
-		\EndFor
-		\For vsako opazovanje $i = 2,3,\ldots,T$ naj
-		\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
-		\State $T_1[j,i] \gets \max_{k}{(T_1[k,i-1]\cdot A_{kj} \cdot B_{jy_i})} $
-		\State $T_2[j,i] \gets \arg\max_{k}{(T_1[k,i-1]\cdot A_{kj}\cdot B_{jy_i})}$
-		\EndFor
-		\EndFor
-		$z_T \gets \arg\max_{k}{(T_1[k,T])}$
-		$x_T \gets s_z_T$
-		\For $i \gets T,T-1,...,2$ naj
-		\State $z_{i-1} \gets T_2[z_i,i]$
-		\State$x_{i-1} \gets s_z_{i-1}$
-		\EndFor
-		\Return $X$
-		
-		\BState Output
-		\State Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$
-	\end{algorithmic}	
+\caption{Viterbijev algoritem} \label{viterbi}
+Input:
+\begin{itemize}
+	\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
+	\item Prostor stanj $S=\{s_1,s_2,\dots,s_K\}$
+	\item Nabor zaèetnih verjetnosti $\Pi = (\pi_1,\pi_2,\dots,\pi_K)$, kjer $\pi_{i} == s_i$ 
+	\item Zaporedje opazovanj $Y=(y_1,y_2,\ldots, y_T)$, tako da je $y_t==i$, èe velja da je opazovanje v èasu $t$ $o_i$
+	\item Prehodna matrika $A$ velikosti $ K\times K$, kjer stanje $A_{ij}$ pove verjetnost prehoda iz stanja $s_i$ v stanje $s_j$
+	\item Izhodno matriko $B$ velikosti $K \times N$, kjer stanje $B_{ij}$ pove verjetnost, da opazimo $o_j$ iz stanja $s_i$
+\end{itemize}
+
+
+\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
+$T_1[j,1] \gets \pi_{}B_{jy_1}$
+ $T_2[j,1] \gets 0$
+\EndFor
+\For vsako opazovanje $i = 2,3,\ldots,T$ naj
+\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
+ $T_1[j,i] \gets \max_{k}{(T_1[k,i-1]\cdot A_{kj} \cdot B_{jy_i})} $
+ $T_2[j,i] \gets \arg\max_{k}{(T_1[k,i-1]\cdot A_{kj}\cdot B_{jy_i})}$
+\EndFor
+\EndFor
+$z_T \gets \arg\max_{k}{(T_1[k,T])}$
+$x_T \gets s_z_T$
+\For $i \gets T,T-1,...,2$ naj
+ $z_{i-1} \gets T_2[z_i,i]$
+$x_{i-1} \gets s_z_{i-1}$
+\EndFor
+\Return $X$
+ Output:
+ Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$
+
 \end{algorithm}
 \section{Uporaba}
 %Popravi naslednji stavek
