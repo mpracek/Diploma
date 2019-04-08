@@ -210,43 +210,6 @@ Ideja skritih markovskih modelov se v svoji prvi fazi zaène z ruskim matematikom
 Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne preseneèa, da se je nadaljni razvoj zaèel šele z širšo uporabo raèunalnikov. Po pomembnem delu, ki so ga opravili von Neumann, Turing in Conrad Zuse so se znanstveniki zaèeli pospešeno ukvarjati z implementacijo primernih algoritmov. Velik korak k temu je pripomogel Claude Shannon s svojim delom Matematièna teorija komunikacije.\\ 
 Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nekaj razvojev algoritmov. Prvi algoritem je bil algoritem maksimizacije prièakovanega (Expectation-maximization), ali, kot ga med drugim poznamo, EM-algoritem so uporabljali med drugim že Laplace, Gauss in drugi, vendar je do dokonènega poimenovanja prišlo šele leta $1977$. Demster, Laird in Rubin so algoritem poimenovali in razložili splošno teorijo, ki deluje v ozadju procesa.
 Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji. Pri viterbijevem algoritmu gre za algoritem iz dinamiènega programiranja, ki najde najbolj verjeto zaporedje stanj, glede na dano opazovano zaporedje dogodkov.
-\begin{algorithm}
-	\caption{Viterbijev algoritem} \label{viterbi}
-	\begin{algorithmic}
-		\BState Input
-	\begin{itemize}
-		\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
-		\item Prostor stanj $S=\{s_1,s_2,\dots,s_K\}$
-		\item Nabor zaèetnih verjetnosti $\Pi = (\pi_1,\pi_2,\dots,\pi_K)$, kjer $\pi_{i} == s_i$ 
-		\item Zaporedje opazovanj $Y=(y_1,y_2,\ldots, y_T)$, tako da je $y_t==i$, èe velja da je opazovanje v èasu $t$ $o_i$
-		\item Prehodna matrika $A$ velikosti $ K\times K$, kjer stanje $A_{ij}$ pove verjetnost prehoda iz stanja $s_i$ v stanje $s_j$
-		\item Izhodno matriko $B$ velikosti $K \times N$, kjer stanje $B_{ij}$ pove verjetnost, da opazimo $o_j$ iz stanja $s_i$
-	\end{itemize}
-	
-	
-	%'''function''' ''VITERBI''<math>(O,S,\Pi,Y,A,B):X</math>
-	\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
-	\State $T_1[j,1] \gets \pi_{}B_{jy_1}$
-	\State $T_2[j,1] \gets 0$
-	\EndFor
-	\For vsako opazovanje $i = 2,3,\ldots,T$ naj
-	\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
-	\State $T_1[j,i] \gets \max_{k}{(T_1[k,i-1]\cdot A_{kj} \cdot B_{jy_i})} $
-	\State $T_2[j,i] \gets \arg\max_{k}{(T_1[k,i-1]\cdot A_{kj}\cdot B_{jy_i})}$
-	\EndFor
-	\EndFor
-	$z_T \gets \arg\max_{k}{(T_1[k,T])}$
-	$x_T \gets s_z_T$
-	\For $i \gets T,T-1,...,2$ naj
-	\State $z_{i-1} \gets T_2[z_i,i]$
-	\State$x_{i-1} \gets s_z_{i-1}$
-	\EndFor
-	\Return $X$
-	
-\BState Output
-\State Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$
-\end{algorithmic}	
-\end{algorithm}
 
 Celotnih modelov pa prav gotovo ne bi bilo brez še enega Rusa, in sicer Ruslana Leontijevièa Stratonovièa, ki je prvi opisal rekurzijo naprej - nazaj leta $1960$. To je delal na primeru optimalnega nelinearnega problema filtracije.\\
 Za glavnega avtorja pa velja Leonard E. Baum. Skupaj z  Lloyd R. Welchem sta okrog leta $1970$ razvila Baum-Welchov algoritem, kjer gre za poseben primer posplošenega EM-algoritma. Prav Baum-Welchov algoritem je tisti korak, pri katerem velja, da je bila dokonèno izpeljana teorija za skritimi markovskimi modeli. Algoritem uporablje EM-algoritem da najde cenilko po metodi najveèjega verjetja glede na dano zaporedje podatkov. algoritem je natanèneje razložen v \ref*{zaèetno}.\\
@@ -338,7 +301,44 @@ Zadnja stvar, ki jo moramo narediti, preden zaènemo z doloèanjem prihodnjih stan
 Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je oblikovan tako, da nam vrne zaporedje $Q$, ki maksimizira $P(Q|O,\lambda)$.\\
 Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
 Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.
-x
+
+\begin{algorithm}
+	\caption{Viterbijev algoritem} \label{viterbi}
+	\begin{algorithmic}
+		\BState Input
+		\begin{itemize}
+			\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
+			\item Prostor stanj $S=\{s_1,s_2,\dots,s_K\}$
+			\item Nabor zaèetnih verjetnosti $\Pi = (\pi_1,\pi_2,\dots,\pi_K)$, kjer $\pi_{i} == s_i$ 
+			\item Zaporedje opazovanj $Y=(y_1,y_2,\ldots, y_T)$, tako da je $y_t==i$, èe velja da je opazovanje v èasu $t$ $o_i$
+			\item Prehodna matrika $A$ velikosti $ K\times K$, kjer stanje $A_{ij}$ pove verjetnost prehoda iz stanja $s_i$ v stanje $s_j$
+			\item Izhodno matriko $B$ velikosti $K \times N$, kjer stanje $B_{ij}$ pove verjetnost, da opazimo $o_j$ iz stanja $s_i$
+		\end{itemize}
+		
+		
+		%'''function''' ''VITERBI''<math>(O,S,\Pi,Y,A,B):X</math>
+		\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
+		\State $T_1[j,1] \gets \pi_{}B_{jy_1}$
+		\State $T_2[j,1] \gets 0$
+		\EndFor
+		\For vsako opazovanje $i = 2,3,\ldots,T$ naj
+		\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
+		\State $T_1[j,i] \gets \max_{k}{(T_1[k,i-1]\cdot A_{kj} \cdot B_{jy_i})} $
+		\State $T_2[j,i] \gets \arg\max_{k}{(T_1[k,i-1]\cdot A_{kj}\cdot B_{jy_i})}$
+		\EndFor
+		\EndFor
+		$z_T \gets \arg\max_{k}{(T_1[k,T])}$
+		$x_T \gets s_z_T$
+		\For $i \gets T,T-1,...,2$ naj
+		\State $z_{i-1} \gets T_2[z_i,i]$
+		\State$x_{i-1} \gets s_z_{i-1}$
+		\EndFor
+		\Return $X$
+		
+		\BState Output
+		\State Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$
+	\end{algorithmic}	
+\end{algorithm}
 \section{Uporaba}
 %Popravi naslednji stavek
 %razloži zakaj široka uporabnost
