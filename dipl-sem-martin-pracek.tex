@@ -170,6 +170,11 @@ Naravno se nam postavi vprašanje, zakaj je markovska lastnost koristna. Izkaže s
 		\show \hline
 	\end{tabular}
 \end{table}\\
+Zaradi svoje široke aplikativnosti se markovski modeli uporabljajo v razliènih vrstah predikcije. V grobem lahko te vrste delimo na:
+\begin{itemize}
+	\item prediktivno modeliranje, kjer želimo iz statistiènih podatkov izraèunati najbolj verjeten dogodek glede nanaše podatke. Ta model se lahko uporablja ne glede na èas v katerem se je dogodek zgodil, saj lahko modeliramo prihodnje dogodke ravno tako kot pretekle dogodke, policija npr. uporablja to vrsto modela za doloèitev osumljencev za storjeni zloèin.
+	\item verjetnostno napoved, kjer ne napovemo le najbolj verjetnega dogodka, temveè doloèimo verjetnosti vseh dogodkov kot popolen sistem dogodkov. Najbolj oèiten primer tega so športne stavnice, kjer lahko npr. stavimo za eno izmed ekip stavimo na zmago, remi ali poraz.
+\end{itemize}
 %zakljuèi zapis po tabeli, dopiši še kakšno zanimivost.
 \subsection{Primer žabe v ribniku}
 Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela $S$. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja).$$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Odloèimo se za opazovanje le ene izmed žab, za katero nas zanima, kje se bo nahajala v naslednjem trenutku.\\
@@ -377,10 +382,12 @@ S finanènimi vrstami se sreèujemo vsak dan in v najrazliènejših oblikah. Zaradi 
 
 V našem primeru bomo za njihovo analizo uporabili skrite markovske modele. \\
 %mogoèe še kaj o èasovnih vrstah
+\subsection{Finanèna èasovna vrsta}
 \begin{definicija}{Finanèna èasovna vrsta} je èasovna vrsta, kjer so opazovanja $x_t$ vrednosti finanènega instrumenta v èasu $t$.
 \end{definicija}
 Finanèna èasovna vrsta je tako zaporedje opaženih vrednosti nekega finanènega instrumenta. 
 Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednosti finanènih instrumentov skozi èas. Zaradi elementa negotovosti, kot je na primer volatilnost finanènih instrumentov, jo moramo obravnavati loèeno od vseh ostalih èasovnih vrst. Velja namreè da ravno ta negotovost prikaže pomembnost statistiène teorije in metod, izpeljanih iz le te, v analizi finanènih èasovnih vrst.
+
 %posebnosti finanènih èasovnih vrst
 
 \section{Uporaba skritih markovskih modelov v finanènih èasovnih vrstah}
