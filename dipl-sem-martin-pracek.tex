@@ -9,7 +9,10 @@
 \usepackage{kbordermatrix}
 %\usepackage[normalem]{ulem}
 \usepackage[dvipsnames,usenames]{color}
-\usepackage{algorithm}
+\usepackage[ruled]{algorithm2e}
+\usepackage{algpseudocode}
+
+
 %\usepackage{biblatex}
 %\addbibresource{zbraniviri.bib}
 
@@ -304,6 +307,20 @@ Zadnja stvar, ki jo moramo narediti, preden zaènemo z doloèanjem prihodnjih stan
 Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je oblikovan tako, da nam vrne zaporedje $Q$, ki maksimizira $P(Q|O,\lambda)$.\\
 Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
 Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.
+
+\begin{algoritem}[h]\label{alg:1}
+	\nl \For{$i = 1, \ldots, k$} {
+		\nl $\bm{u} = \bm{y}_j$ za poljuben j\;
+		\nl \While{$\bm{t}$ se ne spreminja} {
+			\nl $\bm{p} = \frac{\bm{X}^T\bm{u}}{\|\bm{X}^T\bm{u}\|}$\;
+			\nl $\bm{t} = \bm{X}\bm{p}$\;
+			\nl $\bm{q} = \frac{\bm{Y}^T\bm{t}}{\|\bm{Y}^T\bm{t}\|}$\;
+			\nl $\bm{u} = \bm{Y}\bm{q}$\;}
+		\nl \Return{p, u, q, t}\;
+		\nl $\bm{X} = \bm{X} - \bm{tp}^T$\;
+		\nl $\bm{X} = \bm{Y} - \bm{uq}^T$}
+	\caption{NIPALS 3}
+\end{algoritem}
 
 \begin{algorithm}
 	\caption{Viterbijev algoritem} \label{viterbi}
