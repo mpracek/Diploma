@@ -308,7 +308,7 @@ Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je obl
 Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
 Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.
 
-\begin{algoritem}[h]\label{alg:1}
+\begin{algorithm}[h]\label{alg:1}
 	\nl \For{$i = 1, \ldots, k$} {
 		\nl $\bm{u} = \bm{y}_j$ za poljuben j\;
 		\nl \While{$\bm{t}$ se ne spreminja} {
@@ -320,7 +320,7 @@ Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki na
 		\nl $\bm{X} = \bm{X} - \bm{tp}^T$\;
 		\nl $\bm{X} = \bm{Y} - \bm{uq}^T$}
 	\caption{NIPALS 3}
-\end{algoritem}
+\end{algorithm}
 
 \begin{algorithm}
 	\caption{Viterbijev algoritem} \label{viterbi}
