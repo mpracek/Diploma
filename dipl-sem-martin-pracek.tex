@@ -212,7 +212,7 @@ Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nek
 Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji. Pri viterbijevem algoritmu gre za algoritem iz dinamiènega programiranja, ki najde najbolj verjeto zaporedje stanj, glede na dano opazovano zaporedje dogodkov.
 \begin{algorithm}
 	\caption{Viterbijev algoritem} \label{viterbi}
-	\State Input:
+	\begin{algorithmic}
 	\begin{itemize}
 		\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
 		\item Prostor stanj $S=\{s_1,s_2,\dots,s_K\}$
@@ -244,7 +244,7 @@ Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral le
 	'''end for'''
 	'''return''' {{mvar|X}}
 	'''end function'''
-	
+\end{algorithmic}	
 \end{algorithm}
 
 Celotnih modelov pa prav gotovo ne bi bilo brez še enega Rusa, in sicer Ruslana Leontijevièa Stratonovièa, ki je prvi opisal rekurzijo naprej - nazaj leta $1960$. To je delal na primeru optimalnega nelinearnega problema filtracije.\\
