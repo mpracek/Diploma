@@ -308,22 +308,9 @@ Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je obl
 Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
 Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.
 
-\begin{algorithm}[h]\label{alg:1}
-	\nl \For{$i = 1, \ldots, k$} {
-		\nl $\bm{u} = \bm{y}_j$ za poljuben j\;
-		\nl \While{$\bm{t}$ se ne spreminja} {
-			\nl $\bm{p} = \frac{\bm{X}^T\bm{u}}{\|\bm{X}^T\bm{u}\|}$\;
-			\nl $\bm{t} = \bm{X}\bm{p}$\;
-			\nl $\bm{q} = \frac{\bm{Y}^T\bm{t}}{\|\bm{Y}^T\bm{t}\|}$\;
-			\nl $\bm{u} = \bm{Y}\bm{q}$\;}
-		\nl \Return{p, u, q, t}\;
-		\nl $\bm{X} = \bm{X} - \bm{tp}^T$\;
-		\nl $\bm{X} = \bm{Y} - \bm{uq}^T$}
-	\caption{NIPALS 3}
-\end{algorithm}
-
 \begin{algorithm}
 \caption{Viterbijev algoritem} \label{viterbi}
+\KwResult{Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$}
 Input:
 \begin{itemize}
 	\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
@@ -333,6 +320,7 @@ Input:
 	\item Prehodna matrika $A$ velikosti $ K\times K$, kjer stanje $A_{ij}$ pove verjetnost prehoda iz stanja $s_i$ v stanje $s_j$
 	\item Izhodno matriko $B$ velikosti $K \times N$, kjer stanje $B_{ij}$ pove verjetnost, da opazimo $o_j$ iz stanja $s_i$
 \end{itemize}
+\SetAlgoLined
 
 
 \For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
@@ -352,8 +340,7 @@ $x_T \gets s_z_T$
 $x_{i-1} \gets s_z_{i-1}$
 \EndFor
 \Return $X$
- Output:
- Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$
+ 
 
 \end{algorithm}
 \section{Uporaba}
