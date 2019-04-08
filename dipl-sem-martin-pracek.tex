@@ -217,7 +217,7 @@ Uporabe skrith markovskih modelov na podroèju financ in ekonomije pa ne bilo bre
 
 
 
-\subsection{Zahteve za model}
+\subsection{Zahteve za model}\label{zahteva}
 Kot vsak matematièni model, ima tudi skriti markovski model svoje zahteve.
 \begin{enumerate}
 	\item Prva zahteva je, da lahko rezultate, ki jih model producira, opazujemo v ekvidistanènih èasih, torej je razlika med dvema poljubnima zaporednima èasoma opazovanja $t-1$ in $t$ vedno enaka, na primer $d$. Rezulate imenujemo signali ali opazovanja.
@@ -242,7 +242,7 @@ Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno z
 Tako potrebujemo za sestavo modela še:
 \begin{itemize}
 	\item število mešanic $M$
-	\item matriko $C$, ki predstavlja koeficiente $c_{ij}$, ki so faktorji v Gaussovi mešanici. To matriko imenujemo tudi \textbf{Emmision matrix}
+	\item matriko $C$, ki predstavlja koeficiente $c_{ij}$, ki so faktorji v Gaussovi mešanici. To matriko imenujemo tudi Izhodno matriko.
 	\item matrika $\Gamma$, kjer $\mu_{ij}$ predstavlja prièakovano vrednost mešanice $j$ v stanju $i$,  ter
 	\item matriko $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco mešanice $j$ v stanju $i$.
 \end{itemize}
@@ -437,7 +437,14 @@ Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednos
 
 \pagebreak
 \section{Praktièni primer}
-\subsection{Analiza kakovosti modela}
+Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana manjša od povpreèja. Prav zato naj bi bili skriti markovski modeli, \textbf{po prvem èlanku vira} bolj prirejeni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veèih setih podatkov. Moj praktièni primer bom razdelil na veè razliènih delov. \\
+Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
+V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model deluje tudi ob izjemnih dogodkih na trgu. Zato sem podatke iz NYSE uporabil za analizo stanja delnic ob finanèni krizi 2008 ter podatke, ki sem jih pridobil za S\&P $500$ indeks pred zaèetkom velike depresije. S tem želim ugotoviti, ali lahko model res zazna hitre padce cen.\\
+Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, 
+\subsection{Splošna analiza kakovosti modela}\label{Analiza}
+\subsection{Ekstremni dogodki} \label{ekstrem}
+\subsection{Napoved}
+
 %slika podatkov
 %psevdokoda/slika kode
 %ekonometrièna primerjava modela z dejanskimi vrednostmi
@@ -453,7 +460,6 @@ Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednos
 
 %pogledam kakovost prek ekonometriènih testov;
 
-\subsection{Napoved}
 %zlato, srebro
 %kriptovalute
 
