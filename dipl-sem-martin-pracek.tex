@@ -323,16 +323,13 @@ Input:
 \SetAlgoLined
 
 
-\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
+\For{vsako stanje $j \in \{1,2,\ldots,K\}$}{
 $T_1[j,1] \gets \pi_{}B_{jy_1}$
- $T_2[j,1] \gets 0$
-\EndFor
-\For vsako opazovanje $i = 2,3,\ldots,T$ naj
-\For vsako stanje $j \in \{1,2,\ldots,K\}$ naj
+ $T_2[j,1] \gets 0$}
+\For{vsako opazovanje $i = 2,3,\ldots,T$}
+\For{$j \in \{1,2,\ldots,K\}$}{
  $T_1[j,i] \gets \max_{k}{(T_1[k,i-1]\cdot A_{kj} \cdot B_{jy_i})} $
- $T_2[j,i] \gets \arg\max_{k}{(T_1[k,i-1]\cdot A_{kj}\cdot B_{jy_i})}$
-\EndFor
-\EndFor
+ $T_2[j,i] \gets \arg\max_{k}{(T_1[k,i-1]\cdot A_{kj}\cdot B_{jy_i})}$}
 $z_T \gets \arg\max_{k}{(T_1[k,T])}$
 $x_T \gets s_z_T$
 \For $i \gets T,T-1,...,2$ naj
