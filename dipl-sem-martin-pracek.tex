@@ -211,7 +211,8 @@ Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne prese
 Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nekaj razvojev algoritmov. Prvi algoritem je bil algoritem maksimizacije prièakovanega (Expectation-maximization), ali, kot ga med drugim poznamo, EM-algoritem so uporabljali med drugim že Laplace, Gauss in drugi, vendar je do dokonènega poimenovanja prišlo šele leta $1977$. Demster, Laird in Rubin so algoritem poimenovali in razložili splošno teorijo, ki deluje v ozadju procesa.
 Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji. Pri viterbijevem algoritmu gre za algoritem iz dinamiènega programiranja, ki najde najbolj verjeto zaporedje stanj, glede na dano opazovano zaporedje dogodkov.
 \begin{algorithm}
-	\BState Input:
+	\caption{Viterbijev algoritem} \label{viterbi}
+	\State Input:
 	\begin{itemize}
 		\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
 		\item Prostor stanj $S=\{s_1,s_2,\dots,s_K\}$
