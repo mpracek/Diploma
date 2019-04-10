@@ -432,10 +432,6 @@ Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osno
 	Z zbranim znanjem in podatki izvedemo simulacije veè razliènih scenarijev, èemur na koncu sledi še reševanje dejanskega linearnega programa.
 \end{primer}
 
-%iz prvega vira o CVar izpelji kaj
-%uporaba v optimalnih trgovalnih strategijah -> zaporedna optimizacija portfelja
-
-
 \section{Praktièni primer}
 Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana manjša od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
 Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
@@ -471,7 +467,10 @@ V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o ka
 % seznam uporabljene literature
 \begin{thebibliography}{9}
 \bibitem{prvivir}
-D.~Roman,G.~Mitra,N.~Spagnolo \emph{Hidden Markov models for financial optimization problems}, IMA Journal of Management Mathematics \textbf{21} (2010) 111--129.
+D.~Roman, G.~Mitra in N.~Spagnolo, \emph{Hidden Markov models for financial optimization problems}, IMA Journal of Management Mathematics \textbf{21} (2010) 111--129.
+
+\bibitem{macdonald}
+I.L.~MacDonald in W.~Zucchini, \emph{Hidden Markov and Other Models for Discrete- valued Time Series}, Chapman \& Hall/CRC Monographs on Statistics \& Applied Probability  \textbf{70}, Chapman \& Hall, London, 1997.
 
 
 \bibitem{referenca-clanek}
