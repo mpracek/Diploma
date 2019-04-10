@@ -145,22 +145,6 @@ To definicijo lahko v diskretnem primeru še razširimo, èe velja še da je $I = \m
 \\
 V nekaterih primerih pa velja še moènejša lastnost. 
 
-\begin{trditev}{Moèna markovska lastnost}Naj velja, da imamo verjetnostni prostor s filtracijo $(\Omega,\mathbb{F},P,\mathbb{F}_{n})_{n\geq1})$. Naj bo $(X_n)_{n\geq1}$ zaporedje neodvisnih enako porazdeljenih sluèajnih spremenljivk ali vektorjev. Naj velja še, da je $T$ èas ustavljanja glede na naravno filtracijo, kjer velja $T<\infty$ skoraj gotovo. Potem je zaporedje $$(X_{T+1},X_{T+2},\ldots) (X_{1},X_{2},\ldots)$$ in je neodvisno od $\sigma$-algebre zgodovine èasa $\mathbb{F}_{T}$.
-\end{trditev}
-Iz te lahko izpeljemo tudi osnovno markovsko lastnost, èe predpostavimo da velja $t=T$, kjer je $T$ èas ustavljanja iz moène markovske lastnosti in $t$ èas iz \ref{markov}.
-\begin{proof}
-%Naj bo A poljuben dogodek iz $\( \mathcal{F} \)_{T}$. Potem velja:
-$$P(A \cap \{X_{T+1}\leq c_1,X_{T+2}\leq c_1,\ldots,X_{T+n}\leq c_n\}) = $$ 
-$$P(\cup_{l=1}^\infty A \cap \{T=l\} \cap \{X_{T+1}\leq c_1,X_{T+2}\leq c_1,\ldots,X_{T+n}\leq c_n\})=$$
-$$\sum_{l=1}^{\infty}P(A \cap \{T=l\} \cap \{X_{T+1}\leq c_1,X_{T+2}\leq c_1,\ldots,X_{T+n}\leq c_n\})=$$
-$$\sum_{l=1}^{\infty}P(A \cap \{T=l\} \cap \{X_{l+1}\leq c_1,X_{l+2}\leq c_1,\ldots,X_{l+n}\leq c_n\})=$$
-$$\sum_{l=1}^{\infty}P(A \cap \{T=l\}) P(\{X_{l+1}\leq c_1,X_{l+2}\leq c_1,\ldots,X_{l+n}\leq c_n\})=$$
-$$\sum_{l=1}^{\infty}P(A \cap \{T=l\}) P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})=$$
-$$P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})\sum_{l=1}^{\infty}P(A \cap \{T=l\}) =$$
-$$P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})P(\cup_{l=1}^\infty A \cap \{T=l\})=$$
-$$P(\{X_{1}\leq c_1,X_{2}\leq c_1,\ldots,X_{n}\leq c_n\})P(A)$$
-\end{proof}
-Naravno se nam postavi vprašanje, zakaj je markovska lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti. Model, ki ga lahko tako rešimo imenujemo Markov model.\\
 %Tukaj dopiši še kar nekaj o teh modelih, da se tabela prestavi na naslednjo stran
 %Ugotovi napako
 \begin{table}[h]
