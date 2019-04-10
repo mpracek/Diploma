@@ -147,16 +147,26 @@ V nekaterih primerih pa velja še moènejša lastnost.
 
 %Tukaj dopiši še kar nekaj o teh modelih, da se tabela prestavi na naslednjo stran
 %Ugotovi napako tabele
-\begin{table}[h]
+\begin{table}[]
 	\begin{tabular}{lllll}
 		\cline{1-3}
 		\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{V}         & \multicolumn{1}{l|}{Le}     & delno     & opazovan \\ \cline{1-3}
-		\multicolumn{1}{|l|}{Avtonomen}   & \multicolumn{1}{l|}{Markovska} & \multicolumn{1}{l|}{Skriti} & markovski & model    \\ \cline{1-3}
-		\multicolumn{1}{|l|}{Kontorliran} & \multicolumn{1}{l|}{Markovski} & \multicolumn{1}{l|}{Delno}  & opazovan  & proces   \\ \cline{1-3}
+		\multicolumn{1}{|l|}{Avtonomen}   & \multicolumn{1}{l|}{Markovska veriga} & \multicolumn{1}{l|}{Skriti markovski model}    \\ \cline{1-3}
+		\multicolumn{1}{|l|}{Kontorliran} & \multicolumn{1}{l|}{Markovski proces odloèanja} & \multicolumn{1}{l|}{Delno opazovan proces}   \\ \cline{1-3}
 		&                                &                             &           &         
 	\end{tabular}
 \end{table}
-
+\begin{table}[h]
+	\begin{tabular}{|c|c|c|}
+		\hline
+		& V celoti opazovan & Le delno opazovan             \\
+		\hline
+		{Avtonomen} & Markovska veriga                & Skriti markovski model                      \\
+		\hline
+		Kontorliran                   & Markovski proces odloèanja      & Delno opazovan proces odloèanja
+		\show \hline
+	\end{tabular}
+\end{table}
 Zaradi svoje široke aplikativnosti se markovski modeli uporabljajo v razliènih vrstah predikcije. V grobem lahko te vrste delimo na:
 \begin{itemize}
 	\item prediktivno modeliranje, kjer želimo iz statistiènih podatkov izraèunati najbolj verjeten dogodek glede nanaše podatke. Ta model se lahko uporablja ne glede na èas v katerem se je dogodek zgodil, saj lahko modeliramo prihodnje dogodke ravno tako kot pretekle dogodke, policija npr. uporablja to vrsto modela za doloèitev osumljencev za storjeni zloèin.
