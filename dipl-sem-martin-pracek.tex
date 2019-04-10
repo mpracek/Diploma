@@ -418,8 +418,15 @@ Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osno
 \begin{primer}{Problem izbire portfelja}
 	Eno izmed klasiènih vprašanj, ki sem nam postavijo je v finanèni optimizaciji je problem optimalne izbire portfelja. To vprašanje se da rešiti tudi z uporabo linearnega programiranja in skritih markovskih modelov.\\
 	Predpostavimo, da imamo v trenutnem èasu kapital $M$, ki ga lahko vložimo v $N$ razliènih vrednostnih papirjev. Odloèiti se moramo, kako bomo naš kapital razdelili, da bomo maksimizirali svoj donos in hkrati minimizirali tveganje.\\
-	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je $R_j$ sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$\\
-	To nalogo lahko predstavimo kot linearni program s pomoèjo pogojne vrednosti ob padcu CVaR. CVar je mera tveganja, ki nam pove 
+	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je $R_j$ sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$ kjer je $R_x$ sluèajna spremenljivka.\\
+	To nalogo lahko predstavimo kot linearni program s pomoèjo pogojne vrednosti ob padcu CVaR. CVar je mera tveganja, ki nam oceni tržno ali kreditno tveganje portfelja. Tako pridemo do optimizacijskega problema oblike
+	\begin{gather*}
+	\min \quad CVaR_\alpha(R_x) \\
+	\begin{aligned}
+	\textup{p.p.}\quad E(R_x) \geq d \\
+	\end{aligned}
+	\end{gather*}
+	kjer je $d$ prej doloèen zahtevan donos.
 \end{primer}
 
 %iz prvega vira o CVar izpelji kaj
