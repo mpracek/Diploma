@@ -254,7 +254,8 @@ $\alpha_{t}(i)$ definiramo kot:
 $$\alpha_{1}(i) = \pi_{i}b_{i}(O_{1}) = \pi_{i}b_{i} = \sum_{k = 1}^{M}{c_{ik}} N(O_{1};\mu_{j}, \sigma_{j}^2)$$
 Naslednje $\alpha_{t+1}(j)$ lahko nato induktivno izraèunamo kot 
 $$\alpha_{t+1}(j) = b_{j}(O_{t+1})\sum_{i=1}^{N}{\alpha_{t}(i)a_{ij}}$$
-Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben naèin izraèunamo tudi $\beta_{t}(i)$. $\beta$ je inicializirana z  $$\beta_{T}(i) \forall i \in {1,\ldots, N}$$, indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
+Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben naèin izraèunamo tudi $\beta_{t}(i)$. $\beta$ je inicializirana z  
+$$\beta_{T}(i) \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
 $\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.
 \\
 Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
