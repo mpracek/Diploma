@@ -415,7 +415,8 @@ Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osno
 %Optimizacija v financah
 %iz drugega vira razloži primere, kaj delajo
 %kaj lahko delamo z HMM
-\begin{primer}{Problem izbire portfelja}
+\begin{primer}{Problem izbire portfelja}\\
+	%Poglej èe je logièno
 	Eno izmed klasiènih vprašanj, ki sem nam postavijo je v finanèni optimizaciji je problem optimalne izbire portfelja. To vprašanje se da rešiti tudi z uporabo linearnega programiranja in skritih markovskih modelov.\\
 	Predpostavimo, da imamo v trenutnem èasu kapital $M$, ki ga lahko vložimo v $N$ razliènih vrednostnih papirjev. Odloèiti se moramo, kako bomo naš kapital razdelili, da bomo maksimizirali svoj donos in hkrati minimizirali tveganje.\\
 	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je $R_j$ sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$ kjer je $R_x$ sluèajna spremenljivka.\\
@@ -426,7 +427,8 @@ Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osno
 	\textup{p.p.}\quad E(R_x) \geq d \\
 	\end{aligned}
 	\end{gather*}
-	kjer je $d$ prej doloèen zahtevan donos.
+	kjer je $d$ prej doloèen zahtevan donos, $\alpha$ pa stopnja zavrnitve.\\
+	Naravno se nam postavi vprašanje, kako bomo to sedaj modelirali kot skrite markovske modele. Najprej za vse vrednostne papirje pogledamo v število stanj in na podlagi tega doloèimo primerno število stanj modela. Nato na podlagi podatkov doloèimo prehodne in izhodne matrike, èemur sledi še sama izvedba testa.
 \end{primer}
 
 %iz prvega vira o CVar izpelji kaj
