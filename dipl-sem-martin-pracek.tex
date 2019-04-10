@@ -419,7 +419,7 @@ Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osno
 	%Poglej èe je logièno
 	Eno izmed klasiènih vprašanj, ki sem nam postavijo je v finanèni optimizaciji je problem optimalne izbire portfelja. To vprašanje se da rešiti tudi z uporabo linearnega programiranja in skritih markovskih modelov.\\
 	Predpostavimo, da imamo v trenutnem èasu kapital $M$, ki ga lahko vložimo v $N$ razliènih vrednostnih papirjev. Odloèiti se moramo, kako bomo naš kapital razdelili, da bomo maksimizirali svoj donos in hkrati minimizirali tveganje.\\
-	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je $R_j$ sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$ kjer je $R_x$ sluèajna spremenljivka.\\
+	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je donos sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko  $R_j$. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$ kjer je $R_x$ sluèajna spremenljivka.\\
 	To nalogo lahko predstavimo kot linearni program s pomoèjo pogojne vrednosti ob padcu CVaR. CVar je mera tveganja, ki nam oceni tržno ali kreditno tveganje portfelja. Tako pridemo do optimizacijskega problema oblike
 	\begin{gather*}
 	\min \quad CVaR_\alpha(R_x) \\
@@ -428,7 +428,8 @@ Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osno
 	\end{aligned}
 	\end{gather*}
 	kjer je $d$ prej doloèen zahtevan donos, $\alpha$ pa stopnja zavrnitve.\\
-	Naravno se nam postavi vprašanje, kako bomo to sedaj modelirali kot skrite markovske modele. Najprej za vse vrednostne papirje pogledamo v število stanj in na podlagi tega doloèimo primerno število stanj modela. Nato na podlagi podatkov doloèimo prehodne in izhodne matrike, èemur sledi še sama izvedba testa.
+	Skriti markovski modeli se v igro vkljuèijo, ko moramo aproksimirati donose. Kot že vemo, je $R_j$ diskretna aproksimacija donosa s konènim številom stanj. Ta stanja doloèimo kot razlièna možna stanja finanènega instrumenta na naših podatkih. Nato znanih podatkov doloèimo še vhodne in izhodne matrike za vse sluèajne spremenljvivke.\\
+	Z zbranim znanjem in podatki izvedemo simulacije veè razliènih scenarijev, èemur na koncu sledi še reševanje dejanskega linearnega programa.
 \end{primer}
 
 %iz prvega vira o CVar izpelji kaj
@@ -436,7 +437,7 @@ Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osno
 
 
 \section{Praktièni primer}
-Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana manjša od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj prirejeni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veèih setih podatkov. Moj praktièni primer bom razdelil na veè razliènih delov. \\
+Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana manjša od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
 Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
 V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model deluje tudi ob izjemnih dogodkih na trgu. Zato sem podatke iz NYSE uporabil za analizo stanja delnic ob finanèni krizi 2008 ter podatke, ki sem jih pridobil za S\&P $500$ indeks pred zaèetkom velike depresije. S tem želim ugotoviti, ali lahko model res zazna hitre padce cen.\\
 Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, da je ob koncu leta 2017 doživel izredno veliko rast. \\
