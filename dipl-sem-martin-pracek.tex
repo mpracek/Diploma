@@ -127,11 +127,14 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 
 % slovar
 \section*{Slovar strokovnih izrazov}
+\begin{geslo}{Pogojna vrednost ob padcu}{Pogojna vrednost ob padcu CVaR je nam pove verjetnost, da se bo donos portfelja od prièakovane vrednosti pomaknil za veè kot tri standarde odklone.}
+\end{geslo}
 
 \geslo{Gaussova mešanica}{Gaussova mešanica je porazdelitvena funkcija z gostoto, ki jo lahko zapišemo kot tehtano povpreèje normalnih gostot; $$f(x) = \sum_{j = 1}^{M}{c_{j}} N(x;\mu_{j}, \sigma_{j}^2)$$. Veljati mora še, da je $$\sum_{j = 1}^{M}{c_{j}} = 1$$ in da je $N(x;\mu_{j}, \sigma_{j}^2)$ gostota normalne porazdelitvene funkcije.} \\
 \geslo{Akaikejev informacijski kriterij}{Akaikejev informacijski kriterij oziroma AIC je merilo relativne kakovosti modela glede na preostale modele za iste podatke.	\\Recimo, da imamo podatke s $k$ ocenjenimi parametri in $L$ maksimalna vrednost funkcije verjetja. AIC izraèunamo kot $$AIC = 2k - 2ln(L)$$ AIC primerja veè razliènih modelov po kakovosti, kjer je najboljši tisti z najmanjšo vrednostjo.}\\
 \geslo{Baum-Welchov algoritem}{Je algoritem, s katerim poišèemo neznane parametre skritih markovskih modelov.}\\
 \geslo{Dinamièna bayesianska mreža}{Je bayesianska mreža, v kateri so povezane spremenljivke, ki ležijo v dveh sosednjih èasovnih korakih.}
+\
 %
 \pagebreak
 \section{Markovski modeli}
@@ -416,7 +419,9 @@ Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osno
 %kaj lahko delamo z HMM
 \begin{primer}{Problem izbire portfelja}
 	Eno izmed klasiènih vprašanj, ki sem nam postavijo je v finanèni optimizaciji je problem optimalne izbire portfelja. To vprašanje se da rešiti tudi z uporabo linearnega programiranja in skritih markovskih modelov.\\
-	Predpostavimo, da imamo v trenutnem èasu kapital $M$, ki ga lahko vložimo v $N$ razliènih vrednostnih papirjev. Odloèiti se moramo, kako bomo naš kapital razdelili, da bomo maksimizirali svoj donos in hkrati minimizirali tveganje. 
+	Predpostavimo, da imamo v trenutnem èasu kapital $M$, ki ga lahko vložimo v $N$ razliènih vrednostnih papirjev. Odloèiti se moramo, kako bomo naš kapital razdelili, da bomo maksimizirali svoj donos in hkrati minimizirali tveganje.\\
+	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je $R_j$ sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$\\
+	To nalogo lahko predstavimo kot linearni program s pomoèjo pogojne vrednosti ob padcu CVaR.
 \end{primer}
 
 %iz prvega vira o CVar izpelji kaj
