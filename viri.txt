@@ -18,5 +18,6 @@ https://en.wikipedia.org/wiki/Markov_property
 https://en.wikipedia.org/wiki/Markov_model
 
 Teorija vsega
+https://books.google.si/books?id=VQrpBwAAQBAJ&pg=PR4&lpg=PR4&dq=resnick+adventures+in+stochastic+processes+free&source=bl&ots=xIOIHF-Pxi&sig=ACfU3U3wI3JGe4mtlBIFsi8kmh8pv0rCeQ&hl=sl&sa=X&ved=2ahUKEwiknZeNhsHhAhUpMuwKHX_ECC8Q6AEwCXoECAkQAQ#v=onepage&q&f=false
 https://www.encyclopediaofmath.org/index.php/Markov_process
 https://www.americanscientist.org/article/first-links-in-the-markov-chain
