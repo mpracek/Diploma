@@ -293,7 +293,7 @@ Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je obl
 Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
 Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.
 
-\begin{algorithm}[h]
+\begin{algorithm}[h!]
 \caption{Viterbijev algoritem} \label{viterbi}
 \KwResult{Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$}
 Input:
