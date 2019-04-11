@@ -241,11 +241,8 @@ Ti podatki morajo biti zbrani na na podobni enoti; èe na bo na primer zanimale c
 \\ Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. 
 \\ Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.
 \\V praksi število stanj vèasih doloèimo z potrebno aplikacijo, kot na primer v \ref{Biologija}, oziroma z vizualnim ogledom toèk grafa iz zgodovinskih podatkov.\\
-Vèasih pa lahko to doloèimo preko Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo $N$ in izbere najboljšega. 
-%Dopiši še kaj o Akaikejevem kriteriju, omeni še Bayesianski kriterij
-\\ Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). 
-%Zakaj, kako to naredimo?
-\\
+Vèasih pa lahko to doloèimo preko Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo z razliènim številom stanj $N$ in izbere najboljšega. AIC ocenjuje relativno kakovost modela. Podobno deluje tudi BIC, to je Bayesianski informacijski kriterij.\\
+Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). Gre za metodo vektorske kvantitizacije, kjer želimo $n$ opazovanj razvrstiti v $k$ skupin, kjer vsako opazovanje razvrstimo v skupino, z najbližjim povpreèjem.\\
 Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost, da so bila vsa opazovanja doloèena tudi s strani modela najveèja, $P(O|\lambda)$. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana.
 \\Naravno se pojavi vprašanje, kako to doloèimo. Izkaže se, da je uèinkovit sistem $naprej - nazaj$. Doloèimo spremenljivki $naprej$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $o$ do $t$ in stanje $i$, ter $nazaj$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Definirati pa rabimo le eno izmed njiju, saj gre pri $\beta_{t}(i)$ le alternativno metodo za $\alpha_{t}(i)$.
 $\alpha_{t}(i)$ definiramo kot:
