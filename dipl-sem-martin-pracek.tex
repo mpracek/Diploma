@@ -305,8 +305,7 @@ Input:
 	\item Prehodna matrika $A$ velikosti $ K\times K$, kjer stanje $A_{ij}$ pove verjetnost prehoda iz stanja $s_i$ v stanje $s_j$
 	\item Izhodno matriko $B$ velikosti $K \times N$, kjer stanje $B_{ij}$ pove verjetnost, da opazimo $o_j$ iz stanja $s_i$
 \end{itemize}
-
-
+\\\hrulefill
 \For{vsako stanje $j \in \{1,2,\ldots,K\}$}{
 $T_1[j,1] \gets \pi_{}B_{jy_1}$ \\
  $T_2[j,1] \gets 0$}
@@ -320,18 +319,9 @@ $x_T \gets s_{zT}$\\
  $z_{i-1} \gets T_2[z_i,i]$\\
 $x_{i-1} \gets s_{z(i-1)}$}
 \Return $X$
-%Popravi napako v algoritmu 
+%Popravi napako v algoritmu èrna lisa
 \end{algorithm}
 %Dodaj algoritem za delovanje celotnega HMM
-Ko imamo sedaj za seboj celotno teorijo potrebno za razumevanje skritih markovskih modelov, poglejmo še celotni algoritem skritih markovskih modelov.
-\begin{algorithm}[h!]
-	\caption{Skriti markovski model} \label{hmm}
-	\KwResult{Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$}
-	Input:
-	\begin{itemize}
-		\item Zaporedje opazovanj $O$
-	\end{itemize}
-\end{algorithm}
 \pagebreak
 \section{Uporaba}
 %Popravi naslednji stavek
