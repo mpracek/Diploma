@@ -128,6 +128,7 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 % slovar
 \section*{Slovar strokovnih izrazov}
 \geslo{Gaussova mešanica}{Gaussova mešanica je porazdelitvena funkcija z gostoto, ki jo lahko zapišemo kot tehtano povpreèje normalnih gostot; $$f(x) = \sum_{j = 1}^{M}{c_{j}} N(x;\mu_{j}, \sigma_{j}^2)$$. Veljati mora še, da je $$\sum_{j = 1}^{M}{c_{j}} = 1$$ in da je $N(x;\mu_{j}, \sigma_{j}^2)$ gostota normalne porazdelitvene funkcije.}\\
+\geslo{Verjetnostni grafièni model PGM}{Verjetnostni grafièni model je model, za katere graf prikaže pogojno odvisnost med sluèajnimi spremenljivkami.}\\
 \geslo{Akaikejev informacijski kriterij}{Akaikejev informacijski kriterij oziroma AIC je merilo relativne kakovosti modela glede na preostale modele za iste podatke.Naj velja, da imamo podatke s $k$ ocenjenimi parametri in $L$ maksimalna vrednost funkcije verjetja. AIC izraèunamo kot $$AIC = 2k - 2ln(L)$$ AIC primerja veè razliènih modelov po kakovosti, kjer je najboljši tisti z najmanjšo vrednostjo.}\\
 \geslo{Baum-Welchov algoritem}{Je algoritem, s katerim poišèemo neznane parametre skritih markovskih modelov.}\\%malo razlage
 \geslo{Dinamièna bayesianska mreža}{Je bayesianska mreža, v kateri so povezane spremenljivke, ki ležijo v dveh sosednjih èasovnih korakih.}\\%Dodaj malo razlage
@@ -182,11 +183,10 @@ Za skrite markovske modele pa velja, da same prehodne matrike naèeloma ne poznam
 
 \section{Skriti markovski modeli}
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji. Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala.\\
-Gre za najbolj preprosto vrsto dinamiène bayesianske mreže. Tu gre za vrsto bayesianske mreže, v kateri so povezane spremenljivke, ki ležijo v dveh sosednjih èasovnih korakih. Tako lahko vrednost v èasu $t$ izraèunamo prek vrednosti v èasu $t-1$ ter notranih \textbf{regresorjev}.  \\
-%Dodaj še kaj o baynesianskih mrežah, primer, razlaga.
-Skrite markovske modele navadno predstavimo na diskretnih množicah in na diskretnem èasu, a lahko definicijo tako razširimo, da velja tudi za zvezne množice in èas. V tem primeru dobimo tri plasten sluèajni proces, katerega najveèja težava je  velika raèunska zahtevnost, poleg tega pa nam lahko veliko število parametrov prinese nestabilnost. Vendar se s tem v moji diplomski nalogi ne bom ukvarjal.
-\\
+Gre za najbolj preprosto vrsto dinamiène bayesianske mreže. Tu gre za vrsto bayesianske mreže, v kateri so povezane spremenljivke, ki ležijo v dveh sosednjih èasovnih korakih. Tako lahko vrednost v èasu $t$ izraèunamo prek vrednosti v èasu $t-1$ ter notranih \textbf{regresorjev}. Bayesianske mreže so verjetnostni grafièni model, ki so idealne za to, da za nek dogodek za vsak možen vzrok doloèimo verjetnost, da ga je ta povzroèil.\\
+Skrite markovske modele navadno predstavimo na diskretnih množicah in na diskretnem èasu, a lahko definicijo tako razširimo, da velja tudi za zvezne množice in èas. V tem primeru dobimo tri plasten sluèajni proces, katerega najveèja težava je  velika raèunska zahtevnost, poleg tega pa nam lahko veliko število parametrov prinese nestabilnost. Vendar se s tem v moji diplomski nalogi ne bom ukvarjal.\\
 Ideja za delovanje skritih markovskih modelov izhaja iz dela Andrewa Viterbija na podroèju komunikacije. V komunikacijskih storitvah šumi namreè predstavljajo veliko težavo, zato se je ameriško-italijanski elektrièni inžiner domislil algoritma, s katerimi bi iz seta podatkov izloèili šume. To si lahko predstavljamo kot da bi si na primer želeli na fiksnem mestu v elektriènem tokokrogu doloèiti naboj $Q(t)$ glede na naboj ob èasu $s$, kjer $s<t$. Zaradi napake pri merjenju $Q(s)$ ne moremo toèno doloèiti, saj zaznamo neko zmoteno razlièico $\widehat{Q(s)}$. Želimo si torej naèin, ki bi èim bolj uèinkovito izloèil te napake. \\
+
 %Podaljšaj opis, dodatne razlage. Poišèi še kaj po virih. Dopiši!!
 %Možnosti za eno in veè spremenljivk, problemi modela veè spremenljivk
 %Bolj podroben opis
