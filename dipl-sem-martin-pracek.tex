@@ -11,6 +11,8 @@
 \usepackage[dvipsnames,usenames]{color}
 \usepackage[ruled]{algorithm2e}
 \usepackage{algpseudocode}
+\usepackage{graphicx} % This package is needed if you wish to include external image files.
+
 
 
 %\usepackage{biblatex}
@@ -181,7 +183,7 @@ V tem primeru lahko torej, v vsakem trenutku predvidimo, kam bo najverjetneje sk
 Za skrite markovske modele pa velja, da same prehodne matrike naèeloma ne poznamo, jo pa lahko doloèimo iz podatkov, ki jih imamo za naš problem. Tako bi za našo žabo dovolj dolgo opazovali, in si zapisovali njene pozicije glede v vsakem trenutku opazovanja. Tako bi dobili vektor opazovanj $O$. Vektor $O$ je naš osnovni podatek, iz katerega nato izpeljemo celoten model. Iz tega bi najprej pogledali, kakšna so možna stanja sistema. Iz tega bi nato poizkušili ugotoviti, kako izgleda prehodna matrika. Kako to naredimo, si bomo pogledali v nadaljevanju. 
 \end{primer}
 
-
+\pagebreak
 \section{Skriti markovski modeli}
 %Podaljšaj opis, dodatne razlage. Poišèi še kaj po virih. Dopiši!!
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji. Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala.\\
@@ -374,7 +376,7 @@ S tem se je ukvarjajo razlièni storokovnjaki.
 \subsection{Prepoznavanje akcij}
 %zakaj zanimivo, pomembno
 %dejanski primer
-
+\pagebreak
 \section{Èasovne vrste}
 %razloži še kaj o èasovnih vrstah iz virov dopiši kaj
 %time analysis
@@ -404,7 +406,7 @@ V našem primeru bomo za njihovo analizo uporabili skrite markovske modele. \\
 Finanèna èasovna vrsta je tako zaporedje opaženih vrednosti nekega finanènega instrumenta. 
 Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednosti finanènih instrumentov skozi èas. Zaradi elementa negotovosti, kot je na primer volatilnost finanènih instrumentov, jo moramo obravnavati loèeno od vseh ostalih èasovnih vrst. Velja namreè da ravno ta negotovost prikaže pomembnost statistiène teorije in metod, izpeljanih iz le te, v analizi finanènih èasovnih vrst.
 %posebnosti finanènih èasovnih vrst
-
+\pagebreak
 \section{Uporaba skritih markovskih modelov v finanènih èasovnih vrstah}
 Uporaba skritih markovsih modelov spada pod 
 Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osnovne ideje Andrewa Viterbija \ref{viterbi}, in sicer analiziranje signalov, ki jih prejmemo tako, da izloèimo šume v prejetem signalu.
@@ -438,7 +440,8 @@ V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o ka
 \subsection{Splošna analiza kakovosti modela}\label{Analiza}
 Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE za ceno $10$ delnic. Ta podjetja so Amazon, Google, Tesla, TripAdvisor, Starbucks, Novartis, Microsoft, General Motors, Wells Fargo in Chevron. V mojem portfelju se tako nahajo podjetja iz razliènih industrij, od finanène do avtomobilske in farmacevtske.\\
 Podatek, na katerega se bom oprl bo cena ob koncu trgovalnega dne. 
-Za vsako izmed teh delnic bom vzel Close, torej ceno ob koncu trgovalnega dne
+Za vsako izmed teh delnic bom vzel Close, torej ceno ob koncu trgovalnega dne.
+\includegraphics[scale=0.25]{slike/podatki} 
 %standardni odklon, varianca, maksimalni in minimalni odklon, grafièni prikaz na istem grafu. 
 \subsection{Ekstremni dogodki} \label{ekstrem}
 \subsection{Napoved}\label{napoved}
