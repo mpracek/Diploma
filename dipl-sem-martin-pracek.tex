@@ -147,6 +147,8 @@ Naj bo $(\Omega,\mathcal{F},\mathbb{P},\mathcal{F}_s)$ verjetnostni prostor s fi
 
 To definicijo lahko v diskretnem primeru še razširimo, èe velja še, da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1})$$
 \\
+V posebnem lahko za markovske modele reèemo, da so homogeni, èe velja 
+$$P(X_n|X_{n-1})=P(X_1|X_0)$$
 Markovska lastnost je nam pove, da je sluèajni proces "brez spomina". To pomeni, da pot do stanja ni pomembna, pomembno je le stanje, v katerem se nahajamo. Naravno se nam tudi postavi vprašanje, zakaj je ta lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti.
 \begin{table}[h!]
 	\begin{tabular}{lllll}
@@ -379,13 +381,11 @@ S tem se je ukvarjajo razlièni storokovnjaki.
 \pagebreak
 \section{Èasovne vrste}
 %razloži še kaj o èasovnih vrstah iz virov dopiši kaj
-%time analysis
 \begin{definicija}{Èasovna vrsta} množica opazovanj $x_t$, vsako opazovano ob èasih $t$ znotraj nekega èasovnega intervala.
 \end{definicija}
 
 \begin{definicija}{Model èasovne vrste} za opazovane podatke ${x_t}$ je sluèajni proces $X_t$, kjer velja, da so $x_t$ realizacije tega sluèajnega procesa v èasih $t$.\\
 \end{definicija}
-
 
 Vrednosti delnic po dnevih, število uporabnikov spletne strani po urah, prebivalstvo neke države po letih, \ldots To je le nekaj izmed mnogih primerov uporabe èasovnih vrst. Èasovne vrste nam dajo lepšo idejo o trendu podatkov, ki jih želimo analizirati. Enostavno lahko vidimo, ali je npr. cena jagod odvisna od letnega èasa ter ali se cena jabolk skozi leta spreminja. \\
 Èasovna analiza je lahko analitièna, kjer preuèujemo podatke iz preteklosti, ter prediktivna, kjer želimo napovedati neke trende. Analize lahko poteka na veè naèinov, od linearnih in nelinearnih modelov do modelov z eno spremenljivko in modelov z veè spremenljivkami. Prav zaradi njihove široke uporabnosti se je razvilo zelo veliko modelov za njihovo analizo, zaèensi leta $1970$ z delom Boxa in Jenkinsa na podroèju samoregresivnega integriranega tekoèega povpreèja, danes znanega pod kratico ARIMA.\\
@@ -397,14 +397,15 @@ Glede na èase, v katerih gledamo rezultate naše èasovne vrste v grobem loèimo $3
 	\item Èasovne vrste z diskretnimi vrednostmi kjer  pridobivamo vrednosti, ki lahko zavzamejo le diskretne vrednosti, torej najveè števno neskonèno razliènih možnosti.\\ Tipièen primer bi bil število klicev med $7.00$ in $8.00$ znotraj Ljubljane oziroma število nesreè znotraj enega dneva na avtocesti med Postojno in Ljubljano. 
 	\item Zadnja vrsta so diskretne èasovne vrste, torej vrste, ki vrednosti vzamejo le v doloèenih èasovnih trenutkih, npr. konec vsake ure, konec dneva, \ldots Tukaj lahko vrednosti zavzamejo kakršnokoli vrednost, pomembno je le, da te vrednosti vzamemo ob pravilnih trenutkih. Te vrste so uporabne tudi za aproksimiranje èasovnih vrst v zveznih èasih. Prav vrste takega tipa so tiste, ki jih lahko analiziramo z skritimi markovskimi modeli.
 \end{itemize}
-S finanènimi vrstami se sreèujemo vsak dan in v najrazliènejših oblikah. Zaradi njihove raznolikosti je izbira pravega modela za njihovo analizo kljuèna. 
-V našem primeru bomo za njihovo analizo uporabili skrite markovske modele. \\
+S finanènimi vrstami se sreèujemo vsak dan in v najrazliènejših oblikah. Zaradi njihove raznolikosti je izbira pravega modela za njihovo analizo kljuèna. V našem primeru bomo za njihovo analizo uporabili skrite markovske modele. \\
+Navadno je glavni namen analize èasovnih vrst napovedovanje trendov, vendar se je to podroèje z razvojem predvsem podatkovnega rudarjenja razširilo tudi na druga podroèja.
 %mogoèe še kaj o èasovnih vrstah
 \subsection{Finanèna èasovna vrsta}
 \begin{definicija}{Finanèna èasovna vrsta} je èasovna vrsta, kjer so opazovanja $x_t$ vrednosti finanènega instrumenta v èasu $t$.
 \end{definicija}
 Finanèna èasovna vrsta je tako zaporedje opaženih vrednosti nekega finanènega instrumenta. 
-Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednosti finanènih instrumentov skozi èas. Zaradi elementa negotovosti, kot je na primer volatilnost finanènih instrumentov, jo moramo obravnavati loèeno od vseh ostalih èasovnih vrst. Velja namreè da ravno ta negotovost prikaže pomembnost statistiène teorije in metod, izpeljanih iz le te, v analizi finanènih èasovnih vrst.
+Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednosti finanènih instrumentov skozi èas. Zaradi elementa negotovosti, kot je na primer volatilnost finanènih instrumentov, jo moramo obravnavati loèeno od vseh ostalih èasovnih vrst. Velja namreè da ravno ta negotovost prikaže pomembnost statistiène teorije in metod, izpeljanih iz le te, v analizi finanènih èasovnih vrst.\\
+Z finanènimi èasovnimi vrstami se ukvarjajo statistiki ter kvantitativni finanèniki. V nasprotju z ostalimi finanènimi vrstami se lahko zaradi mikrostrukture trga zgodi, da imajo finaène èasovne vrste posebne lastnosti in obliko. 
 %posebnosti finanènih èasovnih vrst
 \pagebreak
 \section{Uporaba skritih markovskih modelov v finanènih èasovnih vrstah}
