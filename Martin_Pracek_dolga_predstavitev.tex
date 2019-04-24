@@ -9,13 +9,43 @@
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{url}
 \usepackage{authblk}
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{primer}[definicija]{Primer}
+\newtheorem{opomba}[definicija]{Opomba}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
+
+
+% za stevilske mnozice uporabi naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+
+
 
 %\theoremstyle{definition} % See Lesson Three of the LaTeX Manual for more on this kind of "proclamation."
 %\newtheorem*{dfn}{A Reasonable Definition}               
 \begin{document}
 \title{Skriti markovski modeli v finanËnih Ëasovnih vrstah}
-\newcommand{\imeavtorja}{Martin Praƒçek} % ime avtorja
-\newcommand{\imementorja}{izr. prof. dr. Damjan ≈†kulj}
+%\newcommand{\imeavtorja}{Martin PraËek} % ime avtorja
+%\newcommand{\imementorja}{izr. prof. dr. Damjan ≈†kulj}
 \institute{Fakulteta za matematiko in fiziko, Univerza v Ljubljani}
 %\date{January 6, 2012} 
 % Remove the % from the previous line and change the date if you want a particular date to be displayed; otherwise, today's date is displayed by default.
@@ -55,7 +85,12 @@
 
 
 \begin{frame} 
-\frametitle{Markovski model}
+\frametitle{Markovska lastnost}
+\begin{definicija}{Markovska lastnost}\label{markov}
+	Naj bo $(\Omega,\mathcal{F},\mathbb{P},\mathcal{F}_s)$ verjetnostni prostor s filtracijo za neko urejeno mnoûico $I$. Naj bo $(S,\mathcal{S})$ merljiv prostor. $(S,\mathcal{S})$ merljiv sluËajni proces $X=\{X_t:\Omega \to S\}_{t\in I}$, ki je prilagojen na filtracijo, ima markovo lastnost, Ëe za vsak $A \in \mathcal{S}$ in vsak $s,t\in I$, kjer velja $s,t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
+\end{definicija}
+
+
 \end{frame}
 
 \begin{frame} 
