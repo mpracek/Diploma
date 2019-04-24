@@ -148,7 +148,14 @@ To definicijo lahko v diskretnem primeru še razširimo, èe velja še, da je $I = \
 \\
 V posebnem lahko za markovske modele reèemo, da so homogeni, èe velja 
 $$P(X_n|X_{n-1})=P(X_1|X_0)$$
-Markovska lastnost je nam pove, da je sluèajni proces "brez spomina". To pomeni, da pot do stanja ni pomembna, pomembno je le stanje, v katerem se nahajamo. Naravno se nam tudi postavi vprašanje, zakaj je ta lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti.
+Markovska lastnost je nam pove, da je sluèajni proces "brez spomina". To pomeni, da pot do stanja ni pomembna, pomembno je le stanje, v katerem se nahajamo. Naravno se nam tudi postavi vprašanje, zakaj je ta lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti.\\
+
+Zaradi svoje široke aplikativnosti se markovski modeli uporabljajo v razliènih vrstah predikcije. V grobem lahko te vrste delimo na:
+\begin{itemize}
+	\item prediktivno modeliranje, kjer želimo iz statistiènih podatkov izraèunati najbolj verjeten dogodek glede nanaše podatke. Ta model se lahko uporablja ne glede na èas v katerem se je dogodek zgodil, saj lahko modeliramo prihodnje dogodke ravno tako kot pretekle dogodke, policija npr. uporablja to vrsto modela za doloèitev osumljencev za storjeni zloèin.
+	\item verjetnostno napoved, kjer ne napovemo le najbolj verjetnega dogodka, ampak doloèimo verjetnosti vseh dogodkov kot popolen sistem dogodkov. Najbolj oèiten primer tega so športne stavnice, kjer lahko npr. stavimo za eno izmed ekip stavimo na zmago, remi ali poraz.
+\end{itemize}
+Glede na to, kako je postavljen markovski model pa loèimo:
 \begin{table}[h!]
 	\begin{tabular}{lllll}
 		\cline{1-3}
@@ -158,13 +165,6 @@ Markovska lastnost je nam pove, da je sluèajni proces "brez spomina". To pomeni,
 		&                                &                             &           &         
 	\end{tabular}
 \end{table}
-
-Zaradi svoje široke aplikativnosti se markovski modeli uporabljajo v razliènih vrstah predikcije. V grobem lahko te vrste delimo na:
-\begin{itemize}
-	\item prediktivno modeliranje, kjer želimo iz statistiènih podatkov izraèunati najbolj verjeten dogodek glede nanaše podatke. Ta model se lahko uporablja ne glede na èas v katerem se je dogodek zgodil, saj lahko modeliramo prihodnje dogodke ravno tako kot pretekle dogodke, policija npr. uporablja to vrsto modela za doloèitev osumljencev za storjeni zloèin.
-	\item verjetnostno napoved, kjer ne napovemo le najbolj verjetnega dogodka, ampak doloèimo verjetnosti vseh dogodkov kot popolen sistem dogodkov. Najbolj oèiten primer tega so športne stavnice, kjer lahko npr. stavimo za eno izmed ekip stavimo na zmago, remi ali poraz.
-\end{itemize}
-%zakljuèi zapis po tabeli, dopiši še kakšno zanimivost.
 
 \begin{primer}{Primer žabe v ribniku}
 %Dodaj kratice
