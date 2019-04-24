@@ -143,12 +143,43 @@
 	\item Matematièna teorija komunikacije
 	\item EM-algoritem
 	\item Stratonoviè
+	\item Viterbi
 	\item Baum-Welch
 	\item James Hamilton
 \end{itemize}
 \end{frame}
 
-%\section{Skriti markovski model} 
+\begin{frame}
+\frametitle{Zahteve}
+\begin{itemize}
+	\item Markovska lastnost
+	\item Enakomerno porazdeljeni èasi signalov $O_{t}$, ki jih poda resnièni svet
+	\item Sistem ima $N$ stanj, vsako doloèa sluèajna spremenjivka $S$
+\end{itemize}
+\includegraphics[scale=0.25]{slike/hmm}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Sluèajnih spremenljivk skritih skoraj v nobenem èasu ne poznamo, poznamo pa sluèajni proces $Q$, ki predstavlja signale
+\item Porazdelitveni zakon vsakega stanja $i$ oznaèimo z $b_{i}(x)$
+\item Vektor zaèetnih stanj je $\pi$
+\item Prehodna matrika $A$, ki je neodvisna od èasa
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Porazdelitveni zakon}
+\begin{itemize}
+\item Gaussova mešanica
+\item  $b_{i} = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{j}, \sigma_{j}^2)$
+\item Število porazdelitev $M$
+\item Matrika $\Gamma$, $\mu_{ij}$ predstavlja prièakovano vrednost porazdelitve $j$ v stanju $i$
+\item Matrika $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco porazdelitve $j$ v stanju $i$
+\item Matrika $C$, koeficienti $c_{ij}$ iz Gaussove mešanice
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Viri}
