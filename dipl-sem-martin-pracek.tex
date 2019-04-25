@@ -12,7 +12,7 @@
 \usepackage[ruled]{algorithm2e}
 \usepackage{algpseudocode}
 \usepackage{graphicx} % This package is needed if you wish to include external image files.
-
+\usepackage{subfig}
 
 %\usepackage{biblatex}
 %\addbibresource{zbraniviri.bib}
@@ -439,12 +439,22 @@ Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi
 V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model deluje tudi ob izjemnih dogodkih na trgu. Zato sem podatke iz NYSE uporabil za analizo stanja delnic ob finanèni krizi 2008 ter podatke, ki sem jih pridobil za S\&P $500$ indeks pred zaèetkom velike depresije. S tem želim ugotoviti, ali lahko model res zazna hitre padce cen.\\
 Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, da je ob koncu leta 2017 doživel izredno veliko rast. \\
 V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o kakovosti modela povedali toèki \ref{Analiza} in \ref{ekstrem} ugotoviti prihodnjo ceno nekaj finanènih instrumentov.
+Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona. \\
+\begin{figure}%
+	\centering
+	\subfloat[Cena èez celotno obdobje]{{\includegraphics[width=5cm]{slike/celota} }}%
+	\qquad
+	\subfloat[Cena èez polovico obdobja]{{\includegraphics[width=5cm]{slike/polovica} }}%
+	\caption{Primerjava cen delnice Amazona}%
+	\label{slika:amazon}%
+\end{figure}
+Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom. Tako se bomo morali osredotoèiti na krajše èasovno obdobje.\\
+Prileganje bom ugotavljal s pomoèjo razlike med predvideno vrednostjo in dejansko vrednostjo, ki je bila izmerjena. Za to razliko bom ugotovil varianco, ter minimalno in maksimalno absolutno vrednost.
+%grafièni prikaz na istem grafu. 
+
 \subsection{Splošna analiza kakovosti modela}\label{Analiza}
-Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE za ceno $10$ delnic. Ta podjetja so Amazon, Google, Tesla, TripAdvisor, Starbucks, Novartis, Microsoft, General Motors, Wells Fargo in Chevron. V mojem portfelju se tako nahajo podjetja iz razliènih industrij, od finanène do avtomobilske in farmacevtske.\\
-Podatek, na katerega se bom oprl bo cena ob koncu trgovalnega dne. 
-Za vsako izmed teh delnic bom vzel Close, torej ceno ob koncu trgovalnega dne.\\
-%\includegraphics[scale=1]{slike/podatki}
-%standardni odklon, varianca, maksimalni in minimalni odklon, grafièni prikaz na istem grafu. 
+Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE za ceno $10$ delnic. Ta podjetja so Amazon, Google, Tesla, TripAdvisor, Starbucks, Novartis, Microsoft, General Motors, Wells Fargo in Chevron. V mojem portfelju se tako nahajo podjetja iz razliènih industrij, od finanène do avtomobilske in farmacevtske. Za vsako izmed teh delnic bom analiziral ceno ob koncu trgovalnega dne.\\
+Za vsako izmed teh podjetij bom izbral dve obdobji, vsako dolgo $100$ dni ter na njiju izvedel trening modela. 
 \subsection{Ekstremni dogodki} \label{ekstrem}
 \subsection{Napoved}\label{napoved}
 
