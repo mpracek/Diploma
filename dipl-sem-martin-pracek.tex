@@ -14,9 +14,6 @@
 \usepackage{graphicx} % This package is needed if you wish to include external image files.
 \usepackage{subfig}
 
-%\usepackage{biblatex}
-%\addbibresource{zbraniviri.bib}
-
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
 \textheight 24cm
@@ -440,14 +437,28 @@ V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model
 Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, da je ob koncu leta 2017 doživel izredno veliko rast. \\
 V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o kakovosti modela povedali toèki \ref{Analiza} in \ref{ekstrem} ugotoviti prihodnjo ceno nekaj finanènih instrumentov.
 Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona. \\
-\begin{figure}%
+\begin{figure}[!h]
 	\centering
-	\subfloat[Cena èez celotno obdobje]{{\includegraphics[width=5cm]{slike/celota} }}%
-	\qquad
-	\subfloat[Cena èez polovico obdobja]{{\includegraphics[width=5cm]{slike/polovica} }}%
-	\caption{Primerjava cen delnice Amazona}%
-	\label{slika:amazon}%
+	\begin{minipage}[t]{4cm}
+		\centering
+		\includegraphics[scale=0.5]{celota}
+		\caption{Cena èez celotno obdobje}
+	\end{minipage}
+	\hspace{3cm}
+	\begin{minipage}[t]{4cm}
+		\centering
+		\includegraphics[scale=0.5]{polovica}
+		\caption{Cena èez polovico obdobja}
+	\end{minipage}
 \end{figure}
+%\begin{figure}%
+%	\centering
+%	\subfloat[Cena èez celotno obdobje]{{\includegraphics[width=5cm]{slike/celota} }}%
+%	\qquad
+%	\subfloat[Cena èez polovico obdobja]{{\includegraphics[width=5cm]{slike/polovica} }}%
+%	\caption{Primerjava cen delnice Amazona}%
+%	\label{slika:amazon}%
+%\end{figure}
 Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom. Tako se bomo morali osredotoèiti na krajše èasovno obdobje.\\
 Prileganje bom ugotavljal s pomoèjo razlike med predvideno vrednostjo in dejansko vrednostjo, ki je bila izmerjena. Za to razliko bom ugotovil varianco, ter minimalno in maksimalno absolutno vrednost.
 %grafièni prikaz na istem grafu. 
