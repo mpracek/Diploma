@@ -1,7 +1,10 @@
 podjetje število_stanj1
 zacetek1
+Zaporedje stanj_1
+
 podjetje število_stanj2
 zacetek2
+Zaporedje stanj_2
 
 Doloèimo 10 stanj
 

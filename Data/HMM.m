@@ -6,17 +6,19 @@ function[najboljsi_rezultat,varianca,najvec,najmanj,rezultat] = HMM(podatki,zace
 %dolzina je polovica znanih stanj, ker bomo drugo polovico primerjali z dejanskimi vrednostmi.
 %Rezultat pove, v kakšnem procentu se najbolj verjetno zaporedje ujema z
 %nekim poljubnim
-zaporedje = podatki.Close;
+zaporedje_opazovanj = podatki.Close;
 dolzina = 100;
 stevilo_izhodov = 3;
+
 opazovanja = podatki.Close(zacetek:zacetek+dolzina,:);
-Prehod = 1/stevilo_stanj .* ones(stevilo_stanj);
-Emit = 1/stevilo_izhodov .* ones(stevilo_stanj,stevilo_izhodov);
-[prehod,emit] = hmmtrain(opazovanja,Prehod,Emit);
-najboljsi_rezultat = hmmviterbi(opazovanja,prehod, emit);
+[zaporedje, sredina] = kmeans(opazovanja, stevilo_stanj);
+
+[trans,emis]= hmmestimate(opazovanja, opazovanja);
+[prehod,emit] = hmmtrain(opazovanja',trans,emis);
+najboljsi_rezultat = hmmviterbi(opazovanja',prehod, emit);
 razlika = vektor - najboljsi_rezultat;
 najvec = max(razlika);
 najmanj = min(razlika);
 varianca = var(razlika);
-likelystates = hmmviterbi(opazovanja, Prehod, Emit);
+likelystates = hmmviterbi(opazovanja', Prehod, Emit);
 rezultat = sum(states==likelystates)/1000;
