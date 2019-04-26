@@ -1,0 +1,33 @@
+podjetje število_stanj1
+zacetek1
+podjetje število_stanj2
+zacetek2
+
+Doloèimo 10 stanj
+
+amazon 7
+1
+
+amazon 8
+1100
+
+amazon 9
+1800
+
+chevron 8
+
+general motors 6
+
+google 8
+
+microsoft 7
+
+novartis 10
+
+strabucks 13
+
+tripadvisor 12
+
+tesla 9
+
+wells fargo 14
