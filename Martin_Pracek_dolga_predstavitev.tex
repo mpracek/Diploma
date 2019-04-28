@@ -139,18 +139,19 @@
 
 \begin{frame}
 \frametitle{Zgodovina}
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{columns}
+	\begin{itemize}
+		\item Matematièna teorija komunikacije
+		\item EM-algoritem
+		\item Stratonoviè
+		\item Viterbi
+		\item Baum-Welch
+		\item James Hamilton
+	\end{itemize}
+\end{columns}
+\begin{columns}
 	\includegraphics[scale=0.5]{slike/AAMarkov}
-\end{wrapfigure}
-\begin{itemize}
-	\item Matematièna teorija komunikacije
-	\item EM-algoritem
-	\item Stratonoviè
-	\item Viterbi
-	\item Baum-Welch
-	\item James Hamilton
-\end{itemize}
-
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -247,6 +248,7 @@
 
 \begin{frame} 
 \frametitle{Problem izbire portfelja}
+\begin{columns}
 \begin{itemize}
 	\item Kapital $M$
 	\item $N$ vrednostnih papirjev
@@ -255,28 +257,23 @@
 	\item $d$ zahtevan donos
 	\item $\alpha$ stopnja zavrnitve
 \end{itemize}
+\end{columns}
+\begin{columns}
+	\begin{gather*}
+	\min \quad CVaR_\alpha(R_x) \\
+	\begin{aligned}
+	\textup{p.p.}\quad E(R_x) \geq d \\
+	\end{aligned}
+	\end{gather*}
+	
+	\end{columns}
 \end{frame}
 
 
 \begin{frame} 
-\begin{gather*}
-\min \quad CVaR_\alpha(R_x) \\
-\begin{aligned}
-\textup{p.p.}\quad E(R_x) \geq d \\
-\end{aligned}
-\end{gather*}
-
-\end{frame}
 \frametitle{Praktièni primer}
-\begin{frame}
-\includegraphics[scale=0.23]{slike/celota}
-\includegraphics[scale=0.23]{slike/polovica}
-\end{frame}
-
-\begin{frame} 
 \begin{columns}
 	\column{0.5\textwidth}
-
 \begin{itemize}
 	\item Amazon
 	\item Google
@@ -295,9 +292,14 @@
 	\item Standard \& Poor's
 	\item Zlato
 \end{itemize}
-
 \end{columns}
 \end{frame}
+
+\begin{frame}
+\includegraphics[scale=0.23]{slike/celota}
+\includegraphics[scale=0.23]{slike/polovica}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Viri}
