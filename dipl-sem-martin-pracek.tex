@@ -251,9 +251,7 @@ $$ E(Q_tQ_{t+k})) = \sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Ga
 Tako dobimo kovarianco kot 
 $$Cov(Q_t,Q_{t+k})= E(Q_tQ_{t+k})) - E(Q_t)E(Q_{t+k}).$$
 Ko imamo vse to podano lahko izraèunamo avtokorelacijsko funkcijo, ki je cenilka korelacijskega koeficienta za naše podatke. Velja da je avtokorelacijska funkcija enaka 
-$$\rho_k = \frac{Cov(Q_t,Q_{t+k})}{Var(Q_t)}$$
-torej velja
-$$\rho_k = \frac{\sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}-\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i)\sum_{i=1}^{m}E(Q_{t+k}|S_t =i)P(S_{t+k} =i)}{\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i)}$$
+$$\rho_k = \frac{Cov(Q_t,Q_{t+k})}{Var(Q_t)}.$$
 
 \subsection{Priprava in trening modela}\label{trening}
 Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. 
