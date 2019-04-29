@@ -243,8 +243,17 @@ Ko imamo opravka z modeli èasovnih vrst, je zelo pomembno, da se zavedamo, da na
 	$$ E(f(Q_t,Q_{t+k})) = \sum_{i,j=1}^{m}E(f(Q_t,Q_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}$$
 	kjer je $Gamma^k_{ij}$ $ij$ element matrike $\Gamma$.
 \end{lema}
-Dokaz prvega je enostaven, saj $E(f(Q_t))$ zgolj pogojimo na $P(S_t =i)$.
-
+Dokaz prvega je enostaven, saj $E(f(Q_t))$ zgolj pogojimo na $S_t =i$. Za drugo enakost pa moramo najprej pogojiti na $S_{t+k}$, potem pa upoštevamo, da je to pogojna verjetnost zgolj na $S_{t+k} =j$ in $S_t =i$. 
+Na ta naèin smo prišli do izraèuna drugega momenta, kjer za funkcijo $f$ v prvem primeru vzamemo kvadriranje. Tako velja $ E(Q_t^2) = \sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)$ in posledièno je varianca modela enaka
+$$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i).$$
+Po drugi enaèbi lahko izraèunamo tudi $E(Q_t Q_{t+1})$, in sicer velja
+$$ E(Q_tQ_{t+k})) = \sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}.$$
+Tako dobimo kovarianco kot 
+$$Cov(Q_t,Q_{t+k})= E(Q_tQ_{t+k})) - E(Q_t)E(Q_{t+k}).$$
+Ko imamo vse to podano lahko izraèunamo avtokorelacijsko funkcijo, ki je cenilka korelacijskega koeficienta za naše podatke. Velja da je avtokorelacijska funkcija enaka 
+$$\rho_k = \frac{Cov(Q_t,Q_{t+k})}{Var(Q_t)}$$
+torej velja
+$$\rho_k = \frac{\sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}-\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i)\sum_{i=1}^{m}E(Q_{t+k}|S_t =i)P(S_{t+k} =i)}{\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i)}
 
 \subsection{Priprava in trening modela}\label{trening}
 Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. 
