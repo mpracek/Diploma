@@ -253,6 +253,7 @@ $$Cov(Q_t,Q_{t+k})= E(Q_tQ_{t+k})) - E(Q_t)E(Q_{t+k}).$$
 Ko imamo vse to podano lahko izraèunamo avtokorelacijsko funkcijo, ki je cenilka korelacijskega koeficienta za naše podatke. Velja da je avtokorelacijska funkcija enaka 
 $$\rho_k = \frac{Cov(Q_t,Q_{t+k})}{Var(Q_t)}.$$
 
+
 \subsection{Priprava in trening modela}\label{trening}
 Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. 
 %Popravi, najraje na dejanskem isti enoti.
@@ -433,8 +434,8 @@ V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model
 Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, da je ob koncu leta 2017 doživel izredno veliko rast. \\
 V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o kakovosti modela povedali toèki \ref{Analiza} in \ref{ekstrem} ugotoviti prihodnjo ceno nekaj finanènih instrumentov.
 Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona. \\
-\includegraphics[scale=0.33]{slike/celota}
-\includegraphics[scale=0.33]{slike/polovica}
+\includegraphics[scale=0.34]{slike/celota}
+\includegraphics[scale=0.34]{slike/polovica}
 %\begin{figure}%
 %	\centering
 %	\subfloat[Cena èez celotno obdobje]{{\includegraphics[width=5cm]{slike/celota} }}%
