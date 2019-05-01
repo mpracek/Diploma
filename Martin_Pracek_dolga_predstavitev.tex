@@ -99,6 +99,10 @@
 \end{frame}
 
 \begin{frame} 
+\begin{itemize}
+	\item Prediktivno modeliranje
+	\item Verjetnostna napoved
+\end{itemize}	
 \begin{table}
 	\begin{tabular}{lllll}
 		\cline{1-3}
@@ -125,10 +129,15 @@
 
 \begin{frame}
 \frametitle{Druge vrste skritih markovskih modelov}
-\begin{enumerate}
-	\item Zvezni primeri
-	\item Odvisno od veè spremenljivk
-\end{enumerate}
+\begin{columns}
+	\begin{enumerate}
+		\item Zvezni primeri
+		\item Odvisno od veè spremenljivk
+	\end{enumerate}
+\end{columns}
+\begin{columns}
+\includegraphics[scale=0.5]{slike/gore}
+\end{columns}
 \end{frame}
 
 \begin{frame} 
@@ -164,7 +173,7 @@
 
 \begin{frame}
 \begin{itemize}
-\item Sluèajnih spremenljivk skritih skoraj v nobenem èasu ne poznamo, poznamo pa sluèajni proces $Q$, ki predstavlja signale
+\item Sluèajnih spremenljivk skoraj v nobenem èasu ne poznamo, poznamo pa sluèajni proces $Q$, ki predstavlja signale
 \item Porazdelitveni zakon vsakega stanja $i$ oznaèimo z $b_{i}(x)$
 \item Vektor zaèetnih stanj je $\pi$
 \item Prehodna matrika $A$, ki je neodvisna od èasa
@@ -183,6 +192,7 @@
 \end{itemize}
 \end{frame}
 
+
 \begin{frame} 
 \frametitle{Generiranje poti v skritem markovskem modelu}
 \begin{itemize}
@@ -195,12 +205,17 @@
 
 \begin{frame} 
 \frametitle{Uporaba}
+\begin{columns}
 \begin{itemize}
 	\item Biologija
 	\item Procesiranje govora
 	\item Prepozavanje akcij
 	\item Kriptoanaliza
 \end{itemize}
+	\end{columns}
+\begin{columns}
+	\includegraphics[scale=0.3]{slike/gen}
+\end{columns}
 \end{frame}
 
 \begin{frame} 
@@ -213,11 +228,18 @@
 \end{frame}
 
 \begin{frame} 
+\begin{columns}
 \begin{itemize}
 	\item Analitièna ali prediktivna
 	\item Odvisne od èasa
 	\item Odvisnost
 \end{itemize}
+
+\end{columns}
+\begin{columns}
+	\includegraphics[scale=0.3]{slike/delnica}
+\end{columns}
+
 \end{frame}
 
 \begin{frame} 
@@ -228,12 +250,37 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Kovarianca}
+\begin{lema}
+	Naj bo $f$ funkcija, za katero velja, da je $E(f(X)) < \infty$ za neko sluèajno spremenljivko $X$. Naj bo $Q_t$ sluèajna spremenljivka, ki nam v èasu $t$ pove opazovanje. Naj še velja, da je imamo glede na opazovanje možnih $m$ opazovanj. Potem najprej velja, da je 
+	$$ E(f(Q_t)) = \sum_{i=1}^{m}E(f(Q_t)|S_t =i)P(S_t =i)$$
+	poleg tega pa velja še
+	$$ E(f(Q_t,Q_{t+k})) = \sum_{i,j=1}^{m}E(f(Q_t,Q_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}$$
+	kjer je $Gamma^k_{ij}$ $ij$ element matrike $\Gamma$.
+\end{lema}
+\end{frame}
+\begin{frame}
+$$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i).$$
+$$ E(Q_tQ_{t+k})) = \sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}.$$
+$$Cov(Q_t,Q_{t+k})= E(Q_tQ_{t+k})) - E(Q_t)E(Q_{t+k}).$$
+$$\rho_k = \frac{Cov(Q_t,Q_{t+k})}{Var(Q_t)}.$$
+
+\end{frame}
+
+
 \begin{frame} 
 \begin{definicija}{Finanèna èasovna vrsta} je èasovna vrsta, kjer so opazovanja $x_t$ vrednosti finanènega instrumenta v èasu $t$.
 \end{definicija}
+\end{frame}
+
+\begin{frame}
+\frametitle{Posebnosti}
 \begin{itemize}
 	\item Normalna porazdelitev donosov 
+	\item Hipoteza o uèinkovitem trgu
 \end{itemize}
+$$ -1= \frac{0-P_{t-1}}{P_{t-1}} \leq R_t$$
 \end{frame}
 
 \begin{frame} 
@@ -241,6 +288,7 @@
 \begin{itemize}
 	\item Zaporedje cen $O$
 	\item Finanèna optimizacija
+	\item Brownovo gibanje
 \end{itemize}
 \end{frame}
 
