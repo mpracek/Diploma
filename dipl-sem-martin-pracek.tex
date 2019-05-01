@@ -138,7 +138,8 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 %Dodaj še kaj o markovskih modelih
 Skriti markovski modeli so ena izmed vrst bolj splošne skupine modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo tudi markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
 \begin{definicija}{Markovska lastnost}\label{markov}
-Naj bo $(\Omega,\mathcal{F},\mathbb{P},\mathcal{F}_s)$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj bo $(S,\mathcal{S})$ merljiv prostor. $(S,\mathcal{S})$ merljiv sluèajni proces $X=\{X_t:\Omega \to S\}_{t\in I}$, ki je prilagojen na filtracijo, ima markovo lastnost, èe za vsak $A \in \mathcal{S}$ in vsak $s,t\in I$, kjer velja $s,t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
+Naj bo $(\Omega,\mathcal{F},\mathbb{P},\mathcal{F}_s)$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj bo $(S,\mathcal{S})$ merljiv prostor.  Na $(S,\mathcal{S})$ merljiv sluèajni proces $X=\{X_t:\Omega \to S\}_{t\in I}$, ki je prilagojen na filtracijo, ima markovo lastnost, èe za vsak $A \in \mathcal{S}$ in vsak par $s,t\in I$, kjer velja $s<t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
+
 \end{definicija}
 
 To definicijo lahko v diskretnem primeru še razširimo, èe velja še, da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1})$$
@@ -168,7 +169,7 @@ Modeliranje markovskih modelov spada pod sluèajno programiranje. Gre za sistem, 
 \begin{primer}{Primer žabe v ribniku}
 %Dodaj kratice
 Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela $S$. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja).$$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Odloèimo se za opazovanje le ene izmed žab, za katero nas zanima, kje se bo nahajala v naslednjem trenutku.\\
-Do sedaj smo opazovali splošen primer za vse tipe markovskih modelov. Na tem mestu pa moramo vedeti, ali je naša opazovana žaba dresirana, in se bo odzvala na naše opazovanje. Èe to velja, potem imamo kontroliran markovski model, ki je lahko delno opazovan ali markovski proces odloèanja.\\
+%Do sedaj smo opazovali splošen primer za vse tipe markovskih modelov. Na tem mestu pa moramo vedeti, ali je naša opazovana žaba dresirana, in se bo odzvala na naše opazovanje. Èe to velja, potem imamo kontroliran markovski model, ki je lahko delno opazovan ali markovski proces odloèanja.\\
 Predstavljajmo si, da lahko vsakiè ko pogledamo, našo žabo poljubno premaknemo ali pa pustimo na mestu. Žaba lahko nato poljubno skaèe naprej. Èe poznamo prehodno matriko med stanji bomo v tem primeru imeli- markovski proces odloèanj. V primeru ko pa to ne velja, imamo delno opazovan proces odloèanja.\\
 Na drugi strani pa imamo avtonomen model, kjer lahko loèimo èe je proces v celoti opazen ali so neka stanja skrita. Èe stanja niso skrita, tako poznamo prehodno matriko $A$, ki nam pove, s kašno verjetnostjo se premikamo med posamiènimi stanji. V tem primeru imamo markovsko verigo, ki je le poseben primer markovskih procesov odloèanja, kjer žabe nikoli ne prestavimo. Preprost primer markovskih verig predstavljajo sluèajni sprehodi. \\
 Recimo, da v našem primeru velja, da je prehodna matrika oblike:
@@ -202,7 +203,7 @@ Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nek
 Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji. Pri tem algoritmu deluje princip dinamiènega programiranja, ki najde najbolj verjeto zaporedje stanj, glede na dano opazovano zaporedje dogodkov. Viterbijev algoritem je podrobneje opisan pod \ref{viterbi}.\\
 Celotnih modelov pa prav gotovo ne bi bilo brez še enega Rusa, in sicer Ruslana Leontijevièa Stratonovièa, ki je prvi opisal rekurzijo naprej - nazaj leta $1960$. To je delal na primeru optimalnega nelinearnega problema filtracije.\\
 Za glavnega avtorja pa velja Leonard E. Baum. Skupaj z  Lloyd R. Welchem sta okrog leta $1970$ razvila Baum-Welchov algoritem, kjer gre za poseben primer posplošenega EM-algoritma. Prav Baum-Welchov algoritem je tisti korak, pri katerem velja, da je bila dokonèno izpeljana teorija za skritimi markovskimi modeli. Algoritem uporablje EM-algoritem da najde cenilko po metodi najveèjega verjetja glede na dano zaporedje podatkov. Delovanje algoritma je podrobno razloženo v \ref{trening}, njegove zahteve pa v \ref{zahteva}. \\
-Uporabe skrith markovskih modelov na podroèju financ in ekonomije pa ne bilo brez dela ameriškega ekonometrista Jamesa Hamiltona, ki je predlagal, da bi model, katerega stanj in prehodov med njimi ne poznamo opišemo z markovskim modelom.
+Uporabe skrith markovskih modelov na podroèju financ in ekonomije pa ne bilo brez dela ameriškega ekonometrista Jamesa Hamiltona, ki je predlagal, da bi model, katerega stanj in prehodov med njimi ne poznamo, opišemo z markovskim modelom.
 
 
 \subsection{Zahteve za model}\label{zahteva}
@@ -384,7 +385,7 @@ Ko imamo opravka z modeli èasovnih vrst, je zelo pomembno, da se zavedamo, da na
 \end{lema}
 Dokaz prvega je enostaven, saj $E(f(Q_t))$ zgolj pogojimo na $S_t =i$. Za drugo enakost pa moramo najprej pogojiti na $S_{t+k}$, potem pa upoštevamo, da je to pogojna verjetnost zgolj na $S_{t+k} =j$ in $S_t =i$. 
 Na ta naèin smo prišli do izraèuna drugega momenta, kjer za funkcijo $f$ v prvem primeru vzamemo kvadriranje. Tako velja $ E(Q_t^2) = \sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)$ in posledièno je varianca modela enaka
-$$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i).$$
+$$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-(\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i))^2.$$
 Po drugi enaèbi lahko izraèunamo tudi $E(Q_t Q_{t+1})$, in sicer velja
 $$ E(Q_tQ_{t+k})) = \sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}.$$
 Tako dobimo kovarianco kot 
