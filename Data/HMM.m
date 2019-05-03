@@ -1,4 +1,4 @@
-function[najboljsi_rezultat,varianca,najvec,najmanj,rezultat,vrednosti] = HMM(podatki, zacetek,stevilo_stanj, dolzina)
+function[najboljsi_rezultat,varianca,najvec,najmanj,rezultat,standard,vrednosti] = HMM(podatki, zacetek,stevilo_stanj, dolzina)
 %V tej datoteki imamo program, s katerim bomo pogledali skriti markovski model. 
 %Stevilo stanj je stevilo, doloceno na podlagi pogleda na podatke. V veèini
 %primerov iz naših podatkov je ta vrednost enaka 10.
@@ -40,5 +40,6 @@ razlika = abs(vektor - vrednosti);
 najvec = max(razlika);
 najmanj = min(razlika);
 varianca = var(razlika);
+standard = std(razlika)
 rezultat = sum(zaporedje==najboljsi_rezultat)/dolzina;
 
