@@ -137,10 +137,13 @@ V prvem poglavju se bom posvetil razliènim naèinom uporabe skritih markovskih mo
 \section{Markovski modeli}
 %Dodaj še kaj o markovskih modelih
 Skriti markovski modeli so ena izmed vrst bolj splošne skupine modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo tudi markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
-\begin{definicija}{Markovska lastnost}\label{markov}
-Naj bo $(\Omega,\mathcal{F},\mathbb{P},\mathcal{F}_s)$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj bo $(S,\mathcal{S})$ merljiv prostor.  Na $(S,\mathcal{S})$ merljiv sluèajni proces $X=\{X_t:\Omega \to S\}_{t\in I}$, ki je prilagojen na filtracijo, ima markovo lastnost, èe za vsak $A \in \mathcal{S}$ in vsak par $s,t\in I$, kjer velja $s<t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
-
+\begin{definicija}\label{markov}
+Naj bo $(\Omega,\mathcal{F},\mathbb{P},(\mathcal{F}_s)_{s\leq 0})$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj bo $(S,\mathcal{S})$ merljiv prostor.  Na $(S,\mathcal{S})$ merljiv sluèajni proces $X=\{X_t}_{t\in I}$, ki je prilagojen na filtracijo, ima markovsko lastnost, èe za vsak $A \in \mathcal{S}$ in vsak par $s,t\in I$, kjer velja $s<t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
 \end{definicija}
+Seveda tu velja, da je $\Omega$ množica, $\mathcal{F}$ pa $\sigma$-algebra na njej. $\Omega$ si lahko predstavljamo kot množico vseh možnih stanj, v katerih se lahko nahaja neka sluèajna spremenljivka. Èe si torej prestavljamo, da naša sluèajna spremenljivka lahko pokaže katero koli naravno število, bo potem $\Omega = \mathbb{N}$, $\mathcal{F}$ pa bo enak $\mathcal{F}= 2^\mathbb{N}$.\\
+ Oèitno je tudi $\mathbb{P}$ mera na tej množici, kjer velja, da je $\mathbb{P}(\Omega) = 1$, torej je ta mera verjetnostna. Za $(\mathcal{F}_s)_{s\leq 0})$ pravimo, da je filtracija, v posebnem pa je $\mathcal{F}_s$ $\sigma$-algebra zgodovine èasa $s$, torej za vsak dogodek do èasa $s$ vemo, ali se je dogodek zgodil ali ne.\\
+ Da je prostor merljiv v našem primeru pomeni, da je $\Omega$ enaka $S$, $\sigma$-algebra  $\mathcal{F}$ pa je $\mathcal{S}$. Gre torej za par množice in $\sigma$-algebre. \\
+ Sluèajni proces je nabor sluèajnih spremenljivk, in si ga navadno predstavljamo kot zaporedje sluèajnih spremenljivk skozi èas. Da je sluèajni proces filtraciji pomeni, da za vsak $n$ velja, da je $X_n$ za $\mathcal{F}_n$ merljiv. \\
 
 To definicijo lahko v diskretnem primeru še razširimo, èe velja še, da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1})$$
 \\
