@@ -1,6 +1,7 @@
 *~
 __pycache__
 *.aux
+*.bcf
 *.cpg
 *.bbl
 *.blg
@@ -16,7 +17,9 @@ __pycache__
 *.knit.md
 *.log
 *.lot
+*.nav
 *.out
+*.run
 *.png
 *.prj
 *.pyc
@@ -25,6 +28,7 @@ __pycache__
 *.shp
 *.shp.xml
 *.shx
+*.snm
 *.synctex.gz
 *.synctex.gz(busy)
 *.toc
