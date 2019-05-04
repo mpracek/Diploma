@@ -14,5 +14,5 @@ for i = 1: obseg
     nizek(i) = najmanj;
     visok(i) = najvec;
     variance(i) = varianca;
-    deviation(i) = standard
+    deviation(i) = standard;
 end

@@ -40,6 +40,6 @@ razlika = abs(vektor - vrednosti);
 najvec = max(razlika);
 najmanj = min(razlika);
 varianca = var(razlika);
-standard = std(razlika)
+standard = std(razlika);
 rezultat = sum(zaporedje==najboljsi_rezultat)/dolzina;
 
