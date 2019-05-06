@@ -5,6 +5,8 @@ function[] = narisi(podatki, zacetek, stevilo_stanj, dolzina)
 vektor = podatki.data(zacetek+dolzina:zacetek+dolzina+dolzina-1,4);
 plot(vektor)
 hold on
+plot(podatki.data(zacetek:zacetek+dolzina,4))
+hold on
 plot(vrednosti)
 hold off
 % 

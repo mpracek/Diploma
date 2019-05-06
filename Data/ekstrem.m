@@ -1,7 +1,7 @@
 function[nizek_1, visok_1, variance_1, deviation_1] = ekstrem(datoteka, dolzina, stevilo_stanj, zacetek)
 %analiza za ekstreme; bitcoin in sp500
 %standard_and_poors_csv.csv; zaèetek 706, torej 
-ponovitve = 10000;
+ponovitve = 100000;
 
 podatki = importdata(datoteka);
 nizek_1 = ones(dolzina,1);
