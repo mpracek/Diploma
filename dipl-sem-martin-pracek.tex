@@ -396,6 +396,7 @@ Ko imamo opravka z modeli èasovnih vrst, je zelo pomembno, da se zavedamo, da na
 	$$ E(f(Q_t,Q_{t+k})) = \sum_{i,j=1}^{m}E(f(Q_t,Q_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}$$
 	kjer je $\Gamma^k_{ij}$ $ij$ element matrike $\Gamma$.
 \end{lema}
+%Povej še kaj je gamma
 Dokaz prvega je enostaven, saj $E(f(Q_t))$ zgolj pogojimo na $S_t =i$. Za drugo enakost pa moramo najprej pogojiti na $S_{t+k}$, potem pa upoštevamo, da je to pogojna verjetnost zgolj na $S_{t+k} =j$ in $S_t =i$. 
 Na ta naèin smo prišli do izraèuna drugega momenta, kjer za funkcijo $f$ v prvem primeru vzamemo kvadriranje. Tako velja $ E(Q_t^2) = \sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)$ in posledièno je varianca modela enaka
 $$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-(\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i))^2.$$
