@@ -142,12 +142,12 @@ Naj bo $(\Omega,\mathcal{F},\mathbb{P},(\mathcal{F}_s)_{s \geq 0 })$ verjetnostn
 Potem pravimo da ima sluèajni proces markovsko lastnost, èe za vsak $A \in \mathcal{S}$ in vsak par $s,t\in I$, kjer velja $s<t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
 \end{definicija}
 Seveda tu velja, da je $\Omega$ množica, $\mathcal{F}$ pa $\sigma$-algebra na njej. $\Omega$ si lahko predstavljamo kot množico vseh možnih stanj, v katerih se lahko nahaja neka sluèajna spremenljivka. Èe si torej prestavljamo, da naša sluèajna spremenljivka lahko pokaže katero koli naravno število, bo potem $\Omega = \mathbb{N}$, $\mathcal{F}$ pa bo enak $\mathcal{F}= 2^\mathbb{N}$.\\
- Oèitno je tudi $\mathbb{P}$ mera na tej množici, kjer velja, da je $\mathbb{P}(\Omega) = 1$, torej je ta mera verjetnostna. Za $(\mathcal{F}_s)_{s\leq 0})$ pravimo, da je filtracija, v posebnem pa je $\mathcal{F}_s$ $\sigma$-algebra zgodovine èasa $s$, torej za vsak dogodek do èasa $s$ vemo, ali se je dogodek zgodil ali ne.\\
+ Velja še, da je $\mathbb{P}$ mera na tej množici, kjer velja, da je $\mathbb{P}(\Omega) = 1$, torej je ta mera verjetnostna. Za $(\mathcal{F}_s)_{s\leq 0}$ pravimo, da je filtracija, v posebnem pa je $\mathcal{F}_s$ $\sigma$-algebra zgodovine èasa $s$, torej za vsak dogodek do èasa $s$ vemo, ali se je dogodek zgodil ali ne.\\
  Da je prostor merljiv v našem primeru pomeni, da je $\Omega$ enaka $S$, $\sigma$-algebra  $\mathcal{F}$ pa je $\mathcal{S}$. Gre torej za par množice in $\sigma$-algebre. \\
  Sluèajni proces je nabor sluèajnih spremenljivk, in si ga navadno predstavljamo kot zaporedje sluèajnih spremenljivk skozi èas. Da je sluèajni proces filtraciji pomeni, da za vsak $n$ velja, da je $X_n$ za $\mathcal{F}_n$ merljiv. \\
  Sama enakost pa pravi, da je verjetnost, da je $X_t \in A$ enaka, ne glede na to, ali gledamo celotno $\sigma$-algebro zgodovine èasa $s$, ali pa pogledamo le, kaj nam pokaže sluèajna spremenljvika $X_s$.\\
  
-To definicijo lahko v diskretnem primeru še dopolnimo, èe velja še, da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}).$$
+To definicijo lahko v primeru markovskih verig še dopolnimo, èe velja še, da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}).$$
 Gre torej za poseben primer prejšnjega primera, kjer je imamo sluèajni proces v diskretnih èasih, ki lahko v vsakem èasu pokaže le neko diskretno vrednost. V pogoju na levi strani enaèaja so sedaj podani vsi dogodki, ki so se zares zgodili, markovska lastnost pa nam pove, da nas zanima zgolj zadnji dogodek.
 
 \begin{primer}
@@ -157,7 +157,7 @@ Gre torej za poseben primer prejšnjega primera, kjer je imamo sluèajni proces v 
 	1/3&1/3&1/3
 	\end{pmatrix}$$
 	Naj bo sedaj $S_n$ sluèajna spremenljivka, ki je definirana kot $S_n = \sum_{t=1}^{n}X_t$.
-	Recimo, da $S_10$ pokaže $3$. Zanima nas verjetnost, da bo $S_{11} = 3$. Oèitno vidimo, da je ta verjetnost enaka $1/3$, saj velja $P(S_{11} = 3)  = P(X_{11})= 0)=P(X=0)=1/3$.Torej je vrednost naslednjega odvisna le od sedanjega stanja in tega, kaj bo pokazala $X_{11}$, ni pa pomembno, kako smo prišli do tega, da velja  $S_10 = 3$, kar je toèno to, kar nam pove markovska lastnost. \\
+	Recimo, da $S_10$ pokaže $3$. Zanima nas verjetnost, da bo $S_{11} = 3$. Oèitno vidimo, da je ta verjetnost enaka $1/3$, saj velja $$P(S_{11} = 3)= P(S_{10}+X_{11}) =P(X_{11})= 0)=P(X=0)=1/3$$.Torej je vrednost naslednjega odvisna le od sedanjega stanja in tega, kaj bo pokazala $X_{11}$, ni pa pomembno, kako smo prišli do tega, da velja  $S_10 = 3$, kar je toèno to, kar nam pove markovska lastnost. \\
 \end{primer}
 
 V posebnem lahko za markovske modele reèemo še, da so homogeni, èe velja 
