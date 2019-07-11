@@ -149,6 +149,14 @@ Sluèajni proces je nabor sluèajnih spremenljivk, in si ga navadno predstavljamo 
 Sama enakost torej pravi, da je verjetnost, da velja $X_t \in A$ enaka, ne glede na to, ali gledamo celotno $\sigma$-algebro zgodovine èasa $s$, ali pa pogledamo le, kaj nam pokaže sluèajna spremenljvika $X_s$.\\
  
 To definicijo lahko v primeru markovskih verig še dopolnimo, èe velja še, da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}).$$
+Na ta naèin doloèimo tudi definicijo markovskih verig.
+\begin{definicija}
+	Markovska veriga v diskretnem èasu je zaporedje sluèajnih spremenljivk $X_1,X_2,X_3,\ldots$ z markovsko lastnostjo, torej je stanje v naslednjem èasu odvisno le od naslednjega stanja.
+	Pri tem mora veljati, da je
+	$$P(X_{n+1}=x|X_{1}=x_1,X_{2}=x_2,\ldots,X_{n}=x_n)=P(X_{n+1}=x|X_{n}=x_n),$$
+	èe so pogojne verjetnosti dobro definirane, to je, 
+	$$P(X_{1}=x_1,X_{2}=x_2,\ldots,X_{n}=x_n)>0$$
+\end{definicija}
 Gre torej za poseben primer, kjer je imamo sluèajni proces v diskretnih èasih, ki lahko v vsakem èasu pokaže le neko diskretno vrednost. V pogoju na levi strani enaèaja so sedaj podani vsi dogodki, ki so se zares zgodili, markovska lastnost pa nam pove, da nas zanima zgolj zadnji dogodek.
 
 \begin{primer}
