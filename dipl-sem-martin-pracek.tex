@@ -247,10 +247,6 @@ Ideja za delovanje skritih markovskih modelov izhaja iz dela Andrewa Viterbija n
 \end{primer}\\
 Skrite markovske modele navadno predstavimo na diskretnih množicah in na diskretnem èasu, a lahko definicijo tako razširimo, da velja tudi za zvezne množice in èas. V tem primeru dobimo tri plasten sluèajni proces, katerega najveèja težava je  velika raèunska zahtevnost, poleg tega pa nam lahko veliko število parametrov prinese nestabilnost. Vendar se s tem v moji diplomski nalogi ne bom ukvarjal.\\
 Prav tako je možno s skritimi markovskimi modeli predstaviti procese, odvisne od veè sluèajnih spremenljivk. Vendar tak model s seboj prinese veè težav. Prve se pokaže v raèunski zahtevnosti, saj moramo v vsakem koraku doloèiti inverz in determinanto $N \cdot M$ matrik $\Sigma_{ij}$ velikosti $NA \times NA$, kjer je $NA$ število razliènih spremenljivk, na primer število vrednostnih papirjev katerih proces aproksimiramo, $M$ pa število sluèajnih spremenljivk. Èe je ta $NA$ velik, je lahko izraèun inverza in determinante raèunsko in èasovno zahteven. Drugi problem se pokaže v samem raèunanju, ki je podrobneje razložen v \ref{trening}. To velja, ker so determinante $\Sigma_{ij}$ zelo majhne, kar posledièno privede do velik verjetnosti $P(O|\lambda)$, kjer je $P(O|\lambda)$ oèitno funkcija verjetja. Ob vsakem novem koraku iteracije tako pridobimo nov $\lambda$ in posledièno novo pogojno verjetnost. Ta verjetnost lahko v tem primeru zelo hitro naraste, in tako se iteracija prehitro konèa. Èe je $NA$ prevelik, pa se vèasih ne da izvesti niti prvega koraka. Modeliranje skritih markovskih modelov z veè spremenljivkami je tako v teoriji možno, a ni nujno dobro v praksi. 
-%Bolj podroben opis
-%latent markov models
-
-
 \subsection{Zgodovina modela}
 Ideja skritih markovskih modelov se v svoji prvi fazi zaène z ruskim matematikom Andrejem Andrejevièem Markovom, ki je za èasa svojega življenja med $1865-1922$ razvil idejo markovskega procesa in verige. Prve teoretiène rezultate markovskih verig je svetu predstavil $1906$, $1913$ pa je izraèunal zaporedje èrk rušèine. Slednji izraèun je opravil na besedilu Jevgenij Onjegin ruskega pesnika Aleksandra Sergejevièa Puškina. Markov je želel s tem dokazati veljavnost šibkega zakona velikih števil zaradi spora z drugim ruskim matematikom Pavlom Nekrasom, a je na ta naèin odprl novo vprašanje v matematiki.\\
 Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne preseneèa, da se je nadaljni razvoj zaèel šele z širšo uporabo raèunalnikov. Po pomembnem delu, ki so ga opravili von Neumann, Turing in Conrad Zuse so se znanstveniki zaèeli pospešeno ukvarjati z implementacijo primernih algoritmov. Velik korak k temu je pripomogel Claude Shannon s svojim delom Matematièna teorija komunikacije.\\ 
@@ -385,26 +381,19 @@ Skriti markovski modeli so zelo široko uporabno orodje za modeliranje. Naèini up
 
 \subsection{Procesiranje govora}
 Prva ideja Leonarda E. Bauma za njegov algoritem je bila prav uporaba v procesiranju govora.
-Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor, saj algoritem ni implementiran za "zvezen" govor. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
-Da bomo proceiranje lahko zmodelirali moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A.
+Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor, saj algoritem ni implementiran za "zvezen" govor, le za posamezne enote. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
+Da bomo proceiranje lahko zmodelirali, moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A.
 Velja omeniti tudi, da na ta naèin, le z nekaj adaptacijami, deluje tudi Siri.
-%kje se ga še uporablja? Kako deluje
-%dejanski primer
-
 
 \subsection{Uporaba v biologiji in biokemiji} \label{Biologija}
-%Uporaba subsubsectionov
-Gre za eno izmed prvih uporab skritih markovskih modelov. Ker se je uporaba na tem podroèju zaèela precej zgodaj tudi ne preseneèa, da je uporaba precej široka.
+Gre za eno izmed prvih uporab skritih markovskih modelov. Ker se je uporaba na tem podroèju zaèela precej zgodaj tudi ne preseneèa, da je uporaba precej široka. Uporaba skritih markovskih modelov se je v razširila zaradi poveèanja kolièine podatkov, ki je znanstvenikom na voljo. Ker so 
+\\
+
 %pomagaj si z nežo
 %mogoèe razdeli na veè toèk - genetika, procesi v celièni membrani
 %dejanski primer
 %zakaj zanimivo, pomembno
 
-V zadnjem èasu se skrite markovske modele vedno veè uporablja tudi za modeliranje bioloških in biokemijskih procesov, med katerimi je najbolj  znan primer modeliranja proteinov v celièni membrani, ki ga bom malo opisal, poleg tega pa med drugim še za {\bf napovedovanje genov?}. \\
-Èeprav lahko nekatere proteine in njihovo delovanje znotraj celiène membrane enostavno predstavimo, to ne velja za vse. Tako imenovani $\beta$
--\textbf{barrel} membranski proteini zahtevajo veè dela. Da bi ugotovili njihovo delovanje in ga primerjali z delovanjem v vodi topnih proteinov so Bagos, Liakoupos et al. razvili model ki to naredi. \\
-Z delom potem nadaljujemo podobno kot pri procesiranju govora, le da je naš zaèetni slovar tu dolg $20$ znakov, toliko kolikor je aminokislin.
-\\
 \pagebreak
 \section{Èasovne vrste}
 %razloži še kaj o èasovnih vrstah iz virov dopiši kaj
@@ -560,6 +549,9 @@ R.S.~Mamon in R.J.~Elliott \emph{Hidden Markov Models in Finance}, International
 
 \bibitem{davis}
 P.J.~Brockwell, R.A.~Davis \emph{Introduction to Time Series and Forecasting},2nd edition, Springer, 2002.
+
+\bibitem{bioa}
+B.J.~Yoon, \emph{Hidden Markov Models and their Applications in Biological Sequence Analysis}, v: Current genomics, 10,6(2009), [29. 7. 2019], dostopno na \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/}.
 
 
 \bibitem{referenca-clanek}
