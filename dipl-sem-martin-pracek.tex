@@ -290,9 +290,9 @@ Vse te matrike so velikosti $N \times M$ in z njimi opišemo Gaussove mešanice. \
 \subsection{Priprava in trening modela}\label{trening}
 Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. 
 %Popravi, najraje na dejanskem isti enoti.
-Ti podatki morajo biti zbrani na na podobni enoti; èe na bo na primer zanimale cena delnice podjetja, ki se ukvarja z predelavo pomaranènega soka, za trening ne bomo vzeli cene delnic metalurškega podjetja. 
-\\ Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. 
-\\ Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.\\
+Ti podatki morajo biti zbrani na na podobni enoti; èe na bo na primer zanimale cena delnice podjetja, ki se ukvarja z predelavo pomaranènega soka, za trening ne bomo vzeli cene delnic metalurškega podjetja. \\ 
+Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. \\ 
+Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.\\
 V praksi število stanj vèasih doloèimo v skladu s potrebno aplikacijo, kot na primer v \ref{Biologija}, oziroma z vizualnim ogledom toèk grafa iz zgodovinskih podatkov.\\
 Vèasih pa lahko to doloèimo preko Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo z razliènim številom stanj $N$ in izbere najboljšega. AIC ocenjuje relativno kakovost modela. Podobno deluje tudi BIC, to je Bayesianski informacijski kriterij.\\
 Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). Gre za metodo vektorske kvantitizacije, kjer želimo $n$ opazovanj razvrstiti v $k$ skupin, kjer vsako opazovanje razvrstimo v skupino, z najbližjim povpreèjem.\\
@@ -372,6 +372,18 @@ Glede na naše podatke, ki jih oznaèimo kot $O = (O_1,\ldots, O_T)$ ocenimo param
 V naslednjem koraku doloèimo trenutno stanje našega modela, torej stanje iz katerega zaèeli. V tem trenutku doloèimo še èas, do katerega želimo oceniti naš proces, naj bo to recimo $T_T$.\\
 Naslednji korak si lahko predstavljamo kot zanko. Èe predpostavimo, da naš parameter $t$ teèe od èasa $T$ do èasa $T_T$, v vsakem koraku glede na stanje, v katerem se nahajmo, izberemo stanje, v katerega se bomo premaknili v naslednjem koraku. V vsakem koraku še shranimo stanje, v katerem smo bili. Na ta naèin dobimo pot, ki jo generira skriti markovski model.\\
 Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Monte Carlo simulacije. 
+\begin{algorithm}[h!]
+	\caption{Monte Carlo simulacija skritih markovskih modelov} \label{monte-carlo}
+	\KwResult{Zaporedje stanj} 
+	Input:
+	\begin{itemize}
+		\item Podatki $O = (O_1,\ldots, O_T)$
+	\end{itemize}
+	\While{$P(O|\lambda_{i-1})$\leq$P(O|\lambda_{i})$}{
+	$\
+	}
+	
+\end{algorithm}
 \section{Uporaba}
 %Popravi naslednji stavek
 %razloži zakaj široka uporabnost
