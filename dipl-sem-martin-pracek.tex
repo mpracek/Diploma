@@ -276,7 +276,8 @@ S temi predpostavkami bi lahko zmodelirali, a jih imamo še nekaj, ki nam sam mod
 	\item Signal v èasu $t$ je odvisen le od stanja modela v tem èasu; torej so sluèajne spremenljivke v èasu $t$ odvisne le od tega.
 \end{enumerate}
  \  \\
-Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Le te predstavimo kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove mešanice.
+Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Loèimo lahko stanja, ki so porazdeljene kot zvezne sluèajne spremenljivke, ter tiste, ki so porazdeljene kot diskretne sluèajne spremenljivke.\\
+V zveznem primeru bomo predstavili primer, kjer so le te predstavljene kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove mešanice.\\
 Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i}(x) = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{ij}, \sigma_{ij}^2)$$.\\
 %Vidimo, da je so Gaussove mešanice tudi funkcije $x$. 
 Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna; to pa pogosto ne drži za procese v realnem svetu, na primer za donose v financah. Za te veèkrat drži, da so "left-skewed", torej da je mediana veèja od povpreèja. \\
@@ -287,7 +288,8 @@ Tako potrebujemo za sestavo modela še:
 	\item matrika $\Gamma$, kjer $\mu_{ij}$ predstavlja prièakovano vrednost mešanice $j$ v stanju $i$, ter
 	\item matriko $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco mešanice $j$ v stanju $i$.
 \end{itemize}
-Vse te matrike so velikosti $N \times M$ in z njimi opišemo Gaussove mešanice. 
+Vse te matrike so velikosti $N \times M$ in z njimi opišemo Gaussove mešanice. \\
+Èe so sluèajne spremneljivke, ki opisujejo stanja diskretne, je opis stanj manj kompleksen. V tem primeru za opis diskretne spremenljivke potrebujemo le eno matriko, katere elementi opišejo vrednosti, ki jih dobimo. To matriko imenujemo izhodna matrika. Ta matrika je velikosti $N\times N$, kjer je $N$ število stanj.\\
 \subsection{Priprava in trening modela}\label{trening}
 Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. 
 %Popravi, najraje na dejanskem isti enoti.
