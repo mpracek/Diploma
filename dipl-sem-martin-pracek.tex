@@ -245,7 +245,7 @@ Ideja za delovanje skritih markovskih modelov izhaja iz dela Andrewa Viterbija n
 \end{primer}
 Skrite markovske modele navadno predstavimo na diskretnih množicah in na diskretnem èasu, a lahko definicijo tako razširimo, da velja tudi za zvezne množice in èas. V tem primeru dobimo tri plasten sluèajni proces, katerega najveèja težava je  velika raèunska zahtevnost, poleg tega pa nam lahko veliko število parametrov prinese nestabilnost. Vendar se s tem v moji diplomski nalogi ne bom ukvarjal.\\
 Prav tako je možno s skritimi markovskimi modeli predstaviti procese, odvisne od veè sluèajnih spremenljivk. Vendar tak model s seboj prinese veè težav. Prve se pokaže v raèunski zahtevnosti, saj moramo v vsakem koraku doloèiti inverz in determinanto $N \cdot M$ matrik $\Sigma_{ij}$ velikosti $NA \times NA$, kjer je $NA$ število razliènih spremenljivk, na primer število vrednostnih papirjev katerih proces aproksimiramo, $M$ pa število sluèajnih spremenljivk. Èe je ta $NA$ velik, je lahko izraèun inverza in determinante raèunsko in èasovno zahteven. Drugi problem se pokaže v samem raèunanju, ki je podrobneje razložen v \ref{trening}. To velja, ker so determinante $\Sigma_{ij}$ zelo majhne, kar posledièno privede do velik verjetnosti $P(O|\lambda)$, kjer je $P(O|\lambda)$ oèitno funkcija verjetja. Ob vsakem novem koraku iteracije tako pridobimo nov $\lambda$ in posledièno novo pogojno verjetnost. Ta verjetnost lahko v tem primeru zelo hitro naraste, in tako se iteracija prehitro konèa. Èe je $NA$ prevelik, pa se vèasih ne da izvesti niti prvega koraka. Modeliranje skritih markovskih modelov z veè spremenljivkami je tako v teoriji možno, a ni nujno dobro v praksi. 
-
+\includegraphics[scale=0.5]{slike/mesto}
 %Bolj podroben opis
 %latent markov models
 
