@@ -379,21 +379,17 @@ Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Mont
 	\begin{itemize}
 		\item Podatki $O = (O_1,\ldots, O_T)$
 	\end{itemize}
-	\begin{enumerate}
-		\item Ocenimo parametre $\lambda$\\
-		\While{Dokler $P(O|\lambda)$ ni dovolj velik}
-		{Ponovno izraèunaj $P(O|\lambda)$ z novimi parametri $\lambda$}
-		\item Ocenimo stanje v èasu $T$ z Viterbijevim algoritmom
-		\item
-		\For{$s=1,\ldots,S$}
-		{Dobimo vzorec iz izhodne porazdelitve stanja $i$, kjer je  $t=1$
-		\While{$t \le TP$, kjer je $TP$ zadnji èas, kjer nas vrednost zanima}
-		{$t = t+1$\\
-		Izberi stanje za èas $t$ v skladu z prehodno matriko $A$\\
-		Generiramo vzorec iz izhodne porazdelitve tega stanja}
+	 Ocenimo parametre $\lambda$\\
+	\While{Dokler $P(O|\lambda)$ ni dovolj velik}
+	{Ponovno izraèunaj $P(O|\lambda)$ z novimi parametri $\lambda$}
+	Ocenimo stanje v èasu $T$ z Viterbijevim algoritmom
+	\For{$s=1,\ldots,S$}
+	{Dobimo vzorec iz izhodne porazdelitve stanja $i$, kjer je  $t=1$
+	\While{$t \le TP$, kjer je $TP$ zadnji èas, kjer nas vrednost zanima}
+	{$t = t+1$\\
+	Izberi stanje za èas $t$ v skladu z prehodno matriko $A$\\
+	Generiramo vzorec iz izhodne porazdelitve tega stanja}
 		}
-			
-	\end{enumerate}
 	
 	
 \end{algorithm}
