@@ -242,7 +242,6 @@ Le ta nam pove, da je verjetnost da ostane v vodi $0.9$, medtem ko je verjetnost
 
 \section{Skriti markovski modeli}
 %Podaljšaj opis, dodatne razlage. Poišèi še kaj po virih. Dopiši!!
-%Dodaj idejo Bayesove statistike
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji. Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala.\\
 Gre za najbolj preprosto vrsto dinamiène bayesove mreže. Tu gre za vrsto bayesove mreže, v kateri so povezane spremenljivke, ki ležijo v dveh sosednjih èasovnih korakih. Tako lahko vrednost v èasu $t$ izraèunamo prek vrednosti v èasu $t-1$ ter notranih regresorjev. Bayesove mreže so verjetnostni grafièni model, ki je idealen za to, da za nek dogodek za vsak možen vzrok doloèimo verjetnost, da ga je ta povzroèil.\\
 Skriti markovski modeli uporabljajo idejo bayesianske statistike. Tu uporabljamo Bayesov izrek, ki pravi, da je verjetnost dogodka $A$, v primeru da $B$ velja enaka:
@@ -283,9 +282,11 @@ S temi predpostavkami bi lahko zmodelirali, a jih imamo še nekaj, ki nam sam mod
  \  \\
 Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Loèimo lahko stanja, ki so porazdeljene kot zvezne sluèajne spremenljivke, ter tiste, ki so porazdeljene kot diskretne sluèajne spremenljivke.\\
 V zveznem primeru bomo predstavili primer, kjer so le te predstavljene kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove mešanice.\\
-Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i}(x) = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{ij}, \sigma_{ij}^2)$$.\\
-%Vidimo, da je so Gaussove mešanice tudi funkcije $x$. 
+Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i}(x) = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{ij}, \sigma_{ij}^2)$$, kjer je so Gaussova mešanica tudi funkcije nekega $x$, za katerega velja da je $x \in (-\infty,\infty)$.
+\includegraphics[scale=0.5]{slike/ggplot2}
+\includegraphics[scale=0.5]{slike/funciji_gauss}
 Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna; to pa pogosto ne drži za procese v realnem svetu, na primer za donose v financah. Za te veèkrat drži, da so "left-skewed", torej da je mediana veèja od povpreèja. \\
+
 Tako potrebujemo za sestavo modela še:
 \begin{itemize}
 	\item število mešanic $M$
@@ -402,9 +403,6 @@ Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Mont
 \end{algorithm}
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno orodje za modeliranje. Naèini uporabe se zelo razlikujejo, od uporabe v financah do doloèevanja genoma. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasledenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
-
-%dodajaj slike èe možno
-
 \subsection{Procesiranje govora}
 Prva ideja Leonarda E. Bauma za njegov algoritem je bila prav uporaba v procesiranju govora.
 Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor, saj algoritem ni implementiran za "zvezen" govor, le za posamezne enote. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
@@ -414,6 +412,7 @@ Velja omeniti tudi, da na ta naèin, le z nekaj adaptacijami, deluje tudi Siri.
 \subsection{Uporaba v biologiji in biokemiji} \label{Biologija}
 Gre za eno izmed prvih uporab skritih markovskih modelov. Ker se je uporaba na tem podroèju zaèela precej zgodaj tudi ne preseneèa, da je uporaba precej široka. Uporaba skritih markovskih modelov se je v razširila zaradi poveèanja kolièine podatkov, ki je znanstvenikom na voljo. Ker so v zadnjem èasu doloèili veè zaporedij genoma, je tako kolièino podatkov težko obdelati brez uporabe naprednih raèunskih metod.\\
 Kot že reèeno, je uporaba skritih markovskih modelov v biologiji zelo široka. Uporablja se jih kot že reèeno za obdelave genoma, za doloèanje genov, za modeliranje procesov v celièni membrani. Splošno preprièanje je, da se bo uporaba skritih markovskih modelov v biologiji in ostalih povezanih znanostih še razširila.
+\subsection{Ostali naèini uporabe}
 \section{Èasovne vrste}
 %razloži še kaj o èasovnih vrstah iz virov dopiši kaj
 \begin{definicija}{Èasovna vrsta} množica opazovanj $x_t$, vsako opazovano ob èasih $t$ znotraj nekega èasovnega intervala.
@@ -503,35 +502,35 @@ V zadnjem èasu se je uporaba skritih markovskih modelov v finanèništvu precej po
 Modeli, ki se jih uporablja v za napovedovanje cen finaènih instrumentov na kratki rok predvidevajo, da model sledi Brownovem gibanju, vendar velja, da ti modeli ne morejo zaznati ekstremnega gibanja cen. Tu je prednost tako imenovanih \textit{regime-switching} modelov, torej modelov pri katerih se zamenjujejo stanja in med katere spadajo tudi skriti markovski modeli.
 %%Dodaj še kakšen primer iz vira 2.
 \section{Praktièni primer}
-%Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana veèjaa od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
-%Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
-%V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model deluje tudi ob izjemnih dogodkih na trgu. Zato sem podatke iz NYSE uporabil za analizo stanja delnic ob finanèni krizi 2008 ter podatke, ki sem jih pridobil za S\&P $500$ indeks pred zaèetkom velike depresije. S tem želim ugotoviti, ali lahko model res zazna hitre padce cen.\\
-%Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, da je ob koncu leta 2017 doživel izredno veliko rast. \\
-%V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o kakovosti modela povedali toèki \ref{Analiza} in \ref{ekstrem} ugotoviti prihodnjo ceno nekaj finanènih instrumentov.
-%Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona. \\
-%\includegraphics[scale=0.34]{slike/celota}
-%\includegraphics[scale=0.34]{slike/polovica}\\
-%%\begin{figure}%
-%%	\centering
-%%	\subfloat[Cena èez celotno obdobje]{{\includegraphics[width=5cm]{slike/celota} }}%
-%%	\qquad
-%%	\subfloat[Cena èez polovico obdobja]{{\includegraphics[width=5cm]{slike/polovica} }}%
-%%	\caption{Primerjava cen delnice Amazona}%
-%%	\label{slika:amazon}%
-%%\end{figure}
-%Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom. Tako se bomo morali osredotoèiti na krajše èasovno obdobje.\\
-%Prileganje bom ugotavljal s pomoèjo razlike med predvideno vrednostjo in dejansko vrednostjo, ki je bila izmerjena. Za to razliko bom ugotovil varianco, ter minimalno in maksimalno absolutno vrednost. 
-%%grafièni prikaz na istem grafu. 
+Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana veèjaa od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
+Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
+V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model deluje tudi ob izjemnih dogodkih na trgu. Zato sem podatke iz NYSE uporabil za analizo stanja delnic ob finanèni krizi 2008 ter podatke, ki sem jih pridobil za S\&P $500$ indeks pred zaèetkom velike depresije. S tem želim ugotoviti, ali lahko model res zazna hitre padce cen.\\
+Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, da je ob koncu leta 2017 doživel izredno veliko rast. \\
+V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o kakovosti modela povedali toèki \ref{Analiza} in \ref{ekstrem} ugotoviti prihodnjo ceno nekaj finanènih instrumentov.
+Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona. \\
+\includegraphics[scale=0.34]{slike/celota}
+\includegraphics[scale=0.34]{slike/polovica}\\
+%\begin{figure}%
+%	\centering
+%	\subfloat[Cena èez celotno obdobje]{{\includegraphics[width=5cm]{slike/celota} }}%
+%	\qquad
+%	\subfloat[Cena èez polovico obdobja]{{\includegraphics[width=5cm]{slike/polovica} }}%
+%	\caption{Primerjava cen delnice Amazona}%
+%	\label{slika:amazon}%
+%\end{figure}
+Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom. Tako se bomo morali osredotoèiti na krajše èasovno obdobje.\\
+Prileganje bom ugotavljal s pomoèjo razlike med predvideno vrednostjo in dejansko vrednostjo, ki je bila izmerjena. Za to razliko bom ugotovil varianco, ter minimalno in maksimalno absolutno vrednost. 
+%grafièni prikaz na istem grafu. 
 
 \subsection{Splošna analiza kakovosti modela}\label{Analiza}
-%Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE za ceno $10$ delnic. Ta podjetja so Amazon, Google, Tesla, TripAdvisor, Starbucks, Novartis, Microsoft, General Motors, Wells Fargo in Chevron. V mojem portfelju se tako nahajo podjetja iz razliènih industrij, od finanène do avtomobilske in farmacevtske. Za vsako izmed teh delnic bom analiziral ceno ob koncu trgovalnega dne.\\
-%Za vsako izmed teh podjetij bom izbral veè obdobji, vsako dolgo $100$ dni ter na njih izvedel trening modela. 
+Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE za ceno $10$ delnic. Ta podjetja so Amazon, Google, Tesla, TripAdvisor, Starbucks, Novartis, Microsoft, General Motors, Wells Fargo in Chevron. V mojem portfelju se tako nahajo podjetja iz razliènih industrij, od finanène do avtomobilske in farmacevtske. Za vsako izmed teh delnic bom analiziral ceno ob koncu trgovalnega dne.\\
+Za vsako izmed teh podjetij bom izbral veè obdobji, vsako dolgo $100$ dni ter na njih izvedel trening modela. 
 \subsection{Ekstremni dogodki} \label{ekstrem}
-%V tem delu bom pogledal, ali lahko s skritimi markovskimi modeli zaznamo tudi ekstremne dogodke. Za to sem pridobil vrednosti indeksa Standard \& Poor's $500$, krajše S\&P $500$, za obdobje pred èrnim èetrtkom leta $1929$, ter podatke o vrednosti kriptovalute Bitcoin. \\
-%Za indeks S\&P $500$ sem za veè èasovnih intervalov, ki se vsi konèajo na $24.10.1929$ izvedel trening modela in nato primerjal z dejansko vrednostjo indeksa. V tem koraku sem se ukvarjal z ugotavljanjem, ali lahko na ta naèin zaznamo hude padce vrednosti.
-%\includegraphics[width=\linewidth,height=5cm]{slike/sinp}\\
-%Rdeèa èrta na tem grafu oznaèuje $1.10.1929$, zadnjo vrednost indeksa pred èrnim èetrtkom. Oèitno vidimo, da vrednost nato pade, vprašanje pa je, ali bo ta padec naš model predvidel.
-%Podatki o ceni Bitcoina so služili drugi nalogi, in sicer ugotavljanju hitre rasti. Uporabil sem podatke iz borze Bitstamp.
+V tem delu bom pogledal, ali lahko s skritimi markovskimi modeli zaznamo tudi ekstremne dogodke. Za to sem pridobil vrednosti indeksa Standard \& Poor's $500$, krajše S\&P $500$, za obdobje pred èrnim èetrtkom leta $1929$, ter podatke o vrednosti kriptovalute Bitcoin. \\
+Za indeks S\&P $500$ sem za veè èasovnih intervalov, ki se vsi konèajo na $24.10.1929$ izvedel trening modela in nato primerjal z dejansko vrednostjo indeksa. V tem koraku sem se ukvarjal z ugotavljanjem, ali lahko na ta naèin zaznamo hude padce vrednosti.
+\includegraphics[width=\linewidth,height=5cm]{slike/sinp}\\
+Rdeèa èrta na tem grafu oznaèuje $1.10.1929$, zadnjo vrednost indeksa pred èrnim èetrtkom. Oèitno vidimo, da vrednost nato pade, vprašanje pa je, ali bo ta padec naš model predvidel.
+Podatki o ceni Bitcoina so služili drugi nalogi, in sicer ugotavljanju hitre rasti. Uporabil sem podatke iz borze Bitstamp.
 \subsection{Napoved}\label{napoved}
 
 %slika podatkov
