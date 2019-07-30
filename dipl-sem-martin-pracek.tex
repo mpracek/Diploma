@@ -323,8 +323,8 @@ $\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo
 Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov. Prikažemo ga lahko tudi v algoritemski obliki. \\
 \begin{algorithm}
 	\caption{Baum-Welchov algoritem}
-	\KwResult{}
 	\KwIn{}
+	\KwResult{$P(O|\lambda_{konèna}) \leq \delta$, kjer je $\delta$ zahtevana velikost funkcije verjetja.}
 \end{algorithm}
 Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
 Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo.\\
@@ -381,10 +381,10 @@ Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je obl
 		$z_{i-1} \gets T_2[z_i,i]$\\
 		$x_{i-1} \gets s_{z(i-1)}$}
 	\KwResult{Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$}
-	
-\end{algorithm}
+	\end{algorithm}
 Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
 Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.\\
+
 \subsection{Generiranje poti v skritem markovskem modelu}
 V celoti lahko sedaj predstavimo delovanje skritega markovskega modela na primeru generiranja ene poti. V tem primeru je pot na primer cenovni proces, ki ga bo glede na naš model opravil finanèni instrument.\\
 Glede na naše podatke, ki jih oznaèimo kot $O = (O_1,\ldots, O_T)$ ocenimo parametre našega modela $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Zaèetne vrednosti elementov  $\Pi,A$ in $C$ predpostavimo kot enake, za $\Gamma$ in $\Sigma$ pa ocenimo prek razvršèanja v skupine. Te parametre rekurzivno izboljšujemo, dokler nismo zadovoljni z doloèeno $P(O|\lambda)$. Parametre, ki smo jih dobili na ta naèin lahko za isti set podatkov uporabimo poljubno mnogokrat. \\
