@@ -282,8 +282,8 @@ S temi predpostavkami bi lahko zmodelirali, a jih imamo še nekaj, ki nam sam mod
  \  \\
 Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Loèimo lahko stanja, ki so porazdeljene kot zvezne sluèajne spremenljivke, ter tiste, ki so porazdeljene kot diskretne sluèajne spremenljivke.\\
 V zveznem primeru bomo predstavili primer, kjer so le te predstavljene kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove mešanice.\\
-Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i}(x) = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{ij}, \sigma_{ij}^2)$$, kjer je so Gaussova mešanica tudi funkcije nekega $x$, za katerega velja da je $x \in (-\infty,\infty)$.
-\includegraphics[scale=0.2]{slike/ggplot2}
+Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i}(x) = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{ij}, \sigma_{ij}^2)$$, kjer je so Gaussova mešanica tudi funkcije nekega $x$, za katerega velja da je $x \in (-\infty,\infty)$.\\
+\includegraphics[scale=0.5]{slike/ggplot2}
 \includegraphics[scale=1]{slike/funciji_gauss}
 Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna; to pa pogosto ne drži za procese v realnem svetu, na primer za donose v financah. Za te veèkrat drži, da so "left-skewed", torej da je mediana veèja od povpreèja. \\
 
