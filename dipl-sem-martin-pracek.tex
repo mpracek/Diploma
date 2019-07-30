@@ -519,11 +519,11 @@ Tesla, Inc. je svoj IPO, initial public offering ali prva javna ponudba delnic i
 Za to delnico sem torej poizkusil ugotoviti stanja, v katerih so se ob koncu vsakega trgovalnega dneva nahajala delnica.\\
 V svojem primeru sem kot reèeno loèil stanje rasti, stagnacije in padca cen. Med stanji sem moral najprej doloèiti prehodno matriko, in iz podatkov ugotovil, da je oblike
 $$
-\begin{matrix}
+\begin{bmatrix}
 0.334 & 0 & 0.666  \\
 0 & 0 & 1  \\
 0.001 & 0 & 0.999 \\
-\end{matrix},$$
+\end{bmatrix},$$
 torej res zadošèa pogojem, da je vsota elementov po vsaki vrstici enaka $1$. Torej iz vsakega stanja res izstopimo. To je lepo tudi razvidno iz grafa prehodov.\\
 \includegraphics[scale=1]{slike/prehodi}[h!]\\
 Natanèneji pregled razkriva, da je na obmoèju, na katerem smo model uèili navadno prihajalo do rasti. Le v $25$ primerih je namreè prišlo do padca cene napram prejšnjemu povpreèju, v $905$ primerih je prišlo do rasti cene, nikoli pa nismo imeli stagnacije.\\
