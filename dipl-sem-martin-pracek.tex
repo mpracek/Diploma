@@ -245,7 +245,7 @@ Le ta nam pove, da je verjetnost da ostane v vodi $0.9$, medtem ko je verjetnost
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji. Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala.\\
 Gre za najbolj preprosto vrsto dinamiène bayesove mreže. Tu gre za vrsto bayesove mreže, v kateri so povezane spremenljivke, ki ležijo v dveh sosednjih èasovnih korakih. Tako lahko vrednost v èasu $t$ izraèunamo prek vrednosti v èasu $t-1$ ter notranih regresorjev. Bayesove mreže so verjetnostni grafièni model, ki je idealen za to, da za nek dogodek za vsak možen vzrok doloèimo verjetnost, da ga je ta povzroèil.\\
 Skriti markovski modeli uporabljajo idejo bayesianske statistike. Tu uporabljamo Bayesov izrek, ki pravi, da je verjetnost dogodka $A$, v primeru da $B$ velja enaka:
-$$P(A|B) = \frac{P(B|A)P(A)}{P(B)},$$ kjer velja, da dogodek $A$ predstavlja predlog, $B$ pa dokaz. Tu torej naša verjetnost izraža stopnjo verjetja v dogodek.\\
+$$P(A|B) = \frac{P(B|A)P(A)}{P(B)},$$ kjer velja, da dogodek $A$ predstavlja predlog, $B$ pa dokaz. Tu torej naša verjetnost izraža stopnjo verjetja v dogodek. Pri skritih markovskih modelih se nam pokaže problem pridobivanja parametrov iz podatkov. Iz podatkov moramo namreè sklepati o porazdelitvi parametrov.\\
 Ideja za delovanje skritih markovskih modelov izhaja iz dela Andrewa Viterbija na podroèju komunikacije. V komunikacijskih storitvah šumi namreè predstavljajo veliko težavo, zato se je ameriško-italijanski elektroinžiner domislil algoritma, s katerimi bi iz seta podatkov izloèili šume. 
 \begin{primer}
 	To si lahko predstavljamo kot da bi si na primer želeli na fiksnem mestu v elektriènem tokokrogu doloèiti naboj $Q(t)$ glede na naboj ob èasu $s$, kjer $s<t$. Zaradi napake pri merjenju $Q(s)$ ne moremo toèno doloèiti, saj zaznamo neko zmoteno razlièico $\widehat{Q(s)}$.\\
@@ -283,6 +283,7 @@ S temi predpostavkami bi lahko zmodelirali, a jih imamo še nekaj, ki nam sam mod
 Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Loèimo lahko stanja, ki so porazdeljene kot zvezne sluèajne spremenljivke, ter tiste, ki so porazdeljene kot diskretne sluèajne spremenljivke.\\
 V zveznem primeru bomo predstavili primer, kjer so le te predstavljene kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove mešanice.\\
 Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i}(x) = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{ij}, \sigma_{ij}^2)$$, kjer je so Gaussova mešanica tudi funkcije nekega $x$, za katerega velja da je $x \in (-\infty,\infty)$.\\
+Pri nekem stanju $i$ je $b_i$ signal, ki ga prejmemo. V primeru finanènih èasovnih vrst bi torej to bila cena finanènega insturmenta. Cena je realna vrednost, ki jo vrne sluèajna spremenljivka, odvisna od stanja.\\
 \begin{primer}
 	Gaussovo mešanico lahko vidimo na naslednjih dveh slikah.\\
 	\includegraphics[scale=1]{slike/funciji_gauss}\\
@@ -320,10 +321,12 @@ $$\alpha_{t+1}(j) = b_{j}(O_{t+1})\sum_{i=1}^{N}{\alpha_{t}(i)a_{ij}}$$
 Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben naèin izraèunamo tudi $\beta_{t}(i)$. $\beta$ je inicializirana z  
 $$\beta_{T}(i) \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
 $\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.\\
-Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.\\ Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
+Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.
+\\ Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
 Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo, ne moremo pa zagotoviti globalnega maksimuma. Prav tako se lahko zgodi, da predobro opišemo nek set podatkov, to pomeni, da je 
 $P(O|\lambda_{dejanski}) \leq P(O|\lambda_{zadnji})$.
 Tako se lahko zgodi, da svoji oceni preveè zaupamo. \\
+Dejstvo, da nimamo globalnega maksimuma, temveè le lokalni pomeni, da lahko že manjša perturbacija paramterov pomeni spremembo lokalnega maksimuma in tako spremembo konènih rezultatov. Obèutljivost sistema je odvisna števila parametrov.\\
 %%%%%%Opiši BW
 Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista ravno nièelna. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
 \\
