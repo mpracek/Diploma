@@ -324,7 +324,7 @@ Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih 
 \begin{algorithm}
 	\caption{Baum-Welchov algoritem}
 	\KwIn{}
-	\KwResult{$P(O|\lambda_{konèna}) \leq \delta$, kjer je $\delta$ zahtevana velikost funkcije verjetja.}
+	\KwResult{$P(O|\lambda_{konèna}) \leq \delta$; $\delta$ zahtevana velikost funkcije verjetja.}
 \end{algorithm}
 Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
 Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo.\\
