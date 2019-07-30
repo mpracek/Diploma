@@ -11,6 +11,8 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC385222/ celièna membrana
 https://ieeexplore.ieee.org/document/541414 prepozavnaje pisave
 https://www.unisa.edu.au/Global/business/centres/i4c/images/Integrated%20HMM.pdf napovedovanje prometa
 http://www.cs.umd.edu/~djacobs/CMSC828/ApplicationsHMMs.pdf prepozavanje èloveških akcij
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/
+
 
 Osnove Markovskih modelov
 https://en.wikipedia.org/wiki/Markov_chain
