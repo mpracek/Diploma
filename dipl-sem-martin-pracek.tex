@@ -359,13 +359,13 @@ Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je obl
 	\begin{itemize}
 		\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
 		\item Prostor stanj $S=\{s_1,s_2,\dots,s_K\}$
-		\item Nabor zaèetnih verjetnosti $\Pi = (\pi_1,\pi_2,\dots,\pi_K)$\\
-		 kjer $\pi_{i} == s_i$ 
-		\item Zaporedje opazovanj $Y=(y_1,y_2,\ldots, y_T)$\\
+		\item Nabor zaèetnih verjetnosti $\Pi = (\pi_1,\pi_2,\dots,\pi_K)$,\\
+		 kjer velja da je$\pi_{i} == s_i$ 
+		\item Zaporedje opazovanj $Y=(y_1,y_2,\ldots, y_T)$,\\
 		 tako da je $y_t==i$, èe je opazovanje v èasu $t$ $o_i$
-		\item Prehodna matrika $A$ velikosti $ K\times K$\\
+		\item Prehodna matrika $A$ velikosti $ K\times K$,\\
 		 kjer stanje $A_{ij}$ pove verjetnost prehoda iz stanja $s_i$ v stanje $s_j$
-		\item Izhodno matriko $B$ velikosti $K \times N$\\
+		\item Izhodno matriko $B$ velikosti $K \times N$,\\
 		 kjer stanje $B_{ij}$ pove verjetnost, da opazimo $o_j$ iz stanja $s_i$
 	\end{itemize}}
 	\For{vsako stanje $j \in \{1,2,\ldots,K\}$}{
