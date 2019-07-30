@@ -495,35 +495,35 @@ V zadnjem èasu se je uporaba skritih markovskih modelov v finanèništvu precej po
 Modeli, ki se jih uporablja v za napovedovanje cen finaènih instrumentov na kratki rok predvidevajo, da model sledi Brownovem gibanju, vendar velja, da ti modeli ne morejo zaznati ekstremnega gibanja cen. Tu je prednost tako imenovanih \textit{regime-switching} modelov, torej modelov pri katerih se zamenjujejo stanja in med katere spadajo tudi skriti markovski modeli.
 %%Dodaj še kakšen primer iz vira 2.
 \section{Praktièni primer}
-Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana veèjaa od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
-Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
-V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model deluje tudi ob izjemnih dogodkih na trgu. Zato sem podatke iz NYSE uporabil za analizo stanja delnic ob finanèni krizi 2008 ter podatke, ki sem jih pridobil za S\&P $500$ indeks pred zaèetkom velike depresije. S tem želim ugotoviti, ali lahko model res zazna hitre padce cen.\\
-Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, da je ob koncu leta 2017 doživel izredno veliko rast. \\
-V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o kakovosti modela povedali toèki \ref{Analiza} in \ref{ekstrem} ugotoviti prihodnjo ceno nekaj finanènih instrumentov.
-Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona. \\
-\includegraphics[scale=0.34]{slike/celota}
-\includegraphics[scale=0.34]{slike/polovica}\\
-%\begin{figure}%
-%	\centering
-%	\subfloat[Cena èez celotno obdobje]{{\includegraphics[width=5cm]{slike/celota} }}%
-%	\qquad
-%	\subfloat[Cena èez polovico obdobja]{{\includegraphics[width=5cm]{slike/polovica} }}%
-%	\caption{Primerjava cen delnice Amazona}%
-%	\label{slika:amazon}%
-%\end{figure}
-Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom. Tako se bomo morali osredotoèiti na krajše èasovno obdobje.\\
-Prileganje bom ugotavljal s pomoèjo razlike med predvideno vrednostjo in dejansko vrednostjo, ki je bila izmerjena. Za to razliko bom ugotovil varianco, ter minimalno in maksimalno absolutno vrednost. 
-%grafièni prikaz na istem grafu. 
+%Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana veèjaa od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
+%Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
+%V drugem delu ekstremni dogodki \ref{ekstrem} bom poizkušal ugotoviti, ali model deluje tudi ob izjemnih dogodkih na trgu. Zato sem podatke iz NYSE uporabil za analizo stanja delnic ob finanèni krizi 2008 ter podatke, ki sem jih pridobil za S\&P $500$ indeks pred zaèetkom velike depresije. S tem želim ugotoviti, ali lahko model res zazna hitre padce cen.\\
+%Po drugi strani pa želim v \ref{ekstrem} ugotoviti, ali lahko model predvidi izredno hitro rast cene finanènega instrumenta. Zato sem pridobil podatke o ceni Bitcoina, za katerega vemo, da je ob koncu leta 2017 doživel izredno veliko rast. \\
+%V zadnjem delu napoved \ref{napoved} pa bom želel glede na to, kaj mi bosta o kakovosti modela povedali toèki \ref{Analiza} in \ref{ekstrem} ugotoviti prihodnjo ceno nekaj finanènih instrumentov.
+%Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona. \\
+%\includegraphics[scale=0.34]{slike/celota}
+%\includegraphics[scale=0.34]{slike/polovica}\\
+%%\begin{figure}%
+%%	\centering
+%%	\subfloat[Cena èez celotno obdobje]{{\includegraphics[width=5cm]{slike/celota} }}%
+%%	\qquad
+%%	\subfloat[Cena èez polovico obdobja]{{\includegraphics[width=5cm]{slike/polovica} }}%
+%%	\caption{Primerjava cen delnice Amazona}%
+%%	\label{slika:amazon}%
+%%\end{figure}
+%Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom. Tako se bomo morali osredotoèiti na krajše èasovno obdobje.\\
+%Prileganje bom ugotavljal s pomoèjo razlike med predvideno vrednostjo in dejansko vrednostjo, ki je bila izmerjena. Za to razliko bom ugotovil varianco, ter minimalno in maksimalno absolutno vrednost. 
+%%grafièni prikaz na istem grafu. 
 
 \subsection{Splošna analiza kakovosti modela}\label{Analiza}
-Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE za ceno $10$ delnic. Ta podjetja so Amazon, Google, Tesla, TripAdvisor, Starbucks, Novartis, Microsoft, General Motors, Wells Fargo in Chevron. V mojem portfelju se tako nahajo podjetja iz razliènih industrij, od finanène do avtomobilske in farmacevtske. Za vsako izmed teh delnic bom analiziral ceno ob koncu trgovalnega dne.\\
-Za vsako izmed teh podjetij bom izbral veè obdobji, vsako dolgo $100$ dni ter na njih izvedel trening modela. 
+%Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE za ceno $10$ delnic. Ta podjetja so Amazon, Google, Tesla, TripAdvisor, Starbucks, Novartis, Microsoft, General Motors, Wells Fargo in Chevron. V mojem portfelju se tako nahajo podjetja iz razliènih industrij, od finanène do avtomobilske in farmacevtske. Za vsako izmed teh delnic bom analiziral ceno ob koncu trgovalnega dne.\\
+%Za vsako izmed teh podjetij bom izbral veè obdobji, vsako dolgo $100$ dni ter na njih izvedel trening modela. 
 \subsection{Ekstremni dogodki} \label{ekstrem}
-V tem delu bom pogledal, ali lahko s skritimi markovskimi modeli zaznamo tudi ekstremne dogodke. Za to sem pridobil vrednosti indeksa Standard \& Poor's $500$, krajše S\&P $500$, za obdobje pred èrnim èetrtkom leta $1929$, ter podatke o vrednosti kriptovalute Bitcoin. \\
-Za indeks S\&P $500$ sem za veè èasovnih intervalov, ki se vsi konèajo na $24.10.1929$ izvedel trening modela in nato primerjal z dejansko vrednostjo indeksa. V tem koraku sem se ukvarjal z ugotavljanjem, ali lahko na ta naèin zaznamo hude padce vrednosti.
-\includegraphics[width=\linewidth,height=5cm]{slike/sinp}\\
-Rdeèa èrta na tem grafu oznaèuje $1.10.1929$, zadnjo vrednost indeksa pred èrnim èetrtkom. Oèitno vidimo, da vrednost nato pade, vprašanje pa je, ali bo ta padec naš model predvidel.
-Podatki o ceni Bitcoina so služili drugi nalogi, in sicer ugotavljanju hitre rasti. Uporabil sem podatke iz borze Bitstamp.
+%V tem delu bom pogledal, ali lahko s skritimi markovskimi modeli zaznamo tudi ekstremne dogodke. Za to sem pridobil vrednosti indeksa Standard \& Poor's $500$, krajše S\&P $500$, za obdobje pred èrnim èetrtkom leta $1929$, ter podatke o vrednosti kriptovalute Bitcoin. \\
+%Za indeks S\&P $500$ sem za veè èasovnih intervalov, ki se vsi konèajo na $24.10.1929$ izvedel trening modela in nato primerjal z dejansko vrednostjo indeksa. V tem koraku sem se ukvarjal z ugotavljanjem, ali lahko na ta naèin zaznamo hude padce vrednosti.
+%\includegraphics[width=\linewidth,height=5cm]{slike/sinp}\\
+%Rdeèa èrta na tem grafu oznaèuje $1.10.1929$, zadnjo vrednost indeksa pred èrnim èetrtkom. Oèitno vidimo, da vrednost nato pade, vprašanje pa je, ali bo ta padec naš model predvidel.
+%Podatki o ceni Bitcoina so služili drugi nalogi, in sicer ugotavljanju hitre rasti. Uporabil sem podatke iz borze Bitstamp.
 \subsection{Napoved}\label{napoved}
 
 %slika podatkov
@@ -561,7 +561,7 @@ R.S.~Mamon in R.J.~Elliott \emph{Hidden Markov Models in Finance}, International
 \bibitem{davis}
 P.J.~Brockwell, R.A.~Davis \emph{Introduction to Time Series and Forecasting},2nd edition, Springer, 2002.
 
-\bibitem{bioa}
+\bibitem{yoon}
 B.J.~Yoon, \emph{Hidden Markov Models and their Applications in Biological Sequence Analysis}, v: Current genomics, 10,6(2009):402-415, [29. 7. 2019], dostopno na \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/}.
 
 
