@@ -305,8 +305,7 @@ Vse te matrike so velikosti $N \times M$ in z njimi opišemo Gaussove mešanice. \
 Èe so sluèajne spremneljivke, ki opisujejo stanja diskretne, je opis stanj manj kompleksen. V tem primeru za opis diskretne spremenljivke potrebujemo le eno matriko, katere elementi opišejo vrednosti, ki jih dobimo. To matriko imenujemo izhodna matrika. Ta matrika je velikosti $N\times N$, kjer je $N$ število stanj.\\
 \subsection{Priprava in trening modela}\label{trening}
 Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. 
-%Popravi, najraje na dejanskem isti enoti.
-Ti podatki morajo biti zbrani na na podobni enoti; èe na bo na primer zanimale cena delnice podjetja, ki se ukvarja z predelavo pomaranènega soka, za trening ne bomo vzeli cene delnic metalurškega podjetja. \\ 
+Ti podatki morajo biti zbrani na na primerni enoti; na ceno delnic vrednost le te pred $10$ leti ne bo vplivala toliko kot cena dan pred meritvijo. \\ 
 Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. \\ 
 Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.\\
 V praksi število stanj vèasih doloèimo v skladu s potrebno aplikacijo, kot na primer v \ref{Biologija}, oziroma z vizualnim ogledom toèk grafa iz zgodovinskih podatkov.\\
@@ -320,10 +319,15 @@ Naslednje $\alpha_{t+1}(j)$ lahko nato induktivno izraèunamo kot
 $$\alpha_{t+1}(j) = b_{j}(O_{t+1})\sum_{i=1}^{N}{\alpha_{t}(i)a_{ij}}$$
 Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben naèin izraèunamo tudi $\beta_{t}(i)$. $\beta$ je inicializirana z  
 $$\beta_{T}(i) \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
-$\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.
-\\
+$\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.\\
+Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov. Prikažemo ga lahko tudi v algoritemski obliki. \\
+\begin{algorithm}
+	\caption{Baum-Welchov algoritem}
+	\KwResult{}
+	\KwIn{}
+\end{algorithm}
 Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
-Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo.Tu lahko uporabimo razliène algoritme, najbolj pa je uporabljen Baum-Welchov.\\
+Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo.\\
 %Opiši BW
 Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista ravno nièelna. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
 \\
@@ -389,11 +393,7 @@ Naslednji korak si lahko predstavljamo kot zanko. Èe predpostavimo, da naš param
 Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Monte Carlo simulacije. 
 \begin{algorithm}[h!]
 	\caption{Monte Carlo simulacija skritih markovskih modelov} \label{monte-carlo}
-	\KwResult{Zaporedje stanj} 
-	Input:
-	\begin{itemize}
-		\item Podatki $O = (O_1,\ldots, O_T)$
-	\end{itemize}
+	\KwIn{Podatki $O = (O_1,\ldots, O_T)$}
 	 Ocenimo parametre $\lambda$\\
 	\While{Dokler $P(O|\lambda)$ ni dovolj velik}
 	{Ponovno izraèunaj $P(O|\lambda)$ z novimi parametri $\lambda$}
@@ -405,8 +405,7 @@ Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Mont
 	Izberi stanje za èas $t$ v skladu z prehodno matriko $A$\\
 	Generiramo vzorec iz izhodne porazdelitve tega stanja}
 		}
-	
-	
+	\KwResult{Zaporedje stanj} 	
 \end{algorithm}
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno orodje za modeliranje. Naèini uporabe se zelo razlikujejo, od uporabe v financah do doloèevanja genoma. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasledenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
