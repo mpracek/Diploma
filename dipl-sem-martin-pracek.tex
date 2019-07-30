@@ -386,7 +386,12 @@ Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Mont
 		\item Ocenimo stanje v èasu $T$ z Viterbijevim algoritmom
 		\item
 		\For{$s=1,\ldots,S$}
-		{}
+		{Dobimo vzorec iz izhodne porazdelitve stanja $i$, kjer je  $t=1$
+		\While{$t \le TP$, kjer je $TP$ zadnji èas, kjer nas vrednost zanima}
+		{$t = t+1$\\
+		Izberi stanje za èas $t$ v skladu z prehodno matriko $A$\\
+		Generiramo vzorec iz izhodne porazdelitve tega stanja}
+		}
 			
 	\end{enumerate}
 	
