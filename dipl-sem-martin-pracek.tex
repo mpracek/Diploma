@@ -321,7 +321,8 @@ Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben 
 $$\beta_{T}(i) \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
 $\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.\\
 Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.\\ Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
-Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo, ne moremo pa zagotoviti globalnega maksimuma. Prav tako se lahko zgodi, da predobro opišemo nek set podatkov, to pomeni, da je $P(O|\lambda_{dejanski}) \leq P(O|\lambda_{konèni})$.
+Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo, ne moremo pa zagotoviti globalnega maksimuma. Prav tako se lahko zgodi, da predobro opišemo nek set podatkov, to pomeni, da je 
+$P(O|\lambda_{dejanski}) \leq P(O|\lambda_{zadnji})$.
 Tako se lahko zgodi, da svoji oceni preveè zaupamo. \\
 %%%%%%Opiši BW
 Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista ravno nièelna. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
