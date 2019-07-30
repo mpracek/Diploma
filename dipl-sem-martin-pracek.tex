@@ -59,7 +59,7 @@
 \newcommand{\program}{Finanèna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
 \newcommand{\imeavtorja}{Martin Praèek} % ime avtorja
 \newcommand{\imementorja}{izr. prof. dr. Damjan Škulj} % akademski naziv in ime mentorja
-\newcommand{\naslovdela}{Skriti markovski modeli v finanènih èasovnih vrstah}
+\newcommand{\naslovdela}{Skriti markovski modeli v analizi finanènih èasovnih vrst }
 \newcommand{\letnica}{2019} %letnica diplome
 
 
@@ -103,7 +103,7 @@ Ljubljana, \letnica}
 V moji diplomski nalogi sem se ukvarjal z skritimi markovskimi modeli. Gre za vrsto markovskega modela, kjer vseh podatkov ne poznamo. V svojem delu sem opisal osnove teorije skritih markovskih modelov ter nekaj primerov uporabe, obenem pa sem opisal še praktièni primer.
 \vfill
 \begin{center}
-{\bf Hidden Markov Models in Financial Time Series}\\[3mm] % prevod slovenskega naslova dela
+{\bf Hidden Markov Models in Financial Time Series Analysis}\\[3mm] % prevod slovenskega naslova dela
 {\sc Abstract}
 \end{center}
 % tekst povzetka v anglescini
@@ -241,11 +241,11 @@ Le ta nam pove, da je verjetnost da ostane v vodi $0.9$, medtem ko je verjetnost
 %mogoèe še veè kaj o lokalni/globalni konvergenvi -> perturbacije parametrov,...
 
 \section{Skriti markovski modeli}
-%formalna definicija
 %Podaljšaj opis, dodatne razlage. Poišèi še kaj po virih. Dopiši!!
 %Dodaj idejo Bayesove statistike
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces z skritimi stanji. Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala.\\
 Gre za najbolj preprosto vrsto dinamiène bayesove mreže. Tu gre za vrsto bayesove mreže, v kateri so povezane spremenljivke, ki ležijo v dveh sosednjih èasovnih korakih. Tako lahko vrednost v èasu $t$ izraèunamo prek vrednosti v èasu $t-1$ ter notranih regresorjev. Bayesove mreže so verjetnostni grafièni model, ki je idealen za to, da za nek dogodek za vsak možen vzrok doloèimo verjetnost, da ga je ta povzroèil.\\
+Skriti markovski modeli uporabljajo idejo bayesianske statistike. Gre
 Ideja za delovanje skritih markovskih modelov izhaja iz dela Andrewa Viterbija na podroèju komunikacije. V komunikacijskih storitvah šumi namreè predstavljajo veliko težavo, zato se je ameriško-italijanski elektroinžiner domislil algoritma, s katerimi bi iz seta podatkov izloèili šume. 
 \begin{primer}
 	To si lahko predstavljamo kot da bi si na primer želeli na fiksnem mestu v elektriènem tokokrogu doloèiti naboj $Q(t)$ glede na naboj ob èasu $s$, kjer $s<t$. Zaradi napake pri merjenju $Q(s)$ ne moremo toèno doloèiti, saj zaznamo neko zmoteno razlièico $\widehat{Q(s)}$.\\
