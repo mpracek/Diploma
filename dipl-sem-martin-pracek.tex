@@ -379,8 +379,16 @@ Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Mont
 	\begin{itemize}
 		\item Podatki $O = (O_1,\ldots, O_T)$
 	\end{itemize}
-	\While{$P(O|\lambda_{i-1})$\leq$P(O|\lambda_{i})$}{
-	$\
+	\begin{enumerate}
+		\item Ocenimo parametre $\lambda$\\
+		\While{Dokler $P(O|\lambda)$ ni dovolj velik}
+		{Ponovno izraèunaj $P(O|\lambda)$ z novimi parametri $\lambda$}
+		\item Ocenimo stanje v èasu $T$ z Viterbijevim algoritmom
+		\item\\
+		\For{$s=1,\ldots,S$}
+		{}
+			
+	\end{enumerate}
 	}
 	
 \end{algorithm}
