@@ -320,15 +320,11 @@ $$\alpha_{t+1}(j) = b_{j}(O_{t+1})\sum_{i=1}^{N}{\alpha_{t}(i)a_{ij}}$$
 Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben naèin izraèunamo tudi $\beta_{t}(i)$. $\beta$ je inicializirana z  
 $$\beta_{T}(i) \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
 $\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.\\
-Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov. Prikažemo ga lahko tudi v algoritemski obliki. \\
-\begin{algorithm}
-	\caption{Baum-Welchov algoritem}
-	\KwIn{}
-	\KwResult{$\delta\leq P(O|\lambda_{konèna}) $; $\delta$ zahtevana velikost funkcije verjetja.}
-\end{algorithm}
-Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
-Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo.\\
-%Opiši BW
+Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.\\ Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
+Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo, ne moremo pa zagotoviti globalnega maksimuma. Prav tako se lahko zgodi, da predobro opišemo nek set podatkov, to pomeni, da je 
+$$P(O|\lambda_ {dejanski}) \leq P(O|\lambda_ {konèni}).$$
+Tako se lahko zgodi, da svoji oceni preveè zaupamo. \\
+%%%%%%Opiši BW
 Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista ravno nièelna. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
 \\
 Veè problemov nam povzroèajo tri postavke z zvezno porazdelitivjo, to je $C$, $\Sigma$ in $\Gamma$. Dobra zaèetna ocena le teh je nujna za kakovost modela. Tudi tu se izkaže, da lahko, podobno kot pri oceni števila mešanic $M$ ozremo na razvršèanjem v skupine. Ta postopek nam sicer ne da globalnega minimuma, ki bi ga mogoèe lahko dobili na drugaèen naèin, a se v praksi izkaže za dobrega. Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $ij$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti šopov povpreèij.
