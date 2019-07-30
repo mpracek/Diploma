@@ -362,7 +362,6 @@ Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je obl
 		$z_{i-1} \gets T_2[z_i,i]$\\
 		$x_{i-1} \gets s_{z(i-1)}$}
 	\Return $X$
-	%Popravi napako v algoritmu èrna lisa
 \end{algorithm}
 Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
 Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.\\
@@ -394,8 +393,6 @@ Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Mont
 	
 \end{algorithm}
 \section{Uporaba}
-%Popravi naslednji stavek
-%razloži zakaj široka uporabnost
 Skriti markovski modeli so zelo široko uporabno orodje za modeliranje. Naèini uporabe se zelo razlikujejo, od uporabe v financah do doloèevanja genoma. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasledenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
 
 %dodajaj slike èe možno
