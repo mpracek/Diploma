@@ -556,7 +556,13 @@ Analizo bom izvedel tako, da bom poizkusil ugotoviti stanja, v katerih se je del
 Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE za ceno delnic Tesle, proizvajalca elektriènih avtomobilov. Zanje bom analiziral stanja cen ob koncu trgovalnega dne.\\
 Podjetje Tesla Motors, Inc. sta julija $2003$ ustanovila Martin Eberhard in Marc Tarpenning, ki sta za financiranje skrbela v zaèetku njegovega delovanja, februarja $2004$ pa je v podjetje prišel Elon Musk, ki je še ob èasu pisanja bil $21,9\%$ lastnik podjetja. 
 Tesla, Inc. je svoj IPO, initial public offering ali prva javna ponudba delnic izvedla $29.$ junija $2010$. Od IPO pa do zadnjega dne, ko sem pridobil podatke, je cena delnic z poèasi rastla, z vmesnimi obdobji padca cene. \\
+\begin{figure} 
+	\begin{center}  
 \includegraphics[width=\textwidth]{slike/teslaa}\\
+\caption{Cena delnice Tesla, Inc.}
+\end{center} 
+\end{figure}  
+
 Za to delnico sem torej poizkusil ugotoviti stanja, v katerih so se ob koncu vsakega trgovalnega dneva nahajala delnica.\\
 V svojem primeru sem kot reèeno loèil stanje rasti, stagnacije in padca cen. Med stanji sem moral najprej doloèiti prehodno matriko, in iz podatkov ugotovil, da je oblike
 $$
@@ -566,12 +572,29 @@ $$
 0.001 & 0 & 0.999 \\
 \end{bmatrix},$$
 torej res zadošèa pogojem, da je vsota elementov po vsaki vrstici enaka $1$. Torej iz vsakega stanja res izstopimo. To je lepo tudi razvidno iz grafa prehodov.\\
+\begin{figure} 
+\begin{center}  
 \includegraphics[scale=0.5]{slike/transition}\\
+\caption{Verjetnosti prehoda med stanji}
+\end{center} 
+\end{figure}  
 Natanèneji pregled razkriva, da je na obmoèju, na katerem smo model uèili navadno prihajalo do rasti. Le v $25$ primerih je namreè prišlo do padca cene napram prejšnjemu povpreèju, v $905$ primerih je prišlo do rasti cene, nikoli pa nismo imeli stagnacije.\\
+\begin{figure} 
+	\begin{center}  
 \includegraphics[scale=0.5]{slike/stanje}\\
+\caption{Stanja na obmoèju treninga}
+\end{center} 
+\end{figure}  
+
 To lahko vidimo tudi iz grafa prehodov, kjer $3$ pomeni rast, $2$ stagnacijo in $1$ padec. Toèke, ki oznaèujejo tvorijo skoraj konstantno funkcijo za vrednost $3$.\\
 Naravno se nam postavi vprašanje, kako bodo ta stanja sledila v prihodnje. S pomoèjo prehodne matrike lahko to poizkusimo ugotoviti, in dobimo naslednji rezultat. V $30$ primerih predvidevamo stanje padca, v $900$ pa predvidevamo stanje rasti.\\
+\begin{figure} 
+	\begin{center}  
 \includegraphics[scale=0.55]{slike/simulacija}
+\caption{Stanja v prihodnosti}
+\end{center} 
+\end{figure}  
+
 %\includegraphics[scale=1]{slike/razlike_stanj}[h!]
 \section{Zakljuèek}
 V svoji seminarski nalogi sem opisal delovanje skritih markovskih modelov, pri èemer sem se osredotoèil na finanène èasovne vrste.\\
