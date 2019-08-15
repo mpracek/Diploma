@@ -292,11 +292,12 @@ V zveznem primeru bomo predstavili primer, kjer so le te predstavljene kot mešan
 Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z porazdelitveno gostoto $$b_{i}(x) = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{ij}, \sigma_{ij}^2)$$, kjer je so Gaussova mešanica tudi funkcije nekega $x$, za katerega velja da je $x \in (-\infty,\infty)$.\\
 Pri nekem stanju $i$ je $b_i$ signal, ki ga prejmemo. V primeru finanènih èasovnih vrst bi torej to bila cena finanènega insturmenta. Cena je realna vrednost, ki jo vrne sluèajna spremenljivka, odvisna od stanja.\\
 \begin{primer}
-	Gaussovo mešanico lahko vidimo na spodnjih dveh slikah.\\
+	Gaussovo mešanico lahko vidimo na dveh slikah in sicer \ref{gaussova1} ter \ref{gaussova2}.\\
 	\begin{figure}[h!] 
 		\begin{center}  
 	\includegraphics[scale=1]{slike/funciji_gauss}\\
 	\caption{Loèeni normalni porazdelitvi}
+	\label{gaussova1}
 \end{center} 
 \end{figure}  
 	Na prvi sliki imamo dve gostoti normalne porazdelitvene funkcije. Prva je standardno normalno porazdeljena, torej $N(0,1)$, druga pa je porazdeljena $N(3,5)$.\\
@@ -304,6 +305,7 @@ Pri nekem stanju $i$ je $b_i$ signal, ki ga prejmemo. V primeru finanènih èasovn
 		\begin{center}  
 	\includegraphics[scale=0.5]{slike/ggplot2}\\
 	\caption{Ocena z Gaussovo mešanico}
+	\label{gaussova2}
 \end{center} 
 \end{figure}  
 	Na drugi sliki pa vidimo kako z Gaussovo mešanico ocenimo skupno porazdelitev. Skupna porazdelitev je torej v našem primeru enaka 
