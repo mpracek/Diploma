@@ -251,7 +251,12 @@ $$P(A|B) = \frac{P(B|A)P(A)}{P(B)},$$ kjer velja, da dogodek $A$ predstavlja pre
 Ideja za delovanje skritih markovskih modelov izhaja iz dela Andrewa Viterbija na podroèju komunikacije. V komunikacijskih storitvah šumi namreè predstavljajo veliko težavo, zato se je ameriško-italijanski elektroinžiner domislil algoritma, s katerimi bi iz seta podatkov izloèili šume. 
 \begin{primer}
 	To si lahko predstavljamo kot da bi si na primer želeli na fiksnem mestu v elektriènem tokokrogu doloèiti naboj $Q(t)$ glede na naboj ob èasu $s$, kjer $s<t$. Zaradi napake pri merjenju $Q(s)$ ne moremo toèno doloèiti, saj zaznamo neko zmoteno razlièico $\widehat{Q(s)}$.\\
+	\begin{figure} 
+		\begin{center}
 	\includegraphics[scale=0.5]{slike/mesto}\\
+	\caption{Skica nekega elektriènega tokokroga z mestom meritve}
+\end{center} 
+\end{figure}  
 	 Želimo si torej naèin, ki bi èim bolj uèinkovito izloèil te napake. V naèem primeru imamo $6$ elektriènih virov in 4 žarnice. Po $30$ sekundah, ko zaženemo tokokrog, izmerimo naboj na mestu meritve. Zanima nas, ali je naboj po minuti še vedno enak. 
 \end{primer}\\
 Skrite markovske modele navadno predstavimo na diskretnih množicah in na diskretnem èasu, a lahko definicijo tako razširimo, da velja tudi za zvezne množice in èas. V tem primeru dobimo tri plasten sluèajni proces, katerega najveèja težava je  velika raèunska zahtevnost, poleg tega pa nam lahko veliko število parametrov prinese nestabilnost. Vendar se z zveznimi primeri v svojimi diplomski nalogi ne bom ukvarjal.\\
@@ -272,13 +277,13 @@ Kot vsak matematièni model, ima tudi skriti markovski model svoje zahteve.
 	\item Prva zahteva je, da lahko rezultate, ki jih model producira, opazujemo v ekvidistanènih èasih, torej je razlika med dvema poljubnima zaporednima èasoma opazovanja $t-1$ in $t$ vedno enaka, na primer $d$. Rezulate imenujemo signali ali opazovanja.
 	\item V vsakem izmed èasov $t$ je sistem lahko v enem izmed $N$ stanj. Ta stanja so $S_{1}, S_{2}, \ldots, S_{N}$. Vsako izmed stanj $S_{i}$ je sluèajna spremenljivka, ki je lahko zvezna ali diskretna, a njenega porazdelitvenega zakona ne poznamo. Ta stanja so v èasu $t$ neznana, vemo le, kakšni so rezultati našega procesa v tem èasu. Zato potrebujemo dodatni sluèajni proces ${\displaystyle Q=(Q_{t})_{t = 1,2, \ldots }}$, ki nam pove, v kakšno je opazovanje v èasu $t$. Tako velja, da je signal $O_{t}$ dan s stanjem sluèajnega procesa $Q$, v odvistnosti od gostote verjetnostne porazdelitve Gaussove mešanice.
 	\item Vektor verjetnosti zaèetnih stanj je oznaèen z $\Pi$, in vsota njegovih elementov je enaka $1$. Dolžina tega vektorja je $N$, torej je enaka številu možnih stanj. Seveda velja, da je $\Pi_{i}$ verjetnost, da se v zaèetku nahajamo v stanju $i$. 
-	\item V vsakem èasu velja, da bodisi sistem spremeni svoje stanje, bodisi ostane isto. Verjetnost prehoda v vsako stanje je doloèena s prehodnimi verjetnostmi, podanimi v matriki $A_{t}$, kjer verjetnost prehoda iz stanja $i$ v èasu $t$ v stanje $j$ v èasu $t+1$ simbolizira element $a_{ij}^{t}$. Vsota vsake vrstice vsake matrike $A_{t}$ je enaka $1$, saj bo v naslednjem èasu oèitno nekam prešla. Matrika $A_t$ je velikosti $N \times N$, kjer je $N$ število stanj. To velja, ker nam pove verjetnosti prehodov med poljubnimi stanji. 
+	\item V vsakem èasu velja, da bodisi sistem spremeni svoje stanje, bodisi ostane v istem. Verjetnost prehoda v vsako stanje je doloèena s prehodnimi verjetnostmi, podanimi v matriki $A_{t}$, kjer verjetnost prehoda iz stanja $i$ v èasu $t$ v stanje $j$ v èasu $t+1$ simbolizira element $a_{ij}^{t}$. Vsota vsake vrstice vsake matrike $A_{t}$ je enaka $1$, saj bo v naslednjem èasu oèitno nekam prešla. Matrika $A_t$ je velikosti $N \times N$, kjer je $N$ število stanj. To velja, ker nam pove verjetnosti prehodov med poljubnimi stanji. 
 	\item  Ker govorimo o markovskem modelu, bo stanje v èasu $t+1$ odvisno le od stanja v èasu $t$, ne pa od celotne zgodovine.
 	\end{enumerate}
  \ \\
 S temi predpostavkami bi lahko zmodelirali, a jih imamo še nekaj, ki nam sam model še precej olajšajo.
 \begin{enumerate}
-	\item Predpostavimo lahko, da so vse prehodne matrike $A^{t}$ enake, torej neodvisne od èasa $t$. Enolièno prehodno matriko torej lahko oznaèimo $A$. 
+	\item Predpostavimo lahko, da so vse prehodne matrike $A^{t}$ enake, torej neodvisne od èasa $t$, kar oznaèuje èasovno homogenost. Enolièno prehodno matriko torej lahko oznaèimo $A$. 
 	\item Signal v èasu $t$ je odvisen le od stanja modela v tem èasu; torej so sluèajne spremenljivke v èasu $t$ odvisne le od tega.
 \end{enumerate}
  \  \\
@@ -288,14 +293,24 @@ Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih fun
 Pri nekem stanju $i$ je $b_i$ signal, ki ga prejmemo. V primeru finanènih èasovnih vrst bi torej to bila cena finanènega insturmenta. Cena je realna vrednost, ki jo vrne sluèajna spremenljivka, odvisna od stanja.\\
 \begin{primer}
 	Gaussovo mešanico lahko vidimo na naslednjih dveh slikah.\\
+	\begin{figure} 
+		\begin{center}  
 	\includegraphics[scale=1]{slike/funciji_gauss}\\
+	\caption{Loèeni normalni porazdelitvi}
+\end{center} 
+\end{figure}  
 	Na prvi sliki imamo dve gostoti normalne porazdelitvene funkcije. Prva je standardno normalno porazdeljena, torej $N(0,1)$, druga pa je porazdeljena $N(3,5)$.\\
+	\begin{figure} 
+		\begin{center}  
 	\includegraphics[scale=0.5]{slike/ggplot2}\\
+	\caption{Ocena z Gaussovo mešanico}
+\end{center} 
+\end{figure}  
 	Na drugi sliki pa vidimo kako z Gaussovo mešanico ocenimo skupno porazdelitev. Skupna porazdelitev je torej v našem primeru enaka 
 	$$b_(x) = c_{1}N(x;0,1) + c_2N(x,3,5),$$
 	kjer za $c_1$ in $c_2$ velja, da je $c_1 \geq 0$ in  $c_2 \geq 0$ ter $c_1 + c_2 = 1$. Tako dobimo vsoto dveh normalnih porazdelitev in vsoto njunih porazdelitev.
 \end{primer}\\
-Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna; to pa pogosto ne drži za procese v realnem svetu, na primer za donose v financah. Za te veèkrat drži, da so "left-skewed", torej da je mediana veèja od povpreèja. \\
+Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna; to pa pogosto ne drži za procese v realnem svetu, na primer za donose v financah. Za te veèkrat drži, da so "left-skewed", kar pomeni asimetriènost v levo, torej da je mediana veèja od povpreèja. \\
 
 Tako potrebujemo za sestavo modela še:
 \begin{itemize}
@@ -307,7 +322,7 @@ Tako potrebujemo za sestavo modela še:
 Vse te matrike so velikosti $N \times M$ in z njimi opišemo Gaussove mešanice. \\
 Èe so sluèajne spremneljivke, ki opisujejo stanja diskretne, je opis stanj manj kompleksen. V tem primeru za opis diskretne spremenljivke potrebujemo le eno matriko, katere elementi opišejo vrednosti, ki jih dobimo. To matriko imenujemo izhodna matrika. Ta matrika je velikosti $N\times N$, kjer je $N$ število stanj.\\
 \subsection{Priprava in trening modela}\label{trening}
-Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem se bo potekal tako imenoval trening sistema. 
+Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem bo potekal tako imenovan trening sistema. 
 Ti podatki morajo biti zbrani na na primerni enoti; na ceno delnic vrednost le te pred $10$ leti ne bo vplivala toliko kot cena dan pred meritvijo. \\ 
 Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. \\ 
 Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.\\
@@ -315,7 +330,7 @@ V praksi število stanj vèasih doloèimo v skladu s potrebno aplikacijo, kot na pr
 Vèasih pa lahko to doloèimo preko Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo z razliènim številom stanj $N$ in izbere najboljšega. AIC ocenjuje relativno kakovost modela. Podobno deluje tudi BIC, to je Bayesianski informacijski kriterij.\\
 Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). Gre za metodo vektorske kvantitizacije, kjer želimo $n$ opazovanj razvrstiti v $k$ skupin, kjer vsako opazovanje razvrstimo v skupino, z najbližjim povpreèjem.\\
 Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost, da so bila vsa opazovanja doloèena tudi s strani modela najveèja, $P(O|\lambda)$. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana, $P(O|\lambda)$ pa je funkcija najveèjega verjetja.\\
-Naravno se pojavi vprašanje, kako to doloèimo. Izkaže se, da je uèinkovit sistem $naprej - nazaj$. Doloèimo spremenljivki $naprej$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $o$ do $t$ in stanje $i$, ter $nazaj$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Definirati pa rabimo le eno izmed njiju, saj gre pri $\beta_{t}(i)$ le alternativno metodo za $\alpha_{t}(i)$.
+Naravno se pojavi vprašanje, kako to doloèimo. Izkaže se, da je uèinkovit sistem $naprej - nazaj$. Doloèimo spremenljivki $naprej$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $0$ do $t$ in stanje $i$, ter $nazaj$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Definirati pa moramo le eno izmed njiju, saj gre pri $\beta_{t}(i)$ le za alternativno metodo za $\alpha_{t}(i)$.
 $\alpha_{t}(i)$ definiramo kot:
 $$\alpha_{1}(i) = \pi_{i}b_{i}(O_{1}) = \pi_{i}b_{i} = \sum_{k = 1}^{M}{c_{ik}} N(O_{1};\mu_{j}, \sigma_{j}^2)$$
 Naslednje $\alpha_{t+1}(j)$ lahko nato induktivno izraèunamo kot 
@@ -323,23 +338,23 @@ $$\alpha_{t+1}(j) = b_{j}(O_{t+1})\sum_{i=1}^{N}{\alpha_{t}(i)a_{ij}}$$
 Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben naèin izraèunamo tudi $\beta_{t}(i)$. $\beta$ je inicializirana z  
 $$\beta_{T}(i) \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
 $\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.\\
-Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.
-\\ Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
+Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.\\
+Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
 Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo, ne moremo pa zagotoviti globalnega maksimuma. Prav tako se lahko zgodi, da predobro opišemo nek set podatkov, to pomeni, da je 
 $P(O|\lambda_{dejanski}) \leq P(O|\lambda_{zadnji})$.
 Tako se lahko zgodi, da svoji oceni preveè zaupamo. \\
 Dejstvo, da nimamo globalnega maksimuma, temveè le lokalni pomeni, da lahko že manjša perturbacija paramterov pomeni spremembo lokalnega maksimuma in tako spremembo konènih rezultatov. Obèutljivost sistema je odvisna števila parametrov.\\
 %%%%%%Opiši BW
-Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista ravno nièelna. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
+Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista nièelna, kar pa se ne more zgoditi. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
 \\
-Veè problemov nam povzroèajo tri postavke z zvezno porazdelitivjo, to je $C$, $\Sigma$ in $\Gamma$. Dobra zaèetna ocena le teh je nujna za kakovost modela. Tudi tu se izkaže, da lahko, podobno kot pri oceni števila mešanic $M$ ozremo na razvršèanjem v skupine. Ta postopek nam sicer ne da globalnega minimuma, ki bi ga mogoèe lahko dobili na drugaèen naèin, a se v praksi izkaže za dobrega. Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $ij$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti šopov povpreèij.
+Veè problemov nam povzroèajo tri postavke z zvezno porazdelitivjo, to je $C$, $\Sigma$ in $\Gamma$. Dobra zaèetna ocena le teh je nujna za kakovost modela. Tudi tu se izkaže, da lahko, podobno kot pri oceni števila mešanic $M$ obrnemo na razvršèanjem v skupine. Ta postopek nam sicer ne da globalnega minimuma, ki bi ga mogoèe lahko dobili na drugaèen naèin, a se v praksi izkaže za dobrega. Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $(ij)$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti šopov povpreèij.
 \ \\
 Z znanimi zaèetnimi vrednostmi se lahko spustimo v maksimiziranje $P(O|\lambda)$. Osnovati moramo zaporedje $\lambda$ = $\lambda_{t}, t \in {0,\ldots}$, da bo veljalo  $$P(O|\lambda_{i+1})  \geqslant P(O|\lambda_{i})$$
 Za to zaporedje velja, da konvergira k lokalnemu maksimumu.\\
 
 \subsection{Natanèna doloèitev zaèetnih vrednosti}\label{zacetno}
 Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za maksimizacijo $P(O|\lambda)$. Izkaže se, da za maksimizacijo le tega potrebujemo še nekaj dodatnih formul, ki so rezultat Baum-Welchovega algortma. Z njimi definiramo veèfazni iterativni proces, pri katerem popravljamo vrednosti parametrov do konvergence.\\
-Kot prvo potrebujemo $\xi_{t}(i,j)$, ki nam pove verjtnost, da smo v èasu $t$ v stanju $i$ in v èasu $t+1$ v stanju $j$.
+Kot prvo potrebujemo $\xi_{t}(i,j)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $i$ in v èasu $t+1$ v stanju $j$.
 $$\xi_{t}(i,j) = \frac{\alpha_{t}(i)a_{ij}b_{j}(O_{t})\beta_{t+1}(j)}{P(O|\lambda)}.$$
 Vsota $\sum_{t=1}^{N}{\xi_{t}}$ nam pove prièakovano število prehodov iz stanja $i$ v stanje $j$.\\
 Druga je $\gamma_{t}(i)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $i$.
@@ -487,7 +502,7 @@ Vrednost tega se tako nahaja med $-1$ in $1$, ki pomenita popolno koreliranost, 
 \begin{definicija}{Finanèna èasovna vrsta} je èasovna vrsta, kjer so opazovanja $x_t$ vrednosti finanènega instrumenta v èasu $t$.
 \end{definicija}
 Finanèna èasovna vrsta je tako zaporedje opaženih vrednosti nekega finanènega instrumenta. 
-Analiza finanènih èasovnih vrst se ukvarja z teorijo in prakso doloèanja vrednosti finanènih instrumentov skozi èas. Zaradi elementa negotovosti, kot je na primer volatilnost finanènih instrumentov, jo moramo obravnavati loèeno od vseh ostalih èasovnih vrst. Velja namreè da ravno ta negotovost prikaže pomembnost statistiène teorije in metod, izpeljanih iz le te, v analizi finanènih èasovnih vrst.\\
+Analiza finanènih èasovnih vrst se ukvarja s teorijo in prakso doloèanja vrednosti finanènih instrumentov skozi èas. Zaradi elementa negotovosti, kot je na primer volatilnost finanènih instrumentov, jo moramo obravnavati loèeno od vseh ostalih èasovnih vrst. Velja namreè da ravno ta negotovost prikaže pomembnost statistiène teorije in metod, izpeljanih iz le te, v analizi finanènih èasovnih vrst.\\
 Z finanènimi èasovnimi vrstami se ukvarjajo statistiki ter kvantitativni finanèniki. V nasprotju z ostalimi finanènimi vrstami se lahko zaradi mikrostrukture trga zgodi, da imajo finaène èasovne vrste posebne lastnosti in obliko. Tako se pogosto predpostavlja, da so donosi $R$ normalno porazdeljeni z prièakovano vrednostjo $\mu$ in varianco $\sigma^{2}$,  $R \sim N(\mu,\sigma^{2})$. Vendar to ne velja, saj lahko hitro ugotovimo, da donos ne bo nikoli manjši od $-1$. Èe predpostavimo, da je $P_t$ cena instrumenta v èasu $t$, potem je oèitno, da le ta nikoli ne bo manjša od $0$. Potem je donos $R_t$ definiran kot $$R_t = \frac{P_t-P_{t-1}}{P_{t-1}} $$ kar pomeni, da je $$ -1= \frac{0-P_{t-1}}{P_{t-1}} \leq R_t.$$
 \\
 V prvi polovici $20.$ stoletja se je v povezavi z finanènimi trgi osnovala tako imenovana hipoteza o uèinkovitem trgu, ki pravi, da èe cene popolnoma predstavljajo prièakovanja in informacije vseh udeležencev trga, potem so njihove spremembe neprièakovane. To lahko povežemo tudi s teorijo sluèajnih procesov. Teorija martingalov pravi namreè, da je najboljša ocena jutrišnje cene današnja cena. Zato v finanènih èasovnih vrstah veèjo težo damo podatkom, ki so nam zgodili kasneje.
@@ -523,7 +538,7 @@ V zadnjem èasu se je uporaba skritih markovskih modelov v finanèništvu precej po
 Modeli, ki se jih uporablja v za napovedovanje cen finaènih instrumentov na kratki rok predvidevajo, da model sledi Brownovem gibanju, vendar velja, da ti modeli ne morejo zaznati ekstremnega gibanja cen. Tu je prednost tako imenovanih \textit{regime-switching} modelov, torej modelov pri katerih se zamenjujejo stanja in med katere spadajo tudi skriti markovski modeli.
 %%Dodaj še kakšen primer iz vira 2.
 \section{Praktièni primer}
-Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno "left-skewed", torej je mediana veèjaa od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
+Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno asimetrièni v levo, torej je mediana veèja od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
 Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
 Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona, na NYSE oznaèena z AMZN. \\
 \includegraphics[scale=0.34]{slike/celota}
