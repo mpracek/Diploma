@@ -246,7 +246,7 @@ Le ta nam pove, da je verjetnost da ostane v vodi $0.9$, medtem ko je verjetnost
 % razlika med viterbi in baum welch
 
 %mogoèe še veè kaj o lokalni/globalni konvergenvi -> perturbacije parametrov,...
-
+\pagebreak
 \section{Skriti markovski modeli}
 %Podaljšaj opis, dodatne razlage. Poišèi še kaj po virih. Dopiši!!
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces s skritimi stanji. Gre torej za tip modela, kjer lahko razberemo rezultat, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala.\\
@@ -438,6 +438,7 @@ Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Mont
 		}
 	\KwResult{Zaporedje stanj} 	
 \end{algorithm}\\
+\pagebreak
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno orodje za modeliranje. Naèini uporabe se zelo razlikujejo, od uporabe v financah do doloèevanja genoma. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasledenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
 \subsection{Procesiranje govora}
@@ -461,6 +462,7 @@ Skrite markovske modele se uporablja še na precej ostalih primerih. Skrite marko
 	\item napovedovanje prevoza.
 \end{itemize}
 Skriti markovski modeli so torej široko uporabno modelacijsko orodje.
+\pagebreak
 \section{Èasovne vrste}
 \begin{definicija}{Èasovna vrsta} množica opazovanj $x_t$, vsako opazovano ob èasih $t$ znotraj nekega èasovnega intervala.
 \end{definicija}
@@ -520,6 +522,7 @@ V prvi polovici $20.$ stoletja se je v povezavi z finanènimi trgi osnovala tako 
 %posebnosti finanènih èasovnih vrst
 %hipoteza predpostavlja niè trenda in serijskih korelacij
 %poglej v kjnigo od verbièa; unitroot (enotski koren) -> èe to velja ni stacionarna
+\pagebreak
 \section{Uporaba skritih markovskih modelov v finanènih èasovnih vrstah}
 Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osnovne ideje Andrewa Viterbija \ref{viterbi}, in sicer analiziranje signalov, ki jih prejmemo tako, da izloèimo šume v prejetem signalu.\\
 Aplikacija skritih markovskih modelov v finanène èasovne vrste je sorazmerno enostavna. Naše izbrane podatke o ceni nekega instrumenta doloèimo kot zaporedje opazovanj $O$. Na podlagi tega doloèimo število stanj ter zaèetne ocene vseh parametrov.\\
@@ -548,6 +551,7 @@ V zadnjem èasu se je uporaba skritih markovskih modelov v finanèništvu precej po
 \ \\
 Modeli, ki se jih uporablja v za napovedovanje cen finaènih instrumentov na kratki rok predvidevajo, da model sledi Brownovem gibanju, vendar velja, da ti modeli ne morejo zaznati ekstremnega gibanja cen. Tu je prednost tako imenovanih \textit{regime-switching} modelov, torej modelov pri katerih se zamenjujejo stanja in med katere spadajo tudi skriti markovski modeli.
 %%Dodaj še kakšen primer iz vira 2.
+\pagebreak
 \section{Praktièni primer}
 Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno asimetrièni v levo, torej je mediana veèja od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
 Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
@@ -605,6 +609,7 @@ Naravno se nam postavi vprašanje, kako bodo ta stanja sledila v prihodnje. S pom
 \end{figure}  
 
 %\includegraphics[scale=1]{slike/razlike_stanj}[h!]
+\pagebreak
 \section{Zakljuèek}
 V svoji seminarski nalogi sem opisal delovanje skritih markovskih modelov, pri èemer sem se osredotoèil na finanène èasovne vrste.\\
 Skriti markovski modeli so spadajo med markovske modele, za katere velja, da velja markovska lastnost, katerih razvoj se je zaèel z Andrejem Markovom. Z njimi opišemo sluèajne procese, pri katerih ne poznamo vseh podatkov, saj so skriti znotaj podatkov.\\
