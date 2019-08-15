@@ -440,7 +440,7 @@ Velja omeniti tudi, da na ta naèin, le z nekaj adaptacijami, deluje tudi Siri.
 \subsection{Uporaba v biologiji in biokemiji} \label{Biologija}
 Gre za eno izmed prvih uporab skritih markovskih modelov. Ker se je uporaba na tem podroèju zaèela precej zgodaj tudi ne preseneèa, da je uporaba precej široka. Uporaba skritih markovskih modelov se je v razširila zaradi poveèanja kolièine podatkov, ki je znanstvenikom na voljo. Ker so v zadnjem èasu doloèili veè zaporedij genoma, je tako kolièino podatkov težko obdelati brez uporabe naprednih raèunskih metod.\\
 Kot že reèeno, je uporaba skritih markovskih modelov v biologiji zelo široka. Uporablja se jih kot že reèeno za obdelave genoma, za doloèanje genov, za modeliranje procesov v celièni membrani. Splošno preprièanje je, da se bo uporaba skritih markovskih modelov v biologiji in ostalih povezanih znanostih še razširila.\\
-Pomemben primer uporabe v primeru doloèanja \textbf{integral membrane protein}, to je protein, ki je stalno pripet v biološko membano , saj predstavljajo $20-30\%$ proteinov v popolnoma sekvenciranih genomih. Tu loèimo dve vrsti proteinske strukture, $\alpha$ in $\beta$. Doloèanje $\alpha$ danes ni veè problem, se pa zato pojavljajo precej veèji problemi pri $\beta$ mebranskih proteinih. Za ta primer so avtorji \cite{membrana} razvili poseben primer skritega markovskega modela.\\
+Pomemben primer uporabe v primeru doloèanja integralnih membranskih proteinov. To je protein, ki je stalno pripet v biološko membano , saj predstavljajo $20-30\%$ proteinov v popolnoma sekvenciranih genomih. Tu loèimo dve vrsti proteinske strukture, $\alpha$ in $\beta$. Doloèanje $\alpha$ danes ni veè problem, se pa zato pojavljajo precej veèji problemi pri $\beta$ mebranskih proteinih. Za ta primer so avtorji \cite{membrana} razvili poseben primer skritega markovskega modela.\\
 Pomembna je tudi uporaba za lociranje genov, torej iskanje dela genomske deoksinukletinske kisline (DNK), ki kodira gene.
 \subsection{Ostali naèini uporabe}
 Skrite markovske modele se uporablja še na precej ostalih primerih. Skrite markovske modele se tako uporablja za 
@@ -542,9 +542,14 @@ Modeli, ki se jih uporablja v za napovedovanje cen finaènih instrumentov na krat
 \section{Praktièni primer}
 Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno asimetrièni v levo, torej je mediana veèja od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
 Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
-Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta zraste izven ranga, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona, na NYSE oznaèena z AMZN. \\
+Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta ne sledi trendu prvega dela, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona, na NYSE oznaèena z AMZN. Vidimo namreè lahko, da je bila v drugih $10$ letih rast cene delnice bolj konstanta kot v prvih $10$ letih. \\
+\begin{figure} 
+	\begin{center} 
 \includegraphics[scale=0.34]{slike/celota}
 \includegraphics[scale=0.34]{slike/polovica}\\
+\caption{Prikaz rasti cene delnic}
+\end{center} 
+\end{figure}  
 Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom. Tako se bomo morali osredotoèiti na krajše èasovno obdobje.\\
 Analizo bom izvedel tako, da bom poizkusil ugotoviti stanja, v katerih se je delnica nahajala. Loèil sem tri stanja in sicer stagnacija, rast cene ter padec cene. Pri treningu modela bom ceno na dan primerjal z povpreèjem prejšnjih 10 dni.\\
 \subsection{Analiza modela}\label{Analiza}
