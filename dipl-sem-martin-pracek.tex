@@ -334,17 +334,17 @@ Tako potrebujemo za sestavo modela še:
 	\item matriko $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco $b_j$ v stanju $i$.
 \end{itemize}
 Vse te matrike so velikosti $N \times M$ in z njimi opišemo Gaussove mešanice. \\
-Èe so sluèajne spremneljivke, ki opisujejo stanja diskretne, je opis stanj manj kompleksen. V tem primeru za opis diskretne spremenljivke potrebujemo le eno matriko, katere elementi opišejo vrednosti, ki jih dobimo. To matriko imenujemo izhodna matrika. Ta matrika je velikosti $N\times N$, kjer je $N$ število stanj.\\
+Èe so sluèajne spremenljivke, ki opisujejo stanja diskretne, je opis stanj manj kompleksen. V tem primeru za opis diskretne spremenljivke potrebujemo le eno matriko, katere elementi opišejo vrednosti, ki jih dobimo. To matriko imenujemo izhodna matrika. Ta matrika je velikosti $N\times N$, kjer je $N$ število stanj.\\
 \subsection{Priprava in trening modela}\label{trening}
-Ko vemo kaj potrebujemo, lahko zaènemo s pripravo naših modelov. Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem bo potekal tako imenovan trening sistema. 
+Preden zaènemo s doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem bo potekal tako imenovan trening sistema. 
 Ti podatki morajo biti zbrani na na primerni enoti; na ceno delnic vrednost le te pred $10$ leti ne bo vplivala toliko kot cena dan pred meritvijo. \\ 
 Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. \\ 
 Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.\\
 V praksi število stanj vèasih doloèimo v skladu s potrebno aplikacijo, kot na primer v \ref{Biologija}, oziroma z vizualnim ogledom toèk grafa iz zgodovinskih podatkov.\\
-Vèasih pa lahko to doloèimo preko Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov, ki lahko doloèijo z razliènim številom stanj $N$ in izbere najboljšega. AIC ocenjuje relativno kakovost modela. Podobno deluje tudi BIC, to je Bayesianski informacijski kriterij.\\
-Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). Gre za metodo vektorske kvantitizacije, kjer želimo $n$ opazovanj razvrstiti v $k$ skupin, kjer vsako opazovanje razvrstimo v skupino, z najbližjim povpreèjem.\\
-Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost, da so bila vsa opazovanja doloèena tudi s strani modela najveèja, $P(O|\lambda)$. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana, $P(O|\lambda)$ pa je funkcija najveèjega verjetja.\\
-Naravno se pojavi vprašanje, kako to doloèimo. Izkaže se, da je uèinkovit sistem $naprej - nazaj$. Doloèimo spremenljivki $naprej$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $0$ do $t$ in stanje $i$, ter $nazaj$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Definirati pa moramo le eno izmed njiju, saj gre pri $\beta_{t}(i)$ le za alternativno metodo za $\alpha_{t}(i)$.
+Vèasih pa lahko to doloèimo z uporabo Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov in izbere najboljšega. AIC ocenjuje relativno kakovost modela. Podobno deluje tudi BIC, to je Bayesov informacijski kriterij.\\
+Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). S to metodo želimo $n$ opazovanj razvrstiti v $k$ skupin, kjer upoštevamo, da želimo minimizirati skupno varianco in število skupin.\\
+Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost $P(O|\lambda)$, da so bila vsa opazovanja rezultat modela, najveèja. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana, $P(O|\lambda)$ pa je funkcija verjetja.\\
+Naravno se pojavi vprašanje, izbora primernih parametrov. Izkaže se, da je uèinkovit sistem $naprej - nazaj$. Doloèimo spremenljivki $nazaj$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $0$ do $t$ in stanje $i$, ter $naprej$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Posebej pa se moramo posvetiti le eni izmed njiju, saj gre pri $\beta_{t}(i)$ le za alternativno metodo za $\alpha_{t}(i)$.
 $\alpha_{t}(i)$ definiramo kot:
 $$\alpha_{1}(i) = \pi_{i}b_{i}(O_{1}) = \pi_{i}b_{i} = \sum_{k = 1}^{M}{c_{ik}} N(O_{1};\mu_{j}, \sigma_{j}^2)$$
 Naslednje $\alpha_{t+1}(j)$ lahko nato induktivno izraèunamo kot 
@@ -352,7 +352,7 @@ $$\alpha_{t+1}(j) = b_{j}(O_{t+1})\sum_{i=1}^{N}{\alpha_{t}(i)a_{ij}}$$
 Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben naèin izraèunamo tudi $\beta_{t}(i)$. $\beta$ je inicializirana z  
 $$\beta_{T}(i) \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
 $\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.\\
-Na ta naèin smo pokazali Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.\\
+Na ta naèin smo pridobili Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.\\
 Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
 Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo, ne moremo pa zagotoviti globalnega maksimuma. Prav tako se lahko zgodi, da predobro opišemo nek set podatkov, to pomeni, da je 
 $P(O|\lambda_{dejanski}) \leq P(O|\lambda_{zadnji})$.
