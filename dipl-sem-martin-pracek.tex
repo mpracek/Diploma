@@ -451,7 +451,7 @@ Da bomo proceiranje lahko zmodelirali, moramo najprej doloèiti slovar glasov, iz
 \subsection{Uporaba v biologiji in biokemiji} \label{Biologija}
 Gre za eno izmed prvih uporab skritih markovskih modelov. Ker se je uporaba na tem podroèju zaèela precej zgodaj tudi ne preseneèa, da je uporaba precej široka. Uporaba skritih markovskih modelov se je v razširila zaradi poveèanja kolièine podatkov, ki je znanstvenikom na voljo. Ker so v zadnjem èasu doloèili veè zaporedij genoma, je tako kolièino podatkov težko obdelati brez uporabe naprednih raèunskih metod.\\
 Kot že reèeno, je uporaba skritih markovskih modelov v biologiji zelo široka. Uporablja se jih kot že reèeno za obdelave genoma, za doloèanje genov, za modeliranje procesov v celièni membrani. Splošno preprièanje je, da se bo uporaba skritih markovskih modelov v biologiji in ostalih povezanih znanostih še razširila.\\
-Pomemben primer uporabe v primeru doloèanja integralnih membranskih proteinov. To je protein, ki je stalno pripet v biološko membano , saj predstavljajo $20-30\%$ proteinov v popolnoma sekvenciranih genomih. Tu loèimo dve vrsti proteinske strukture, $\alpha$ in $\beta$. Doloèanje $\alpha$ danes ni veè problem, se pa zato pojavljajo precej veèji problemi pri $\beta$ mebranskih proteinih. Za ta primer so avtorji \cite{membrana} razvili poseben primer skritega markovskega modela.\\
+Pomemben primer uporabe v primeru doloèanja integralnih membranskih proteinov. To je protein, ki je stalno pripet v biološko membano, saj predstavljajo $20-30\%$ proteinov v popolnoma sekvenciranih genomih. Tu loèimo dve vrsti proteinske strukture, $\alpha$ in $\beta$. Doloèanje $\alpha$ danes ni veè problem, se pa zato pojavljajo precej veèji problemi pri $\beta$ mebranskih proteinih. Za ta primer so avtorji \cite{membrana} razvili poseben primer skritega markovskega modela.\\
 Pomembna je tudi uporaba za lociranje genov, torej iskanje dela genomske deoksinukletinske kisline (DNK), ki kodira gene.
 \subsection{Ostali naèini uporabe}
 Skrite markovske modele se uporablja še na precej ostalih primerih. Skrite markovske modele se tako uporablja za 
@@ -465,14 +465,14 @@ Skrite markovske modele se uporablja še na precej ostalih primerih. Skrite marko
 Skriti markovski modeli so torej široko uporabno modelacijsko orodje.
 \pagebreak
 \section{Èasovne vrste}
-\begin{definicija}{Èasovna vrsta} množica opazovanj $x_t$, vsako opazovano ob èasih $t$ znotraj nekega èasovnega intervala.
+\begin{definicija}{Èasovna vrsta} je množica opazovanj $x_t$, vsako opazovano ob èasih $t$ znotraj nekega èasovnega intervala.
 \end{definicija}
 
 \begin{definicija}{Model èasovne vrste} za opazovane podatke ${x_t}$ je sluèajni proces $X_t$, kjer velja, da so $x_t$ realizacije tega sluèajnega procesa v èasih $t$.\\
 \end{definicija}
 
 Vrednosti delnic po dnevih, število uporabnikov spletne strani po urah, prebivalstvo neke države po letih, \ldots To je le nekaj izmed mnogih primerov uporabe èasovnih vrst. Èasovne vrste nam dajo lepšo idejo o trendu podatkov, ki jih želimo analizirati. Enostavno lahko vidimo, ali je npr. cena jagod odvisna od letnega èasa ter ali se cena jabolk skozi leta spreminja. \\
-Èasovna analiza je lahko analitièna, kjer preuèujemo podatke iz preteklosti, ter prediktivna, kjer želimo napovedati neke trende. Analize lahko poteka na veè naèinov, od linearnih in nelinearnih modelov do modelov z eno spremenljivko in modelov z veè spremenljivkami. Prav zaradi njihove široke uporabnosti se je razvilo zelo veliko modelov za njihovo analizo, zaèensi leta $1970$ z delom Boxa in Jenkinsa na podroèju samoregresivnega integriranega tekoèega povpreèja, danes znanega pod kratico ARIMA.\\
+Èasovna analiza je lahko analitièna, kjer preuèujemo podatke iz preteklosti, ter prediktivna, kjer želimo napovedati neke trende. Analize lahko poteka na veè naèinov, od linearnih in nelinearnih modelov do modelov z eno spremenljivko in modelov z veè spremenljivkami. Prav zaradi njihove široke uporabnosti se je razvilo zelo veliko modelov za njihovo analizo, zaèenši leta $1970$ z delom Boxa in Jenkinsa na podroèju avtoregresivnega integriranega drseèega povpreèja, danes znanega pod kratico ARIMA.\\
 Èasovne vrste so po definiciji odvisne od èasa. Prav zato je pomembno, da se opazovanj med seboj medèasovno ne menja. Opazovanja $x_t$ so tako razporejena po èasih, ko so bila zaznana, torej narašèajoèem èasu $t$.\\
 V realnosti pogosto velja, da so zaporedna opazovanja med seboj odvisna. To je predvsem oèitno, èe pomislimo na najbolj tipièen primer finanène èasovne vrste, in sicer vrednostnega procesa cene neke delnice.  Èe vidimo, da ima v èasu $t$ delnica ceno $p$, si lahko navadno mislimo, da bo v èasu $t+1$ cena blizu $p$.
 Glede na èase, v katerih gledamo rezultate naše èasovne vrste v grobem loèimo $3$ tipe:
@@ -486,19 +486,19 @@ S finanènimi vrstami se sreèujemo vsak dan in v najrazliènejših oblikah. Zaradi 
 Navadno je glavni namen analize èasovnih vrst napovedovanje trendov, vendar se je to podroèje z razvojem predvsem podatkovnega rudarjenja razširilo tudi na druga podroèja.
 %mogoèe še kaj o èasovnih vrstah
 \subsection{Dodatne lastnosti modela}
-Ko imamo opravka z modeli èasovnih vrst, je zelo pomembno, da se zavedamo, da na vrednosti vpliva zaporedna odvisnost. To pomeni, da nas zanima odnos, ki ga imajo zaporedna opazovanja. Da lahko o tem govorimo, pa moramo pogledati prvih nekaj momentov. Pri tem privzamemo sintakso iz \ref{zahteva}.
+Ko imamo opravka z modeli èasovnih vrst, je zelo pomembno, da se zavedamo, da na vrednosti vpliva avtokorelacija. To pomeni, da nas zanima odnos, ki ga imajo zaporedna opazovanja. Da lahko o tem govorimo, pa moramo pogledati prvih nekaj momentov. Pri tem privzamemo sintakso iz \ref{zahteva}.
 
 \begin{lema}
 	Naj bo $f$ funkcija, za katero velja, da je $E(f(X)) < \infty$ za neko sluèajno spremenljivko $X$. Naj bo $Q_t$ sluèajna spremenljivka, ki nam v èasu $t$ pove opazovanje. Naj še velja, da je imamo glede na opazovanje možnih $m$ opazovanj. Potem najprej velja, da je 
 	$$ E(f(Q_t)) = \sum_{i=1}^{m}E(f(Q_t)|S_t =i)P(S_t =i)$$
 	poleg tega pa velja še
 	$$ E(f(Q_t,Q_{t+k})) = \sum_{i,j=1}^{m}E(f(Q_t,Q_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}$$
-	kjer je $\Gamma^k_{ij}$ $ij$ element matrike $\Gamma$.
+	kjer je $\Gamma^k_{ij}$ $ij$ element matrike $\Gamma$, kjer je $\Gamma$ prehodna matrika med stanji.
 \end{lema}
 %Povej še kaj je gamma
 Dokaz prvega je enostaven, saj $E(f(Q_t))$ zgolj pogojimo na $S_t =i$. Za drugo enakost pa moramo najprej pogojiti na $S_{t+k}$, potem pa upoštevamo, da je to pogojna verjetnost zgolj na $S_{t+k} =j$ in $S_t =i$. 
 Na ta naèin smo prišli do izraèuna drugega momenta, kjer za funkcijo $f$ v prvem primeru vzamemo kvadriranje. Tako velja $ E(Q_t^2) = \sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)$ in posledièno je varianca modela enaka
-$$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-(\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i))^2.$$
+$$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-((\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i)))^2.$$
 Po drugi enaèbi lahko izraèunamo tudi $E(Q_t Q_{t+1})$, in sicer velja
 $$ E(Q_tQ_{t+k})) = \sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}.$$
 Tako dobimo kovarianco kot 
@@ -537,7 +537,7 @@ V zadnjem èasu se je uporaba skritih markovskih modelov v finanèništvu precej po
 	%Poglej èe je logièno
 	Eno izmed klasiènih vprašanj, ki sem nam postavijo je v finanèni optimizaciji je problem optimalne izbire portfelja. To vprašanje se da rešiti tudi z uporabo linearnega programiranja in skritih markovskih modelov.\\
 	Predpostavimo, da imamo v trenutnem èasu kapital $M$, ki ga lahko vložimo v $N$ razliènih vrednostnih papirjev. Odloèiti se moramo, kako bomo naš kapital razdelili tako, da bomo maksimizirali svoj donos in hkrati minimizirali tveganje.\\
-	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je donos sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko  $R_j$. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$ kjer je $R_x$ sluèajna spremenljivka.\\
+	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je donos sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko  $\widehat{R}_j$. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$ kjer je $R_x$ sluèajna spremenljivka.\\
 	To nalogo lahko predstavimo kot linearni program s pomoèjo pogojne vrednosti ob padcu CVaR. CVar je mera tveganja, ki nam oceni tržno ali kreditno tveganje portfelja. Tako pridemo do optimizacijskega problema oblike
 	\begin{gather*}
 	\min \quad CVaR_\alpha(R_x) \\
@@ -546,7 +546,7 @@ V zadnjem èasu se je uporaba skritih markovskih modelov v finanèništvu precej po
 	\end{aligned}
 	\end{gather*}
 	kjer je $d$ prej doloèen zahtevan donos, $\alpha$ pa stopnja zavrnitve.\\
-	Skriti markovski modeli se v igro vkljuèijo, ko moramo aproksimirati donose. Kot že vemo, je $R_j$ diskretna aproksimacija donosa s konènim številom stanj. Ta stanja doloèimo kot razlièna možna stanja finanènega instrumenta na naših podatkih. Nato znanih podatkov doloèimo še vhodne in izhodne matrike za vse sluèajne spremenljvivke.\\
+	Skriti markovski modeli se v igro vkljuèijo, ko moramo aproksimirati donose. Kot že vemo, je $\widehat{R}_j$ diskretna aproksimacija donosa s konènim številom stanj. Ta stanja doloèimo kot razlièna možna stanja finanènega instrumenta na naših podatkih. Nato znanih podatkov doloèimo še vhodne in izhodne matrike za vse sluèajne spremenljivke.\\
 	Z zbranim znanjem in podatki izvedemo simulacije veè razliènih scenarijev, èemur na koncu sledi še reševanje dejanskega linearnega programa.
 \end{primer}
 \ \\
