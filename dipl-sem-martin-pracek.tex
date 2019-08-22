@@ -353,12 +353,11 @@ Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben 
 $$\beta_{T}(i) \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
 $\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.\\
 Na ta naèin smo pridobili Baum-Welchov algoritem, ki je osnova delovanja skritih markovskih modelov.\\
-Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo v naprej oceniti zaèetne parametre $\lambda$. \\
+Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse podatke iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo vnaprej oceniti zaèetne parametre $\lambda$. \\
 Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo, ne moremo pa zagotoviti globalnega maksimuma. Prav tako se lahko zgodi, da predobro opišemo nek set podatkov, to pomeni, da je 
 $P(O|\lambda_{dejanski}) \leq P(O|\lambda_{zadnji})$.
 Tako se lahko zgodi, da svoji oceni preveè zaupamo. \\
 Dejstvo, da nimamo globalnega maksimuma, temveè le lokalni pomeni, da lahko že manjša perturbacija paramterov pomeni spremembo lokalnega maksimuma in tako spremembo konènih rezultatov. Obèutljivost sistema je odvisna števila parametrov.\\
-%%%%%%Opiši BW
 Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista nièelna, kar pa se ne more zgoditi. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
 \\
 Veè problemov nam povzroèajo tri postavke z zvezno porazdelitivjo, to je $C$, $\Sigma$ in $\Gamma$. Dobra zaèetna ocena le teh je nujna za kakovost modela. Tudi tu se izkaže, da lahko, podobno kot pri oceni števila mešanic $M$ obrnemo na razvršèanjem v skupine. Ta postopek nam sicer ne da globalnega minimuma, ki bi ga mogoèe lahko dobili na drugaèen naèin, a se v praksi izkaže za dobrega. Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $(ij)$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti šopov povpreèij.
@@ -368,13 +367,13 @@ Za to zaporedje velja, da konvergira k lokalnemu maksimumu.\\
 
 \subsection{Natanèna doloèitev zaèetnih vrednosti}\label{zacetno}
 Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za maksimizacijo $P(O|\lambda)$. Izkaže se, da za maksimizacijo le tega potrebujemo še nekaj dodatnih formul, ki so rezultat Baum-Welchovega algortma. Z njimi definiramo veèfazni iterativni proces, pri katerem popravljamo vrednosti parametrov do konvergence.\\
-Kot prvo potrebujemo $\xi_{t}(i,j)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $i$ in v èasu $t+1$ v stanju $j$.
+Kot prvo potrebujemo $\xi_{t}(i,j)$, ki nam pove  pogojno verjetnost, da smo v èasu $t$ v stanju $i$ in v èasu $t+1$ v stanju $j$, glede na vektor opazovanj $O$ in nabor parametrov $\lambda$ .
 $$\xi_{t}(i,j) = \frac{\alpha_{t}(i)a_{ij}b_{j}(O_{t})\beta_{t+1}(j)}{P(O|\lambda)}.$$
-Vsota $\sum_{t=1}^{N}{\xi_{t}}$ nam pove prièakovano število prehodov iz stanja $i$ v stanje $j$.\\
+Vsota $\sum_{t=1}^{N}{\xi_{t}}(i,j)$ nam pove prièakovano število prehodov iz stanja $i$ v stanje $j$.\\
 Druga je $\gamma_{t}(i)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $i$.
 $$\gamma_{t}(i) = \frac{\alpha_{t}(i)\beta_{t}(i)}{P(O|\lambda)}$$
 Vsota $\sum_{t=1}^{N}{\gamma_{t}(i)}$ nam pove prièakovano število prehodov iz stanja $i$.\\
-Zadnja, tretja pa je $\gamma_{t}(j,k)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $j$, in $k$ta mešanica predstavlja $O_{t}$. 
+Zadnja, tretja pa je $\gamma_{t}(j,k)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $j$, in $k$ ta mešanica doloèa $O_{t}$. 
 $$ \gamma_{t}(j,k) =\gamma_{t}(j)\frac{c_{jk} N(x;\mu_{jk}, \sigma_{jk}^2)}{\sum_{m = 1}^{M}{c_{jm}} N(x;\mu_{jm}, \sigma_{jm}^2)}$$
 \ \\
 Iz teh podatkov lahko nato popravimo izraèun elementov:
@@ -422,7 +421,7 @@ Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki na
 \subsection{Generiranje poti v skritem markovskem modelu}
 V celoti lahko sedaj predstavimo delovanje skritega markovskega modela na primeru generiranja ene poti. V tem primeru je pot na primer cenovni proces, ki ga bo glede na naš model opravil finanèni instrument.\\
 Glede na naše podatke, ki jih oznaèimo kot $O = (O_1,\ldots, O_T)$ ocenimo parametre našega modela $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Zaèetne vrednosti elementov  $\Pi,A$ in $C$ predpostavimo kot enake, za $\Gamma$ in $\Sigma$ pa ocenimo prek razvršèanja v skupine. Te parametre rekurzivno izboljšujemo, dokler nismo zadovoljni z doloèeno $P(O|\lambda)$. Parametre, ki smo jih dobili na ta naèin lahko za isti set podatkov uporabimo poljubno mnogokrat. \\
-V naslednjem koraku doloèimo trenutno stanje našega modela, torej stanje iz katerega zaèeli. V tem trenutku doloèimo še èas, do katerega želimo oceniti naš proces, naj bo to recimo $T_T$.\\
+Doloèiti moramo še trenutno stanje našega modela, torej stanje iz katerega zaèeli. V tem trenutku doloèimo še èas, do katerega želimo oceniti naš proces, naj bo to recimo $T_T$.\\
 Naslednji korak si lahko predstavljamo kot zanko. Èe predpostavimo, da naš parameter $t$ teèe od èasa $T$ do èasa $T_T$, v vsakem koraku glede na stanje, v katerem se nahajmo, izberemo stanje, v katerega se bomo premaknili v naslednjem koraku. V vsakem koraku še shranimo stanje, v katerem smo bili. Na ta naèin dobimo pot, ki jo generira skriti markovski model.\\
 Ta postopek lahko ponovimo veèkrat, kar se izkaže precej uporabno v primeru Monte Carlo simulacije. 
 \begin{algorithm}[h!]
