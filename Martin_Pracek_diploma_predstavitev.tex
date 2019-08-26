@@ -1,0 +1,399 @@
+\documentclass{beamer} % "Beamer" is a word used in Germany to mean video projector. 
+
+\usetheme{Berlin} % Search online for beamer themes to find your favorite or use the Berkeley theme as in this file.
+\usepackage[slovene]{babel}
+\usepackage[cp1250]{inputenc}
+\usepackage{color} % It may be necessary to set PCTeX or whatever program you are using to output a .pdf instead of a .dvi file in order to see color on your screen.
+\usepackage{graphicx} % This package is needed if you wish to include external image files.
+\usepackage{wrapfig}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{url}
+\usepackage{authblk}
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{primer}[definicija]{Primer}
+\newtheorem{opomba}[definicija]{Opomba}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
+
+
+% za stevilske mnozice uporabi naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+
+
+
+%\theoremstyle{definition} % See Lesson Three of the LaTeX Manual for more on this kind of "proclamation."
+%\newtheorem*{dfn}{A Reasonable Definition}               
+\begin{document}
+\title{Skriti markovski modeli v analizi finanènih èasovnih vrst }
+%\newcommand{\imeavtorja}{Martin Praèek} % ime avtorja
+%\newcommand{\imementorja}{izr. prof. dr. Damjan Å kulj}
+\institute{Fakulteta za matematiko in fiziko, Univerza v Ljubljani}
+%\date{January 6, 2012} 
+% Remove the % from the previous line and change the date if you want a particular date to be displayed; otherwise, today's date is displayed by default.
+
+%\AtBeginSection[]  % The commands within the following {} will be executed at the start of each section.
+%{%
+%\begin{frame} % Within each "frame" there will be one or more "slides."  
+%\frametitle{} % This is the title of the outline.
+%\tableofcontents[currentsection]  % This will display the table of contents and highlight the current section.
+%\end{frame}
+%} % Do not include the preceding set of commands if you prefer not to have a recurring outline displayed during your presentation.
+\begin{frame} 
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		Martin Praèek \\
+		Mentor: izr. prof. dr. Damjan Škulj
+		
+		\vspace{3cm}
+		\includegraphics[scale=1]{slike/logo}
+		
+		
+		\vfill
+		
+		\large Ljubljana, september 2019
+		
+	\end{center}
+\end{titlepage}
+\end{frame}
+
+%\section{Markovski model} % Since this is the start of a new section, our recurring outline will appear here.
+
+
+\begin{frame} 
+\frametitle{Markovska lastnost}
+\begin{definicija}
+	Naj bo $(\Omega,\mathcal{F},\mathbb{P},(\mathcal{F}_s)_{0 \leq s})$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj bo $(S,\mathcal{S})$ merljiv prostor.  Na $(S,\mathcal{S})$ merljiv sluèajni proces $X(X_t)_{t\in I}$, ki je prilagojen na filtracijo, ima markovsko lastnost, èe za vsak $A \in \mathcal{S}$ in vsak par $s,t\in I$, kjer velja $s<t$ velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s)$$
+\end{definicija}
+\end{frame}
+
+\begin{frame} 
+\begin{table}[h]
+	\caption{Razdelitev markovskih procesov}
+	\begin{tabular}{lllll}
+		\cline{1-3}
+		\multicolumn{1}{|c|}{}            & \multicolumn{1}{c|}{V celoti opazovan}         & \multicolumn{1}{c|}{Le delno opazovan} \\ \cline{1-3}
+		\multicolumn{1}{|c|}{Avtonomen}   & \multicolumn{1}{c|}{Markovska veriga} & \multicolumn{1}{c|}{Skriti markovski model}    \\ \cline{1-3}
+		\multicolumn{1}{|c|}{Kontorliran} & \multicolumn{1}{c|}{Markovski odloèitveni proces} & \multicolumn{1}{c|}{Delno opazovan proces}   \\ \cline{1-3}
+		&                                &                             &           &         
+	\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Primer}
+	$$X \sim \begin{pmatrix}
+-1&0&1\\
+1/3&1/3&1/3
+\end{pmatrix}$$
+$$S_n = \sum_{t=1}^{n}X_t$$
+$$P(S_{11} = 3)= P(S_{10}+X_{11}=3|S_{10}=3)=$$ 
+$$P(X_{11}= 0)=P(X=0)=1/3$$.
+
+\end{frame}
+
+\begin{frame} 
+\frametitle{Skriti markovski model}
+Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces s skritimi stanji. Gre torej za tip modela, kjer lahko vidimo le signal.\\
+\begin{itemize}
+	\item Stanja so neznana
+	\item Dinamièna Bayesova mreža
+	\item Bayesova statistika
+	\end{itemize}
+\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Druge vrste skritih markovskih modelov}
+%	\begin{enumerate}
+%		\item Zvezni primeri
+%		\item Odvisno od veè spremenljivk
+%	\end{enumerate}
+%\includegraphics[scale=0.3]{slike/gore}
+%\end{frame}
+
+\begin{frame} 
+\frametitle{Zgodovina}
+\includegraphics[scale=0.8]{slike/onjegin2}
+\end{frame}
+
+\begin{frame}
+\includegraphics[scale=0.8]{slike/AAMarkov}
+\end{frame}
+
+\begin{frame}
+\frametitle{Zgodovina}
+	\begin{itemize}
+		\item Matematièna teorija komunikacije
+		\item EM-algoritem
+		\item Stratonoviè
+		\item Viterbi
+		\item Baum-Welch
+		\item James Hamilton
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Zahteve}
+\begin{itemize}
+	\item Markovska lastnost
+	\item Enakomerno porazdeljeni èasi signalov $O_{t}$, ki jih poda resnièni svet
+	\item Sistem ima $N$ stanj, vsako doloèa sluèajna spremenjivka $S$
+\end{itemize}
+\includegraphics[scale=0.2]{slike/hmm}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Sluèajnih spremenljivk skoraj v nobenem èasu ne poznamo, poznamo pa sluèajni proces $Q$, ki predstavlja signale
+\item Porazdelitveni zakon vsakega stanja $i$ oznaèimo z $b_{i}(x)$
+\item Vektor zaèetnih stanj je $\pi$
+\item Prehodna matrika $A$, ki je neodvisna od èasa
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Porazdelitveni zakon}
+\begin{itemize}
+\item Gaussova mešanica
+\item  $b_{i} = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{j}, \sigma_{j}^2)$
+\item Število porazdelitev $M$
+\item Matrika $\Gamma$, $\mu_{ij}$ predstavlja prièakovano vrednost porazdelitve $j$ v stanju $i$
+\item Matrika $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco porazdelitve $j$ v stanju $i$
+\item Matrika $C$, koeficienti $c_{ij}$ iz Gaussove mešanice
+\end{itemize}
+\end{frame}
+
+
+\begin{frame} 
+\frametitle{Generiranje poti v skritem markovskem modelu}
+\begin{itemize}
+	\item $O = (O_1,\ldots, O_T)$
+	\item $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$
+	\item $P(O|\lambda)$
+	\item Zaèetno stanje
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Uporaba}
+\begin{itemize}
+	\item Biologija
+	\item Procesiranje govora
+	\end{itemize}
+	\includegraphics[scale=0.2]{slike/gen}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Èasovne vrste}
+\begin{definicija}{Èasovna vrsta} množica opazovanj $x_t$, vsako opazovano ob èasih $t$ znotraj nekega èasovnega intervala.
+\end{definicija}
+
+\begin{definicija}{Model èasovne vrste} za opazovane podatke ${x_t}$ je sluèajni proces $X_t$, kjer velja, da so $x_t$ realizacije tega sluèajnega procesa v èasih $t$.\\
+\end{definicija}
+\end{frame}
+
+%\begin{frame} 
+%\begin{itemize}
+%	\item Analitièna ali prediktivna
+%	\item Odvisne od èasa
+%	\item Odvisnost
+%\end{itemize}
+%\includegraphics[scale=0.2]{slike/delnica}
+%\end{frame}
+
+%\begin{frame} 
+%\begin{itemize}
+%	\item Diskreten èas
+%	\item Zvezen èas
+%	\item Diskretne vrednosti
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}
+%\frametitle{Kovarianca}
+%\begin{lema}
+%	Naj bo $f$ funkcija, za katero velja, da je $E(f(X)) < \infty$ za neko sluèajno spremenljivko $X$. Naj bo $Q_t$ sluèajna spremenljivka, ki nam v èasu $t$ pove opazovanje. Naj še velja, da je imamo glede na opazovanje možnih $m$ opazovanj. Potem najprej velja, da je 
+%	$$ E(f(Q_t)) = \sum_{i=1}^{m}E(f(Q_t)|S_t =i)P(S_t =i)$$
+%	poleg tega pa velja še
+%	$$ E(f(Q_t,Q_{t+k})) = \sum_{i,j=1}^{m}E(f(Q_t,Q_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}$$
+%	kjer je $Gamma^k_{ij}$ $ij$ element matrike $\Gamma$.
+%\end{lema}
+%\end{frame}
+%\begin{frame}
+%$$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-(\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i))^2.$$
+%$$ E(Q_tQ_{t+k})) = \sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}.$$
+%$$Cov(Q_t,Q_{t+k})= E(Q_tQ_{t+k})) - E(Q_t)E(Q_{t+k}).$$
+%$$\rho_k = \frac{Cov(Q_t,Q_{t+k})}{Var(Q_t)}.$$
+%
+%\end{frame}
+
+
+\begin{frame} 
+\begin{definicija}{Finanèna èasovna vrsta} je èasovna vrsta, kjer so opazovanja $x_t$ vrednosti finanènega instrumenta v èasu $t$.
+\end{definicija}
+\end{frame}
+
+\begin{frame}
+\frametitle{Posebnosti}
+\begin{itemize}
+	\item Normalna porazdelitev donosov 
+	\item Hipoteza o uèinkovitem trgu
+\end{itemize}
+$$ -1= \frac{0-P_{t-1}}{P_{t-1}} \leq R_t$$
+\end{frame}
+
+\begin{frame} 
+\frametitle{Uporaba skritih markovskih modelov v finanènih èasovnih vrstah}
+\begin{itemize}
+	\item Zaporedje cen $O$
+	\item Finanèna optimizacija
+	\item Brownovo gibanje
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Problem izbire portfelja}
+\begin{itemize}
+	\item Kapital $M$
+	\item $N$ vrednostnih papirjev
+	\item Vsak papir ima donos $R_j$
+	\item $R_x = \sum_{j=1}^{N}{x_jR_j}$
+	\item $d$ zahtevan donos
+	\item $\alpha$ stopnja zavrnitve
+\end{itemize}
+\end{frame}
+\begin{frame}
+	\begin{gather*}
+	\min \quad CVaR_\alpha(R_x) \\
+	\begin{aligned}
+	\textup{p.p.}\quad E(R_x) \geq d \\
+	\end{aligned}
+	\end{gather*}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Praktièni primer}
+\begin{itemize}
+	\item Asimetrija v levo
+	\item Tesla Inc.
+\end{itemize}
+\begin{figure} 
+	\begin{center}  
+		\includegraphics[scale=0.25]{slike/teslaa}\\
+		\caption{Cena delnice Tesla, Inc.}
+	\end{center} 
+\end{figure}  
+\end{frame}
+
+\begin{frame}
+$$
+\begin{bmatrix}
+0.334 & 0 & 0.666  \\
+0 & 1 & 0  \\
+0.001 & 0 & 0.999 \\
+\end{bmatrix}$$
+
+\begin{figure}[h!] 
+	\begin{center}  
+		\includegraphics[scale=0.3]{slike/transition}\\
+		\caption{Verjetnosti prehoda med stanji}
+	\end{center} 
+\end{figure}  
+\end{frame}
+
+\begin{frame}
+\begin{figure}[h!]
+	\begin{center}  
+		\includegraphics[scale=0.45]{slike/stanje}\\
+		\caption{Stanja na obmoèju treninga}
+	\end{center} 
+\end{figure}  
+\end{frame}
+
+\begin{frame}
+\begin{figure}[h!] 
+	\begin{center}  
+		\includegraphics[scale=0.45]{slike/simulacija}
+		\caption{Stanja v prihodnosti}
+	\end{center} 
+\end{figure}  
+\end{frame}
+
+\begin{frame}
+\frametitle{Zakljuèek}
+	V svoji seminarski nalogi sem opisal delovanje skritih markovskih modelov, pri èemer sem se osredotoèil na finanène èasovne vrste.\\
+	Opisal sem osnove teorije in modelacije ter pripravil lastni model.
+\end{frame}
+
+\begin{frame}
+\frametitle{Zahvala}
+\begin{block}
+	Zahvalil bi se vsem, ki so mi pomagali na poti do diplome. Svojim stašem, bratu, sestrama, Neži, vsem profesorjem in asistentom na Fakulteti za matematiko in fiziko ter še posebej profesorju doktorju Damjanu Škulju.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Viri}
+	\begin{thebibliography}{9}
+	\bibitem{prvivir}
+	D.~Roman, G.~Mitra in N.~Spagnolo, \emph{Hidden Markov models for financial optimization problems}, IMA Journal of Management Mathematics \textbf{21} (2010) 111--129.
+	
+	\bibitem{macdonald}
+	I.L.~MacDonald in W.~Zucchini, \emph{Hidden Markov and Other Models for Discrete- valued Time Series}, Chapman \& Hall/CRC Monographs on Statistics \& Applied Probability  \textbf{70}, Chapman \& Hall, London, 1997.
+	
+	\bibitem{mamon}
+	R.S.~Mamon in R.J.~Elliott \emph{Hidden Markov Models in Finance}, International Series in Operations Research \& Management Science  \textbf{104}, Springer, New York, 2007.
+\end{thebibliography}		 
+\end{frame}
+
+\begin{frame}
+\frametitle{Viri}
+\begin{thebibliography}{9}
+
+	\bibitem{davis}
+	P.J.~Brockwell, R.A.~Davis \emph{Introduction to Time Series and Forecasting},2nd edition, Springer, 2002.
+	
+	\bibitem{yoon}
+	B.J.~Yoon, \emph{Hidden Markov Models and their Applications in Biological Sequence Analysis}, v: Current genomics, 10,6(2009):402-415, [29. 7. 2019], dostopno na \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/}.
+	
+	\bibitem{membrana}
+	\emph{A Hidden Markov Model method, capable of predicting and discriminating $\beta$-barrel outer membrane proteins}, BMC Bioinformatics \textbf{5} (2004) 
+\end{thebibliography}		 
+\end{frame}
+
+\begin{frame}
+\frametitle{Viri}
+\begin{thebibliography}{9}
+	
+	\bibitem{membrana}
+	P.G.~Bagos, T.D.~Liakopoulos, I.C~Spyropoulos, S.J.~Hamodrakas,  \emph{A Hidden Markov Model method, capable of predicting and discriminating $\beta$-barrel outer membrane proteins}, v: BMC Bioinformatics, 5(2004), [30. 7. 2019], dostopno na \url{https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-5-29}.
+	
+	\bibitem{zgodovina}
+	P.~Dymarski, \emph{Hidden Markov Models, Theory and Application}, InTech, Rijeka, 2011
+	
+\end{thebibliography}		 
+\end{frame}
+\end{document}
+
