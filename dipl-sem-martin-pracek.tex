@@ -597,6 +597,7 @@ Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, v katerem sem lahko svoj model uèil.\\
 Za svoj portfelj sem želel ugotoviti skrita stanja, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} loèil glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}.\\
 %Ko je vprašanje števila stanj odgovorjeno potrebujemo še pravilno število mešanic. Z upoštevanjem Akakijevega informacijskega kriterija se izkaže, da je optimalno število mešanic za na primer enako $3$.\\
+
 \begin{figure}[h!]
 	\begin{center} 
 		\includegraphics[scale=1]{slike/prehodna_slika}\\
@@ -604,8 +605,16 @@ Za svoj portfelj sem želel ugotoviti skrita stanja, ki se skrivajo za signali, k
 	\end{center} 
 \end{figure}  
 
-
-
+\begin{table}[]
+	\caption{Prehodna matrika}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		& Normalna  & Visoka    & Ekstremna  \\ \hline
+		Normalna  & 0.6511804 & 0.3029273 & 0.04589235 \\ \hline
+		Visoka    & 0.3533702 & 0.4477348 & 0.19889503 \\ \hline
+		Ekstremna & 0.1097778 & 0.3977778 & 0.49244444 \\ \hline
+	\end{tabular}
+\end{table}
 %Za to delnico sem torej poizkusil ugotoviti stanja, v katerih so se ob koncu vsakega trgovalnega dneva nahajala delnica.\\
 %V svojem primeru sem kot reèeno loèil stanje rasti, stagnacije in padca cen. Med stanji sem moral najprej doloèiti prehodno matriko, in iz podatkov ugotovil, da je oblike
 %$$
