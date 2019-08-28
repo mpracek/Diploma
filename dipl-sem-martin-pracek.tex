@@ -584,9 +584,15 @@ Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena
 \end{center} 
 \end{figure}  
 Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom.\\
-Alternativni pristop pravi, da vzamemo stacionarne vrste, kjer gledamo le relativne razlike med cenami delnic.\\
+Alternativni pristop pravi, da vzamemo stacionarne vrste, kjer gledamo le relativne razlike med cenami delnic. Tu uporabljamo princip stacionarnosti èasovnih vrst.\\
+\begin{figure}[h!]
+	\begin{center} 
 \includegraphics[scale=1]{slike/odmik}\\
-V tem primeru smo uporabili le odmik od cene prejšnjega dne. Tu uporabljamo princip stacionarnosti èasovnih vrst.\\
+\caption{Primer stacionarne vrste}
+\end{center} 
+\end{figure}  
+
+V tem primeru smo uporabili le odmik od cene prejšnjega dne za isto delnico.\\
 \subsection{Analiza modela}\label{Analiza}
 Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Zanje bom analiziral stanja cen ob koncu trgovalnega dne.\\
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, v katerem sem lahko svoj model uèil.\\
