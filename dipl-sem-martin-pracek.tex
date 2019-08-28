@@ -591,12 +591,11 @@ Alternativni pristop pravi, da vzamemo stacionarne vrste, kjer gledamo le relati
 \caption{Primer stacionarne vrste}
 \end{center} 
 \end{figure}  
-
 V tem primeru smo uporabili le odmik od cene prejšnjega dne za isto delnico.\\
 \subsection{Analiza modela}\label{Analiza}
 Za splošno analizo kakovosti modela sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Zanje bom analiziral stanja cen ob koncu trgovalnega dne.\\
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, v katerem sem lahko svoj model uèil.\\
-Za svoj portfelj sem želel ugotoviti skrita stanja, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} loèil glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, kot trdi \cite{AustrianALMO}.\\
+Za svoj portfelj sem želel ugotoviti skrita stanja, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} loèil glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}.\\
 Ko je vprašanje števila stanj odgovorjeno potrebujemo še pravilno število mešanic. Z upoštevanjem Akakijevega informacijskega kriterija se izkaže, da je optimalno število mešanic za na primer enako $3$.\\
 
 
