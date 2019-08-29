@@ -289,7 +289,7 @@ Prav tako je možno s skritimi markovskimi modeli predstaviti procese, odvisne od
 Ideja skritih markovskih modelov se v svoji prvi fazi zaène z ruskim matematikom Andrejem Andrejevièem Markovom, ki je za èasa svojega življenja med $1865-1922$ razvil idejo markovskega procesa in verige. Prve teoretiène rezultate markovskih verig je svetu predstavil $1906$, kar najdemo v \cite{markovena}, $1913$ pa je izraèunal zaporedje èrk rušèine \cite{markovdva}. Slednji izraèun je opravil na besedilu Jevgenij Onjegin ruskega pesnika Aleksandra Sergejevièa Puškina. Markov je želel s tem dokazati veljavnost šibkega zakona velikih števil zaradi spora z drugim ruskim matematikom Pavlom Nekrasom, a je na ta naèin odprl novo vprašanje v matematiki.\\
 Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne preseneèa, da se je nadaljni razvoj zaèel šele z širšo uporabo raèunalnikov. Po pomembnem delu, ki so ga opravili von Neumann, Turing in Conrad Zuse so se znanstveniki zaèeli pospešeno ukvarjati z implementacijo primernih algoritmov. Velik korak k temu je pripomogel Claude Shannon s svojim delom Matematièna teorija komunikacije \cite{shanon}.\\ 
 Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nekaj razvojev algoritmov. Prvi algoritem je bil algoritem maksimizacije prièakovane vrednosti (Expectation-maximization), ali, kot ga med drugim poznamo, EM-algoritem. Tega so uporabljali med drugim že Laplace, Gauss in drugi, vendar je do dokonènega poimenovanja prišlo šele leta $1977$. Dempster, Laird in Rubin so algoritem poimenovali in razložili splošno teorijo, ki deluje v ozadju procesa.
-Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji. Pri tem algoritmu deluje princip dinamiènega programiranja, ki najde najbolj verjeto zaporedje stanj, glede na dano opazovano zaporedje dogodkov. Viterbijev algoritem je podrobneje opisan v algoritmu \ref{viterbi}.\\
+Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji v \cite{viterbidva}. Pri tem algoritmu deluje princip dinamiènega programiranja, ki najde najbolj verjeto zaporedje stanj, glede na dano opazovano zaporedje dogodkov. Viterbijev algoritem je podrobneje opisan v algoritmu \ref{viterbi}.\\
 Celotnih modelov pa prav gotovo ne bi bilo brez še enega Rusa, in sicer Ruslana Leontijevièa Stratonovièa, ki je prvi opisal rekurzijo naprej - nazaj leta $1960$. To je delal na primeru optimalnega nelinearnega problema filtracije.\\
 Za glavnega avtorja pa velja Leonard E. Baum. Skupaj z  Lloyd R. Welchem sta okrog leta $1970$ razvila Baum-Welchov algoritem, kjer gre za poseben primer posplošenega EM-algoritma. Prav Baum-Welchov algoritem je tisti korak, pri katerem velja, da je bila dokonèno izpeljana teorija za skritimi markovskimi modeli. Algoritem uporablje EM-algoritem da najde cenilko po metodi najveèjega verjetja glede na dano zaporedje podatkov. Delovanje algoritma je podrobno razloženo v \ref{trening}, njegove zahteve pa v \ref{zahteva}. \\
 Uporabe skrith markovskih modelov na podroèju financ in ekonomije pa ne bilo brez dela ameriškega ekonometrista Jamesa Hamiltona, ki je predlagal, da bi model, katerega stanj in prehodov med njimi ne poznamo, opišemo z markovskim modelom.
@@ -690,6 +690,18 @@ A.~Geyer, W. T. ~Ziemba, (2008) \emph{The Innovest Austrian Pension Fund Financi
  A.A.~Markov,  (1906) \emph{Extension of the Law of Large Numbers to Dependent Events}. Bulletin of the Society of the Physics Mathematics, Kazan, Russia, 2, 155-156.
  \bibitem{markovdva}
  A.A.~ Markov, \emph{Primer statisticheskogo issledovaniya nad tekstom “Evgeniya Onegina”, illyustriruyuschijsvyaz’ ispytanij v cep’},Izvestiya Akademii Nauk, SPb, VI seriya, tom 7, 9 3, 1913, 153-162.
+ \bibitem{dempster}
+A.~Dempster, N.~Laird, D.~Rubin, (1977). \emph{Maximum Likelihood from Incomplete Data via the EM Algorithm}. Journal of the Royal Statistical Society. Series B (Methodological), 39(1), 1-38. 
+\bibitem{viterbidva}
+A.~Viterbi, (1967). \emph{Error bounds for convolutional codes and an asymptotically optimum
+decoding algorithm}, IEEE Transactions on Information Theory. 13, Nr. 2,pp.260-269.
+\bibitem{baumwelch}
+ L.E.~ Baum et al.(1970). \emph{A maximization technique occurring in the statistical analysis of
+probabilistic functions of Markov chains}, The Annals of Mathematical Statistics, Vol.
+41, No. 1, 164–171.
+\bibitem{straton}
+R. L.~Stratonovich, \emph{Conditional Markov Processes}, Theory Probab. Appl., 5:2 (1960), 156–178
+
 \end{thebibliography}
 
 \end{document}
