@@ -287,7 +287,7 @@ Prav tako je možno s skritimi markovskimi modeli predstaviti procese, odvisne od
 %To velja, ker so determinante $\Sigma_{ij}$ zelo majhne, kar posledièno privede do prevelikih vrednosti $P(O|\lambda)$, kjer je $P(O|\lambda)$ funkcija verjetja. Ob vsakem novem koraku iteracije tako pridobimo nov $\lambda$ in posledièno novo pogojno verjetnost. Ta verjetnost lahko v tem primeru zelo hitro naraste, in tako se iteracija prehitro konèa.
 \subsection{Zgodovina modela}
 Ideja skritih markovskih modelov se v svoji prvi fazi zaène z ruskim matematikom Andrejem Andrejevièem Markovom, ki je za èasa svojega življenja med $1865-1922$ razvil idejo markovskega procesa in verige. Prve teoretiène rezultate markovskih verig je svetu predstavil $1906$, $1913$ pa je izraèunal zaporedje èrk rušèine. Slednji izraèun je opravil na besedilu Jevgenij Onjegin ruskega pesnika Aleksandra Sergejevièa Puškina. Markov je želel s tem dokazati veljavnost šibkega zakona velikih števil zaradi spora z drugim ruskim matematikom Pavlom Nekrasom, a je na ta naèin odprl novo vprašanje v matematiki.\\
-Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne preseneèa, da se je nadaljni razvoj zaèel šele z širšo uporabo raèunalnikov. Po pomembnem delu, ki so ga opravili von Neumann, Turing in Conrad Zuse so se znanstveniki zaèeli pospešeno ukvarjati z implementacijo primernih algoritmov. Velik korak k temu je pripomogel Claude Shannon s svojim delom Matematièna teorija komunikacije.\\ 
+Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne preseneèa, da se je nadaljni razvoj zaèel šele z širšo uporabo raèunalnikov. Po pomembnem delu, ki so ga opravili von Neumann, Turing in Conrad Zuse so se znanstveniki zaèeli pospešeno ukvarjati z implementacijo primernih algoritmov. Velik korak k temu je pripomogel Claude Shannon s svojim delom Matematièna teorija komunikacije \cite{shanon}.\\ 
 Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nekaj razvojev algoritmov. Prvi algoritem je bil algoritem maksimizacije prièakovane vrednosti (Expectation-maximization), ali, kot ga med drugim poznamo, EM-algoritem. Tega so uporabljali med drugim že Laplace, Gauss in drugi, vendar je do dokonènega poimenovanja prišlo šele leta $1977$. Dempster, Laird in Rubin so algoritem poimenovali in razložili splošno teorijo, ki deluje v ozadju procesa.
 Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji. Pri tem algoritmu deluje princip dinamiènega programiranja, ki najde najbolj verjeto zaporedje stanj, glede na dano opazovano zaporedje dogodkov. Viterbijev algoritem je podrobneje opisan v algoritmu \ref{viterbi}.\\
 Celotnih modelov pa prav gotovo ne bi bilo brez še enega Rusa, in sicer Ruslana Leontijevièa Stratonovièa, ki je prvi opisal rekurzijo naprej - nazaj leta $1960$. To je delal na primeru optimalnega nelinearnega problema filtracije.\\
@@ -684,6 +684,10 @@ P.~Dymarski, \emph{Hidden Markov Models, Theory and Application}, InTech, Rijeka
 
 \bibitem{AustrianALMO}
 A.~Geyer, W. T. ~Ziemba, (2008) \emph{The Innovest Austrian Pension Fund Financial Planning Model InnoALM}. Operations Research 56(4):797-810.
+\bibitem{shanon}
+ C.E.~Shannon, \emph{A Mathematical Theory of Communication}. Bell System Technical Journal. 27 (3): 379–423
+ \bibitem{markovena}
+ A.A.~Markov,  (1906) \emph{Extension of the Law of Large Numbers to Dependent Events}. Bulletin of the Society of the Physics Mathematics, Kazan, Russia, 2, 155-156.
 \end{thebibliography}
 
 \end{document}
