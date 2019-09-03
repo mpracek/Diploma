@@ -461,7 +461,7 @@ Ta postopek lahko ponovimo veèkrat, kar se pomaga pri Monte Carlo simulaciji.
 		}
 	\KwResult{Zaporedje stanj} 	
 \end{algorithm}\\
-
+\pagebreak
 \section{Uporaba}
 Skriti markovski modeli so zelo široko uporabno orodje za modeliranje. Naèini uporabe se zelo razlikujejo, od uporabe v financah do doloèevanja genoma. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasledenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
 \subsection{Procesiranje govora}
@@ -595,11 +595,11 @@ Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena
 \end{figure}  
 Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom, zato raje uporabimo stacionarno vrsto. V tem primeru sem uporabil le odmik od cene prejšnjega dne za isto delnico.\\
 \subsection{Analiza modela}\label{Analiza}
-Za splošno oceno modela sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne.\\
+Za splošno oceno modela sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne. Signale torej predstavlja cena tega portfelja.\\
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, na katerem sem lahko svoj model uèil.\\
 Model, ki ga bomo uporabili je model z diskretnimi stanji. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse paratmetre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
-Za svoj portfelj sem želel ugotoviti skrita stanja, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}.\\
-Iz podatkov pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno za prehodno matriko.\\
+Za svoj portfelj sem želel ugotoviti skrita stanja, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj smo pridobili prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik.\\
+Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo.\\
 %%Popravi izraèunano prehodno matriko z oceno matrike iz Matlab paketa!!!
 %%Nujen popravek
 \begin{table}[h!]
@@ -635,8 +635,16 @@ Iz podatkov pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhod
 		\caption{Stanja ob koncu leta $2008$}
 	\end{center} 
 \end{figure}  
- Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $7$ pa prikazuje stanja v zaèetku leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa.
-
+ Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $7$ pa prikazuje stanja v koncu leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa. 
+% 
+% \begin{figure}[h!]
+% 	\label{cetrtek}
+% 	\begin{center} 
+% 		\includegraphics[scale=0.9]{slike/porftelj}\\
+% 		\caption{Cena porftelja ob koncu leta $2008$}
+% 	\end{center} 
+% \end{figure}  
+		
 \pagebreak
 \section{Zakljuèek}
 V svoji seminarski nalogi sem opisal delovanje skritih markovskih modelov, pri èemer sem se osredotoèil na finanène èasovne vrste.\\
