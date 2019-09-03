@@ -1,0 +1,714 @@
+\documentclass[12pt,a4paper]{amsart}
+% ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
+\usepackage[slovene]{babel}
+\usepackage[cp1250]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{url}
+\usepackage{kbordermatrix}
+%\usepackage[normalem]{ulem}
+%\usepackage{pdfx}
+\usepackage[dvipsnames,usenames]{color}
+\usepackage[ruled]{algorithm2e}
+\usepackage{algpseudocode}
+\usepackage{graphicx} % This package is needed if you wish to include external image files.
+%\usepackage{subfig}
+
+% ne spreminjaj podatkov, ki vplivajo na obliko strani
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\pagestyle{plain}
+\overfullrule=15pt % oznaci predlogo vrstico
+
+
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{primer}[definicija]{Primer}
+\newtheorem{opomba}[definicija]{Opomba}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
+
+
+% za stevilske mnozice uporabi naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+
+
+% naslednje ukaze ustrezno popravi
+\newcommand{\program}{Finanèna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
+\newcommand{\imeavtorja}{Martin Praèek} % ime avtorja
+\newcommand{\imementorja}{izr. prof. dr. Damjan Škulj} % akademski naziv in ime mentorja
+\newcommand{\naslovdela}{Skriti markovski modeli v analizi finanènih èasovnih vrst }
+\newcommand{\letnica}{2019} %letnica diplome
+
+
+% vstavi svoje definicije ...
+
+
+
+
+\begin{document}
+
+% od tod do povzetka ne spreminjaj nicesar
+\thispagestyle{empty}
+\noindent{\large
+UNIVERZA V LJUBLJANI\\[1mm]
+FAKULTETA ZA MATEMATIKO IN FIZIKO\\[5mm]
+\program\ -- 1.~stopnja}
+\vfill
+
+\begin{center}{\large
+\imeavtorja\\[2mm]
+{\bf \naslovdela}\\[10mm]
+Delo diplomskega seminarja\\[1cm]
+Mentor: \imementorja}
+\end{center}
+\vfill
+
+\noindent{\large
+Ljubljana, \letnica}
+\pagebreak
+
+\thispagestyle{empty}
+\tableofcontents
+\pagebreak
+
+\thispagestyle{empty}
+\begin{center}
+{\bf \naslovdela}\\[3mm]
+{\sc Povzetek}
+\end{center}
+% tekst povzetka v slovenscini
+V moji diplomski nalogi sem se ukvarjal z skritimi markovskimi modeli. Gre za vrsto markovskega modela, kjer ne poznamo stanj, v katerih se model nahaja. Ta stanja so torej skrita, od koder tudi izhaja ime skriti markovski modeli. V svojem delu sem opisal osnove teorije skritih markovskih modelov ter nekaj primerov uporabe, obenem pa sem opisal še praktièni primer. Posvetil sem se tudi èasovnim vrstam in nekaj njihovim posebnim lastnostim.
+\vfill
+\begin{center}
+{\bf Hidden Markov Models in Financial Time Series Analysis}\\[3mm] % prevod slovenskega naslova dela
+{\sc Abstract}
+\end{center}
+% tekst povzetka v anglescini
+For my graduate thesis I researched Hidden Markov Models, a type of Markov Models where states of model are not known. This state are therefore hidden, thus naming Hidden Markov Model. My paper discusses the base theory behind hidden markov models and some applications. Also, I included my own example. There is also a part about time series and some of their special properties.
+
+\vfill\noindent
+{\bf Math. Subj. Class. (2010):}  	60J05,60J22,91B84, 	91B74, 	91B70, 	91G80,91G70 , 	65K05 \\[1mm]
+{\bf Kljuène besede:} skriti markovski modeli, èasovne vrste, sluèajni proces\\[1mm]
+{\bf Keywords:}  hidden markov models, time series, stohastic process
+\pagebreak
+
+
+% tu se zacne besedilo seminarja
+
+% slovar
+\section*{Slovar strokovnih izrazov}
+\geslo{Skriti markovski model}{ je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces s skritimi stanji.}\\
+\geslo{Gaussova mešanica}{ je porazdelitvena funkcija z gostoto, ki jo lahko zapišemo kot tehtano povpreèje normalnih gostot; $$f(x) = \sum_{j = 1}^{M}{c_{j}} f_{N,j}(x;\mu_{j}, \sigma_{j}^2)$$. Veljati mora še, da je $$\sum_{j = 1}^{M}{c_{j}} = 1$$ in da je $f_{N,j}(x;\mu_{j}, \sigma_{j}^2)$ gostota verjetnosti normalne porazdelitvene funkcije.}\\
+\geslo{Akaikejev informacijski kriterij}{ oziroma AIC je merilo relativne kakovosti modela glede na preostale modele za iste podatke.Naj velja, da imamo podatke s $k$ ocenjenimi parametri in $\hat{L}$ maksimalna vrednost funkcije verjetja. AIC izraèunamo kot $$AIC = 2k - 2ln(\hat{L})$$ AIC primerja veè razliènih modelov po kakovosti, kjer je najboljši tisti z najmanjšo vrednostjo.}\\
+\geslo{Baum-Welchov algoritem}{Je algoritem, s katerim poišèemo neznane parametre skritih markovskih modelov.}\\%malo razlage
+\geslo{Prièakovan primankljaj}{Naj bo $X$ donos portfelja nekoè v prihodnosti in naj velja da je $0<\alpha<1$, kjer je $\alpha$ stopnja zaupanja. Prièakovan primankljaj $ES_\alpha$ je definiran kot $$ES_\alpha = -\frac{1}{\alpha}\int_{0}^{\alpha}{VaR_\gamma(x)d\gamma}$$kjer je $VaR_\gamma$ tvegana vrednost. }  \\
+%
+\pagebreak
+\section{Uvod}
+%%Dodelaj uvod
+Skriti markovski modeli so modelacijsko orodje, ki nam omogoèa zelo široko uporabo. V mojem diplomskem seminarju se najbolj posveèam uporabi v finanèni analizi. Z njimi opišemo procesez neznanimi lastnostmi, saj so skriti znotaj podatkov. Prav to nam omogoèa dober uvid v finanène vrste. \\
+Skrite markovske modele lahko predstavljamo kot dvojico sluèajnih procesov, ki sta med seboj neodvisna. Prvi proces predstavlja stanja, ki jih ne vidimo. Vidimo pa rezultate drugega sluèajnega procesa, ki nam vraèa signale. Tipièen primer signala je cena delnice.\\
+V drugem poglavju predstavljam osnove teorije za markovskimi modeli, ter razlike med razliènimi vrstami le teh, bolj podrobno pa se posveèam markovskih verigam. Razlike med razliènimi vrstami markovskih modelov so predstavljene na primeru.\\
+V tretjem poglavju se podrobno posveèam skritim markovskim modelom. Najprej motiviram njihovo uporabo ter predstavil osnovno idejo, ki je bila potrebna za vzpostavitev skritih markovskih modelov. V naslednjem delu tretjega poglavja se posvetim zgodovini skritih markovskih modelov in osebam, ki so osnovale skrite markovske modele.\\
+Naslednji razdelek je posveèen zahtevam, ki jim moramo ugoditi, da lahko skrite markovske modele modeliramo. Temu sledi tudi razlaga priprave in treninga modela ter doloèitev zaèetnih vrednosti.\\
+Naslednja dva dela predstavljata zadnji sklop znotraj poglavja o skritih markovskih modelih. Tu je namreè opisano, kako ugotovimo trenutno stanje ter je orisan algoritem, ki stoji za tem, na koncu pa je opisano še, kako generiramo pot v skritem markovskem modelu.\\
+Naslednje poglavje je posveèeno razliènim naèinom uporabe, kjer se najbolj podrobno posvetim procesiranju govora in uporabi v biologiji.\\
+Peto poglavje je posveèeno èasovnim vrstam ter nekaterim njihovim posebnim lastnostim,  POleg tega posebej opišem finanène èasovne vrste.\\
+Šesto poglavje je posebej posveèeno uporabi skritih markovskih modelov v finanènih èasovnih vrstah. To še podrobneje predstavim z primerom.\\
+Praktièni primer je postavljen v sedmo poglavje in predstavlja analizo skritih markovskih modelov za portfelj $5$ posebej izbranih delnic.
+\pagebreak
+
+\section{Markovski modeli}
+%Dodaj še kaj o markovskih modelih
+Skriti markovski modeli spadajo v bolj splošno skupino modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
+\begin{definicija}\label{markov}
+Naj bo $(\Omega,\mathcal{F},\mathbb{P},(\mathcal{F}_s)_{s \geq 0 })$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj velja, da je $(S,\mathcal{S})-$merljiv prostor na katerem obstaja merljiv sluèajni proces $X=(X_t)_{t\in I}$, ki je prilagojen na filtracijo.\\
+Potem pravimo, da ima sluèajni proces markovsko lastnost, èe za vsak $A \in \mathcal{S}$ in vsak par $s,t\in I$, kjer velja $s \leq t$, velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s).$$
+\end{definicija}
+Tu velja, da je $\Omega$ množica, $\mathcal{F}$ pa $\sigma$-algebra na njej. $\Omega$ je množica vseh možnih stanj, v katerih se lahko nahaja neka sluèajna spremenljivka. Èe tako na primer velja, da naša sluèajna spremenljivka lahko zavzame katero koli naravno število, bo potem $\Omega = \mathbb{N}$, $\mathcal{F}$ pa bo enak $\mathcal{F}= 2^\mathbb{N}$.\\
+Velja še, da je $\mathbb{P}$ mera na tej množici, kjer velja, da je $\mathbb{P}(\Omega) = 1$, torej je ta mera verjetnostna. Za $(\mathcal{F}_s)_{s \geq 0 }$ pravimo, da je filtracija, v posebnem pa je $\mathcal{F}_T$ $\sigma$-algebra zgodovine èasa $T$, torej za vsak dogodek do èasa $T$ vemo, ali se je dogodek zgodil ali ne.\\
+Zahteva o merljivosti prostora pomeni, da ima množico $S$ podmnožico $\mathcal{S}$, ki zadošèa pogojem za obstoj $\sigma$-algebre. Potem je par  $(S,\mathcal{S})$ merljiv prostor.\\
+Sluèajni proces je nabor sluèajnih spremenljivk in si ga navadno predstavljamo kot zaporedje sluèajnih spremenljivk skozi èas. Da je sluèajni proces filtracija pomeni, da za vsak $n$ velja, da je $X_n$ za $\mathcal{F}_n$ merljiv. \\
+Enakost torej pravi, da ni ni razlike med tem, ali bomo pogledali verjetnost $X_t \in A$ pogojno na $\sigma$-algebro zgodovine èasa $s$, ali pa pogledamo le, kaj nam pokaže sluèajna spremenljvika $X_s$.
+To definicijo lahko v primeru markovskih verig še dopolnimo, èe velja še, da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}).$$
+Na ta naèin definiramo markovsko verigo.
+\begin{definicija}
+	Markovska veriga v diskretnem èasu je zaporedje sluèajnih spremenljivk $X_1,X_2,X_3,\ldots$ z markovsko lastnostjo, torej je stanje v naslednjem èasu odvisno le od zadnjega stanja.
+	Pri tem mora veljati, da je
+	$$P(X_{n+1}=x|X_{1}=x_1,X_{2}=x_2,\ldots,X_{n}=x_n)=P(X_{n+1}=x|X_{n}=x_n),$$
+	èe so pogojne verjetnosti dobro definirane, to je, èe velja, 
+	$$P(X_{1}=x_1,X_{2}=x_2,\ldots,X_{n}=x_n)>0$$
+\end{definicija}
+Gre torej za poseben primer, kjer je imamo sluèajni proces v diskretnih èasih, ki lahko v vsakem èasu zavzame le neko diskretno vrednost. V pogoju na levi strani enaèaja so sedaj podani vsi dogodki, ki so se zares zgodili, markovska lastnost pa nam pove, da nas zanima zgolj zadnji dogodek.
+
+\begin{primer}
+	Markovsko verigo si najlažje predstavljamo s pomoèjo sluèajnih sprehodov. Recimo, da imamo sluèajni proces, ki v vsakem èasu $t$ z verjetnostjo $1/3$ zavzame $1$, z verjetnostjo $1/3$ zavzame $0$, z verjetnostjo $1/3$ pa zavzame $-1$. Torej velja da je $X_t \sim X$ za vsak $t$ in 
+	$$X \sim \begin{pmatrix}
+	-1&0&1\\
+	1/3&1/3&1/3
+	\end{pmatrix}$$
+	Naj bo sedaj $S_n$ sluèajna spremenljivka, ki je definirana kot $S_n = \sum_{t=1}^{n}X_t$.
+	Recimo, da $S_{10}$ pokaže $3$. Zanima nas verjetnost, da bo $S_{11} = 3$. Oèitno vidimo, da je ta verjetnost enaka $1/3$, saj velja 
+	$$P(S_{11} = 3)= P(S_{10}+X_{11}=3|S_{10}=3) =P(X_{11}= 0)=P(X=0)=1/3$$.
+	Torej je vrednost naslednjega odvisna le od sedanjega stanja in vrednosti $X_{11}$, ni pa pomembno, kako smo prišli do $S_{10} = 3$, kar je toèno to, kar nam pove markovska lastnost. \\
+\end{primer}
+
+V posebnem lahko za markovske verige reèemo še, da so èasovno homogene, èe velja 
+$$P(X_n|X_{n-1})=P(X_1|X_0).$$ To pomeni, da so vse sluèajne spremenljivke v sluèajnem procesu enako porazdeljene.\\
+Markovska lastnost nam pove, da je sluèajni proces "brez spomina". To pomeni, da pot do stanja ni pomembna, pomembno je le stanje, v katerem se nahajamo. Naravno se nam tudi postavi vprašanje, zakaj je ta lastnost koristna. Izkaže se, da nam omogoèa reševanje problemov, ki jih drugaèe v primernem èasu ne bi mogli rešiti.\\
+
+Zaradi svoje široke uporabnosti markovske modele lahko loèimo na:
+\begin{itemize}
+	\item prediktivno modeliranje, kjer želimo iz statistiènih podatkov izraèunati najbolj verjeten dogodek glede nanaše podatke. Ta model se lahko uporablja ne glede na èas v katerem se je dogodek zgodil, saj lahko modeliramo prihodnje dogodke ravno tako kot pretekle dogodke, policija npr. uporablja to vrsto modela za doloèitev osumljencev za storjeni zloèin.
+	\item verjetnostno napoved, kjer ne napovemo le najbolj verjetnega dogodka, ampak doloèimo verjetnosti vseh dogodkov kot popoln sistem dogodkov. Primer tega so športne stavnice, kjer lahko npr. stavimo za eno izmed ekip stavimo na zmago, remi ali poraz.
+\end{itemize}
+Modeliranje markovskih modelov je primer sluèajnega programiranja \cite{spletna}. Gre za sistem, ki nam pomaga pri optimizacije za modele, ki vkljuèujejo negotovost. To pomeni, da nekateri parametri niso znani z gotovostjo, temveè jih predstavimo z nekim sluèajnim objektom, pa naj si bo to sluèajna spremenljivka za enoobdobne probleme oziroma sluèajni proces za veèobdobne probleme.\\
+
+Glede na to, kako je postavljen markovski model razdelimo, kot kaže tabela \ref{Tabela}.
+\begin{table}[h]
+	\caption{Razdelitev markovskih procesov}
+	\begin{tabular}{lllll}
+		\cline{1-3}
+		\multicolumn{1}{|c|}{}            & \multicolumn{1}{c|}{V celoti opazovan}         & \multicolumn{1}{c|}{Le delno opazovan} \\ \cline{1-3}
+		\multicolumn{1}{|c|}{Avtonomen}   & \multicolumn{1}{c|}{Markovska veriga} & \multicolumn{1}{c|}{Skriti markovski model}    \\ \cline{1-3}
+		\multicolumn{1}{|c|}{Kontorliran} & \multicolumn{1}{c|}{Markovski odloèitveni proces} & \multicolumn{1}{c|}{Delno opazovan proces}   \\ \cline{1-3}
+		&                                &                             &           &         
+	\end{tabular}
+	\label{Tabela}
+\end{table}
+Razlike in podobnosti med vsemi modeli so opisane v spodnjem primeru.
+\linebreak
+\linebreak
+\linebreak
+\begin{primer}{\textbf{Primer žabe v ribniku.}}\label{zaba}
+%Dodaj kratice
+Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela $S$. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja).$$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Na ta naèin naš proces disktretiziramo. Odloèimo se za opazovanje le ene izmed žab, za katero nas zanima, kje se bo nahajala v naslednjem trenutku.\\
+Predstavljajmo si, da lahko vsakiè, ko pogledamo, našo žabo poljubno osvetlimo z luèjo in tako vplivamo na njeno obnašanje. Naš model je torej kontroliran. Žaba nato poljubno skaèe naprej. Èe poznamo prehodno matriko med stanji, bomo v tem primeru imeli markovski odloèitveni proces. To pomeni, da vemo kako nek zunanji vpliv vpliva na spremembe verjetnosti prehoda med stanji. V nasprotnem primeru imamo delno opazovan proces odloèanja. To velja ko vplivamo na spremembe stanj, a prehodne matrike ne poznamo.\\
+Èe se nikoli ne odloèimo, da bi žabo osvetlili, pa imamo avtonomen model. Kot pri kontroliranem lahko tu loèimo, ali je proces v celoti opazen ali so neka stanja skrita.\\ Èe stanja niso skrita, imamo markovsko verigo, ki je torej le poseben primer markovskih odloèitvenih procesov, kjer žabe nikoli ne prestavimo. Pri markovskih verigah poznamo tudi prehodno matriko $A$, katere elementi $a_{ij}$ predstavljajo verjetnosti prehoda iz stanja $i$ v stanje $j$. Preprost primer markovskih verig predstavljajo sluèajni sprehodi. \\
+Navadno predpostavimo, da se verjetnosti prehoda iz enega stanja v drugega ne spreminjajo. Vsota po vsaki vrstici je vedno enaka ena, to je $$\sum_{j = 1}^{n}a_{ij} = 1$$ saj predstavlja verjetnosti prehoda iz enega stanja v drugo. Elementi  Tako je $a_{ij}$ verjetnost prehoda iz stanja $i$ v stanje $j$. Velja še, da je $n$ število stanj in je v našem primeru $3$, oèitno pa velja tudi, da je matrika velikost $n\times n$ in da so vsi elementi $a_{ij}$ iz intervala $[0,1]$.\\
+V tem primeru lahko torej, v vsakem trenutku predvidimo, kam bo skoèila žaba v naslednjem trenutku. Èe stanj in prehodov med njimi ne poznamo imamo skrite markovske modele.\\
+\end{primer}
+% èe dobim zaporedje stanj 
+%motivirati zakaj je bi uporaben
+%bi je ocenjevanje po metodi najveèjega verjetja
+% bi je signal pri item stanju. to je realna vrednost (npr cena) proizvede jo neka sluèajna spremenljivka. signali so npr cene zlata 
+%èe je vrednost procesa i, potem je bi vrednost sluèajne spremenljivke, kjer je sluèajna spremenjivka signal. Porazdelitev ss je odvisna od stanja. 
+% Te porazdelitve modeliramo z gaussovimi mešanice.Gaussove mešanice; potem je x 
+% èe je bikovski trend bolj verjetni pozitivni premiki -> glede na gaussove mešanice. 
+
+% left skewed -> asimetrija v levo
+%ocenjevanje pri bi je ocenjevanje parametrov cij, sigma, mi, 
+%posebej razložit em algoritem.
+
+%iz samega procesa dobiti parametra je težavno; kako iz porazdelitve podatkov sklepati na porazdelitev parametrov. Intuitivna razlaga bayesianske statistike
+
+%pri generiranju poti
+
+
+%pri hmm želimo maksimimizirati verjetnost P(O|) 
+
+% razlika med viterbi in baum welch
+
+%mogoèe še veè kaj o lokalni/globalni konvergenvi -> perturbacije parametrov,...
+\pagebreak
+\section{Skriti markovski modeli}
+%Podaljšaj opis, dodatne razlage. Poišèi še kaj po virih. Dopiši!!
+Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces s skritimi stanji. Gre torej za tip modela, kjer lahko vidimo signal, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala.\\
+\begin{primer}
+	Za žabo iz primera \ref{zaba} sedaj poglejmo kaj se spremeni v primeru skritih markovskih modelov.\\
+	Za le te velja, da vseh parametrov ne poznamo, lahko pa jih doloèimo iz podatkov, ki jih imamo za naš problem. Tako bi našo žabo dovolj dolgo opazovali, in si zapisovali na primer njeno temperaturo v vsakem trenutku opazovanja. Tako bi dobili vektor opazovanj $O$, ki bi vseboval temperaturo žabe v vsakem trenutku. V pomoèjo skritih markovskih modelov bi nato poizkušali doloèiti v kakšnem stanju, torej na kakšni poziciji se je nahajala v vsakem trenutku. Doloèitev zaporedja stanj je se razlikuje med primeri. V primeru žabe bi tako lahko pogledali spremembo temperature ob spremembi stanja, ter glede na to spremembo poizkušali doloèiti, kje se žabica nahaja.\\
+	Vektor $O$ je naš osnovni podatek, iz katerega nato izpeljemo celoten model, torej poišèemo zaporedje skritih stanj in nato verjetnosti prehodov med njimi. Za  Iz tega bi najprej pogledali, kakšna so možna stanja sistema. Ko bi doloèili stanja ter njihovo zaporedje, iz tega lahko doloèimo parametre modela. Kako to naredimo, si bomo pogledali v nadaljevanju, na primeru prehodne matrike pa poglejmo, kaj le ta pomeni. \\
+	Recimo, da prehodna matrika enaka:
+	$$
+	\begin{bmatrix}
+	0.5 & 0.3 & 0.2  \\
+	0.1 & 0.5 & 0.4  \\
+	0.4 & 0.2 & 0.4 \\
+	\end{bmatrix}$$
+	
+	V našem primeru bi to pomenilo, da je verjetnost, da žaba ostane v vodi $0.5$, da iz vode skoèi na lokvanj $0.3$, verjetnost, da pa skoèi iz ribnika pa $0.2$. Iz te matrike lahko torej preberemo verjetnosti, ki nam bodo povedale verjetnosti prehodov, èe velja da na naš opazovan sistem, torej žabo, ne vplivamo.\\
+	Kot smo prej omenili, pa se ta matrika spremeni, èe žabo osvetlimo. Tako lahko dobimo matriko, ki govori o verjetnostih prehodov, èe na sistem vplivamo.
+	$$
+	\begin{bmatrix}
+	0.9 & 0.05 & 0.05  \\
+	0.4 & 0.5 & 0.1  \\
+	1 & 0 & 0 \\
+	\end{bmatrix}$$
+	Le ta nam pove, da je verjetnost da ostane v vodi enaka $0.9$, medtem ko je verjetnost, da od zunaj skoèi v vodo enaka $1$. Tu je matrika torej drugaèna, kot je bila za prvi primer. Na vsakem koraku, ko žabo osvetlimo moramo torej upoštevati to drugo matriko.\\
+	Kontroliran sistem torej pomeni, da lahko z nekim znanim dejanjem vplivamo na prehodne verjetnosti.\\
+	
+\end{primer}
+
+Skrit markovski model je konèno uèljiv sluèajen avtomat. Lahko ga opišemo kot dvojni sluèajni proces. Prvi proces ima konèno število stanj. Med temi prehode opazujemo prek prehodnih verjetnosti. Pri drugem sluèajnem procesu lahko v vsakem stanju opazujemo signal. Signali so odvisni od stanja prvega procesa. Drugi proces namreè vrne signal pogojno na zavzeto vrednost prvega procesa.\\
+Ker te signale opazujemo brez tega, da bi vedeli, v kakšnem stanju so se zgodili, imenujemo ta stanja skrita.\\
+Skriti markovski modeli uporabljajo idejo bayesianske statistike. Tu uporabljamo Bayesov izrek \ref{bayes}, ki pravi, da je verjetnost dogodka $A$, v primeru da $B$ velja enaka:
+$$P(A|B) = \frac{P(B|A)P(A)}{P(B)},$$ kjer velja, da dogodek $A$ predstavlja našo hipotezo, $B$ pa znan dogodek. \\
+Ideja za delovanje skritih markovskih modelov izhaja iz dela Andrewa Viterbija na podroèju komunikacije. V komunikacijskih storitvah šumi namreè predstavljajo veliko težavo, zato se je ameriško-italijanski elektroinžiner domislil algoritma, s katerimi bi iz seta podatkov izloèili šume. 
+\begin{primer}
+	To si lahko predstavljamo kot da bi si na primer želeli na fiksnem mestu v elektriènem tokokrogu doloèiti naboj $Q(t)$ glede na naboj ob èasu $s$, kjer $s<t$. Zaradi napake pri merjenju $Q(s)$ ne moremo toèno doloèiti, saj zaznamo neko zmoteno razlièico $\widehat{Q(s)}$.\\
+	\begin{figure}[h!]
+		\begin{center}
+	\includegraphics[scale=0.5]{slike/mesto}\\
+	\caption{Skica primera elektriènega tokokroga z mestom meritve}
+\end{center} 
+\end{figure}  
+	 Želimo si torej naèin, ki bi èim bolj uèinkovito izloèil te napake. V naèem primeru imamo $6$ elektriènih virov in 4 žarnice. Po $30$ sekundah, ko zaženemo tokokrog, izmerimo naboj na mestu meritve. Zanima nas, ali je naboj po minuti še vedno enak.\\
+	 Neznana stanja so poleg dejanskega naboja, ki ga želimo izmeriti, še šumi, ki se prenašajo po omrežju. Prav ti šumi namreè pripeljejo do napake pri meritvi.\\
+\end{primer}\\
+\linebreak
+\linebreak
+\linebreak
+\linebreak
+\linebreak
+
+Skrite markovske modele navadno predstavimo na diskretnih množicah in v diskretnem èasu, a lahko definicijo tako razširimo, da velja tudi za zvezne množice ali zvezen èas. V tem primeru dobimo triplasten sluèajni proces, katerega najveèja težava je  velika raèunska zahtevnost, poleg tega pa nam lahko veliko število parametrov prinese nestabilnost. Vendar se z zveznimi primeri v svojimi diplomski nalogi ne bom ukvarjal.\\
+Prav tako je možno s skritimi markovskimi modeli predstaviti procese, odvisne od veè sluèajnih spremenljivk. Vendar tak model s seboj prinese veè težav. Prve se pokaže v raèunski zahtevnosti, saj moramo v vsakem koraku doloèiti inverz in determinanto veè matrik, kjer lahko èasovno zahtevnost poveèuje tudi njihova velikost. Drugi problem se pokaže v samem raèunanju, ki je podrobneje razloženo v \ref{trening}. Izkaže se, da je v primeru prevelikega števila sluèajnih spremenljivk vèasih nemogoèe izvesti celo prvi korak iteracije. Modeliranje skritih markovskih modelov z veè spremenljivkami je tako v teoriji možno, a ni nujno dobro v praksi. 
+%To velja, ker so determinante $\Sigma_{ij}$ zelo majhne, kar posledièno privede do prevelikih vrednosti $P(O|\lambda)$, kjer je $P(O|\lambda)$ funkcija verjetja. Ob vsakem novem koraku iteracije tako pridobimo nov $\lambda$ in posledièno novo pogojno verjetnost. Ta verjetnost lahko v tem primeru zelo hitro naraste, in tako se iteracija prehitro konèa.
+\subsection{Zgodovina modela}
+Ideja skritih markovskih modelov se v svoji prvi fazi zaène z ruskim matematikom Andrejem Andrejevièem Markovom, ki je za èasa svojega življenja med $1865-1922$ razvil idejo markovskega procesa in verige. Prve teoretiène rezultate markovskih verig je svetu predstavil $1906$, kar najdemo v \cite{markovena}, $1913$ pa je izraèunal zaporedje èrk rušèine \cite{markovdva}. Slednji izraèun je opravil na besedilu Jevgenij Onjegin ruskega pesnika Aleksandra Sergejevièa Puškina. Markov je želel s tem dokazati veljavnost šibkega zakona velikih števil zaradi spora z drugim ruskim matematikom Pavlom Nekrasom, a je na ta naèin odprl novo vprašanje v matematiki.\\
+Skriti markovski modeli zahtevajo veliko numeriènega raèunanja, in zato ne preseneèa, da se je nadaljni razvoj zaèel šele z širšo uporabo raèunalnikov. Po pomembnem delu, ki so ga opravili von Neumann, Turing in Conrad Zuse so se znanstveniki zaèeli pospešeno ukvarjati z implementacijo primernih algoritmov. Velik korak k temu je pripomogel Claude Shannon s svojim delom Matematièna teorija komunikacije \cite{shanon}.\\ 
+Za implementacijo skritih markovskih modelov je bilo v zaèetku potrebnih kar nekaj razvojev algoritmov. Prvi algoritem je bil algoritem maksimizacije prièakovane vrednosti (Expectation-maximization), ali, kot ga med drugim poznamo, EM-algoritem. Tega so uporabljali med drugim že Laplace, Gauss in drugi, vendar je do dokonènega poimenovanja prišlo šele leta $1977$. Dempster, Laird in Rubin so algoritem poimenovali in razložili splošno teorijo, ki deluje v ozadju procesa v \cite{dempster}.
+Andrew Viterbi je drugi pomemben del skritih markovskih modelov implementiral leta $1967$ kot algoritem za dekodiranje konvolucij èez šume v komunikaciji v \cite{viterbidva}. Pri tem algoritmu deluje princip dinamiènega programiranja, ki najde najbolj verjeto zaporedje stanj, glede na dano opazovano zaporedje dogodkov. Viterbijev algoritem je podrobneje opisan v algoritmu \ref{viterbi}.\\
+Celotnih modelov pa prav gotovo ne bi bilo brez še enega Rusa, in sicer Ruslana Leontijevièa Stratonovièa, ki je prvi opisal rekurzijo naprej - nazaj leta $1960$ v \cite{straton}. To je delal na primeru optimalnega nelinearnega problema filtracije.\\
+Za glavnega avtorja pa velja Leonard E. Baum. Skupaj z  Lloyd R. Welchem sta okrog leta $1970$ razvila Baum-Welchov algoritem v \cite{baumwelch}, kjer gre za poseben primer posplošenega EM-algoritma. Prav Baum-Welchov algoritem je tisti korak, pri katerem velja, da je bila dokonèno izpeljana teorija za skritimi markovskimi modeli. Algoritem uporablje EM-algoritem da najde cenilko po metodi najveèjega verjetja glede na dano zaporedje podatkov. Delovanje algoritma je podrobno razloženo v \ref{trening}, njegove zahteve pa v \ref{zahteva}. \\
+Uporabe skrith markovskih modelov na podroèju financ in ekonomije pa ne bilo brez dela ameriškega ekonometrista Jamesa Hamiltona, ki je predlagal, da bi model, katerega stanj in prehodov med njimi ne poznamo, opišemo z markovskim modelom v \cite{hamilton}.
+
+
+\subsection{Predpostavke modela}\label{zahteva}
+Kot vsak matematièni model, ima tudi skriti markovski model svoje predpostavke.
+\begin{enumerate}
+	\item Prva predpostavka je, da lahko rezultate, ki jih model producira, opazujemo v ekvidistanènih èasih, torej je razlika med dvema poljubnima zaporednima èasoma opazovanja $t-1$ in $t$ vedno enaka, na primer $d$. Rezulate imenujemo signali ali opazovanja.
+	\item V vsakem izmed èasov $t$ je sistem lahko v enem izmed $N$ stanj. Ta stanja so $S_{1}, S_{2}, \ldots, S_{N}$ in so v èasu $t$ neznana, vemo le, kakšni so rezultati našega procesa v tem èasu. Zato potrebujemo dodatni sluèajni proces ${\displaystyle Q=(Q_{t})_{t = 1,2, \ldots }}$, ki nam pove, kakšno je opazovanje v èasu $t$. Tako velja, da je signal $O_{t}$ dan s stanjem sluèajnega procesa $Q$. V moji diplomski nalogi bom to podrobneje opisal v odvistnosti od gostote verjetnostne porazdelitve Gaussove mešanice.
+	\item Zaèetna porazdelitev po stanjih je oznaèena z $\Pi$, in vsota njenih elementov je enaka $1$. Dolžina tega vektorja je $N$, torej je enaka številu možnih stanj. Velja, da je $\Pi_{i}$ verjetnost, da se v zaèetku nahajamo v stanju $i$. 
+	\item V vsakem èasu velja, da bodisi sistem spremeni svoje stanje, bodisi ostane v istem. Verjetnost prehoda v vsako stanje je doloèena s prehodnimi verjetnostmi, podanimi v matriki $A_{t}$, kjer verjetnost prehoda iz stanja $i$ v èasu $t$ v stanje $j$ v èasu $t+1$ simbolizira element $a_{ij}^{t}$. Vsota vsake vrstice vsake matrike $A_{t}$ je enaka $1$, saj bo v naslednjem èasu oèitno nekam prešla. Matrika $A_t$ je velikosti $N \times N$, kjer je $N$ število stanj. To velja, ker nam pove verjetnosti prehodov med poljubnimi stanji. 
+	\item  Ker govorimo o markovskem modelu, bo stanje v èasu $t+1$ odvisno le od stanja v èasu $t$, ne pa od celotne zgodovine.
+	\end{enumerate}
+ \ \\
+Za konstrukcijo modela te predpostavke zadošèajo, a upoštevamo še nekaj dodatnih, ki nam model še precej olajšajo.
+\begin{enumerate}
+	\item Predpostavimo lahko, da so vse prehodne matrike $A^{t}$ enake, torej neodvisne od èasa $t$, kar oznaèuje èasovno homogenost. Enolièno prehodno matriko torej lahko oznaèimo z $A$. 
+	\item Signal v èasu $t$ je odvisen le od stanja modela v tem èasu; torej so sluèajne spremenljivke v èasu $t$ odvisne le od tega.
+\end{enumerate}
+ \  \\
+Naši signali so torej odvisni od stanja $S$. Ta stanja nam vrnejo rezultat v odvisnosti od verjetnostnih porazdelitev podanih z razliènimi parametri. Loèimo lahko signale, ki so porazdeljeni kot zvezne sluèajne spremenljivke, ter kot diskretne sluèajne spremenljivke.\\
+V zveznem primeru bodo le-te predstavljene kot mešanice normalnih porazdelitev in jih imenujemo tudi Gaussove mešanice.\\
+Gaussovo mešanico definiramo kot tehtano povpreèje normalnih porazdelitvenih funkcij, glej slovar strokovnih izrazov. Vsako stanje $i$ iz nabora vseh stanj je torej podano z gostoto verjetnosti,
+ $$b_{i}(x) = \sum_{j = 1}^{M}{c_{ij}} N(x;\mu_{ij}, \sigma_{ij}^2)$$
+  %kjer je so Gaussove mešanice tudi funkcije nekega $x$, za katerega velja da je $x \in (-\infty,\infty)$.\\
+Pri nekem stanju $i$ je $b_i$ signal, ki ga prejmemo. V primeru finanènih èasovnih vrst bi torej to bila cena finanènega instrumenta. Cena je realna vrednost, ki jo vrne sluèajna spremenljivka, odvisna od stanja.\\
+\begin{primer}
+	Gaussovo mešanico lahko vidimo na spodnjih dveh slikah.\\
+	\begin{figure}[h!] 
+		\begin{center}  
+	\includegraphics[scale=1]{slike/funciji_gauss}\\
+	\caption{Loèeni normalni porazdelitvi}
+	\label{gaussova1}
+\end{center} 
+\end{figure}  
+	Na prvi sliki imamo dve gostoti normalne porazdelitvene funkcije. Prva je standardno normalno porazdeljena, torej $N(0,1)$, druga pa je porazdeljena $N(3,5)$.\\
+	\begin{figure}[h!]
+		\begin{center}  
+	\includegraphics[scale=0.5]{slike/ggplot2}\\
+	\caption{Ocena z Gaussovo mešanico}
+	\label{gaussova2}
+\end{center} 
+\end{figure}  
+	Na drugi sliki pa vidimo kako z Gaussovo mešanico ocenimo skupno porazdelitev. Skupna porazdelitev je torej v našem primeru enaka 
+	$$b(x) = c_{1}N(x;0,1) + c_2N(x,3,5),$$
+	kjer za $c_1$ in $c_2$ velja, da je $c_1 \geq 0$ in  $c_2 \geq 0$ ter $c_1 + c_2 = 1$. Tako dobimo vsoto dveh normalnih porazdelitev in vsoto njunih porazdelitev. To je tudi konveksna kombinacija normalnih porazdelitev.
+\end{primer}\\
+\linebreak
+\linebreak
+\linebreak
+\linebreak
+Gaussove mešanice so primerne, ker lahko zelo dobro aproksimirajo vsako konèno zvezno porazdelitev, poleg tega pa se znebimo tveganja, ki nam ga v tem modelu predstavlja normalna porazdelitev. To tveganje predstavlja dejstvo, da je normalna porazdelitev simetrièna; to pa pogosto ne drži za procese v realnem svetu, na primer za donose v financah. Za te veèkrat drži, da so asimetriène v levo, torej da je mediana veèja od povpreèja. \\
+
+Tako potrebujemo za sestavo modela še:
+\begin{itemize}
+	\item število mešanic $M$
+	\item matriko $C$, ki predstavlja koeficiente $c_{ij}$, ki so faktorji v Gaussovi mešanici. Matrika je velikost $N \times M$ in element ${(i,j)}$ pove relativno težo, ki jo ima mešanica $j$ v aproksimaciji $S_i$.
+	\item matrika $\Gamma$, kjer $\mu_{ij}$ predstavlja prièakovano vrednost $b_j$ v stanju $i$, ter
+	\item matriko $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco $b_j$ v stanju $i$.
+\end{itemize}
+Vse te matrike so velikosti $N \times M$ in z njimi opišemo Gaussove mešanice. \\
+Èe so sluèajne spremenljivke, ki opisujejo signale diskretne, je opis stanj manj kompleksen. V tem primeru za opis diskretne spremenljivke potrebujemo le eno matriko, katere elementi opišejo vrednosti, ki jih dobimo. To matriko imenujemo izhodna matrika. Ta matrika je velikosti $N\times N$, kjer je $N$ število stanj. Ta matrika vsebuje vrednosti, ki jih vrne sluèajni proces kot signale.\\
+\subsection{Priprava in trening modela}\label{trening}
+Preden zaènemo z doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem bo potekal tako imenovan trening sistema. 
+Ti podatki morajo biti zbrani na na primerni enoti; na ceno delnic vrednost le te pred $10$ leti ne bo vplivala toliko kot cena dan pred meritvijo. \\ 
+Podatke, ki smo jih zbrali moramo nato urediti; doloèimo èasovne trenutke z enakim razponom, kot ga želimo imeti v našem modelu, in v teh trenutkih $t \in (1,\ldots, T)$ doloèimo opazovanja $O$. \\ 
+Ko imamo podatke zbrane, moramo najprej doloèiti število stanj $N$ ter število mešanic $M$. Tu gre tudi za kljuèna problema priprave skritega markovskega modela.\\
+V praksi število stanj vèasih doloèimo v skladu s potrebno aplikacijo, kot na primer v \ref{Biologija}, oziroma z vizualnim ogledom toèk grafa iz zgodovinskih podatkov.\\
+Vèasih pa lahko to doloèimo z uporabo Akaikejevega informacijskega kriterija, ki primerja veè razliènih modelov in izbere najboljšega. AIC ocenjuje relativno kakovost modela. Podobno deluje tudi BIC, to je Bayesov informacijski kriterij.\\
+Za pravilno doloèitev števila mešanic $M$ pa navadno izberemo razvršèanjem v skupine ($k$-mean clustering). S to metodo želimo $n$ opazovanj razvrstiti v $k$ skupin, kjer upoštevamo, da želimo minimizirati skupno varianco in število skupin.\\
+Ostale parametre navadno oznaèimo z $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Cilj treninga modela je, da parametre nastavimo tako, da bo verjetnost $P(O|\lambda)$, da so bila vsa opazovanja rezultat modela, najveèja. Pri tem mora veljati, da sta število mešanic $M$ ter število stanj $N$ že znana, $P(O|\lambda)$ pa je funkcija verjetja.\\
+Naravno se pojavi vprašanje, izbora primernih parametrov. Izkaže se, da je uèinkovit sistem $naprej - nazaj$. Doloèimo spremenljivki $nazaj$ $\alpha_{t}(i)$, ki predstavlja verjetnost, da so se zgodila opazovanja od $0$ do $t$ in stanje $i$, ter $naprej$ $\beta_{t}(i)$, ki predstavlja verjetnost, da se bodo zgodila opazovanja od $t$ do $T$ pri stanju $i$. Posebej pa se moramo posvetiti le eni izmed njiju, saj gre pri $\beta_{t}(i)$ le za alternativno metodo za $\alpha_{t}(i)$.
+$\alpha_{t}(i)$ definiramo kot:
+$$\alpha_{1}(i) = \pi_{i}b_{i}(O_{1}) = \pi_{i}b_{i} = \sum_{k = 1}^{M}{c_{ik}} N(O_{1};\mu_{j}, \sigma_{j}^2)$$
+Naslednje $\alpha_{t+1}(j)$ lahko nato induktivno izraèunamo kot 
+$$\alpha_{t+1}(j) = b_{j}(O_{t+1})\sum_{i=1}^{N}{\alpha_{t}(i)a_{ij}}$$
+Iz tega sledi, da je $P(O|\lambda) = \sum_{i=1}^{N}{\alpha_{T}(i)}$. Na podoben naèin izraèunamo tudi $\beta_{t}(i)$. $\beta$ je inicializirana z  
+$$\beta_{T}(i) = 1, \forall i \in {1,\ldots, N}$$ indukcija pa poteka prek $$\beta_{t}(i) = \sum_{i=1}^{N}{\beta_{t+1}(j)a_{ij}}b_{j}(O_{t+1})$$
+$\beta_{t}(i)$ sicer ni nujen za izraèun  $P(O|\lambda)$, a ga nujno potrebujemo za trening našega modela.\\
+Na ta naèin smo opisali Baum-Welchov algoritem, ki je osnova ocenjevanja skritih markovskih modelov.\\
+Skozi celotno toèko \ref{trening} smo se obnašali, kot da lahko vse parametre iz $\lambda$ kar izraèunamo. Vendar to ne drži v popolnosti. Res, ko je enkrat $naprej-nazaj$ vzpostavljen, se nam dozdeva, da gre le še za numerièno operacijo. Vendar težave nastopijo preden naš postopek zaène z delom. Problem nastopi ko moramo vnaprej oceniti zaèetne parametre $\lambda$. \\
+Ne poznamo analitiènega naèina, kako bi lahko ta problem rešili, vendar lahko najdemo tak $\lambda$, da lahko našo verjetnost $P(O|\lambda)$ lokalno maksimiziramo, ne moremo pa zagotoviti globalnega maksimuma. Prav tako se lahko zgodi, da predobro opišemo nek set podatkov, to pomeni, da je 
+$P(O|\lambda_{dejanski}) \leq P(O|\lambda_{zadnji})$.
+Tako se lahko zgodi, da svoji oceni preveè zaupamo. To imenujemo tudi preprileganje ali overfit. \\
+Dejstvo, da ne vemo èe smo našli globalni maksimum, ali le lokalni pomeni, da lahko že manjša perturbacija paramterov pomeni spremembo lokalnega maksimuma in tako spremembo konènih rezultatov. Obèutljivost sistema je odvisna števila parametrov.\\
+Pri tem moramo vsak paramater $\lambda$ najprej pogledati posebej. Izkaže se, da zaèetni vrednosti za prehodno matriko $A$ in zaèetni vektor $\Pi$ nista pomembni, èe nista nièelna, kar pa se ne more zgoditi. Za $\Pi$ tako lahko vzamemo vektor, kjer so vse vrednosti enake $1/N$, kjer je $N$ število stanj.
+\\
+Veè problemov nam povzroèajo tri postavke z zvezno porazdelitivjo, to je $C$, $\Sigma$ in $\Gamma$. Dobra zaèetna ocena le teh je nujna za kakovost modela. Tudi tu se izkaže, da lahko, podobno kot pri oceni števila mešanic $M$ obrnemo na razvršèanjem v skupine. Ta postopek nam sicer ne da globalnega maksimuma, ki bi ga mogoèe lahko dobili na drugaèen naèin, a se v praksi izkaže za dobrega. Za $C$ to pomeni, da bo element $c_{ij}$ $=$ $1/k$ za vsak par $(i,j)$, kjer je $k$ število šopov povpreèij. Prièakovane vrednosti in variance nato pridobimo iz vrednosti šopov povpreèij.
+\ \\
+Z znanimi zaèetnimi vrednostmi se lahko spustimo v maksimiziranje $P(O|\lambda)$. Osnovati moramo zaporedje $\lambda$ = $\lambda_{t}, t \in {0,\ldots}$, da bo veljalo  $$P(O|\lambda_{i+1})  \geqslant P(O|\lambda_{i})$$
+Za to zaporedje velja, da konvergira k lokalnemu maksimumu.\\
+
+\subsection{Natanèna doloèitev zaèetnih vrednosti}\label{zacetno}
+Zanima nas torej, kako bomo osnovali zaporedje $\lambda$, ki ga potrebujemo za maksimizacijo $P(O|\lambda)$. Izkaže se, da za maksimizacijo le tega potrebujemo še nekaj dodatnih formul, ki so rezultat Baum-Welchovega algortma. Z njimi definiramo veèfazni iterativni proces, pri katerem popravljamo vrednosti parametrov do konvergence.\\
+Kot prvo potrebujemo $\xi_{t}(i,j)$, ki nam pove  pogojno verjetnost, da smo v èasu $t$ v stanju $i$ in v èasu $t+1$ v stanju $j$, glede na vektor opazovanj $O$ in nabor parametrov $\lambda$ .
+$$\xi_{t}(i,j) = \frac{\alpha_{t}(i)a_{ij}b_{j}(O_{t})\beta_{t+1}(j)}{P(O|\lambda)}.$$
+Vsota $\sum_{t=1}^{N}{\xi_{t}}(i,j)$ nam pove prièakovano število prehodov iz stanja $i$ v stanje $j$.\\
+Druga je $\gamma_{t}(i)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $i$.
+$$\gamma_{t}(i) = \frac{\alpha_{t}(i)\beta_{t}(i)}{P(O|\lambda)}$$
+Vsota $\sum_{t=1}^{N}{\gamma_{t}(i)}$ nam pove prièakovano število prehodov iz stanja $i$.\\
+Zadnja, tretja pa je $\gamma_{t}(j,k)$, ki nam pove verjetnost, da smo v èasu $t$ v stanju $j$, in $k$ ta mešanica doloèa $O_{t}$. 
+$$ \gamma_{t}(j,k) =\gamma_{t}(j)\frac{c_{jk} N(x;\mu_{jk}, \sigma_{jk}^2)}{\sum_{m = 1}^{M}{c_{jm}} N(x;\mu_{jm}, \sigma_{jm}^2)}$$
+\ \\
+Iz teh podatkov lahko nato popravimo izraèun parametrov:
+$$ \overline{\Pi_{i}} = \gamma_{1}(i)$$
+$$ \overline{a_{ij}} = \frac{\sum_{t=1}^{T-1}{\xi_{t}}}{\sum_{t=1}^{T-1}{\gamma_{t}(i)}}$$
+$$\overline{c_{jk}}= \frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}}{\sum_{t=1}^{T}\sum_{m=1}^{M}{\gamma_{t}(j,m)}}$$
+$$\overline{\mu_{jk}}=\frac{\sum_{t=1}^{T}{\gamma_{t}(j,k)}O_{t}}{\sum_{t=1}^{T}{\gamma_{t}(j,k)}} $$
+Ko je to doloèeno, nam zaporedje $\lambda$, doloèenih s temi parametri da lokalni maksimum. 
+%Kako nam da? konvergenca? kakšna? 
+\subsection{Trenutno stanje}
+Zadnja stvar, ki jo moramo narediti, preden zaènemo z doloèanjem prihodnjih stanj je doloèitev trenutnega stanja gospodarstva, torej stanja v zadnjem èasu, na katerem je naš model treniral.
+Za doloèitev le tega uporabimo tako imenovani Viterbijev algoritem. Le ta je oblikovan tako, da nam vrne zaporedje $Q$, ki maksimizira $P(Q|O,\lambda)$.\\
+\begin{algorithm}[h!]
+	\caption{Viterbijev algoritem} \label{viterbi}
+	\KwIn{
+	\begin{itemize}
+		\item Prostor opazovanj $O=\{o_1,o_2,\dots,o_N\}$
+		\item Prostor stanj $S=\{s_1,s_2,\dots,s_K\}$
+		\item Nabor zaèetnih verjetnosti $\Pi = (\pi_1,\pi_2,\dots,\pi_K)$,\\
+		 kjer velja da je $\pi_{i} == s_i$ 
+		\item Zaporedje opazovanj $Y=(y_1,y_2,\ldots, y_T)$,\\
+		 tako da je $y_t==i$, èe je opazovanje v èasu $t$ $o_i$
+		\item Prehodna matrika $A$ velikosti $ K\times K$,\\
+		 kjer stanje $A_{ij}$ pove verjetnost prehoda iz stanja $s_i$ v stanje $s_j$
+		\item Izhodno matriko $B$ velikosti $K \times N$,\\
+		 kjer stanje $B_{ij}$ pove verjetnost, da opazimo $o_j$ iz stanja $s_i$
+	\end{itemize}}
+	\For{vsako stanje $j \in \{1,2,\ldots,K\}$}{
+		$T_1[j,1] \gets \pi_{}B_{jy_1}$ \\
+		$T_2[j,1] \gets 0$}
+	\For{vsako opazovanje $i = 2,3,\ldots,T$}{
+		\For{$j \in \{1,2,\ldots,K\}$}{
+			$T_1[j,i] \gets \max_{k}{(T_1[k,i-1]\cdot A_{kj} \cdot B_{jy_i})} $\\
+			$T_2[j,i] \gets \arg\max_{k}{(T_1[k,i-1]\cdot A_{kj}\cdot B_{jyi})}$}}
+	$z_T \gets \arg\max_{k}{(T_1[k,T])}$\\
+	$x_T \gets s_{zT}$\\
+	\For{$i \gets T,T-1,...,2$}{
+		$z_{i-1} \gets T_2[z_i,i]$\\
+		$x_{i-1} \gets s_{z(i-1)}$}
+	\KwResult{Najbolj verjetno zaporedje opazovanj $X=(x_1,x_2,\ldots,x_N)$}
+	\end{algorithm}\\
+Za delo s tem algoritmom moramo definirati $\delta_{t}(i)$, ki za vsako stanje $i$ vrne najveèjo verjetnost vzdolž poti v èasu $t$. Prek $\delta_{t}(i)$ nato induktivno izvedemo algoritem.\\
+Viterbijev algoritem nam vrne $p*$, ki je najveèja verjetnost in $q_{T}*$, ki nam pove stanje v èasu $T$, ki nam to verjetnost vrne.\\
+
+\subsection{Generiranje poti v skritem markovskem modelu} \label{generator}
+V celoti lahko sedaj predstavimo delovanje skritega markovskega modela na primeru generiranja ene poti. V tem primeru je pot na primer cenovni proces, ki ga bo glede na naš model opravil finanèni instrument.\\
+Glede na naše podatke, ki jih oznaèimo kot $O = (O_1,\ldots, O_T)$, ocenimo parametre našega modela $\lambda$ $=$ $(\Pi,A,C,\Gamma,\Sigma)$. Zaèetne vrednosti elementov  $\Pi,A$ in $C$ predpostavimo kot enake, za $\Gamma$ in $\Sigma$ pa ocenimo prek razvršèanja v skupine. Te parametre rekurzivno izboljšujemo, dokler nismo zadovoljni z doloèeno $P(O|\lambda)$. Parametre, ki smo jih dobili na ta naèin lahko za isti set podatkov uporabimo poljubno mnogokrat. \\
+Doloèiti moramo še trenutno stanje našega modela. V tem trenutku doloèimo še èas, do katerega želimo oceniti naš proces, naj bo to recimo $T_T$.\\
+Naslednji korak si lahko predstavljamo kot zanko. Èe predpostavimo, da naš parameter $t$ teèe od èasa $T$ do èasa $T_T$, v vsakem koraku glede na stanje, v katerem se nahajmo, izberemo stanje, v katero se bomo premaknili v naslednjem koraku. V vsakem koraku še shranimo stanje, v katerem smo bili. Na ta naèin dobimo pot, ki jo generira skriti markovski model.\\
+Ta postopek lahko ponovimo veèkrat, kar se pomaga pri Monte Carlo simulaciji. 
+\begin{algorithm}[h!]
+	\caption{Monte Carlo simulacija skritih markovskih modelov} \label{monte-carlo}
+	\KwIn{Podatki $O = (O_1,\ldots, O_T)$}
+	 Ocenimo parametre $\lambda$\\
+	\While{Dokler $P(O|\lambda)$ ni dovolj velik}
+	{Ponovno izraèunaj $P(O|\lambda)$ z novimi parametri $\lambda$}
+	Ocenimo stanje v èasu $T$ z Viterbijevim algoritmom\\
+	\For{$s=1,\ldots,S$, kjer je $S$ število stanj}
+	{Dobimo vzorec iz izhodne porazdelitve stanja $i$, kjer je  $t=1$\\
+	\While{$t \le TP$, kjer je $TP$ zadnji èas, kjer nas vrednost zanima}
+	{$t = t+1$\\
+	Izberi stanje za èas $t$ v skladu z prehodno matriko $A$\\
+	Generiramo vzorec iz izhodne porazdelitve tega stanja}
+		}
+	\KwResult{Zaporedje stanj} 	
+\end{algorithm}\\
+
+\section{Uporaba}
+Skriti markovski modeli so zelo široko uporabno orodje za modeliranje. Naèini uporabe se zelo razlikujejo, od uporabe v financah do doloèevanja genoma. Ekonomskim, torej tistim, ki jih delujejo kot napovedovalci cen vrednostnih papirjev v prihodnosti, se bom najglobje posvetil v nasledenjem delu, zato sedaj raje poglejmo ostale naèine uporabe.
+\subsection{Procesiranje govora}
+Prva ideja Leonarda E. Bauma za njegov algoritem je bila prav uporaba v procesiranju govora.
+Ena najbolj široko uporabljenih naèinov uporabe pa je procesiranje govora za posamiène glasovne enote. Gre za sistem, kjer želimo prepoznati posamiène izgovorjene besede, ne moremo pa ga uporabiti za splošen govor, saj algoritem ni implementiran za razumevanje tekoèega govora, le za posamezne enote. Ideja tega algoritma je razviti najboljše možne aproksimacijske algoritme, da lahko skriti markovski model filtrira nakljuène šume, zvoke na najboljši možen naèin. \\
+Da bomo proceiranje lahko zmodelirali, moramo najprej doloèiti slovar glasov, iz katerega vemo, da bo glas prišel. Tu uporabljam besedo glas, ker ni nujno, da bo prepoznan glas dejansko beseda; eden izmed glasov bi lahko bil tudi zgolj èrka A.\\
+
+\subsection{Uporaba v biologiji in biokemiji} \label{Biologija}
+Gre za eno izmed prvih uporab skritih markovskih modelov. Ker se je uporaba na tem podroèju zaèela precej zgodaj tudi ne preseneèa, da je uporaba precej široka. Uporaba skritih markovskih modelov se je v razširila zaradi poveèanja kolièine podatkov, ki je znanstvenikom na voljo. Ker so v zadnjem èasu doloèili veè zaporedij genoma, je tako kolièino podatkov težko obdelati brez uporabe naprednih raèunskih metod.\\
+Kot že reèeno, je uporaba skritih markovskih modelov v biologiji zelo široka. Uporablja se jih kot že reèeno za obdelave genoma, za doloèanje genov, za modeliranje procesov v celièni membrani. Splošno preprièanje je, da se bo uporaba skritih markovskih modelov v biologiji in ostalih povezanih znanostih še razširila.\\
+Pomemben primer uporabe v primeru doloèanja integralnih membranskih proteinov. To je protein, ki je stalno pripet v biološko membano, saj predstavljajo $20-30\%$ proteinov v popolnoma sekvenciranih genomih. Tu loèimo dve vrsti proteinske strukture, $\alpha$ in $\beta$. Doloèanje $\alpha$ danes ni veè problem, se pa zato pojavljajo precej veèji problemi pri $\beta$ mebranskih proteinih. Za ta primer so avtorji \cite{membrana} razvili poseben primer skritega markovskega modela.\\
+Pomembna je tudi uporaba za lociranje genov, torej iskanje dela genomske deoksinukletinske kisline (DNK), ki kodira gene.
+\subsection{Ostali naèini uporabe}
+Skrite markovske modele se uporablja še na precej ostalih primerih. Skrite markovske modele se tako uporablja za 
+\begin{itemize}
+	\item prevajanje govora oziroma pisave iz enega jezika v drug jezik,
+	\item kriptoanaliza, torej omogoèanje vdora v zakodirane sisteme,
+	\item prepoznavanje lastnoroène pisave,
+	\item prepoznavanje dejanj,
+	\item napovedovanje prevoza.
+\end{itemize}
+Skriti markovski modeli so torej široko uporabno modelacijsko orodje.
+\pagebreak
+\section{Èasovne vrste}
+\begin{definicija}{Èasovna vrsta} je množica opazovanj $x_t$, vsako opazovano ob èasih $t$ znotraj nekega èasovnega intervala.
+\end{definicija}
+
+\begin{definicija}{Model èasovne vrste} za opazovane podatke ${x_t}$ je sluèajni proces $X_t$, kjer velja, da so $x_t$ realizacije tega sluèajnega procesa v èasih $t$.\\
+\end{definicija}
+
+Vrednosti delnic po dnevih, število uporabnikov spletne strani po urah, prebivalstvo neke države po letih, \ldots To je le nekaj izmed mnogih primerov uporabe èasovnih vrst. Èasovne vrste nam dajo lepšo idejo o trendu podatkov, ki jih želimo analizirati. Enostavno lahko vidimo, ali je npr. cena jagod odvisna od letnega èasa ter ali se cena jabolk skozi leta spreminja. \\
+Èasovna analiza je lahko analitièna, kjer preuèujemo podatke iz preteklosti, ter prediktivna, kjer želimo napovedati neke trende. Analize lahko poteka na veè naèinov, od linearnih in nelinearnih modelov do modelov z eno spremenljivko in modelov z veè spremenljivkami. Prav zaradi njihove široke uporabnosti se je razvilo zelo veliko modelov za njihovo analizo, zaèenši leta $1970$ z delom Boxa in Jenkinsa na podroèju avtoregresivnega integriranega drseèega povpreèja, danes znanega pod kratico ARIMA.\\
+Èasovne vrste so po definiciji odvisne od èasa. Prav zato je pomembno, da se opazovanj med seboj medèasovno ne menja. Opazovanja $x_t$ so tako razporejena po èasih, ko so bila zaznana, torej narašèajoèem èasu $t$.\\
+V realnosti pogosto velja, da so zaporedna opazovanja med seboj odvisna. To je predvsem oèitno, èe pomislimo na najbolj tipièen primer finanène èasovne vrste, in sicer vrednostnega procesa cene neke delnice.  Èe vidimo, da ima v èasu $t$ delnica ceno $p$, si lahko navadno mislimo, da bo v èasu $t+1$ cena blizu $p$.
+Glede na èase, v katerih gledamo rezultate naše èasovne vrste v grobem loèimo $3$ tipe:
+\begin{itemize}
+	\item Èasovne vrste v zveznih èasih. Tu pridobivamo podatke za vsak trenutek znotraj nekega èasovnega intervala. Dober primer je tu EKG, kjer v vsakem trenutku preiskave naprava izrisuje graf elektriène napetosti proti èasu.
+	\\ V analizi finanènih èasovnih vrst za ta tip uporabljamo Black-Scholesov model. Gre za podvrsto paraboliène diferencialne enaèbe, katere rešitev nam da predvideno vrednost evropskih opcij $call$ in $put$ v èasu, ki nas zanima.   
+	\item Èasovne vrste z diskretnimi vrednostmi kjer  pridobivamo vrednosti, ki lahko zavzamejo le diskretne vrednosti, torej najveè števno neskonèno razliènih možnosti.\\ Tipièen primer bi bil število klicev med $7.00$ in $8.00$ znotraj Ljubljane oziroma število nesreè znotraj enega dneva na avtocesti med Postojno in Ljubljano. 
+	\item Zadnja vrsta so diskretne èasovne vrste, torej vrste, ki vrednosti vzamejo le v doloèenih èasovnih trenutkih, npr. konec vsake ure, konec dneva, \ldots Tukaj lahko vrednosti zavzamejo kakršnokoli vrednost, pomembno je le, da te vrednosti vzamemo ob pravilnih trenutkih. Te vrste so uporabne tudi za aproksimiranje èasovnih vrst v zveznih èasih. Prav vrste takega tipa so tiste, ki jih lahko analiziramo z skritimi markovskimi modeli.
+\end{itemize}
+S finanènimi vrstami se sreèujemo vsak dan in v najrazliènejših oblikah. Zaradi njihove raznolikosti je izbira pravega modela za njihovo analizo kljuèna. V našem primeru bomo za njihovo analizo uporabili skrite markovske modele. \\
+Navadno je glavni namen analize èasovnih vrst napovedovanje trendov, vendar se je to podroèje z razvojem predvsem podatkovnega rudarjenja razširilo tudi na druga podroèja.
+%mogoèe še kaj o èasovnih vrstah
+\subsection{Dodatne lastnosti modela}
+Ko imamo opravka z modeli èasovnih vrst, je zelo pomembno, da se zavedamo, da na vrednosti vpliva avtokorelacija. To pomeni, da nas zanima odnos, ki ga imajo zaporedna opazovanja. Da lahko o tem govorimo, pa moramo pogledati prvih nekaj momentov. Pri tem privzamemo sintakso iz \ref{zahteva}.
+
+\begin{lema}
+	Naj bo $f$ funkcija, za katero velja, da je $E(f(X)) < \infty$ za neko sluèajno spremenljivko $X$. Naj bo $Q_t$ sluèajna spremenljivka, ki nam v èasu $t$ pove opazovanje. Naj še velja, da je imamo glede na opazovanje možnih $m$ opazovanj. Potem najprej velja, da je 
+	$$ E(f(Q_t)) = \sum_{i=1}^{m}E(f(Q_t)|S_t =i)P(S_t =i)$$
+	poleg tega pa velja še
+	$$ E(f(Q_t,Q_{t+k})) = \sum_{i,j=1}^{m}E(f(Q_t,Q_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}$$
+	kjer je $\Gamma^k_{ij}$ $ij$ element matrike $\Gamma$, kjer je $\Gamma$ prehodna matrika med stanji.
+\end{lema}
+%Povej še kaj je gamma
+Dokaz prvega je enostaven, saj $E(f(Q_t))$ zgolj pogojimo na $S_t =i$. Za drugo enakost pa moramo najprej pogojiti na $S_{t+k}$, potem pa upoštevamo, da je to pogojna verjetnost zgolj na $S_{t+k} =j$ in $S_t =i$. 
+Na ta naèin smo prišli do izraèuna drugega momenta, kjer za funkcijo $f$ v prvem primeru vzamemo kvadriranje. Tako velja $ E(Q_t^2) = \sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)$ in posledièno je varianca modela enaka
+$$Var(Q_t) =\sum_{i=1}^{m}E(Q_t^2|S_t =i)P(S_t =i)-((\sum_{i=1}^{m}E(Q_t|S_t =i)P(S_t =i)))^2.$$
+Po drugi enaèbi lahko izraèunamo tudi $E(Q_t Q_{t+1})$, in sicer velja
+$$ E(Q_tQ_{t+k})) = \sum_{i,j=1}^{m}E(Q_tQ_{t+k})|S_t =i,S_{t+k} =j)P(S_t =i)\Gamma^k_{ij}.$$
+Tako dobimo kovarianco kot 
+$$Cov(Q_t,Q_{t+k})= E(Q_tQ_{t+k})) - E(Q_t)E(Q_{t+k}).$$
+Ko imamo vse to podano lahko izraèunamo Pearsonov korelacijsko funkcijo PCC za naše podatke. Velja da je PCC enak 
+$$\rho_k = \frac{Cov(Q_t,Q_{t+k})}{Var(Q_t)}.$$
+Vrednost tega se tako nahaja med $-1$ in $1$, ki pomenita popolno koreliranost, oziroma popolno negativno koreliranost v primeru $\rho_k=-1$, medtem ko $\rho_k=0$ pomeni, da podatki medsebojno niso korelirani.\\
+
+%serijska korelacija
+%razlaga zakaj pomembna
+%ali se da za markovske verige serijsko korelacijo da natanèno izraèunati?
+%limitni izreki, navadno stacionarna/regularna veriga
+
+\subsection{Finanèna èasovna vrsta}
+\begin{definicija}{Finanèna èasovna vrsta} je èasovna vrsta, kjer so opazovanja $x_t$ vrednosti finanènega instrumenta v èasu $t$.
+\end{definicija}
+Finanèna èasovna vrsta je tako zaporedje opaženih vrednosti nekega finanènega instrumenta. 
+Analiza finanènih èasovnih vrst se ukvarja s teorijo in prakso doloèanja vrednosti finanènih instrumentov skozi èas. Zaradi elementa negotovosti, kot je na primer volatilnost finanènih instrumentov, jo moramo obravnavati loèeno od vseh ostalih èasovnih vrst. Velja namreè da ravno ta negotovost prikaže pomembnost statistiène teorije in metod, izpeljanih iz le te, v analizi finanènih èasovnih vrst.\\
+Z finanènimi èasovnimi vrstami se ukvarjajo statistiki ter kvantitativni finanèniki. V nasprotju z ostalimi finanènimi vrstami se lahko zaradi mikrostrukture trga zgodi, da imajo finaène èasovne vrste posebne lastnosti in obliko. Tako se pogosto predpostavlja, da so donosi $R$ normalno porazdeljeni z prièakovano vrednostjo $\mu$ in varianco $\sigma^{2}$,  $R \sim N(\mu,\sigma^{2})$. Vendar to ne velja, saj lahko hitro ugotovimo, da donos ne bo nikoli manjši od $-1$. Èe predpostavimo, da je $P_t$ cena instrumenta v èasu $t$, potem je oèitno, da le ta nikoli ne bo manjša od $0$. Potem je donos $R_t$ definiran kot $$R_t = \frac{P_t-P_{t-1}}{P_{t-1}} $$ kar pomeni, da je $$ -1= \frac{0-P_{t-1}}{P_{t-1}} \leq R_t.$$
+\\
+Ta problem v ekonomiji pogosto rešujemo z uporabo logaritmiranja. Alternativni pristop pa pravi, da vzamemo stacionarne vrste, kjer gledamo le relativne razlike med cenami delnic.\\
+\begin{figure}[h!]
+	\begin{center} 
+		\includegraphics[scale=1]{slike/odmik}\\
+		\caption{Primer stacionarne vrste}
+	\end{center} 
+\end{figure}  
+
+V prvi polovici $20.$ stoletja se je v povezavi z finanènimi trgi osnovala tako imenovana hipoteza o uèinkovitem trgu, ki pravi, da èe cene popolnoma predstavljajo prièakovanja in informacije vseh udeležencev trga, potem so njihove spremembe neprièakovane. To lahko povežemo tudi s teorijo sluèajnih procesov. Teorija martingalov pravi namreè, da je najboljša ocena jutrišnje cene današnja cena. Zato v finanènih èasovnih vrstah veèjo težo damo podatkom, ki so nam zgodili kasneje.
+%posebnosti finanènih èasovnih vrst
+%hipoteza predpostavlja niè trenda in serijskih korelacij
+%poglej v kjnigo od verbièa; unitroot (enotski koren) -> èe to velja ni stacionarna
+\pagebreak
+\section{Uporaba skritih markovskih modelov v finanènih èasovnih vrstah}
+Glavna ideja uporabe skritih markovskih modelov v finanèni èasovni sledi iz osnovne ideje Andrewa Viterbija \ref{viterbi}, in sicer analiziranje signalov, ki jih prejmemo tako, da izloèimo šume v prejetem signalu.\\
+Aplikacija skritih markovskih modelov v finanène èasovne vrste je sorazmerno enostavna. Naše izbrane podatke o ceni nekega instrumenta doloèimo kot zaporedje opazovanj $O$. Na podlagi tega doloèimo število stanj ter zaèetne ocene vseh parametrov.\\
+V zadnjem èasu se je uporaba skritih markovskih modelov v finanèništvu precej poveèala zaradi široke uporabnosti, med drugim tudi za problem izbire portfelja. Gre za eno izmed klasiènih vprašanj, ki sem nam postavijo je v finanèni optimizaciji. To vprašanje se da rešiti tudi z uporabo linearnega programiranja in skritih markovskih modelov. Uporabnost tega pristopa se pokaže predvsem zaradi možnosti omejevanja tveganja.
+\\
+
+%Optimizacija v financa
+%iz drugega vira razloži primere, kaj delajo
+%kaj lahko delamo z HMM
+\begin{primer}{Problem izbire portfelja}\\
+	%Poglej èe je logièno
+	Eno izmed klasiènih vprašanj, ki sem nam postavijo je v finanèni optimizaciji je problem optimalne izbire portfelja. To vprašanje se da rešiti tudi z uporabo linearnega programiranja in skritih markovskih modelov.\\
+	Predpostavimo, da imamo v trenutnem èasu kapital $M$, ki ga lahko vložimo v $N$ razliènih vrednostnih papirjev. Odloèiti se moramo, kako bomo naš kapital razdelili tako, da bomo maksimizirali svoj donos in hkrati minimizirali tveganje.\\
+	Vsak vrednostni papir ima donos $R_j$, kjer velja $j \in{1,\ldots,N}$. Za vsak $j$ je donos sluèajna spremenljivka, katere porazdelitev aproksimiramo z diskretno sluèajno spremenljivko  $\widehat{R}_j$. Doloèimo še vektor $x = (x_1,\ldots,x_N)$, kjer nam $x_j$ pove, kakšen delež kapitala smo vložili v posamezen vrednostni papir, to je $$x_j = \frac{M_j}{M}$$ èe velja $\sum_{j=1}^{N}{M_j}=M$. Ob koncu investicije bomo torej zaslužili $$R_x = \sum_{j=1}^{N}{x_jR_j}$$ kjer je $R_x$ sluèajna spremenljivka.\\
+	To nalogo lahko predstavimo kot linearni program s pomoèjo pogojne vrednosti ob padcu CVaR. CVar je mera tveganja, ki nam oceni tržno ali kreditno tveganje portfelja. Tako pridemo do optimizacijskega problema oblike
+	\begin{gather*}
+	\min \quad CVaR_\alpha(R_x) \\
+	\begin{aligned}
+	\textup{p.p.}\quad E(R_x) \geq d \\
+	\end{aligned}
+	\end{gather*}
+	kjer je $d$ prej doloèen zahtevan donos, $\alpha$ pa stopnja zavrnitve.\\
+	Skriti markovski modeli se v igro vkljuèijo, ko moramo aproksimirati donose. Kot že vemo, je $\widehat{R}_j$ diskretna aproksimacija donosa s konènim številom stanj. Ta stanja doloèimo kot razlièna možna stanja finanènega instrumenta na naših podatkih. Nato znanih podatkov doloèimo še vhodne in izhodne matrike za vse sluèajne spremenljivke.\\
+	Z zbranim znanjem in podatki izvedemo simulacije veè razliènih scenarijev, èemur na koncu sledi še reševanje dejanskega linearnega programa.
+\end{primer}
+\ \\
+Modeli, ki se jih uporablja v za napovedovanje cen finaènih instrumentov na kratki rok predvidevajo, da model sledi Brownovem gibanju, vendar velja, da ti modeli ne morejo zaznati ekstremnega gibanja cen. Tu je prednost tako imenovanih \textit{regime-switching} modelov, torej modelov pri katerih se zamenjujejo stanja in med katere spadajo tudi skriti markovski modeli.
+%%Dodaj še kakšen primer iz vira 2.
+\pagebreak
+\section{Praktièni primer}
+Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno asimetrièni v levo, torej je mediana veèja od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
+Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
+Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta ne sledi trendu prvega dela, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona, na NYSE oznaèena z AMZN. Vidimo namreè lahko, da je bila v drugih $10$ letih rast cene delnice bolj konstanta kot v prvih $10$ letih. \\
+\begin{figure}[h!]
+	\begin{center} 
+\includegraphics[scale=0.34]{slike/celota}
+\includegraphics[scale=0.34]{slike/polovica}\\
+\caption{Prikaz rasti cene delnic}
+\end{center} 
+\end{figure}  
+Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom, zato raje uporabimo stacionarno vrsto. V tem primeru sem uporabil le odmik od cene prejšnjega dne za isto delnico.\\
+\subsection{Analiza modela}\label{Analiza}
+Za splošno oceno modela sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne.\\
+Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, na katerem sem lahko svoj model uèil.\\
+Model, ki ga bomo uporabili je model z diskretnimi stanji. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse paratmetre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
+Za svoj portfelj sem želel ugotoviti skrita stanja, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}.\\
+Iz podatkov pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno za prehodno matriko.\\
+%%Popravi izraèunano prehodno matriko z oceno matrike iz Matlab paketa!!!
+%%Nujen popravek
+\begin{table}[h!]
+	\caption{Prehodna matrika $A$}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		& Normalna  & Visoka    & Ekstremna  \\ \hline
+		Normalna  & 0.4723262 &  0.3829033 & 0.1447705 \\ \hline
+		Visoka    & 0.4173430  & 0.3923537 & 0.1903033 \\ \hline
+		Ekstremna & 0.3137170  & 0.3898745 & 0.2964085 \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\begin{center} 
+		\includegraphics[scale=0.9]{slike/prehodna_slika}\\
+		\caption{Grafièni prikaz prehodnih verjetnosti}
+	\end{center} 
+\end{figure}  
+
+%\begin{figure}[h!]
+%	\label{odzacetka}
+%	\begin{center} 
+%		\includegraphics[scale=0.9]{slike/vsa_stanja}\\
+%		\caption{Stanja skozi celotno obdobje}
+%	\end{center} 
+%\end{figure}  
+%V primeru na sliki $7$ imamo prikazana najbolj verjetna stanja, ki veljajo za model, èe upoštevamo celotno dolžino podatkov.\\
+\begin{figure}[h!]
+	\label{sreda}
+	\begin{center} 
+		\includegraphics[scale=0.9]{slike/leto}\\
+		\caption{Stanja ob koncu leta $2008$}
+	\end{center} 
+\end{figure}  
+ Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $7$ pa prikazuje stanja v zaèetku leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa.
+
+\pagebreak
+\section{Zakljuèek}
+V svoji seminarski nalogi sem opisal delovanje skritih markovskih modelov, pri èemer sem se osredotoèil na finanène èasovne vrste.\\
+Skriti markovski modeli so spadajo med markovske modele, za katere velja, da velja markovska lastnost, katerih razvoj se je zaèel z Andrejem Markovom. Z njimi opišemo sluèajne procese, pri katerih ne poznamo vseh parametrov, saj jih moramo iz podatkov še pridobiti.\\
+Za vzpostavitev modela potrebujemo zaporedje opazovanj, iz katerih izvleèemo nabor parametrov $\lambda$, s katerimi poizkusimo maksimizirati funkcijo verjetja $P(O|\lambda)$. To funkcijo poizkusimo maksimizirati s pomoèjo Baum-Welchovega algoritma, ki je kljuèni algoritem za delovanje skritih markovskih modelov. \\
+Njihova uporaba je zelo široka, od procesiranje govora prek uporabe v biokemiènih procesih. Sam sem se posvetil uporabi v finanènih èasovnih vrstah.\\
+Èasovne vrste so èasovno urejena zaporedja opazovanj, v finanènih èasovnih vrstah pa so ta opazovanja vrednosti finanènih instrumentov v èasu. Te vrste obdeljujemo na veè naèinov, od ARIMA modelov do skritih marskovskih modelov. \\
+Finanène èasovne vrste predstavljajo veliko razliènih izzivov, med katerimi je med pomembnejšimi problem izbire portfelja, kjer si lahko pomagamo tudi s skritimi markovskimi modeli.\\
+Ob koncu sem opisal že izvedbo lastnega praktiènega primera na primeru izbranega portfelja.\\
+
+
+
+
+
+%slika podatkov
+%psevdokoda/slika kode
+
+%pogledam kakovost prek ekonometriènih testov;
+
+% seznam uporabljene literature
+\pagebreak
+\begin{thebibliography}{9}
+\bibitem{prvivir}
+D.~Roman, G.~Mitra in N.~Spagnolo, \emph{Hidden Markov models for financial optimization problems}, IMA Journal of Management Mathematics \textbf{21} (2010) 111--129.
+
+\bibitem{macdonald}
+I.L.~MacDonald in W.~Zucchini, \emph{Hidden Markov and Other Models for Discrete- valued Time Series}, Chapman \& Hall/CRC Monographs on Statistics \& Applied Probability  \textbf{70}, Chapman \& Hall, London, 1997.
+
+\bibitem{mamon}
+R.S.~Mamon in R.J.~Elliott \emph{Hidden Markov Models in Finance}, International Series in Operations Research \& Management Science  \textbf{104}, Springer, New York, 2007.
+
+\bibitem{davis}
+P.J.~Brockwell, R.A.~Davis \emph{Introduction to Time Series and Forecasting},2nd edition, Springer, 2002.
+
+\bibitem{yoon}
+B.J.~Yoon, \emph{Hidden Markov Models and their Applications in Biological Sequence Analysis}, v: Current genomics, 10,6(2009):402-415, [29. 7. 2019], dostopno na \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/}.
+
+\bibitem{membrana}
+\emph{A Hidden Markov Model method, capable of predicting and discriminating $\beta$-barrel outer membrane proteins}, BMC Bioinformatics \textbf{5} (2004) 
+
+\bibitem{membrana}
+P.G.~Bagos, T.D.~Liakopoulos, I.C~Spyropoulos, S.J.~Hamodrakas,  \emph{A Hidden Markov Model method, capable of predicting and discriminating $\beta$-barrel outer membrane proteins}, v: BMC Bioinformatics, 5(2004), [30. 7. 2019], dostopno na \url{https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-5-29}.
+
+\bibitem{zgodovina}
+P.~Dymarski, \emph{Hidden Markov Models, Theory and Application}, InTech, Rijeka, 2011
+
+\bibitem{AustrianALMO}
+A.~Geyer, W. T. ~Ziemba, (2008) \emph{The Innovest Austrian Pension Fund Financial Planning Model InnoALM}. Operations Research 56(4):797-810.
+\bibitem{shanon}
+ C.E.~Shannon, \emph{A Mathematical Theory of Communication}. Bell System Technical Journal. 27 (3): 379–423
+ \bibitem{markovena}
+ A.A.~Markov,  (1906) \emph{Extension of the Law of Large Numbers to Dependent Events}. Bulletin of the Society of the Physics Mathematics, Kazan, Russia, 2, 155-156.
+ \bibitem{markovdva}
+ A.A.~ Markov, \emph{Primer statisticheskogo issledovaniya nad tekstom “Evgeniya Onegina”, illyustriruyuschijsvyaz’ ispytanij v cep’},Izvestiya Akademii Nauk, SPb, VI seriya, tom 7, 9 3, 1913, 153-162.
+ \bibitem{dempster}
+A.~Dempster, N.~Laird, D.~Rubin, (1977). \emph{Maximum Likelihood from Incomplete Data via the EM Algorithm}. Journal of the Royal Statistical Society. Series B (Methodological), 39(1), 1-38. 
+\bibitem{viterbidva}
+A.~Viterbi, (1967). \emph{Error bounds for convolutional codes and an asymptotically optimum
+decoding algorithm}, IEEE Transactions on Information Theory. 13, Nr. 2,pp.260-269.
+\bibitem{baumwelch}
+ L.E.~ Baum et al.(1970). \emph{A maximization technique occurring in the statistical analysis of
+probabilistic functions of Markov chains}, The Annals of Mathematical Statistics, Vol.
+41, No. 1, 164–171.
+\bibitem{straton}
+R. L.~Stratonovich, \emph{Conditional Markov Processes}, Theory Probab. Appl., 5:2 (1960), 156–178.
+\bibitem{hamilton}
+J.D.~Hamilton, \emph{A new approach to the economic analysis of nonstationary time series and the business cycle}, Econometrica: Journal of the Econometric Society (1989), 357-384.
+\bibitem{spletna}
+D.~Holmes, (2004, 9. 11). \emph{What is Stochastic Programming}, dostopno na \url{http://users.iems.northwestern.edu/~jrbirge/html/dholmes/StoProIntro.html}.
+\bibitem{bayes}
+J.~Joyce, (2003,28.6). \emph{Bayes Theorem}, dostopno na \url{https://stanford.library.sydney.edu.au/entries/bayes-theorem/}.
+\end{thebibliography}
+
+\end{document}
+
