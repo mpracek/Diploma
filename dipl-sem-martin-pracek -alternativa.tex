@@ -610,12 +610,12 @@ Model, ki ga bomo uporabili, ima diskretna stanja. Velja torej, da nam model pov
 Za svoj portfelj sem želel ugotoviti prehode med stanji markovskih verig, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja, poleg tega pa so ta stanja fiksna. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Za vsak trenutek sem poiskal relativno rast cene portfelja in jih razvrstil v èasovno vrsto. Za te cene sem poiskal ustrezne percentile, prek katerih sem opazovanja pravilno grupiral.\\
 V tem primeru nimamo tipiènega skritega markovskega modela, temveè smo podatke grupirali na nov naèin. Tu se postavi vprašanje, ali ima ta model še markovsko lastnost, a to presega mojo diplomsko nalogo.\\
 Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo. Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj.\\
-\begin{figure}[h!]
-	\begin{center} 
-		\includegraphics[scale=0.8]{slike/koda}\\
-		\caption{R koda }
-	\end{center} 
-\end{figure}  
+%\begin{figure}[h!]
+%	\begin{center} 
+%		\includegraphics[scale=0.8]{slike/koda}\\
+%		\caption{R koda }
+%	\end{center} 
+%\end{figure}  
 
 \begin{table}[h!]
 	\caption{Prehodna matrika $A$}
@@ -650,7 +650,7 @@ Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z 
 		\caption{Stanja ob koncu leta $2008$}
 	\end{center} 
 \end{figure}  
- Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $8$ pa prikazuje stanja v koncu leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa. Po drugi strani pa to dejstvo nakazuje na to, da ta proces ni èasovno homogen, saj verjetnosti prehodov niso enake kot v ostalih obdobjih.\\
+ Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $7$ pa prikazuje stanja v koncu leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa. Po drugi strani pa to dejstvo nakazuje na to, da ta proces ni èasovno homogen, saj verjetnosti prehodov niso enake kot v ostalih obdobjih.\\
 % 
 % \begin{figure}[h!]
 % 	\label{cetrtek}
