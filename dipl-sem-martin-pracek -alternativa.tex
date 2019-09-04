@@ -144,14 +144,14 @@ Praktièni primer je postavljen v sedmo poglavje in predstavlja analizo skritih m
 
 \section{Markovski modeli}
 %Dodaj še kaj o markovskih modelih
-Skriti markovski modeli spadajo v bolj splošno skupino modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
+Skriti markovski modeli spadajo v bolj splošno skupino modelov, ki jo imenujemo markovski modeli. Gre za modele, kjer se stanja sluèajno spreminjajo. Za  te modele velja, da je njihovo stanje v èasu $t$ odvisno le od stanja v èasu $t-1$. To imenujemo markovska lastnost, po kateri so ti modeli tudi poimenovani.\\
 \begin{definicija}\label{markov}
 Naj bo $(\Omega,\mathcal{F},\mathbb{P},(\mathcal{F}_s)_{s \geq 0 })$ verjetnostni prostor s filtracijo za neko urejeno množico $I$. Naj velja, da je $(S,\mathcal{S})-$merljiv prostor na katerem obstaja merljiv sluèajni proces $X=(X_t)_{t\in I}$, ki je prilagojen na filtracijo.\\
 Potem pravimo, da ima sluèajni proces markovsko lastnost, èe za vsak $A \in \mathcal{S}$ in vsak par $s,t\in I$, kjer velja $s \leq t$, velja $$\mathbb{P}(X_t \in A \mid \mathcal{F}_s) = \mathbb{P}(X_t \in A\mid X_s).$$
 \end{definicija}
 Tu velja, da je $\Omega$ množica, $\mathcal{F}$ pa $\sigma$-algebra na njej. $\Omega$ je množica vseh možnih stanj, v katerih se lahko nahaja neka sluèajna spremenljivka. Èe tako na primer velja, da naša sluèajna spremenljivka lahko zavzame katero koli naravno število, bo potem $\Omega = \mathbb{N}$, $\mathcal{F}$ pa bo enak $\mathcal{F}= 2^\mathbb{N}$.\\
 Velja še, da je $\mathbb{P}$ mera na tej množici, kjer velja, da je $\mathbb{P}(\Omega) = 1$, torej je ta mera verjetnostna. Za $(\mathcal{F}_s)_{s \geq 0 }$ pravimo, da je filtracija, v posebnem pa je $\mathcal{F}_T$ $\sigma$-algebra zgodovine èasa $T$, torej za vsak dogodek do èasa $T$ vemo, ali se je dogodek zgodil ali ne.\\
-Zahteva o merljivosti prostora pomeni, da ima množico $S$ $\sigma$-algebro podmnožic $\mathcal{S}$. Potem je par  $(S,\mathcal{S})$ merljiv prostor.\\
+Zahteva o merljivosti prostora pomeni, da ima množico $S$ $\sigma$-algebro podmnožic $\mathcal{S}$. Potem je par $(S,\mathcal{S})-$merljiv prostor.\\
 Sluèajni proces je nabor sluèajnih spremenljivk in si ga navadno predstavljamo kot zaporedje sluèajnih spremenljivk skozi èas. Da je sluèajni proces filtracija pomeni, da za vsak $n$ velja, da je $X_n$ za $\mathcal{F}_n$ merljiv. \\
 Enakost torej pravi, da ni ni razlike med tem, ali bomo pogledali verjetnost $X_t \in A$ pogojno na $\sigma$-algebro zgodovine èasa $s$, ali pa pogledamo le, kaj nam pokaže sluèajna spremenljvika $X_s$.
 To definicijo lahko v primeru markovskih verig še dopolnimo, èe velja še, da je $I = \mathbb{N}$. Potem velja $$\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}, \dots, X_0=x_0)=\mathbb{P}(X_n=x_n\mid X_{n-1}=x_{n-1}).$$
@@ -183,7 +183,7 @@ Markovska lastnost nam pove, da je sluèajni proces "brez spomina". To pomeni, da
 
 Zaradi svoje široke uporabnosti markovske modele lahko loèimo na:
 \begin{itemize}
-	\item prediktivno modeliranje, kjer želimo iz statistiènih podatkov izraèunati najbolj verjeten dogodek glede nanaše podatke. Ta model se lahko uporablja ne glede na èas v katerem se je dogodek zgodil, saj lahko modeliramo prihodnje dogodke ravno tako kot pretekle dogodke, policija npr. uporablja to vrsto modela za doloèitev osumljencev za storjeni zloèin.
+	\item prediktivno modeliranje, kjer želimo iz statistiènih podatkov izraèunati najbolj verjeten dogodek glede na naše podatke. Ta model se lahko uporablja ne glede na èas v katerem se je dogodek zgodil, saj lahko modeliramo prihodnje dogodke ravno tako kot pretekle dogodke, policija npr. uporablja to vrsto modela za doloèitev osumljencev za storjeni zloèin.
 	\item verjetnostno napoved, kjer ne napovemo le najbolj verjetnega dogodka, ampak doloèimo verjetnosti vseh dogodkov kot popoln sistem dogodkov. Primer tega so športne stavnice, kjer lahko npr. stavimo za eno izmed ekip stavimo na zmago, remi ali poraz.
 \end{itemize}
 Modeliranje markovskih modelov je primer sluèajnega programiranja \cite{spletna}. Gre za sistem, ki nam pomaga pri optimizacije za modele, ki vkljuèujejo negotovost. To pomeni, da nekateri parametri niso znani z gotovostjo, temveè jih predstavimo z nekim sluèajnim objektom, pa naj si bo to sluèajna spremenljivka za enoobdobne probleme oziroma sluèajni proces za veèobdobne probleme.\\
@@ -200,15 +200,16 @@ Glede na to, kako je postavljen markovski model razdelimo, kot kaže tabela \ref{
 	\end{tabular}
 	\label{Tabela}
 \end{table}
-Razlike in podobnosti med vsemi modeli so opisane v spodnjem primeru.
+Razlike in podobnosti med modeli so opisane v spodnjem primeru.
 \linebreak
 \linebreak
 \linebreak
 \begin{primer}{\textbf{Primer žabe v ribniku.}}\label{zaba}
 %Dodaj kratice
-Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela $S$. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja).$$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Na ta naèin naš proces disktretiziramo. Odloèimo se za opazovanje le ene izmed žab, za katero nas zanima, kje se bo nahajala v naslednjem trenutku.\\
-Predstavljajmo si, da lahko vsakiè, ko pogledamo, našo žabo poljubno osvetlimo z luèjo in tako vplivamo na njeno obnašanje. Naš model je torej kontroliran. Žaba nato poljubno skaèe naprej. Èe poznamo prehodno matriko med stanji, bomo v tem primeru imeli markovski odloèitveni proces. To pomeni, da vemo kako nek zunanji vpliv vpliva na spremembe verjetnosti prehoda med stanji. V nasprotnem primeru imamo delno opazovan proces odloèanja. To velja ko vplivamo na spremembe stanj, a prehodne matrike ne poznamo.\\
-Èe se nikoli ne odloèimo, da bi žabo osvetlili, pa imamo avtonomen model. Kot pri kontroliranem lahko tu loèimo, ali je proces v celoti opazen ali so neka stanja skrita.\\ Èe stanja niso skrita, imamo markovsko verigo, ki je torej le poseben primer markovskih odloèitvenih procesov, kjer žabe nikoli ne prestavimo. Pri markovskih verigah poznamo tudi prehodno matriko $A$, katere elementi $a_{ij}$ predstavljajo verjetnosti prehoda iz stanja $i$ v stanje $j$. Preprost primer markovskih verig predstavljajo sluèajni sprehodi. \\
+Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka izmed žab je lahko v vsakem trenutku v vodi, na lokvanju ali pa zunaj vode. To imenujemo stanja markovskega modela. Poimenujmo vektor stanj  $$S = (Voda,Lokvanj,Zemlja).$$ Na ribnik pogledamo le v nekih diskretnih èasih, z enakim razmikom, na primer ob koncu vsake minute. Na ta naèin naš proces disktretiziramo. Odloèimo se za opazovanje le ene izmed žab, za katero nas zanima, kje se bo nahajala v naslednjem trenutku.\\
+Predstavljajmo si, da lahko vsakiè, ko pogledamo, našo žabo poljubno osvetlimo z luèjo in tako vplivamo na njeno obnašanje. Naš model je na ta naèin kontroliran. Žaba nato poljubno skaèe naprej. Èe poznamo prehode med stanji, bomo v tem primeru imeli markovski odloèitveni proces. To pomeni, da vemo kako nek zunanji vpliv vpliva na spremembe verjetnosti prehoda med stanji. V nasprotnem primeru imamo delno opazovan proces odloèanja. To velja ko vplivamo na spremembe stanj, a prehodov ne poznamo.\\
+Èe se nikoli ne odloèimo, da bi žabo osvetlili, pa imamo avtonomen model. Kot pri kontroliranem lahko tu loèimo, ali je proces v celoti opazen ali so neka stanja skrita.\\ 
+Èe stanja niso skrita, imamo markovsko verigo, ki je torej le poseben primer markovskih odloèitvenih procesov, kjer na žabo nikoli ne vplivamo. Pri markovskih verigah poznamo tudi prehodno matriko $A$, katere elementi $a_{ij}$ predstavljajo verjetnosti prehoda iz stanja $i$ v stanje $j$. Preprost primer markovskih verig predstavljajo sluèajni sprehodi.\\
 Navadno predpostavimo, da se verjetnosti prehoda iz enega stanja v drugega ne spreminjajo. Vsota po vsaki vrstici je vedno enaka ena, to je $$\sum_{j = 1}^{n}a_{ij} = 1$$ saj predstavlja verjetnosti prehoda iz enega stanja v drugo. Elementi  Tako je $a_{ij}$ verjetnost prehoda iz stanja $i$ v stanje $j$. Velja še, da je $n$ število stanj in je v našem primeru $3$, oèitno pa velja tudi, da je matrika velikost $n\times n$ in da so vsi elementi $a_{ij}$ iz intervala $[0,1]$.\\
 V tem primeru lahko torej, v vsakem trenutku predvidimo, kam bo skoèila žaba v naslednjem trenutku.\\
 \end{primer}
@@ -240,8 +241,9 @@ V tem primeru lahko torej, v vsakem trenutku predvidimo, kam bo skoèila žaba v n
 Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces s skritimi stanji. Gre torej za tip modela, kjer lahko vidimo signal, ne moremo pa ugotoviti, kakšna je bila funkcija, ki nam ga je dala.\\
 \begin{primer}
 	Za žabo iz primera \ref{zaba} sedaj poglejmo kaj se spremeni v primeru skritih markovskih modelov.\\
-	Za le te velja, da vseh parametrov ne poznamo, lahko pa jih doloèimo iz podatkov, ki jih imamo za naš problem. Tako bi našo žabo dovolj dolgo opazovali, in si zapisovali na primer njeno temperaturo v vsakem trenutku opazovanja. Tako bi dobili vektor opazovanj $O$, ki bi vseboval temperaturo žabe v vsakem trenutku. V pomoèjo skritih markovskih modelov bi nato poizkušali doloèiti v kakšnem stanju, torej na kakšni poziciji se je nahajala v vsakem trenutku. Doloèitev zaporedja stanj je se razlikuje med primeri. V primeru žabe bi tako lahko pogledali spremembo temperature ob spremembi stanja, ter glede na to spremembo poizkušali doloèiti, kje se žabica nahaja.\\
-	Vektor $O$ je naš osnovni podatek, iz katerega nato izpeljemo celoten model, torej poišèemo zaporedje skritih stanj in nato verjetnosti prehodov med njimi. Za  Iz tega bi najprej pogledali, kakšna so možna stanja sistema. Ko bi doloèili stanja ter njihovo zaporedje, iz tega lahko doloèimo parametre modela. Kako to naredimo, si bomo pogledali v nadaljevanju, na primeru prehodne matrike pa poglejmo, kaj le ta pomeni. \\
+	V primeru skritih markovskih modelov stanj modela ne poznamo, torej je vektor stanj, ki je bil v \ref{zaba} znan in smo ga znali doloèiti, tu neznan.\\
+	V splošnem velja tudi, da parametrov ne poznamo, lahko pa jih doloèimo iz podatkov, ki jih imamo za naš problem. Tako bi našo žabo dovolj dolgo opazovali, in si zapisovali na primer njeno temperaturo v vsakem trenutku opazovanja. Tako bi dobili vektor opazovanj $O$, ki bi vseboval temperaturo žabe v vsakem trenutku. V pomoèjo skritih markovskih modelov bi nato poizkušali doloèiti stanja, torej na kakšni poziciji se je nahajala v vsakem trenutku. Doloèitev zaporedja stanj je se razlikuje med primeri. V primeru žabe bi tako lahko pogledali spremembo temperature ob spremembi stanja, ter glede na to spremembo poizkušali doloèiti, kje se žabica nahaja.\\
+	Vektor $O$ je naš osnovni podatek, iz katerega nato izpeljemo celoten model, torej poišèemo zaporedje skritih stanj in nato potrebne parametre. Ko bi doloèili stanja ter njihovo zaporedje, iz tega lahko doloèimo parametre modela. Kako to naredimo, si bomo pogledali v nadaljevanju, na primeru prehodne matrike pa poglejmo, kaj le ta pomeni. \\
 	Recimo, da prehodna matrika enaka:
 	$$
 	\begin{bmatrix}
@@ -251,7 +253,7 @@ Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da 
 	\end{bmatrix}$$
 	
 	V našem primeru bi to pomenilo, da je verjetnost, da žaba ostane v vodi $0.5$, da iz vode skoèi na lokvanj $0.3$, verjetnost, da pa skoèi iz ribnika pa $0.2$. Iz te matrike lahko torej preberemo verjetnosti, ki nam bodo povedale verjetnosti prehodov, èe velja da na naš opazovan sistem, torej žabo, ne vplivamo.\\
-	Kot smo prej omenili, pa se ta matrika spremeni, èe žabo osvetlimo. Tako lahko dobimo matriko, ki govori o verjetnostih prehodov, èe na sistem vplivamo.
+	Kot omenjeno, pa se ta matrika spremeni, èe žabo osvetlimo. Tako lahko dobimo matriko, ki govori o verjetnostih prehodov, èe na sistem vplivamo.
 	$$
 	\begin{bmatrix}
 	0.9 & 0.05 & 0.05  \\
@@ -583,25 +585,25 @@ Modeli, ki se jih uporablja v za napovedovanje cen finaènih instrumentov na krat
 %%Dodaj še kakšen primer iz vira 2.
 \pagebreak
 \section{Praktièni primer}
-Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno asimetrièni v levo, torej je mediana veèja od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov. To bom preveril na veè setih podatkov.\\
+Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno asimetrièni v levo, torej je mediana veèja od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov.\\
 Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
-Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta ne sledi trendu prvega dela, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona, na NYSE oznaèena z AMZN. Vidimo namreè lahko, da je bila v drugih $10$ letih rast cene delnice bolj konstanta kot v prvih $10$ letih. \\
-\begin{figure}[h!]
-	\begin{center} 
-\includegraphics[scale=0.34]{slike/celota}
-\includegraphics[scale=0.34]{slike/polovica}\\
-\caption{Prikaz rasti cene delnic}
-\end{center} 
-\end{figure}  
-Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom, zato raje uporabimo stacionarno vrsto. V tem primeru sem uporabil le odmik od cene prejšnjega dne za isto delnico.\\
+%Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta ne sledi trendu prvega dela, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona, na NYSE oznaèena z AMZN. Vidimo namreè lahko, da je bila v drugih $10$ letih rast cene delnice bolj konstanta kot v prvih $10$ letih. \\
+%\begin{figure}[h!]
+%	\begin{center} 
+%\includegraphics[scale=0.34]{slike/celota}
+%\includegraphics[scale=0.34]{slike/polovica}\\
+%\caption{Prikaz rasti cene delnic}
+%\end{center} 
+%\end{figure}  
+%Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom, zato raje uporabimo stacionarno vrsto. V tem primeru sem uporabil le odmik od cene prejšnjega dne za isto delnico.\\
 \subsection{Analiza modela}\label{Analiza}
-Za splošno oceno modela sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne. Signale torej predstavlja cena tega portfelja.\\
+V lastnem primeru sem s pomoèjo teorije skritih markovskih modelov izvedel le en del obsežnega primera. Tako sem se odloèil za ocenitev verjetnosti prehodov med stanji. Ta stanja sem definiral kot v \cite{prvivir} glede na volatilnost, in posledièno ne predstavljajo popolnoma skritih stanj.\\
+Za model sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne. Signale torej predstavlja cena tega portfelja.\\
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, na katerem sem lahko svoj model uèil.\\
-Model, ki ga bomo uporabili je model z diskretnimi stanji. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse paratmetre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
-Za svoj portfelj sem želel ugotoviti prehode med markovskimi verigami, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Tako sem doloèil skrita stanja.\\
-Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo. Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj. \\
-%%Popravi izraèunano prehodno matriko z oceno matrike iz Matlab paketa!!!
-%%Nujen popravek
+Model, ki ga bomo uporabili, ima diskretnima stanja. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse paratmetre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
+Za svoj portfelj sem želel ugotoviti prehode med stanji markovskih verig, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja, poleg tega pa so ta stanja fiksna. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Za vsak trenutek sem poiskal relativno rast cene portfelja in jih razvrstil v èasovno vrsto. Za te cene sem poiskal ustrezne percentile, prek katerih sem opazovanja pravilno grupiral.\\
+V tem primeru nimamo tipiènega skritega markovskega modela, temveè smo podatke grupirali na nov naèin. Tu se postavi vprašanje, ali ima ta model še markovsko lastnost, a to presega mojo diplomsko nalogo.\\
+Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo. Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj.\\
 \begin{table}[h!]
 	\caption{Prehodna matrika $A$}
 	\begin{tabular}{|c|c|c|c|}
