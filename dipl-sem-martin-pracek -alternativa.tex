@@ -210,7 +210,7 @@ Zamislimo si, da imamo ribnik z lokvanji, v katerem so se naselile žabe. Vsaka i
 Predstavljajmo si, da lahko vsakiè, ko pogledamo, našo žabo poljubno osvetlimo z luèjo in tako vplivamo na njeno obnašanje. Naš model je torej kontroliran. Žaba nato poljubno skaèe naprej. Èe poznamo prehodno matriko med stanji, bomo v tem primeru imeli markovski odloèitveni proces. To pomeni, da vemo kako nek zunanji vpliv vpliva na spremembe verjetnosti prehoda med stanji. V nasprotnem primeru imamo delno opazovan proces odloèanja. To velja ko vplivamo na spremembe stanj, a prehodne matrike ne poznamo.\\
 Èe se nikoli ne odloèimo, da bi žabo osvetlili, pa imamo avtonomen model. Kot pri kontroliranem lahko tu loèimo, ali je proces v celoti opazen ali so neka stanja skrita.\\ Èe stanja niso skrita, imamo markovsko verigo, ki je torej le poseben primer markovskih odloèitvenih procesov, kjer žabe nikoli ne prestavimo. Pri markovskih verigah poznamo tudi prehodno matriko $A$, katere elementi $a_{ij}$ predstavljajo verjetnosti prehoda iz stanja $i$ v stanje $j$. Preprost primer markovskih verig predstavljajo sluèajni sprehodi. \\
 Navadno predpostavimo, da se verjetnosti prehoda iz enega stanja v drugega ne spreminjajo. Vsota po vsaki vrstici je vedno enaka ena, to je $$\sum_{j = 1}^{n}a_{ij} = 1$$ saj predstavlja verjetnosti prehoda iz enega stanja v drugo. Elementi  Tako je $a_{ij}$ verjetnost prehoda iz stanja $i$ v stanje $j$. Velja še, da je $n$ število stanj in je v našem primeru $3$, oèitno pa velja tudi, da je matrika velikost $n\times n$ in da so vsi elementi $a_{ij}$ iz intervala $[0,1]$.\\
-V tem primeru lahko torej, v vsakem trenutku predvidimo, kam bo skoèila žaba v naslednjem trenutku. Èe stanj in prehodov med njimi ne poznamo imamo skrite markovske modele.\\
+V tem primeru lahko torej, v vsakem trenutku predvidimo, kam bo skoèila žaba v naslednjem trenutku.\\
 \end{primer}
 % èe dobim zaporedje stanj 
 %motivirati zakaj je bi uporaben
@@ -265,7 +265,7 @@ Skriti markovski model je statistièni markovski model, kjer predpostavljamo, da 
 
 Skrit markovski model je konèno uèljiv sluèajen avtomat. Lahko ga opišemo kot dvojni sluèajni proces. Prvi proces ima konèno število stanj. Med temi prehode opazujemo prek prehodnih verjetnosti. Pri drugem sluèajnem procesu lahko v vsakem stanju opazujemo signal. Signali so odvisni od stanja prvega procesa. Drugi proces namreè vrne signal pogojno na zavzeto vrednost prvega procesa.\\
 Ker te signale opazujemo brez tega, da bi vedeli, v kakšnem stanju so se zgodili, imenujemo ta stanja skrita.\\
-Skriti markovski modeli uporabljajo idejo bayesianske statistike. Tu uporabljamo Bayesov izrek \ref{bayes}, ki pravi, da je verjetnost dogodka $A$, v primeru da $B$ velja enaka:
+Skriti markovski modeli uporabljajo idejo bayesianske statistike. Tu uporabljamo Bayesov izrek \cite{bayes}, ki pravi, da je verjetnost dogodka $A$, v primeru da $B$ velja enaka:
 $$P(A|B) = \frac{P(B|A)P(A)}{P(B)},$$ kjer velja, da dogodek $A$ predstavlja našo hipotezo, $B$ pa znan dogodek. \\
 Ideja za delovanje skritih markovskih modelov izhaja iz dela Andrewa Viterbija na podroèju komunikacije. V komunikacijskih storitvah šumi namreè predstavljajo veliko težavo, zato se je ameriško-italijanski elektroinžiner domislil algoritma, s katerimi bi iz seta podatkov izloèili šume. 
 \begin{primer}
@@ -355,7 +355,7 @@ Tako potrebujemo za sestavo modela še:
 	\item matriko $\Sigma$, kjer $\sigma_{ij}$ predstavlja varianco $b_j$ v stanju $i$.
 \end{itemize}
 Vse te matrike so velikosti $N \times M$ in z njimi opišemo Gaussove mešanice. \\
-Èe so sluèajne spremenljivke, ki opisujejo signale diskretne, je opis stanj manj kompleksen. V tem primeru za opis diskretne spremenljivke potrebujemo le eno matriko, katere elementi opišejo vrednosti, ki jih dobimo. To matriko imenujemo izhodna matrika. Ta matrika je velikosti $N\times N$, kjer je $N$ število stanj. Ta matrika vsebuje vrednosti, ki jih vrne sluèajni proces kot signale.\\
+%Èe so sluèajne spremenljivke, ki opisujejo signale diskretne, je opis stanj manj kompleksen. V tem primeru za opis diskretne spremenljivke potrebujemo le eno matriko, katere elementi opišejo vrednosti, ki jih dobimo. To matriko imenujemo izhodna matrika. Element $(i,j)$ izhodne matrike pove vrednost, ki jo vrne model v primeru signala $j$ stanja $i$.\\
 \subsection{Priprava in trening modela}\label{trening}
 Preden zaènemo z doloèanjem parametrov našega modela, moramo najprej dobro preuèiti naš problem, saj je to znanje kljuèno za dobro reševanje problema. Kot prvo stvar moramo najprej izbrati set podatkov, na katerem bo potekal tako imenovan trening sistema. 
 Ti podatki morajo biti zbrani na na primerni enoti; na ceno delnic vrednost le te pred $10$ leti ne bo vplivala toliko kot cena dan pred meritvijo. \\ 
@@ -598,7 +598,7 @@ Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki pri
 Za splošno oceno modela sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne. Signale torej predstavlja cena tega portfelja.\\
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, na katerem sem lahko svoj model uèil.\\
 Model, ki ga bomo uporabili je model z diskretnimi stanji. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse paratmetre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
-Za svoj portfelj sem želel ugotoviti skrita stanja, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Tako sem doloèil skrita stanja.\\
+Za svoj portfelj sem želel ugotoviti prehode med markovskimi verigami, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Tako sem doloèil skrita stanja.\\
 Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo. Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj. \\
 %%Popravi izraèunano prehodno matriko z oceno matrike iz Matlab paketa!!!
 %%Nujen popravek
@@ -635,7 +635,7 @@ Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z 
 		\caption{Stanja ob koncu leta $2008$}
 	\end{center} 
 \end{figure}  
- Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $7$ pa prikazuje stanja v koncu leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa. 
+ Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $7$ pa prikazuje stanja v koncu leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa. Po drugi strani pa to dejstvo nakazuje na to, da ta proces ni èasovno homogen, saj verjetnosti prehodov niso enake kot v ostalih obdobjih.\\
 % 
 % \begin{figure}[h!]
 % 	\label{cetrtek}
