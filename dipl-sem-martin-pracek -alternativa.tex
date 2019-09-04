@@ -108,7 +108,7 @@ V moji diplomski nalogi sem se ukvarjal z skritimi markovskimi modeli. Gre za vr
 {\sc Abstract}
 \end{center}
 % tekst povzetka v anglescini
-For my graduate thesis I researched Hidden Markov Models, a type of Markov Models where states of model are not known. This state are therefore hidden, thus naming Hidden Markov Model. My paper discusses the base theory behind hidden markov models and some applications. Also, I included my own example. There is also a part about time series and some of their special properties.
+For my graduate thesis I researched Hidden Markov Models, a type of Markov Models where states of model are not known. This state are therefore hidden, thus naming Hidden Markov Model. My paper discusses the base theory behind Hidden Markov Models and some applications. Also, I included my own example. There is also a part about time series and some of their special properties.
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2010):}  	60J05,60J22,91B84, 	91B74, 	91B70, 	91G80,91G70 , 	65K05 \\[1mm]
@@ -121,23 +121,22 @@ For my graduate thesis I researched Hidden Markov Models, a type of Markov Model
 
 % slovar
 \section*{Slovar strokovnih izrazov}
-\geslo{Skriti markovski model}{ je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces s skritimi stanji.}\\
-\geslo{Gaussova mešanica}{ je porazdelitvena funkcija z gostoto, ki jo lahko zapišemo kot tehtano povpreèje normalnih gostot; $$f(x) = \sum_{j = 1}^{M}{c_{j}} f_{N,j}(x;\mu_{j}, \sigma_{j}^2)$$. Veljati mora še, da je $$\sum_{j = 1}^{M}{c_{j}} = 1$$ in da je $f_{N,j}(x;\mu_{j}, \sigma_{j}^2)$ gostota verjetnosti normalne porazdelitvene funkcije.}\\
-\geslo{Akaikejev informacijski kriterij}{ oziroma AIC je merilo relativne kakovosti modela glede na preostale modele za iste podatke.Naj velja, da imamo podatke s $k$ ocenjenimi parametri in $\hat{L}$ maksimalna vrednost funkcije verjetja. AIC izraèunamo kot $$AIC = 2k - 2ln(\hat{L})$$ AIC primerja veè razliènih modelov po kakovosti, kjer je najboljši tisti z najmanjšo vrednostjo.}\\
-\geslo{Baum-Welchov algoritem}{Je algoritem, s katerim poišèemo neznane parametre skritih markovskih modelov.}\\%malo razlage
+\geslo{Skriti markovski model}{je statistièni markovski model, kjer predpostavljamo, da je modelirani sistem markovski proces s skritimi stanji.}\\
+\geslo{Gaussova mešanica}{je porazdelitvena funkcija z gostoto, ki jo lahko zapišemo kot tehtano povpreèje normalnih gostot; $$f(x) = \sum_{j = 1}^{M}{c_{j}} f_{N,j}(x;\mu_{j}, \sigma_{j}^2)$$. Veljati mora še, da je $$\sum_{j = 1}^{M}{c_{j}} = 1$$ in da je $f_{N,j}(x;\mu_{j}, \sigma_{j}^2)$ gostota verjetnosti normalne porazdelitvene funkcije.}\\
+\geslo{Akaikejev informacijski kriterij}{oziroma AIC je merilo relativne kakovosti modela glede na preostale modele za iste podatke.Naj velja, da imamo podatke s $k$ ocenjenimi parametri in $\hat{L}$ maksimalna vrednost funkcije verjetja. AIC izraèunamo kot $$AIC = 2k - 2ln(\hat{L})$$ AIC primerja veè razliènih modelov po kakovosti, kjer je najboljši tisti z najmanjšo vrednostjo.}\\
 \geslo{Prièakovan primankljaj}{Naj bo $X$ donos portfelja nekoè v prihodnosti in naj velja da je $0<\alpha<1$, kjer je $\alpha$ stopnja zaupanja. Prièakovan primankljaj $ES_\alpha$ je definiran kot $$ES_\alpha = -\frac{1}{\alpha}\int_{0}^{\alpha}{VaR_\gamma(x)d\gamma}$$kjer je $VaR_\gamma$ tvegana vrednost. }  \\
 %
 \pagebreak
 \section{Uvod}
 %%Dodelaj uvod
-Skriti markovski modeli so modelacijsko orodje, ki nam omogoèa zelo široko uporabo. V mojem diplomskem seminarju se najbolj posveèam uporabi v finanèni analizi. Z njimi opišemo procesez neznanimi lastnostmi, saj so skriti znotaj podatkov. Prav to nam omogoèa dober uvid v finanène vrste. \\
-Skrite markovske modele lahko predstavljamo kot dvojico sluèajnih procesov, ki sta med seboj neodvisna. Prvi proces predstavlja stanja, ki jih ne vidimo. Vidimo pa rezultate drugega sluèajnega procesa, ki nam vraèa signale. Tipièen primer signala je cena delnice.\\
-V drugem poglavju predstavljam osnove teorije za markovskimi modeli, ter razlike med razliènimi vrstami le teh, bolj podrobno pa se posveèam markovskih verigam. Razlike med razliènimi vrstami markovskih modelov so predstavljene na primeru.\\
+Skriti markovski modeli so modelacijsko orodje, ki nam omogoèa zelo široko uporabo. V mojem diplomskem seminarju se najbolj posveèam uporabi v finanèni analizi. Z njimi opišemo procese z neznanimi stanji, saj so le ta skrita znotaj podatkov. Prav to nam omogoèa dober uvid v finanène vrste. \\
+Skrite markovske modele lahko predstavljamo kot dvojico sluèajnih procesov, ki sta med seboj neodvisna. Prvi proces predstavlja stanja, ki jih ne vidimo. Vidimo pa rezultate drugega sluèajnega procesa, ki nam vraèa signale. Tipièen primer signala je cena delnice, kjer je drugi proces torej cenovni proces delnice.\\
+V drugem poglavju predstavljam osnovo teorije za markovskimi modeli, ter razlike med razliènimi vrstami le teh, bolj podrobno pa se posveèam markovskih verigam. Razlike med razliènimi vrstami markovskih modelov predstavim na primeru.\\
 V tretjem poglavju se podrobno posveèam skritim markovskim modelom. Najprej motiviram njihovo uporabo ter predstavil osnovno idejo, ki je bila potrebna za vzpostavitev skritih markovskih modelov. V naslednjem delu tretjega poglavja se posvetim zgodovini skritih markovskih modelov in osebam, ki so osnovale skrite markovske modele.\\
 Naslednji razdelek je posveèen zahtevam, ki jim moramo ugoditi, da lahko skrite markovske modele modeliramo. Temu sledi tudi razlaga priprave in treninga modela ter doloèitev zaèetnih vrednosti.\\
-Naslednja dva dela predstavljata zadnji sklop znotraj poglavja o skritih markovskih modelih. Tu je namreè opisano, kako ugotovimo trenutno stanje ter je orisan algoritem, ki stoji za tem, na koncu pa je opisano še, kako generiramo pot v skritem markovskem modelu.\\
+Naslednja dva dela predstavljata zadnji sklop znotraj poglavja o skritih markovskih modelih. Tu je namreè opisano, kako ugotovimo trenutno stanje ter je orisan algoritem, ki stoji za tem. Na koncu pa je opisano še, kako generiramo pot v skritem markovskem modelu.\\
 Naslednje poglavje je posveèeno razliènim naèinom uporabe, kjer se najbolj podrobno posvetim procesiranju govora in uporabi v biologiji.\\
-Peto poglavje je posveèeno èasovnim vrstam ter nekaterim njihovim posebnim lastnostim,  POleg tega posebej opišem finanène èasovne vrste.\\
+Peto poglavje je posveèeno èasovnim vrstam ter nekaterim njihovim posebnim lastnostim,  Poleg tega posebej opišem finanène èasovne vrste.\\
 Šesto poglavje je posebej posveèeno uporabi skritih markovskih modelov v finanènih èasovnih vrstah. To še podrobneje predstavim z primerom.\\
 Praktièni primer je postavljen v sedmo poglavje in predstavlja analizo skritih markovskih modelov za portfelj $5$ posebej izbranih delnic.
 \pagebreak
@@ -599,11 +598,25 @@ Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi
 \subsection{Analiza modela}\label{Analiza}
 V lastnem primeru sem s pomoèjo teorije skritih markovskih modelov izvedel le en del obsežnega primera. Tako sem se odloèil za ocenitev verjetnosti prehodov med stanji. Ta stanja sem definiral kot v \cite{prvivir} glede na volatilnost, in posledièno ne predstavljajo popolnoma skritih stanj.\\
 Za model sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne. Signale torej predstavlja cena tega portfelja.\\
+\begin{figure}[h!]
+	\begin{center} 
+		\includegraphics[scale=0.8]{slike/celotenportfelj}\\
+		\caption{Cena celotnega portfelja skozi prvih $100$ mdni}
+	\end{center} 
+\end{figure}  
+
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, na katerem sem lahko svoj model uèil.\\
-Model, ki ga bomo uporabili, ima diskretnima stanja. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse paratmetre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
+Model, ki ga bomo uporabili, ima diskretna stanja. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse paratmetre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
 Za svoj portfelj sem želel ugotoviti prehode med stanji markovskih verig, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja, poleg tega pa so ta stanja fiksna. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Za vsak trenutek sem poiskal relativno rast cene portfelja in jih razvrstil v èasovno vrsto. Za te cene sem poiskal ustrezne percentile, prek katerih sem opazovanja pravilno grupiral.\\
 V tem primeru nimamo tipiènega skritega markovskega modela, temveè smo podatke grupirali na nov naèin. Tu se postavi vprašanje, ali ima ta model še markovsko lastnost, a to presega mojo diplomsko nalogo.\\
 Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo. Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj.\\
+\begin{figure}[h!]
+	\begin{center} 
+		\includegraphics[scale=0.8]{slike/koda}\\
+		\caption{R koda }
+	\end{center} 
+\end{figure}  
+
 \begin{table}[h!]
 	\caption{Prehodna matrika $A$}
 	\begin{tabular}{|c|c|c|c|}
@@ -637,7 +650,7 @@ Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z 
 		\caption{Stanja ob koncu leta $2008$}
 	\end{center} 
 \end{figure}  
- Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $6$ pa prikazuje stanja v koncu leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa. Po drugi strani pa to dejstvo nakazuje na to, da ta proces ni èasovno homogen, saj verjetnosti prehodov niso enake kot v ostalih obdobjih.\\
+ Te lahko še lažje prikažemo na manjšem obsegu. Primer na sliki $8$ pa prikazuje stanja v koncu leta $2008$, kjer opazimo veèje število primerov v stanju ekstremne volatilnosti, kar ne preseneèa. Po drugi strani pa to dejstvo nakazuje na to, da ta proces ni èasovno homogen, saj verjetnosti prehodov niso enake kot v ostalih obdobjih.\\
 % 
 % \begin{figure}[h!]
 % 	\label{cetrtek}
