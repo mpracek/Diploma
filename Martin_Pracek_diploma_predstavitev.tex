@@ -294,7 +294,7 @@ $$ -1= \frac{0-P_{t-1}}{P_{t-1}} \leq R_t$$
 
 
 \begin{frame}
-\frametitle{Praktièni primer}
+\frametitle{Primer ocenjevanja prehodnih verjetnosti}
 \begin{figure} 
 	\begin{center}  
 		\includegraphics[scale=0.6]{slike/portfelja}\\
@@ -303,13 +303,16 @@ $$ -1= \frac{0-P_{t-1}}{P_{t-1}} \leq R_t$$
 \end{frame}
 
 \begin{frame}
-%$$
-%\begin{bmatrix}
-%0.334 & 0 & 0.666  \\
-%0 & 1 & 0  \\
-%0.001 & 0 & 0.999 \\
-%\end{bmatrix}$$
-%
+\begin{table}[h!]
+	\caption{Prehodna matrika $A$}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		& Normalna  & Visoka    & Ekstremna  \\ \hline
+		Normalna  & 0.7350923 & 0.1872929 & 0.07761477 \\ \hline
+		Visoka    & 0.6553579 & 0.2234175 & 0.12122466 \\ \hline
+		Ekstremna & 0.5453789 & 0.2447960 & 0.20982515 \\ \hline
+	\end{tabular}
+\end{table}
 \begin{figure}[h!] 
 	\begin{center}  
 		\includegraphics[scale=0.3]{slike/prehodna_slika}\\
