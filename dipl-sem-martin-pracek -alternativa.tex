@@ -606,14 +606,16 @@ Za model sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral 
 \end{figure}  
 
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, na katerem sem lahko svoj model uèil.\\
-Model, ki ga bom uporabil, ima diskretna stanja. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Za svoj portfelj sem želel ugotoviti prehode med stanji markovskih verig, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Donose sem podobno kot v \cite{prvivir} definiral glede na volatilnost v tistem obdobju. Nato sem jih grupiral v tri razlièna fiksna stanja.Dobil sem normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Za vsak trenutek sem poiskal relativno rast cene portfelja in jih razvrstil v èasovno vrsto. Za te cene sem poiskal ustrezne percentile, prek katerih sem opazovanja pravilno grupiral.\\
+Model, ki ga bom uporabil, ima diskretna stanja. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Za svoj portfelj sem želel ugotoviti prehode med stanji markovskih verig, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Donose sem podobno kot v \cite{prvivir} definiral glede na volatilnost v tistem obdobju. Nato sem jih grupiral v tri razlièna fiksna stanja.Dobil sem normalno stanje $S_1$, ki velja v $70\%$ èasa, stanje visoke volatilnosti $S_2$, ki velja $20\%$ èasa ter ekstremno stanje $S_3$, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Za vsak trenutek sem poiskal relativno rast cene portfelja in jih razvrstil v èasovno vrsto. Za te cene sem poiskal ustrezne percentile, prek katerih sem opazovanja pravilno grupiral. Tako smo za vsako opazovanje $x_t$ doloèili stanje $S_t$ v katerem se nahaja.\\
 Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse parametre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
 V tem primeru nimamo tipiènega skritega markovskega modela, temveè smo podatke grupirali na nov naèin. Tu se postavi vprašanje, ali ima ta model še markovsko lastnost, a to presega mojo diplomsko nalogo.\\
 Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali s predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo, in sicer z ukazom \begin{verbatim}
 sekvenca = createSequenceMatrix(rezultat, toRowProbs = TRUE)
 matrika = as(sekvenca, "markovchain")
-\end{verbatim}  
-Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj.\\
+\end{verbatim}
+Parameter $rezultat$ predstavlja ugotovljeno zaporedje stanj. Brez pomoèi R pa bi lahko oceno za prehodno matriko izraèunali tako, da bi prešteli pare $S_tS_{t+1}$ za vsak $t$, kjer je $S_t=S_i$ ter $S_{t+1}=S_j$. Za vsako kombinacijo parov bi tako dobili $n_{ij}$, ki nam pove število prehodov iz stanja $i$ v stanje $j$. Da bi dobili verjetnost prehoda, pa moramo $n_{ij}$ deliti še z $n_i$, ki nam pove kolikokrat se je sistem nahajal v stanju $i$.
+Tako bi posamezno prehodno verjetnost definirali kot
+$$\widehat{p_{ij}}=\frac{n_{ij}}{n_i}$$
 %\begin{figure}[h!]
 %	\begin{center} 
 %		\includegraphics[scale=0.8]{slike/koda}\\
@@ -626,9 +628,9 @@ Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj.
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		& Normalna  & Visoka    & Ekstremna  \\ \hline
-		Normalna  & 0.4723262 &  0.3829033 & 0.1447705 \\ \hline
-		Visoka    & 0.4173430  & 0.3923537 & 0.1903033 \\ \hline
-		Ekstremna & 0.3137170  & 0.3898745 & 0.2964085 \\ \hline
+		Normalna  & 0.7350923 & 0.1872929 & 0.07761477 \\ \hline
+		Visoka    & 0.6553579 & 0.2234175 & 0.12122466 \\ \hline
+		Ekstremna & 0.5453789 & 0.2447960 & 0.20982515 \\ \hline
 	\end{tabular}
 \end{table}
 
