@@ -583,9 +583,9 @@ V zadnjem èasu se je uporaba skritih markovskih modelov v finanèništvu precej po
 Modeli, ki se jih uporablja v za napovedovanje cen finaènih instrumentov na kratki rok predvidevajo, da model sledi Brownovem gibanju, vendar velja, da ti modeli ne morejo zaznati ekstremnega gibanja cen. Tu je prednost tako imenovanih \textit{regime-switching} modelov, torej modelov pri katerih se zamenjujejo stanja in med katere spadajo tudi skriti markovski modeli.
 %%Dodaj še kakšen primer iz vira 2.
 \pagebreak
-\section{Praktièni primer}
+\section{Primer ocenjevanja prehodnih verjetnosti}
 Že v \ref{zahteva} sem omenil, da so finanèni donosi navadno asimetrièni v levo, torej je mediana veèja od povpreèja. Prav zato naj bi bili skriti markovski modeli, po \cite{prvivir} bolj primerni za ugotavljanje padajoèih cen finanènih instrumentov.\\
-Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ naprej, pa do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
+Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi NYSE za vse delnice, ki so tu kotirale od $1970$ do leta $2016$, za analizo pa bom uporabil le nekaj podjetij. Te podatke bom uporabil predvsem v splošni analizi kakovosti modela \ref{Analiza}, kjer bom nato primerjal cene, ki jih predvideva skriti markovski model z dejanskimi cenami. \\
 %Seveda ne moremo vzeti prevelikega razpona podatkov, saj lahko na dolgi rok cena instrumenta ne sledi trendu prvega dela, na katerem smo naš model trenirali. To lahko lepo vidimo, ko pogledamo na zakljuène cene delnice Amazona, na NYSE oznaèena z AMZN. Vidimo namreè lahko, da je bila v drugih $10$ letih rast cene delnice bolj konstanta kot v prvih $10$ letih. \\
 %\begin{figure}[h!]
 %	\begin{center} 
@@ -597,7 +597,7 @@ Podatki, ki sem jih za to pridobil pokrivajo vrednosti delnic na newyorški borzi
 %Na levi sliki je z rdeèo èrto prikazana datum, do katerega so na desni sliki prikazane cene delnic. Oèitno je, da vrednosti, ki jih je cena delnice dosegla ob koncu merjenja, ne moremo doseèi z našim modelom, zato raje uporabimo stacionarno vrsto. V tem primeru sem uporabil le odmik od cene prejšnjega dne za isto delnico.\\
 \subsection{Analiza modela}\label{Analiza}
 V lastnem primeru sem s pomoèjo teorije skritih markovskih modelov izvedel le en del obsežnega primera. Tako sem se odloèil za ocenitev verjetnosti prehodov med stanji. Ta stanja sem definiral kot v \cite{prvivir} glede na volatilnost, in posledièno ne predstavljajo popolnoma skritih stanj.\\
-Za model sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne. Signale torej predstavlja cena tega portfelja.\\
+Za model sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral sem podjetja Consolidated Edison, Johnson \& Johnson, Proctor \& Gamble, Coca-Cola in International Business Machines, bolj znan kot IBM. Za portfelj, ki ga sestavlja teh $5$ delnic, bom analiziral stanja cen ob koncu trgovalnega dne. Signale torej predstavlja dnevni donos tega portfelja.\\
 \begin{figure}[h!]
 	\begin{center} 
 		\includegraphics[scale=0.8]{slike/celotenportfelj}\\
@@ -606,10 +606,14 @@ Za model sem pridobil podatke iz newyorške borze NYSE o ceni $5$ delnic. Izbral 
 \end{figure}  
 
 Izbrana podjetja spadajo med najstarejša podjetja na newyorški borzi. Tako sem po stacionarizaciji podatkov dobil daljše èasovno obdobje, na katerem sem lahko svoj model uèil.\\
-Model, ki ga bomo uporabili, ima diskretna stanja. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse paratmetre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
-Za svoj portfelj sem želel ugotoviti prehode med stanji markovskih verig, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Ta stanja sem podobno kot v \cite{prvivir} definiral glede na volatilnost donosa v tistem obdobju na tri razlièna stanja, poleg tega pa so ta stanja fiksna. Tako smo dobili normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Za vsak trenutek sem poiskal relativno rast cene portfelja in jih razvrstil v èasovno vrsto. Za te cene sem poiskal ustrezne percentile, prek katerih sem opazovanja pravilno grupiral.\\
+Model, ki ga bom uporabil, ima diskretna stanja. Velja torej, da nam model pove le, v katerm stanju se nahajamo. Za svoj portfelj sem želel ugotoviti prehode med stanji markovskih verig, ki se skrivajo za signali, ki jih prikazujejo cene ob koncu trgovalnih dni. Donose sem podobno kot v \cite{prvivir} definiral glede na volatilnost v tistem obdobju. Nato sem jih grupiral v tri razlièna fiksna stanja.Dobil sem normalno stanje, ki velja v $70\%$ èasa, stanje visoke volatilnosti, ki velja $20\%$ èasa ter ekstremno stanje, ki velja preostalih $10\%$ èasa, podobno kot velja v viru \cite{AustrianALMO}. Zaporedje stanj sem doloèil prek volatilnosti portfelja, in sicer sem stanja doloèil glede na relativen odmik. Za vsak trenutek sem poiskal relativno rast cene portfelja in jih razvrstil v èasovno vrsto. Za te cene sem poiskal ustrezne percentile, prek katerih sem opazovanja pravilno grupiral.\\
+Èe bi želeli izvesti primer, prikazan v \ref{trening} in \ref{zacetno}, bi morali poleg prehodne matrike doloèiti še celoten preostal nabor $\lambda$. V našem primeru pa nas le zanimajo prehodi med skritimi stanji, zato tega ne potrebujemo. Sicer bi, kot opisano v \ref{generator}, glede na zaporedje opazovanj doloèili vse parametre s pomoèjo predhodno opisanih postopkov. Najprej bi tako izbrali primerno število stanj in mešanic, izbrali primerno zaèetno oceno za podatke, nato pa izvedli trening.\\
 V tem primeru nimamo tipiènega skritega markovskega modela, temveè smo podatke grupirali na nov naèin. Tu se postavi vprašanje, ali ima ta model še markovsko lastnost, a to presega mojo diplomsko nalogo.\\
-Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali z predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo. Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj.\\
+Iz zaporedja stanj pridobimo prehodno matriko. Za oceno le te smo si pomagali s predhodno implementiranimi R funkcijami, prek katerih smo izraèunali oceno zanjo, in sicer z ukazom \begin{verbatim}
+sekvenca = createSequenceMatrix(rezultat, toRowProbs = TRUE)
+matrika = as(sekvenca, "markovchain")
+\end{verbatim}\\  
+Prehodna matrika je rezultat, ki ga lahko pridobimo, ko poznamo zaporedje stanj.\\
 %\begin{figure}[h!]
 %	\begin{center} 
 %		\includegraphics[scale=0.8]{slike/koda}\\
