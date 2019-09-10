@@ -31,15 +31,15 @@ vrednost <- edclose + ibmclose + jnjclose + koclose + pgclose
 razlika <- vrednost[2:12072] - vrednost[1:12071]
 razlika <- razlika / vrednost[2:12072]
 
-devet <- quantile(razlika, 0.9) # 0.0107
-sedem <- quantile(razlika, 0.7) # 0.00399
+devet <- quantile(abs(razlika), 0.9) # 0.0107 #0.0149
+sedem <- quantile(abs(razlika), 0.7) # 0.00399 #0.0081
 rezultat <- vector(length = length(razlika))
 
 for(i in 1:length(rezultat)){
-  if(abs(razlika[i]) <= 0.00399){
+  if(abs(razlika[i]) <= 0.0081){
     rezultat[i] <- 1
   }
-  else if(0.00399 < abs(razlika[i]) &&  abs(razlika[i]) <= 0.0107){
+  else if(0.0081 < abs(razlika[i]) &&  abs(razlika[i]) <= 0.0149){
     rezultat[i] <- 2
   }
   else{
@@ -48,8 +48,6 @@ for(i in 1:length(rezultat)){
 }
 
 #prehodna matrika je matrika
-a <- table(rezultat)
-zacetna <- a/length(rezultat)
 sekvenca = createSequenceMatrix(rezultat, toRowProbs = TRUE)
 matrika = as(sekvenca, "markovchain")
 plot(matrika, edge.arrow.size = 0.5)
